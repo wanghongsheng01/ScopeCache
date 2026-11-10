@@ -1,0 +1,484 @@
+{"ep": 0, "step": 0, "user": 199, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 1, "step": 0, "user": 333, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 1, "step": 1, "user": 333, "task": 7, "metrics": ["aov"], "group": ["brand"], "filters": [["country", ["C05"]]], "months": [202401, 202612], "result": "rows", "n_rows": 2}
+{"ep": 2, "step": 0, "user": 1, "task": 2, "metrics": ["gross_margin"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 2, "step": 1, "user": 1, "task": 2, "metrics": ["sales", "gross_profit"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 2, "step": 2, "user": 1, "task": 2, "metrics": ["sales"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 39}
+{"ep": 2, "step": 3, "user": 1, "task": 2, "metrics": ["sales", "orders", "units"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 39}
+{"ep": 2, "step": 4, "user": 1, "task": 2, "metrics": ["sales", "orders", "units"], "group": ["product_line", "month"], "filters": [], "months": [202410, 202509], "result": "rows", "n_rows": 26}
+{"ep": 3, "step": 0, "user": 291, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 2}
+{"ep": 4, "step": 0, "user": 216, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 20}
+{"ep": 5, "step": 0, "user": 228, "task": 3, "metrics": ["orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 11}
+{"ep": 6, "step": 0, "user": 356, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 6}
+{"ep": 7, "step": 0, "user": 228, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 4}
+{"ep": 7, "step": 1, "user": 228, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 5}
+{"ep": 8, "step": 0, "user": 4, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 30}
+{"ep": 9, "step": 0, "user": 14, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 5}
+{"ep": 10, "step": 0, "user": 221, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 36}
+{"ep": 10, "step": 1, "user": 221, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 11, "step": 0, "user": 48, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 36}
+{"ep": 11, "step": 2, "user": 48, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [["channel", ["CH0", "CH1", "CH2", "CH3", "CH4"]]], "months": [202607, 202612], "result": "rows", "n_rows": 30}
+{"ep": 12, "step": 0, "user": 311, "task": 2, "metrics": ["gross_margin"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 12, "step": 1, "user": 311, "task": 2, "metrics": ["sales", "gross_profit"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 12, "step": 2, "user": 311, "task": 2, "metrics": ["sales"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 60}
+{"ep": 12, "step": 4, "user": 311, "task": 2, "metrics": ["sales", "orders"], "group": ["product_line", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 12}
+{"ep": 12, "step": 5, "user": 311, "task": 2, "metrics": ["sales", "orders"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202512], "result": "rows", "n_rows": 12}
+{"ep": 13, "step": 0, "user": 199, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 13, "step": 1, "user": 199, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 49}
+{"ep": 13, "step": 2, "user": 199, "task": 0, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 11}
+{"ep": 14, "step": 0, "user": 389, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 4}
+{"ep": 15, "step": 0, "user": 291, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 2}
+{"ep": 15, "step": 2, "user": 291, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202609], "result": "rows", "n_rows": 1}
+{"ep": 15, "step": 3, "user": 291, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 1}
+{"ep": 16, "step": 0, "user": 351, "task": 10, "metrics": ["orders"], "group": ["channel"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 6}
+{"ep": 16, "step": 1, "user": 351, "task": 10, "metrics": ["orders", "units"], "group": ["month"], "filters": [["channel", ["CH0"]]], "months": [202401, 202612], "result": "rows", "n_rows": 36}
+{"ep": 17, "step": 0, "user": 390, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202611, 202611], "result": "rows", "n_rows": 1}
+{"ep": 17, "step": 1, "user": 390, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202511, 202511], "result": "rows", "n_rows": 1}
+{"ep": 18, "step": 0, "user": 60, "task": 15, "metrics": ["gross_margin"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 18, "step": 1, "user": 60, "task": 15, "metrics": ["gross_profit", "sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 18, "step": 2, "user": 60, "task": 15, "metrics": ["sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 3}
+{"ep": 18, "step": 4, "user": 60, "task": 15, "metrics": ["sales", "units", "orders"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 3}
+{"ep": 19, "step": 0, "user": 194, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 20, "step": 0, "user": 241, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 6}
+{"ep": 21, "step": 0, "user": 333, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 21, "step": 1, "user": 333, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 26}
+{"ep": 21, "step": 2, "user": 333, "task": 0, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 2}
+{"ep": 21, "step": 3, "user": 333, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B02"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 21, "step": 4, "user": 333, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B00"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 22, "step": 0, "user": 216, "task": 3, "metrics": ["orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 23, "step": 0, "user": 107, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 23, "step": 1, "user": 107, "task": 14, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 23, "step": 2, "user": 107, "task": 14, "metrics": ["gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 24, "step": 0, "user": 249, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 24, "step": 1, "user": 249, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [["channel", ["CH1", "CH2", "CH4"]]], "months": [202601, 202612], "result": "rows", "n_rows": 17}
+{"ep": 24, "step": 2, "user": 249, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 85}
+{"ep": 24, "step": 3, "user": 249, "task": 1, "metrics": ["refund_rate", "sales"], "group": ["channel", "month"], "filters": [["channel", ["CH1", "CH2", "CH4"]]], "months": [202501, 202612], "result": "rows", "n_rows": 33}
+{"ep": 24, "step": 4, "user": 249, "task": 1, "metrics": ["refund_rate", "sales", "orders"], "group": ["channel"], "filters": [["channel", ["CH1", "CH2", "CH4"]]], "months": [202501, 202512], "result": "rows", "n_rows": 3}
+{"ep": 25, "step": 0, "user": 130, "task": 15, "metrics": ["gross_margin"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 25, "step": 1, "user": 130, "task": 15, "metrics": ["gross_profit", "sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 25, "step": 2, "user": 130, "task": 15, "metrics": ["sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 1}
+{"ep": 25, "step": 3, "user": 130, "task": 15, "metrics": ["sales", "units", "orders"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 1}
+{"ep": 26, "step": 0, "user": 110, "task": 10, "metrics": ["orders"], "group": ["channel"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 6}
+{"ep": 26, "step": 1, "user": 110, "task": 10, "metrics": ["orders", "units"], "group": ["month"], "filters": [["channel", ["CH0"]]], "months": [202401, 202612], "result": "rows", "n_rows": 36}
+{"ep": 27, "step": 0, "user": 392, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 240}
+{"ep": 27, "step": 2, "user": 392, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 120}
+{"ep": 27, "step": 3, "user": 392, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 120}
+{"ep": 27, "step": 4, "user": 392, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 20}
+{"ep": 27, "step": 5, "user": 392, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 20}
+{"ep": 28, "step": 0, "user": 107, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 28, "step": 1, "user": 107, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 156}
+{"ep": 28, "step": 2, "user": 107, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B00", "B01", "B02", "B03"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 28, "step": 3, "user": 107, "task": 0, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 28, "step": 4, "user": 107, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B04", "B05", "B06", "B07", "B08", "B09", "B10", "B11"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 29, "step": 0, "user": 195, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 29, "step": 2, "user": 195, "task": 12, "metrics": ["sales"], "group": ["product_line", "category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 29, "step": 3, "user": 195, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [["category", ["K04", "K08", "K12", "K20", "K24"]]], "months": [202401, 202612], "result": "rows", "n_rows": 5}
+{"ep": 30, "step": 0, "user": 199, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 11}
+{"ep": 31, "step": 0, "user": 136, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 4}
+{"ep": 32, "step": 0, "user": 249, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 33, "step": 0, "user": 130, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 5}
+{"ep": 34, "step": 0, "user": 13, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 240}
+{"ep": 34, "step": 2, "user": 13, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 20}
+{"ep": 34, "step": 3, "user": 13, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 20}
+{"ep": 35, "step": 0, "user": 68, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 35, "step": 1, "user": 68, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 156}
+{"ep": 35, "step": 2, "user": 68, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B00", "B01", "B02", "B03"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 35, "step": 3, "user": 68, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B01"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 35, "step": 4, "user": 68, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B00"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 36, "step": 0, "user": 230, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 36, "step": 1, "user": 230, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 156}
+{"ep": 36, "step": 2, "user": 230, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B00", "B01", "B02", "B03"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 36, "step": 3, "user": 230, "task": 0, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 36, "step": 4, "user": 230, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B04", "B05", "B06", "B07", "B08", "B09", "B10", "B11"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 37, "step": 0, "user": 52, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 23}
+{"ep": 37, "step": 1, "user": 52, "task": 17, "metrics": ["refund_rate", "sales"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 23}
+{"ep": 38, "step": 0, "user": 369, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 36}
+{"ep": 38, "step": 1, "user": 369, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 39, "step": 0, "user": 356, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 39, "step": 1, "user": 356, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K20"]]], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 40, "step": 0, "user": 32, "task": 3, "metrics": ["orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 41, "step": 0, "user": 68, "task": 15, "metrics": ["gross_margin"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 4}
+{"ep": 42, "step": 0, "user": 277, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 1}
+{"ep": 43, "step": 0, "user": 249, "task": 15, "metrics": ["gross_margin"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 43, "step": 1, "user": 249, "task": 15, "metrics": ["gross_profit", "sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 43, "step": 2, "user": 249, "task": 15, "metrics": ["sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 2}
+{"ep": 43, "step": 3, "user": 249, "task": 15, "metrics": ["units", "orders"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 2}
+{"ep": 43, "step": 4, "user": 249, "task": 15, "metrics": ["aov"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 2}
+{"ep": 43, "step": 5, "user": 249, "task": 15, "metrics": ["buyers"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 2}
+{"ep": 44, "step": 0, "user": 392, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 44, "step": 1, "user": 392, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["brand"], "filters": [["country", ["C06"]]], "months": [202401, 202612], "result": "rows", "n_rows": 12}
+{"ep": 45, "step": 0, "user": 4, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 148}
+{"ep": 46, "step": 0, "user": 332, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 46, "step": 1, "user": 332, "task": 14, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 10}
+{"ep": 46, "step": 2, "user": 332, "task": 14, "metrics": ["gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 47, "step": 0, "user": 392, "task": 3, "metrics": ["orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 48, "step": 0, "user": 389, "task": 3, "metrics": ["orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 49, "step": 0, "user": 194, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 36}
+{"ep": 49, "step": 1, "user": 194, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202607, 202609], "result": "rows", "n_rows": 36}
+{"ep": 49, "step": 2, "user": 194, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 12}
+{"ep": 49, "step": 3, "user": 194, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [], "months": [202607, 202609], "result": "rows", "n_rows": 12}
+{"ep": 50, "step": 0, "user": 107, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 240}
+{"ep": 50, "step": 2, "user": 107, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 120}
+{"ep": 50, "step": 3, "user": 107, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 120}
+{"ep": 50, "step": 4, "user": 107, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 20}
+{"ep": 50, "step": 5, "user": 107, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 20}
+{"ep": 51, "step": 0, "user": 277, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 23}
+{"ep": 51, "step": 1, "user": 277, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K06"]]], "months": [202610, 202612], "result": "rows", "n_rows": 2}
+{"ep": 52, "step": 0, "user": 291, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 10}
+{"ep": 52, "step": 1, "user": 291, "task": 7, "metrics": ["aov", "sales", "orders"], "group": ["brand"], "filters": [["country", ["C00"]]], "months": [202401, 202612], "result": "rows", "n_rows": 1}
+{"ep": 53, "step": 0, "user": 277, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 34}
+{"ep": 53, "step": 1, "user": 277, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202609], "result": "rows", "n_rows": 6}
+{"ep": 53, "step": 2, "user": 277, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 54, "step": 0, "user": 32, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 54, "step": 1, "user": 32, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K20"]]], "months": [202610, 202612], "result": "rows", "n_rows": 2}
+{"ep": 55, "step": 0, "user": 277, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 55, "step": 1, "user": 277, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [["channel", ["CH1", "CH2", "CH5"]]], "months": [202601, 202612], "result": "rows", "n_rows": 35}
+{"ep": 55, "step": 2, "user": 277, "task": 1, "metrics": ["refund_rate", "sales"], "group": ["channel", "month"], "filters": [["channel", ["CH1", "CH2", "CH5"]]], "months": [202601, 202612], "result": "rows", "n_rows": 35}
+{"ep": 56, "step": 0, "user": 390, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 240}
+{"ep": 56, "step": 2, "user": 390, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 120}
+{"ep": 56, "step": 3, "user": 390, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 120}
+{"ep": 56, "step": 4, "user": 390, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 20}
+{"ep": 56, "step": 5, "user": 390, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 20}
+{"ep": 57, "step": 0, "user": 195, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 35}
+{"ep": 57, "step": 1, "user": 195, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 12}
+{"ep": 57, "step": 2, "user": 195, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [["brand", ["B00", "B01", "B02", "B03", "B11"]]], "months": [202607, 202609], "result": "rows", "n_rows": 5}
+{"ep": 58, "step": 0, "user": 4, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 20}
+{"ep": 59, "step": 0, "user": 136, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 5}
+{"ep": 60, "step": 0, "user": 48, "task": 4, "metrics": ["gross_profit"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 60, "step": 1, "user": 48, "task": 4, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 12}
+{"ep": 60, "step": 2, "user": 48, "task": 4, "metrics": ["gross_margin"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 60, "step": 3, "user": 48, "task": 4, "metrics": ["sales", "units", "orders"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 12}
+{"ep": 61, "step": 0, "user": 136, "task": 10, "metrics": ["orders"], "group": ["channel"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 5}
+{"ep": 61, "step": 1, "user": 136, "task": 10, "metrics": ["orders", "units"], "group": ["month"], "filters": [["channel", ["CH0"]]], "months": [202401, 202612], "result": "rows", "n_rows": 10}
+{"ep": 62, "step": 0, "user": 68, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 62, "step": 1, "user": 68, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["brand"], "filters": [["country", ["C05"]]], "months": [202401, 202612], "result": "rows", "n_rows": 12}
+{"ep": 63, "step": 0, "user": 302, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 63, "step": 1, "user": 302, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K20"]]], "months": [202610, 202612], "result": "rows", "n_rows": 1}
+{"ep": 64, "step": 0, "user": 241, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 18}
+{"ep": 64, "step": 1, "user": 241, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K27"]]], "months": [202610, 202612], "result": "rows", "n_rows": 2}
+{"ep": 65, "step": 0, "user": 369, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 36}
+{"ep": 65, "step": 2, "user": 369, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [], "months": [202610, 202610], "result": "rows", "n_rows": 12}
+{"ep": 65, "step": 3, "user": 369, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [], "months": [202612, 202612], "result": "rows", "n_rows": 12}
+{"ep": 66, "step": 0, "user": 351, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 66, "step": 2, "user": 351, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 66, "step": 3, "user": 351, "task": 12, "metrics": ["sales"], "group": ["category", "product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 67, "step": 0, "user": 14, "task": 15, "metrics": ["gross_margin"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 67, "step": 1, "user": 14, "task": 15, "metrics": ["gross_profit", "sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 67, "step": 2, "user": 14, "task": 15, "metrics": ["sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 2}
+{"ep": 67, "step": 3, "user": 14, "task": 15, "metrics": ["units", "orders"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 2}
+{"ep": 67, "step": 4, "user": 14, "task": 15, "metrics": ["aov"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 2}
+{"ep": 68, "step": 0, "user": 136, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 68, "step": 2, "user": 136, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 25}
+{"ep": 68, "step": 3, "user": 136, "task": 12, "metrics": ["sales"], "group": ["product_line", "category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 25}
+{"ep": 69, "step": 0, "user": 302, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 69, "step": 1, "user": 302, "task": 14, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 69, "step": 2, "user": 302, "task": 14, "metrics": ["gross_profit", "sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 69, "step": 3, "user": 302, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 70, "step": 0, "user": 389, "task": 2, "metrics": ["gross_margin"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 60}
+{"ep": 70, "step": 2, "user": 389, "task": 2, "metrics": ["gross_margin"], "group": ["product_line", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 12}
+{"ep": 70, "step": 3, "user": 389, "task": 2, "metrics": ["gross_margin"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202512], "result": "rows", "n_rows": 12}
+{"ep": 70, "step": 4, "user": 389, "task": 2, "metrics": ["gross_margin"], "group": ["product_line"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 4}
+{"ep": 70, "step": 5, "user": 389, "task": 2, "metrics": ["gross_margin"], "group": ["product_line"], "filters": [], "months": [202510, 202512], "result": "rows", "n_rows": 4}
+{"ep": 71, "step": 0, "user": 117, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 4}
+{"ep": 71, "step": 1, "user": 117, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 5}
+{"ep": 72, "step": 0, "user": 241, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 72, "step": 1, "user": 241, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [["channel", ["CH3", "CH4"]]], "months": [202601, 202612], "result": "rows", "n_rows": 10}
+{"ep": 73, "step": 0, "user": 253, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 20}
+{"ep": 74, "step": 0, "user": 60, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 35}
+{"ep": 74, "step": 1, "user": 60, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 74, "step": 2, "user": 60, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [["channel", ["CH0", "CH1", "CH2", "CH3", "CH4", "CH5"]]], "months": [202607, 202609], "result": "rows", "n_rows": 6}
+{"ep": 74, "step": 3, "user": 60, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [["channel", ["CH0", "CH1", "CH2", "CH3", "CH4", "CH5"]]], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 75, "step": 0, "user": 389, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 75, "step": 1, "user": 389, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K20"]]], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 76, "step": 0, "user": 117, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 2}
+{"ep": 76, "step": 2, "user": 117, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 2}
+{"ep": 76, "step": 3, "user": 117, "task": 17, "metrics": ["refund_rate", "sales"], "group": ["category"], "filters": [], "months": [202606, 202612], "result": "rows", "n_rows": 2}
+{"ep": 76, "step": 4, "user": 117, "task": 17, "metrics": ["refund_rate", "sales"], "group": ["category"], "filters": [], "months": [202501, 202612], "result": "rows", "n_rows": 8}
+{"ep": 76, "step": 5, "user": 117, "task": 17, "metrics": ["refund_rate", "sales", "orders"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 15}
+{"ep": 76, "step": 7, "user": 117, "task": 17, "metrics": ["refund_rate", "sales", "orders"], "group": ["category", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 2}
+{"ep": 77, "step": 0, "user": 332, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 14}
+{"ep": 77, "step": 1, "user": 332, "task": 17, "metrics": ["refund_rate", "sales"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 14}
+{"ep": 78, "step": 0, "user": 302, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 78, "step": 2, "user": 302, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 78, "step": 3, "user": 302, "task": 12, "metrics": ["sales"], "group": ["product_line", "category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 79, "step": 0, "user": 253, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 80, "step": 0, "user": 241, "task": 15, "metrics": ["gross_margin"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 80, "step": 1, "user": 241, "task": 15, "metrics": ["gross_profit", "sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 80, "step": 2, "user": 241, "task": 15, "metrics": ["sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 80, "step": 3, "user": 241, "task": 15, "metrics": ["orders", "units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 80, "step": 4, "user": 241, "task": 15, "metrics": ["buyers", "aov"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 81, "step": 0, "user": 277, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 81, "step": 2, "user": 277, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 81, "step": 3, "user": 277, "task": 12, "metrics": ["sales"], "group": ["product_line", "category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 82, "step": 0, "user": 356, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 82, "step": 1, "user": 356, "task": 14, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 82, "step": 2, "user": 356, "task": 14, "metrics": ["gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 83, "step": 0, "user": 14, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202611, 202611], "result": "rows", "n_rows": 1}
+{"ep": 83, "step": 1, "user": 14, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202511, 202511], "result": "rows", "n_rows": 1}
+{"ep": 84, "step": 0, "user": 15, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 6}
+{"ep": 85, "step": 0, "user": 356, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 36}
+{"ep": 85, "step": 1, "user": 356, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 86, "step": 0, "user": 391, "task": 3, "metrics": ["orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 87, "step": 0, "user": 194, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 87, "step": 2, "user": 194, "task": 12, "metrics": ["sales"], "group": ["product_line", "category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 88, "step": 0, "user": 13, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 20}
+{"ep": 89, "step": 0, "user": 162, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 89, "step": 1, "user": 162, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 133}
+{"ep": 89, "step": 2, "user": 162, "task": 0, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 89, "step": 3, "user": 162, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [["brand", ["B00", "B01", "B03"]]], "months": [202512, 202612], "result": "rows", "n_rows": 39}
+{"ep": 89, "step": 4, "user": 162, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B00"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 90, "step": 0, "user": 1, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 38}
+{"ep": 90, "step": 2, "user": 1, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 17}
+{"ep": 90, "step": 3, "user": 1, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 21}
+{"ep": 90, "step": 4, "user": 1, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 11}
+{"ep": 90, "step": 5, "user": 1, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 10}
+{"ep": 91, "step": 0, "user": 291, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202611, 202611], "result": "rows", "n_rows": 0}
+{"ep": 91, "step": 1, "user": 291, "task": 18, "metrics": ["sales", "orders"], "group": ["month"], "filters": [], "months": [202511, 202611], "result": "rows", "n_rows": 5}
+{"ep": 92, "step": 0, "user": 333, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 36}
+{"ep": 92, "step": 1, "user": 333, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 93, "step": 0, "user": 11, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 1}
+{"ep": 93, "step": 1, "user": 11, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 12}
+{"ep": 93, "step": 3, "user": 11, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 1}
+{"ep": 94, "step": 0, "user": 333, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 94, "step": 1, "user": 333, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K20"]]], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 95, "step": 0, "user": 369, "task": 3, "metrics": ["orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 96, "step": 0, "user": 228, "task": 10, "metrics": ["orders"], "group": ["channel"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 6}
+{"ep": 96, "step": 1, "user": 228, "task": 10, "metrics": ["orders", "units"], "group": ["month"], "filters": [["channel", ["CH0", "CH1", "CH2"]]], "months": [202401, 202612], "result": "rows", "n_rows": 13}
+{"ep": 97, "step": 0, "user": 14, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 1}
+{"ep": 98, "step": 0, "user": 311, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 175}
+{"ep": 98, "step": 2, "user": 311, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 82}
+{"ep": 98, "step": 3, "user": 311, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 93}
+{"ep": 98, "step": 4, "user": 311, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 20}
+{"ep": 98, "step": 5, "user": 311, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 20}
+{"ep": 99, "step": 0, "user": 356, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 240}
+{"ep": 99, "step": 2, "user": 356, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 120}
+{"ep": 99, "step": 3, "user": 356, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 120}
+{"ep": 99, "step": 4, "user": 356, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 20}
+{"ep": 99, "step": 5, "user": 356, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 20}
+{"ep": 100, "step": 0, "user": 68, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 36}
+{"ep": 100, "step": 1, "user": 68, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 101, "step": 0, "user": 162, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 101, "step": 1, "user": 162, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["brand"], "filters": [["country", ["C05"]]], "months": [202401, 202612], "result": "rows", "n_rows": 12}
+{"ep": 102, "step": 0, "user": 291, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 2}
+{"ep": 103, "step": 0, "user": 195, "task": 15, "metrics": ["gross_margin"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 103, "step": 1, "user": 195, "task": 15, "metrics": ["gross_profit", "sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 103, "step": 2, "user": 195, "task": 15, "metrics": ["sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 228}
+{"ep": 103, "step": 3, "user": 195, "task": 15, "metrics": ["gross_profit"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 103, "step": 4, "user": 195, "task": 15, "metrics": ["units", "orders"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 228}
+{"ep": 103, "step": 5, "user": 195, "task": 15, "metrics": ["aov"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 228}
+{"ep": 104, "step": 0, "user": 199, "task": 10, "metrics": ["orders"], "group": ["channel"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 6}
+{"ep": 104, "step": 1, "user": 199, "task": 10, "metrics": ["orders", "units"], "group": ["month"], "filters": [["channel", ["CH0"]]], "months": [202401, 202612], "result": "rows", "n_rows": 29}
+{"ep": 105, "step": 0, "user": 332, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 105, "step": 1, "user": 332, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [["channel", ["CH4"]]], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 105, "step": 2, "user": 332, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 29}
+{"ep": 105, "step": 3, "user": 332, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [["channel", ["CH0", "CH1", "CH2", "CH3", "CH4", "CH5"]]], "months": [202601, 202612], "result": "rows", "n_rows": 29}
+{"ep": 105, "step": 4, "user": 332, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [], "months": [202501, 202612], "result": "rows", "n_rows": 57}
+{"ep": 106, "step": 0, "user": 391, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 106, "step": 1, "user": 391, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 156}
+{"ep": 106, "step": 2, "user": 391, "task": 0, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 106, "step": 3, "user": 391, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [["brand", ["B00", "B01", "B02", "B03"]]], "months": [202512, 202612], "result": "rows", "n_rows": 52}
+{"ep": 106, "step": 4, "user": 391, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B00", "B01", "B02", "B03"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 107, "step": 0, "user": 230, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 12}
+{"ep": 107, "step": 1, "user": 230, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 2}
+{"ep": 108, "step": 0, "user": 117, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 1}
+{"ep": 108, "step": 1, "user": 117, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 1}
+{"ep": 108, "step": 2, "user": 117, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202607, 202609], "result": "rows", "n_rows": 1}
+{"ep": 108, "step": 3, "user": 117, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 1}
+{"ep": 108, "step": 4, "user": 117, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202604, 202612], "result": "rows", "n_rows": 2}
+{"ep": 109, "step": 0, "user": 311, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 30}
+{"ep": 110, "step": 0, "user": 13, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 6}
+{"ep": 111, "step": 0, "user": 332, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 4}
+{"ep": 112, "step": 0, "user": 13, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 112, "step": 1, "user": 13, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K19"]]], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 113, "step": 0, "user": 13, "task": 4, "metrics": ["gross_profit"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 113, "step": 1, "user": 13, "task": 4, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 12}
+{"ep": 113, "step": 2, "user": 13, "task": 4, "metrics": ["gross_margin"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 113, "step": 3, "user": 13, "task": 4, "metrics": ["sales", "units", "orders"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 12}
+{"ep": 114, "step": 0, "user": 48, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 7}
+{"ep": 115, "step": 0, "user": 392, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 115, "step": 1, "user": 392, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K20"]]], "months": [202610, 202612], "result": "rows", "n_rows": 5}
+{"ep": 116, "step": 0, "user": 117, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 1}
+{"ep": 117, "step": 0, "user": 228, "task": 15, "metrics": ["gross_margin"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 117, "step": 1, "user": 228, "task": 15, "metrics": ["gross_profit", "sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 117, "step": 2, "user": 228, "task": 15, "metrics": ["sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 1}
+{"ep": 118, "step": 0, "user": 194, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 30}
+{"ep": 119, "step": 0, "user": 391, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 20}
+{"ep": 120, "step": 0, "user": 1, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 14}
+{"ep": 121, "step": 0, "user": 390, "task": 2, "metrics": ["gross_margin"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 60}
+{"ep": 121, "step": 2, "user": 390, "task": 2, "metrics": ["gross_margin"], "group": ["product_line", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 12}
+{"ep": 121, "step": 3, "user": 390, "task": 2, "metrics": ["gross_margin"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202512], "result": "rows", "n_rows": 12}
+{"ep": 122, "step": 0, "user": 162, "task": 10, "metrics": ["orders"], "group": ["channel"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 6}
+{"ep": 122, "step": 1, "user": 162, "task": 10, "metrics": ["orders", "units"], "group": ["month"], "filters": [["channel", ["CH0"]]], "months": [202401, 202612], "result": "rows", "n_rows": 36}
+{"ep": 123, "step": 0, "user": 253, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 123, "step": 2, "user": 253, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 124, "step": 0, "user": 11, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202611, 202611], "result": "rows", "n_rows": 1}
+{"ep": 124, "step": 1, "user": 11, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202511, 202511], "result": "rows", "n_rows": 1}
+{"ep": 125, "step": 0, "user": 351, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 125, "step": 1, "user": 351, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 12}
+{"ep": 125, "step": 2, "user": 351, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [["brand", ["B00", "B01", "B02", "B03", "B04", "B10"]]], "months": [202607, 202609], "result": "rows", "n_rows": 16}
+{"ep": 125, "step": 3, "user": 351, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [["brand", ["B00", "B01", "B02", "B03", "B04", "B10"]]], "months": [202607, 202609], "result": "rows", "n_rows": 6}
+{"ep": 126, "step": 0, "user": 15, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 126, "step": 1, "user": 15, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 72}
+{"ep": 126, "step": 2, "user": 15, "task": 1, "metrics": ["refund_rate"], "group": ["month"], "filters": [["channel", ["CH0", "CH1", "CH2", "CH3", "CH4", "CH5"]]], "months": [202601, 202612], "result": "rows", "n_rows": 12}
+{"ep": 127, "step": 0, "user": 117, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 11}
+{"ep": 127, "step": 1, "user": 117, "task": 7, "metrics": ["aov", "orders"], "group": ["brand"], "filters": [["country", ["C05"]]], "months": [202401, 202612], "result": "rows", "n_rows": 6}
+{"ep": 128, "step": 0, "user": 230, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 128, "step": 2, "user": 230, "task": 12, "metrics": ["sales"], "group": ["product_line", "category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 128, "step": 3, "user": 230, "task": 12, "metrics": ["sales"], "group": ["product_line", "category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 128, "step": 4, "user": 230, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [["category", ["K01", "K05", "K09", "K13", "K17", "K25", "K29"]]], "months": [202401, 202612], "result": "rows", "n_rows": 7}
+{"ep": 129, "step": 0, "user": 1, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 10}
+{"ep": 129, "step": 1, "user": 1, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K15"]]], "months": [202610, 202612], "result": "rows", "n_rows": 1}
+{"ep": 130, "step": 0, "user": 107, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 131, "step": 0, "user": 241, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 131, "step": 2, "user": 241, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 131, "step": 3, "user": 241, "task": 12, "metrics": ["sales"], "group": ["product_line", "category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 132, "step": 0, "user": 332, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 132, "step": 1, "user": 332, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 36}
+{"ep": 132, "step": 2, "user": 332, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 36}
+{"ep": 132, "step": 4, "user": 332, "task": 0, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 10}
+{"ep": 133, "step": 0, "user": 52, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 133, "step": 1, "user": 52, "task": 7, "metrics": ["aov"], "group": ["brand"], "filters": [["country", ["C05"]]], "months": [202401, 202612], "result": "rows", "n_rows": 12}
+{"ep": 134, "step": 0, "user": 1, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 6}
+{"ep": 135, "step": 0, "user": 130, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 9}
+{"ep": 136, "step": 0, "user": 110, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 9}
+{"ep": 137, "step": 0, "user": 68, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 138, "step": 0, "user": 195, "task": 3, "metrics": ["orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 139, "step": 0, "user": 391, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 1}
+{"ep": 140, "step": 0, "user": 60, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 140, "step": 1, "user": 60, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [["channel", ["CH0", "CH5"]]], "months": [202601, 202612], "result": "rows", "n_rows": 22}
+{"ep": 141, "step": 0, "user": 249, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 8}
+{"ep": 142, "step": 0, "user": 228, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202611, 202611], "result": "rows", "n_rows": 0}
+{"ep": 142, "step": 1, "user": 228, "task": 18, "metrics": ["sales", "orders"], "group": ["month"], "filters": [], "months": [202511, 202611], "result": "rows", "n_rows": 3}
+{"ep": 142, "step": 2, "user": 228, "task": 18, "metrics": ["sales", "orders"], "group": ["month"], "filters": [], "months": [202511, 202612], "result": "rows", "n_rows": 4}
+{"ep": 142, "step": 3, "user": 228, "task": 18, "metrics": ["sales", "orders"], "group": ["month"], "filters": [], "months": [202501, 202612], "result": "rows", "n_rows": 8}
+{"ep": 143, "step": 0, "user": 11, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 30}
+{"ep": 144, "step": 0, "user": 110, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 30}
+{"ep": 145, "step": 0, "user": 11, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 1}
+{"ep": 146, "step": 0, "user": 14, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 12}
+{"ep": 146, "step": 1, "user": 14, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 5}
+{"ep": 147, "step": 0, "user": 311, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 6}
+{"ep": 147, "step": 1, "user": 311, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [["channel", ["CH2", "CH3", "CH5"]]], "months": [202601, 202612], "result": "rows", "n_rows": 35}
+{"ep": 148, "step": 0, "user": 195, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 6}
+{"ep": 149, "step": 0, "user": 130, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 9}
+{"ep": 149, "step": 2, "user": 130, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202609], "result": "rows", "n_rows": 4}
+{"ep": 149, "step": 3, "user": 130, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 3}
+{"ep": 150, "step": 0, "user": 52, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 150, "step": 1, "user": 52, "task": 14, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 150, "step": 2, "user": 52, "task": 14, "metrics": ["gross_profit"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 151, "step": 0, "user": 194, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 151, "step": 1, "user": 194, "task": 7, "metrics": ["aov", "sales", "orders"], "group": ["brand"], "filters": [["country", ["C05"]]], "months": [202401, 202612], "result": "rows", "n_rows": 12}
+{"ep": 152, "step": 0, "user": 216, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 152, "step": 2, "user": 216, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 152, "step": 4, "user": 216, "task": 12, "metrics": ["sales"], "group": ["category", "product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 152, "step": 5, "user": 216, "task": 12, "metrics": ["sales"], "group": ["product_line", "category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 153, "step": 0, "user": 162, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 35}
+{"ep": 153, "step": 1, "user": 162, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 154, "step": 0, "user": 32, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 20}
+{"ep": 155, "step": 0, "user": 390, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 155, "step": 1, "user": 390, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 73}
+{"ep": 155, "step": 2, "user": 390, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [["brand", ["B04", "B06"]]], "months": [202512, 202612], "result": "rows", "n_rows": 26}
+{"ep": 155, "step": 4, "user": 390, "task": 0, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 156, "step": 0, "user": 15, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 20}
+{"ep": 157, "step": 0, "user": 11, "task": 2, "metrics": ["gross_margin"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 157, "step": 1, "user": 11, "task": 2, "metrics": ["sales", "gross_profit"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 157, "step": 2, "user": 11, "task": 2, "metrics": ["sales"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 60}
+{"ep": 157, "step": 3, "user": 11, "task": 2, "metrics": ["sales", "units"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 60}
+{"ep": 157, "step": 4, "user": 11, "task": 2, "metrics": ["sales", "units", "orders"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 60}
+{"ep": 157, "step": 5, "user": 11, "task": 2, "metrics": ["sales", "units", "orders", "aov"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 60}
+{"ep": 157, "step": 6, "user": 11, "task": 2, "metrics": ["sales", "units", "orders", "aov", "buyers"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 60}
+{"ep": 157, "step": 7, "user": 11, "task": 2, "metrics": ["sales", "units", "orders", "aov", "buyers", "refund_rate"], "group": ["product_line", "month"], "filters": [], "months": [202510, 202612], "result": "rows", "n_rows": 60}
+{"ep": 158, "step": 0, "user": 216, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 240}
+{"ep": 158, "step": 2, "user": 216, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 120}
+{"ep": 158, "step": 3, "user": 216, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 120}
+{"ep": 158, "step": 4, "user": 216, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 20}
+{"ep": 158, "step": 5, "user": 216, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 20}
+{"ep": 159, "step": 0, "user": 4, "task": 3, "metrics": ["orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 160, "step": 0, "user": 253, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 160, "step": 1, "user": 253, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K29"]]], "months": [202610, 202612], "result": "rows", "n_rows": 2}
+{"ep": 161, "step": 0, "user": 389, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 36}
+{"ep": 161, "step": 2, "user": 389, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202609], "result": "rows", "n_rows": 6}
+{"ep": 161, "step": 3, "user": 389, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 162, "step": 0, "user": 390, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 163, "step": 0, "user": 32, "task": 10, "metrics": ["orders"], "group": ["channel"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 2}
+{"ep": 163, "step": 1, "user": 32, "task": 10, "metrics": ["orders", "units"], "group": ["month"], "filters": [["channel", ["CH0"]]], "months": [202401, 202612], "result": "rows", "n_rows": 36}
+{"ep": 164, "step": 0, "user": 392, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 165, "step": 0, "user": 110, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 165, "step": 1, "user": 110, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K20"]]], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 166, "step": 0, "user": 199, "task": 17, "metrics": ["refund_rate"], "group": ["category"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 19}
+{"ep": 167, "step": 0, "user": 60, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 167, "step": 2, "user": 60, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 167, "step": 3, "user": 60, "task": 12, "metrics": ["sales"], "group": ["category", "product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 168, "step": 0, "user": 52, "task": 13, "metrics": ["refund_rate"], "group": ["country"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 15}
+{"ep": 169, "step": 0, "user": 162, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 169, "step": 2, "user": 162, "task": 12, "metrics": ["sales"], "group": ["category", "product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 170, "step": 0, "user": 351, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 6}
+{"ep": 171, "step": 0, "user": 369, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 240}
+{"ep": 171, "step": 2, "user": 369, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 120}
+{"ep": 171, "step": 3, "user": 369, "task": 8, "metrics": ["sales"], "group": ["country", "month"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 120}
+{"ep": 171, "step": 4, "user": 369, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202601, 202606], "result": "rows", "n_rows": 20}
+{"ep": 171, "step": 5, "user": 369, "task": 8, "metrics": ["sales"], "group": ["country"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 20}
+{"ep": 172, "step": 0, "user": 15, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 456}
+{"ep": 173, "step": 0, "user": 110, "task": 4, "metrics": ["gross_profit"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 173, "step": 1, "user": 110, "task": 4, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 12}
+{"ep": 173, "step": 2, "user": 110, "task": 4, "metrics": ["gross_margin"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 174, "step": 0, "user": 249, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 2}
+{"ep": 175, "step": 0, "user": 60, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 175, "step": 1, "user": 60, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["brand"], "filters": [["country", ["C05"]]], "months": [202401, 202612], "result": "rows", "n_rows": 12}
+{"ep": 176, "step": 0, "user": 221, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["country"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 20}
+{"ep": 176, "step": 1, "user": 221, "task": 7, "metrics": ["sales", "orders", "aov"], "group": ["brand"], "filters": [["country", ["C05"]]], "months": [202401, 202612], "result": "rows", "n_rows": 12}
+{"ep": 177, "step": 0, "user": 221, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 177, "step": 1, "user": 221, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 156}
+{"ep": 177, "step": 2, "user": 221, "task": 0, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 177, "step": 3, "user": 221, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B00", "B01", "B02", "B03"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 177, "step": 4, "user": 221, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B04", "B05", "B06", "B07", "B08", "B09", "B10", "B11"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 178, "step": 0, "user": 311, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 33}
+{"ep": 178, "step": 2, "user": 311, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202610, 202610], "result": "rows", "n_rows": 11}
+{"ep": 178, "step": 3, "user": 311, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202612, 202612], "result": "rows", "n_rows": 10}
+{"ep": 178, "step": 4, "user": 311, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202611, 202611], "result": "rows", "n_rows": 12}
+{"ep": 179, "step": 0, "user": 48, "task": 12, "metrics": ["sales"], "group": ["product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 4}
+{"ep": 179, "step": 2, "user": 48, "task": 12, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 179, "step": 3, "user": 48, "task": 12, "metrics": ["sales"], "group": ["category", "product_line"], "filters": [], "months": [202401, 202612], "result": "rows", "n_rows": 30}
+{"ep": 180, "step": 0, "user": 369, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 456}
+{"ep": 181, "step": 0, "user": 15, "task": 4, "metrics": ["gross_profit"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 12}
+{"ep": 182, "step": 0, "user": 221, "task": 19, "metrics": ["units"], "group": ["brand", "month"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 36}
+{"ep": 182, "step": 2, "user": 221, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [], "months": [202610, 202610], "result": "rows", "n_rows": 12}
+{"ep": 182, "step": 3, "user": 221, "task": 19, "metrics": ["units"], "group": ["brand"], "filters": [], "months": [202612, 202612], "result": "rows", "n_rows": 12}
+{"ep": 183, "step": 0, "user": 48, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202611, 202611], "result": "rows", "n_rows": 1}
+{"ep": 183, "step": 1, "user": 48, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202511, 202511], "result": "rows", "n_rows": 1}
+{"ep": 184, "step": 0, "user": 333, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 425}
+{"ep": 185, "step": 0, "user": 302, "task": 1, "metrics": ["refund_rate"], "group": ["channel"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 5}
+{"ep": 185, "step": 1, "user": 302, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [["channel", ["CH3", "CH4"]]], "months": [202601, 202612], "result": "rows", "n_rows": 9}
+{"ep": 185, "step": 2, "user": 302, "task": 1, "metrics": ["refund_rate"], "group": ["channel", "month"], "filters": [["channel", ["CH3", "CH4"]]], "months": [202401, 202612], "result": "rows", "n_rows": 21}
+{"ep": 185, "step": 3, "user": 302, "task": 1, "metrics": ["refund_rate", "sales", "orders"], "group": ["channel", "month"], "filters": [["channel", ["CH3", "CH4"]]], "months": [202501, 202612], "result": "rows", "n_rows": 18}
+{"ep": 185, "step": 4, "user": 302, "task": 1, "metrics": ["refund_rate", "sales", "orders"], "group": ["channel"], "filters": [], "months": [202501, 202512], "result": "rows", "n_rows": 6}
+{"ep": 186, "step": 0, "user": 230, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 187, "step": 0, "user": 230, "task": 15, "metrics": ["gross_margin"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 187, "step": 1, "user": 230, "task": 15, "metrics": ["gross_profit", "sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 187, "step": 2, "user": 230, "task": 15, "metrics": ["sales"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 442}
+{"ep": 187, "step": 3, "user": 230, "task": 15, "metrics": ["orders", "units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 442}
+{"ep": 187, "step": 4, "user": 230, "task": 15, "metrics": ["aov"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 442}
+{"ep": 187, "step": 5, "user": 230, "task": 15, "metrics": ["buyers"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 442}
+{"ep": 187, "step": 6, "user": 230, "task": 15, "metrics": ["refund_rate"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 442}
+{"ep": 188, "step": 0, "user": 253, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 12}
+{"ep": 189, "step": 0, "user": 130, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 1}
+{"ep": 190, "step": 0, "user": 391, "task": 14, "metrics": ["sales", "gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 190, "step": 1, "user": 391, "task": 14, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 12}
+{"ep": 190, "step": 2, "user": 391, "task": 14, "metrics": ["gross_margin"], "group": ["brand"], "filters": [], "months": [202512, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 191, "step": 0, "user": 351, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 191, "step": 1, "user": 351, "task": 0, "metrics": ["sales"], "group": ["month", "brand"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 123}
+{"ep": 191, "step": 2, "user": 351, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B01", "B02"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 191, "step": 3, "user": 351, "task": 0, "metrics": ["sales"], "group": ["month"], "filters": [["brand", ["B00", "B03", "B04", "B05", "B07", "B08", "B11"]]], "months": [202512, 202612], "result": "rows", "n_rows": 13}
+{"ep": 192, "step": 0, "user": 32, "task": 9, "metrics": ["max_order"], "group": ["channel"], "filters": [], "months": [202512, 202612], "result": "rows", "n_rows": 2}
+{"ep": 193, "step": 0, "user": 107, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202611, 202611], "result": "rows", "n_rows": 1}
+{"ep": 193, "step": 1, "user": 107, "task": 18, "metrics": ["sales", "orders"], "group": [], "filters": [], "months": [202511, 202511], "result": "rows", "n_rows": 1}
+{"ep": 194, "step": 0, "user": 216, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 456}
+{"ep": 195, "step": 0, "user": 136, "task": 6, "metrics": ["units"], "group": ["dept"], "filters": [], "months": [202601, 202612], "result": "rows", "n_rows": 1}
+{"ep": 196, "step": 0, "user": 302, "task": 4, "metrics": ["gross_profit"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 196, "step": 1, "user": 302, "task": 4, "metrics": ["sales"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 10}
+{"ep": 196, "step": 2, "user": 302, "task": 4, "metrics": ["gross_margin"], "group": ["brand"], "filters": [], "months": [202607, 202612], "result": "DENY", "n_rows": 0}
+{"ep": 197, "step": 0, "user": 4, "task": 11, "metrics": ["buyers"], "group": ["month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 6}
+{"ep": 198, "step": 0, "user": 221, "task": 5, "metrics": ["sales"], "group": ["category"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 30}
+{"ep": 198, "step": 1, "user": 221, "task": 5, "metrics": ["sales"], "group": ["channel"], "filters": [["category", ["K20"]]], "months": [202610, 202612], "result": "rows", "n_rows": 6}
+{"ep": 199, "step": 0, "user": 52, "task": 16, "metrics": ["units"], "group": ["channel", "month"], "filters": [], "months": [202607, 202612], "result": "rows", "n_rows": 21}
+{"ep": 199, "step": 1, "user": 52, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202607, 202609], "result": "rows", "n_rows": 4}
+{"ep": 199, "step": 2, "user": 52, "task": 16, "metrics": ["units"], "group": ["channel"], "filters": [], "months": [202610, 202612], "result": "rows", "n_rows": 6}

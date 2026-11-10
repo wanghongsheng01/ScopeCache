@@ -1,0 +1,90 @@
+{
+ "drift": 0,
+ "setup": "tpcds",
+ "seed": 0,
+ "calls": 3000,
+ "users": 400,
+ "budget": 1000000,
+ "ev": 1.0,
+ "ovh": 0.5,
+ "events": {
+  "revoke": 5,
+  "republish": 3,
+  "col_edit": 5,
+  "member_move": 9,
+  "reactivate": 4,
+  "grant_edit": 10
+ },
+ "methods": {
+  "PerScope+": {
+   "calls": 2362,
+   "data_calls": 1906,
+   "hits": 1313,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 8.154414539999976,
+   "derive_s": 3.4631706959999207,
+   "n_exec": 593,
+   "replay_calls": 3,
+   "replay_wrong": 0,
+   "peak_rows": 999946,
+   "view_rebuilds": 0,
+   "hit_other": 629,
+   "hit_self": 684,
+   "hit_xscope": 3,
+   "hit_rate": 0.6888772298006296,
+   "lat_local_mean": 0.004918537356477517,
+   "lat_local_p50": 0.0013392290000027174,
+   "lat_local_p95": 0.018220495500001713,
+   "lat_model_mean": 0.13044774988823024,
+   "lat_model_p95": 0.5158241190500036,
+   "lat_pad_mean": 0.1310866674369178,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 171,
+    "evicted": 66,
+    "maint_sec": 0.0
+   },
+   "wall": 21.69173502922058,
+   "views": 0
+  },
+  "VR-adapt": {
+   "calls": 2362,
+   "data_calls": 1906,
+   "hits": 1563,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 9.189551370999965,
+   "derive_s": 12.937033655000548,
+   "n_exec": 361,
+   "replay_calls": 3,
+   "replay_wrong": 0,
+   "peak_rows": 902843,
+   "view_rebuilds": 3,
+   "hit_view": 1563,
+   "hit_rate": 0.8200419727177335,
+   "lat_local_mean": 0.006797978383573462,
+   "lat_local_p50": 0.0028299375000031546,
+   "lat_local_p95": 0.026046507999997418,
+   "lat_model_mean": 0.07940593774005102,
+   "lat_model_p95": 0.5060143541499993,
+   "lat_pad_mean": 0.41557618710795957,
+   "stats": {
+    "flushed": 8,
+    "split_miss": 0,
+    "fallback": 211,
+    "evicted": 0,
+    "maint_sec": 4.237422417000005,
+    "view_cover_sec": [
+     2.376
+    ],
+    "view_build_sec": 3.235388042000011
+   },
+   "wall": 30.267539978027344,
+   "views": 6
+  }
+ }
+}

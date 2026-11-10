@@ -1,0 +1,7730 @@
+{
+ "bird/deepseek/s0": {
+  "k=1": {
+   "calls": 31,
+   "SemNoScope": {
+    "data_calls": 24,
+    "hit_rate": 0.25,
+    "n_exec": 18,
+    "wrong": 5,
+    "other": 0.208,
+    "xscope": 0.208,
+    "self": 0.042,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 24,
+    "hit_rate": 0.042,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.042,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 24,
+    "hit_rate": 0.042,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.042,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 24,
+    "hit_rate": 0.792,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.792
+   },
+   "ScopeCache": {
+    "data_calls": 24,
+    "hit_rate": 0.833,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.042,
+    "xscope": 0.042,
+    "self": 0.0,
+    "view": 0.792
+   },
+   "SC-online": {
+    "data_calls": 24,
+    "hit_rate": 0.667,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.667,
+    "xscope": 0.667,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "red_vs_view": 0.2
+  },
+  "k=2": {
+   "calls": 61,
+   "SemNoScope": {
+    "data_calls": 47,
+    "hit_rate": 0.638,
+    "n_exec": 17,
+    "wrong": 29,
+    "other": 0.617,
+    "xscope": 0.617,
+    "self": 0.021,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 47,
+    "hit_rate": 0.106,
+    "n_exec": 42,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.106,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 47,
+    "hit_rate": 0.106,
+    "n_exec": 42,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.106,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 47,
+    "hit_rate": 0.809,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.809
+   },
+   "ScopeCache": {
+    "data_calls": 47,
+    "hit_rate": 0.915,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.106,
+    "xscope": 0.106,
+    "self": 0.0,
+    "view": 0.809
+   },
+   "SC-online": {
+    "data_calls": 47,
+    "hit_rate": 0.851,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.83,
+    "xscope": 0.83,
+    "self": 0.021,
+    "view": 0.0
+   },
+   "red_vs_view": 0.556
+  },
+  "k=3": {
+   "calls": 93,
+   "SemNoScope": {
+    "data_calls": 71,
+    "hit_rate": 0.775,
+    "n_exec": 16,
+    "wrong": 54,
+    "other": 0.761,
+    "xscope": 0.761,
+    "self": 0.014,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 71,
+    "hit_rate": 0.113,
+    "n_exec": 63,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.113,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 71,
+    "hit_rate": 0.141,
+    "n_exec": 61,
+    "wrong": 0,
+    "other": 0.028,
+    "xscope": 0.0,
+    "self": 0.113,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 71,
+    "hit_rate": 0.93,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.93
+   },
+   "ScopeCache": {
+    "data_calls": 71,
+    "hit_rate": 0.958,
+    "n_exec": 3,
+    "wrong": 0,
+    "other": 0.028,
+    "xscope": 0.028,
+    "self": 0.0,
+    "view": 0.93
+   },
+   "SC-online": {
+    "data_calls": 71,
+    "hit_rate": 0.901,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.887,
+    "xscope": 0.887,
+    "self": 0.014,
+    "view": 0.0
+   },
+   "red_vs_view": 0.4
+  },
+  "k=5": {
+   "calls": 153,
+   "SemNoScope": {
+    "data_calls": 116,
+    "hit_rate": 0.871,
+    "n_exec": 15,
+    "wrong": 95,
+    "other": 0.871,
+    "xscope": 0.836,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 116,
+    "hit_rate": 0.095,
+    "n_exec": 105,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.095,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 116,
+    "hit_rate": 0.172,
+    "n_exec": 96,
+    "wrong": 0,
+    "other": 0.078,
+    "xscope": 0.0,
+    "self": 0.095,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 116,
+    "hit_rate": 0.931,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.931
+   },
+   "ScopeCache": {
+    "data_calls": 116,
+    "hit_rate": 0.966,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.034,
+    "xscope": 0.026,
+    "self": 0.0,
+    "view": 0.931
+   },
+   "SC-online": {
+    "data_calls": 116,
+    "hit_rate": 0.931,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.931,
+    "xscope": 0.897,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "red_vs_view": 0.5
+  },
+  "k=all": {
+   "calls": 305,
+   "SemNoScope": {
+    "data_calls": 231,
+    "hit_rate": 0.97,
+    "n_exec": 7,
+    "wrong": 205,
+    "other": 0.97,
+    "xscope": 0.909,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 231,
+    "hit_rate": 0.143,
+    "n_exec": 198,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.143,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 231,
+    "hit_rate": 0.329,
+    "n_exec": 155,
+    "wrong": 0,
+    "other": 0.216,
+    "xscope": 0.0,
+    "self": 0.113,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 231,
+    "hit_rate": 0.965,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.965
+   },
+   "ScopeCache": {
+    "data_calls": 231,
+    "hit_rate": 0.974,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.009,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.965
+   },
+   "SC-online": {
+    "data_calls": 231,
+    "hit_rate": 0.974,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.974,
+    "xscope": 0.935,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "red_vs_view": 0.25
+  }
+ },
+ "bird/deepseek/s1": {
+  "k=1": {
+   "calls": 30,
+   "SemNoScope": {
+    "data_calls": 22,
+    "hit_rate": 0.273,
+    "n_exec": 16,
+    "wrong": 3,
+    "other": 0.136,
+    "xscope": 0.136,
+    "self": 0.136,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 22,
+    "hit_rate": 0.182,
+    "n_exec": 18,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.182,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 22,
+    "hit_rate": 0.182,
+    "n_exec": 18,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.182,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 22,
+    "hit_rate": 0.773,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.773
+   },
+   "ScopeCache": {
+    "data_calls": 22,
+    "hit_rate": 0.773,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.773
+   },
+   "SC-online": {
+    "data_calls": 22,
+    "hit_rate": 0.727,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.727,
+    "xscope": 0.727,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=2": {
+   "calls": 61,
+   "SemNoScope": {
+    "data_calls": 46,
+    "hit_rate": 0.696,
+    "n_exec": 14,
+    "wrong": 27,
+    "other": 0.63,
+    "xscope": 0.63,
+    "self": 0.065,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 46,
+    "hit_rate": 0.152,
+    "n_exec": 39,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.152,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 46,
+    "hit_rate": 0.152,
+    "n_exec": 39,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.152,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 46,
+    "hit_rate": 0.848,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.848
+   },
+   "ScopeCache": {
+    "data_calls": 46,
+    "hit_rate": 0.913,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.065,
+    "xscope": 0.065,
+    "self": 0.0,
+    "view": 0.848
+   },
+   "SC-online": {
+    "data_calls": 46,
+    "hit_rate": 0.891,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.87,
+    "xscope": 0.87,
+    "self": 0.022,
+    "view": 0.0
+   },
+   "red_vs_view": 0.429
+  },
+  "k=3": {
+   "calls": 91,
+   "SemNoScope": {
+    "data_calls": 69,
+    "hit_rate": 0.812,
+    "n_exec": 13,
+    "wrong": 50,
+    "other": 0.768,
+    "xscope": 0.768,
+    "self": 0.043,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 69,
+    "hit_rate": 0.145,
+    "n_exec": 59,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.145,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 69,
+    "hit_rate": 0.145,
+    "n_exec": 59,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.145,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 69,
+    "hit_rate": 0.928,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.928
+   },
+   "ScopeCache": {
+    "data_calls": 69,
+    "hit_rate": 0.957,
+    "n_exec": 3,
+    "wrong": 0,
+    "other": 0.029,
+    "xscope": 0.029,
+    "self": 0.0,
+    "view": 0.928
+   },
+   "SC-online": {
+    "data_calls": 69,
+    "hit_rate": 0.942,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.913,
+    "xscope": 0.913,
+    "self": 0.029,
+    "view": 0.0
+   },
+   "red_vs_view": 0.4
+  },
+  "k=5": {
+   "calls": 148,
+   "SemNoScope": {
+    "data_calls": 112,
+    "hit_rate": 0.911,
+    "n_exec": 10,
+    "wrong": 96,
+    "other": 0.911,
+    "xscope": 0.911,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 112,
+    "hit_rate": 0.116,
+    "n_exec": 99,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.116,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 112,
+    "hit_rate": 0.116,
+    "n_exec": 99,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.116,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 112,
+    "hit_rate": 0.92,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.92
+   },
+   "ScopeCache": {
+    "data_calls": 112,
+    "hit_rate": 0.955,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.036,
+    "xscope": 0.036,
+    "self": 0.0,
+    "view": 0.92
+   },
+   "SC-online": {
+    "data_calls": 112,
+    "hit_rate": 0.946,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.902,
+    "xscope": 0.902,
+    "self": 0.045,
+    "view": 0.0
+   },
+   "red_vs_view": 0.444
+  },
+  "k=all": {
+   "calls": 282,
+   "SemNoScope": {
+    "data_calls": 213,
+    "hit_rate": 0.962,
+    "n_exec": 8,
+    "wrong": 187,
+    "other": 0.958,
+    "xscope": 0.944,
+    "self": 0.005,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 213,
+    "hit_rate": 0.108,
+    "n_exec": 190,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.108,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 213,
+    "hit_rate": 0.216,
+    "n_exec": 167,
+    "wrong": 0,
+    "other": 0.108,
+    "xscope": 0.0,
+    "self": 0.108,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 213,
+    "hit_rate": 0.958,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.958
+   },
+   "ScopeCache": {
+    "data_calls": 213,
+    "hit_rate": 0.958,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.958
+   },
+   "SC-online": {
+    "data_calls": 213,
+    "hit_rate": 0.953,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.934,
+    "xscope": 0.906,
+    "self": 0.019,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  }
+ },
+ "bird/glm/s0": {
+  "k=1": {
+   "calls": 43,
+   "SemNoScope": {
+    "data_calls": 33,
+    "hit_rate": 0.303,
+    "n_exec": 23,
+    "wrong": 3,
+    "other": 0.091,
+    "xscope": 0.091,
+    "self": 0.212,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 33,
+    "hit_rate": 0.212,
+    "n_exec": 26,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.212,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 33,
+    "hit_rate": 0.212,
+    "n_exec": 26,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.212,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 33,
+    "hit_rate": 0.758,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.758
+   },
+   "ScopeCache": {
+    "data_calls": 33,
+    "hit_rate": 0.848,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.061,
+    "xscope": 0.061,
+    "self": 0.03,
+    "view": 0.758
+   },
+   "SC-online": {
+    "data_calls": 33,
+    "hit_rate": 0.758,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.576,
+    "xscope": 0.576,
+    "self": 0.182,
+    "view": 0.0
+   },
+   "red_vs_view": 0.375
+  },
+  "k=2": {
+   "calls": 78,
+   "SemNoScope": {
+    "data_calls": 59,
+    "hit_rate": 0.593,
+    "n_exec": 24,
+    "wrong": 32,
+    "other": 0.559,
+    "xscope": 0.542,
+    "self": 0.034,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 59,
+    "hit_rate": 0.153,
+    "n_exec": 50,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.153,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 59,
+    "hit_rate": 0.203,
+    "n_exec": 47,
+    "wrong": 0,
+    "other": 0.051,
+    "xscope": 0.0,
+    "self": 0.153,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 59,
+    "hit_rate": 0.746,
+    "n_exec": 15,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.746
+   },
+   "ScopeCache": {
+    "data_calls": 59,
+    "hit_rate": 0.881,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.119,
+    "xscope": 0.119,
+    "self": 0.017,
+    "view": 0.746
+   },
+   "SC-online": {
+    "data_calls": 59,
+    "hit_rate": 0.831,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.797,
+    "xscope": 0.797,
+    "self": 0.034,
+    "view": 0.0
+   },
+   "red_vs_view": 0.533
+  },
+  "k=3": {
+   "calls": 124,
+   "SemNoScope": {
+    "data_calls": 92,
+    "hit_rate": 0.804,
+    "n_exec": 18,
+    "wrong": 70,
+    "other": 0.772,
+    "xscope": 0.761,
+    "self": 0.033,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 92,
+    "hit_rate": 0.272,
+    "n_exec": 67,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.272,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 92,
+    "hit_rate": 0.304,
+    "n_exec": 64,
+    "wrong": 0,
+    "other": 0.033,
+    "xscope": 0.0,
+    "self": 0.272,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 92,
+    "hit_rate": 0.902,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.902
+   },
+   "ScopeCache": {
+    "data_calls": 92,
+    "hit_rate": 0.946,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.043,
+    "xscope": 0.043,
+    "self": 0.0,
+    "view": 0.902
+   },
+   "SC-online": {
+    "data_calls": 92,
+    "hit_rate": 0.913,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.891,
+    "xscope": 0.891,
+    "self": 0.022,
+    "view": 0.0
+   },
+   "red_vs_view": 0.444
+  },
+  "k=5": {
+   "calls": 204,
+   "SemNoScope": {
+    "data_calls": 150,
+    "hit_rate": 0.907,
+    "n_exec": 14,
+    "wrong": 127,
+    "other": 0.887,
+    "xscope": 0.867,
+    "self": 0.02,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 150,
+    "hit_rate": 0.293,
+    "n_exec": 106,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.293,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 150,
+    "hit_rate": 0.333,
+    "n_exec": 100,
+    "wrong": 0,
+    "other": 0.06,
+    "xscope": 0.0,
+    "self": 0.273,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 150,
+    "hit_rate": 0.96,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.96
+   },
+   "ScopeCache": {
+    "data_calls": 150,
+    "hit_rate": 0.96,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.96
+   },
+   "SC-online": {
+    "data_calls": 150,
+    "hit_rate": 0.953,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.947,
+    "xscope": 0.9,
+    "self": 0.007,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=all": {
+   "calls": 437,
+   "SemNoScope": {
+    "data_calls": 326,
+    "hit_rate": 0.985,
+    "n_exec": 5,
+    "wrong": 291,
+    "other": 0.982,
+    "xscope": 0.929,
+    "self": 0.003,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 326,
+    "hit_rate": 0.371,
+    "n_exec": 205,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.371,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 326,
+    "hit_rate": 0.503,
+    "n_exec": 162,
+    "wrong": 0,
+    "other": 0.242,
+    "xscope": 0.0,
+    "self": 0.261,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 326,
+    "hit_rate": 0.96,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.96
+   },
+   "ScopeCache": {
+    "data_calls": 326,
+    "hit_rate": 0.972,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.012,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.96
+   },
+   "SC-online": {
+    "data_calls": 326,
+    "hit_rate": 0.972,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.972,
+    "xscope": 0.936,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "red_vs_view": 0.308
+  }
+ },
+ "bird/glm/s1": {
+  "k=1": {
+   "calls": 40,
+   "SemNoScope": {
+    "data_calls": 28,
+    "hit_rate": 0.321,
+    "n_exec": 19,
+    "wrong": 3,
+    "other": 0.107,
+    "xscope": 0.107,
+    "self": 0.214,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 28,
+    "hit_rate": 0.214,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.214,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 28,
+    "hit_rate": 0.214,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.214,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 28,
+    "hit_rate": 0.75,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.75
+   },
+   "ScopeCache": {
+    "data_calls": 28,
+    "hit_rate": 0.821,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.071,
+    "view": 0.75
+   },
+   "SC-online": {
+    "data_calls": 28,
+    "hit_rate": 0.75,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.571,
+    "xscope": 0.571,
+    "self": 0.179,
+    "view": 0.0
+   },
+   "red_vs_view": 0.286
+  },
+  "k=2": {
+   "calls": 95,
+   "SemNoScope": {
+    "data_calls": 70,
+    "hit_rate": 0.743,
+    "n_exec": 18,
+    "wrong": 44,
+    "other": 0.686,
+    "xscope": 0.686,
+    "self": 0.057,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 70,
+    "hit_rate": 0.4,
+    "n_exec": 42,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.4,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 70,
+    "hit_rate": 0.4,
+    "n_exec": 42,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.4,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 70,
+    "hit_rate": 0.871,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.871
+   },
+   "ScopeCache": {
+    "data_calls": 70,
+    "hit_rate": 0.929,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.043,
+    "xscope": 0.043,
+    "self": 0.014,
+    "view": 0.871
+   },
+   "SC-online": {
+    "data_calls": 70,
+    "hit_rate": 0.9,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.8,
+    "xscope": 0.8,
+    "self": 0.1,
+    "view": 0.0
+   },
+   "red_vs_view": 0.444
+  },
+  "k=3": {
+   "calls": 133,
+   "SemNoScope": {
+    "data_calls": 99,
+    "hit_rate": 0.808,
+    "n_exec": 19,
+    "wrong": 74,
+    "other": 0.768,
+    "xscope": 0.768,
+    "self": 0.04,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 99,
+    "hit_rate": 0.354,
+    "n_exec": 64,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.354,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 99,
+    "hit_rate": 0.354,
+    "n_exec": 64,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.354,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 99,
+    "hit_rate": 0.848,
+    "n_exec": 15,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.848
+   },
+   "ScopeCache": {
+    "data_calls": 99,
+    "hit_rate": 0.929,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.071,
+    "xscope": 0.071,
+    "self": 0.01,
+    "view": 0.848
+   },
+   "SC-online": {
+    "data_calls": 99,
+    "hit_rate": 0.909,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.828,
+    "xscope": 0.828,
+    "self": 0.081,
+    "view": 0.0
+   },
+   "red_vs_view": 0.533
+  },
+  "k=5": {
+   "calls": 201,
+   "SemNoScope": {
+    "data_calls": 147,
+    "hit_rate": 0.912,
+    "n_exec": 13,
+    "wrong": 125,
+    "other": 0.871,
+    "xscope": 0.871,
+    "self": 0.041,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 147,
+    "hit_rate": 0.327,
+    "n_exec": 99,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.327,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 147,
+    "hit_rate": 0.327,
+    "n_exec": 99,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.327,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 147,
+    "hit_rate": 0.857,
+    "n_exec": 21,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.857
+   },
+   "ScopeCache": {
+    "data_calls": 147,
+    "hit_rate": 0.932,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.068,
+    "xscope": 0.068,
+    "self": 0.007,
+    "view": 0.857
+   },
+   "SC-online": {
+    "data_calls": 147,
+    "hit_rate": 0.918,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.844,
+    "xscope": 0.844,
+    "self": 0.075,
+    "view": 0.0
+   },
+   "red_vs_view": 0.524
+  },
+  "k=all": {
+   "calls": 362,
+   "SemNoScope": {
+    "data_calls": 264,
+    "hit_rate": 0.958,
+    "n_exec": 11,
+    "wrong": 232,
+    "other": 0.936,
+    "xscope": 0.917,
+    "self": 0.023,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 264,
+    "hit_rate": 0.28,
+    "n_exec": 190,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.28,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 264,
+    "hit_rate": 0.341,
+    "n_exec": 174,
+    "wrong": 0,
+    "other": 0.121,
+    "xscope": 0.0,
+    "self": 0.22,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 264,
+    "hit_rate": 0.951,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.951
+   },
+   "ScopeCache": {
+    "data_calls": 264,
+    "hit_rate": 0.951,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.951
+   },
+   "SC-online": {
+    "data_calls": 264,
+    "hit_rate": 0.943,
+    "n_exec": 15,
+    "wrong": 0,
+    "other": 0.902,
+    "xscope": 0.867,
+    "self": 0.042,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  }
+ },
+ "bird/kimi/s0": {
+  "k=1": {
+   "calls": 38,
+   "SemNoScope": {
+    "data_calls": 30,
+    "hit_rate": 0.3,
+    "n_exec": 21,
+    "wrong": 5,
+    "other": 0.167,
+    "xscope": 0.167,
+    "self": 0.133,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 30,
+    "hit_rate": 0.2,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.2,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 30,
+    "hit_rate": 0.2,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.2,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 30,
+    "hit_rate": 0.267,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.267
+   },
+   "ScopeCache": {
+    "data_calls": 30,
+    "hit_rate": 0.633,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.3,
+    "xscope": 0.3,
+    "self": 0.067,
+    "view": 0.267
+   },
+   "SC-online": {
+    "data_calls": 30,
+    "hit_rate": 0.6,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.5,
+    "xscope": 0.5,
+    "self": 0.1,
+    "view": 0.0
+   },
+   "red_vs_view": 0.5
+  },
+  "k=2": {
+   "calls": 77,
+   "SemNoScope": {
+    "data_calls": 55,
+    "hit_rate": 0.673,
+    "n_exec": 18,
+    "wrong": 35,
+    "other": 0.636,
+    "xscope": 0.636,
+    "self": 0.036,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 55,
+    "hit_rate": 0.218,
+    "n_exec": 43,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.218,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 55,
+    "hit_rate": 0.255,
+    "n_exec": 41,
+    "wrong": 0,
+    "other": 0.073,
+    "xscope": 0.0,
+    "self": 0.182,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 55,
+    "hit_rate": 0.818,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.818
+   },
+   "ScopeCache": {
+    "data_calls": 55,
+    "hit_rate": 0.891,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.073,
+    "xscope": 0.073,
+    "self": 0.0,
+    "view": 0.818
+   },
+   "SC-online": {
+    "data_calls": 55,
+    "hit_rate": 0.818,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.782,
+    "xscope": 0.782,
+    "self": 0.036,
+    "view": 0.0
+   },
+   "red_vs_view": 0.4
+  },
+  "k=3": {
+   "calls": 125,
+   "SemNoScope": {
+    "data_calls": 86,
+    "hit_rate": 0.802,
+    "n_exec": 17,
+    "wrong": 65,
+    "other": 0.756,
+    "xscope": 0.756,
+    "self": 0.047,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 86,
+    "hit_rate": 0.291,
+    "n_exec": 61,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.291,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 86,
+    "hit_rate": 0.326,
+    "n_exec": 58,
+    "wrong": 0,
+    "other": 0.058,
+    "xscope": 0.0,
+    "self": 0.267,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 86,
+    "hit_rate": 0.919,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.919
+   },
+   "ScopeCache": {
+    "data_calls": 86,
+    "hit_rate": 0.953,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.035,
+    "xscope": 0.035,
+    "self": 0.0,
+    "view": 0.919
+   },
+   "SC-online": {
+    "data_calls": 86,
+    "hit_rate": 0.907,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.884,
+    "xscope": 0.884,
+    "self": 0.023,
+    "view": 0.0
+   },
+   "red_vs_view": 0.429
+  },
+  "k=5": {
+   "calls": 213,
+   "SemNoScope": {
+    "data_calls": 144,
+    "hit_rate": 0.91,
+    "n_exec": 13,
+    "wrong": 116,
+    "other": 0.882,
+    "xscope": 0.826,
+    "self": 0.028,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 144,
+    "hit_rate": 0.326,
+    "n_exec": 97,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.326,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 144,
+    "hit_rate": 0.403,
+    "n_exec": 86,
+    "wrong": 0,
+    "other": 0.139,
+    "xscope": 0.0,
+    "self": 0.264,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 144,
+    "hit_rate": 0.965,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.965
+   },
+   "ScopeCache": {
+    "data_calls": 144,
+    "hit_rate": 0.965,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.965
+   },
+   "SC-online": {
+    "data_calls": 144,
+    "hit_rate": 0.951,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.944,
+    "xscope": 0.924,
+    "self": 0.007,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=all": {
+   "calls": 419,
+   "SemNoScope": {
+    "data_calls": 283,
+    "hit_rate": 0.972,
+    "n_exec": 8,
+    "wrong": 241,
+    "other": 0.965,
+    "xscope": 0.876,
+    "self": 0.007,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 283,
+    "hit_rate": 0.329,
+    "n_exec": 190,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.329,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 283,
+    "hit_rate": 0.466,
+    "n_exec": 151,
+    "wrong": 0,
+    "other": 0.24,
+    "xscope": 0.0,
+    "self": 0.226,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 283,
+    "hit_rate": 0.961,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.961
+   },
+   "ScopeCache": {
+    "data_calls": 283,
+    "hit_rate": 0.968,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.007,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.961
+   },
+   "SC-online": {
+    "data_calls": 283,
+    "hit_rate": 0.968,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.968,
+    "xscope": 0.926,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "red_vs_view": 0.182
+  }
+ },
+ "bird/kimi/s1": {
+  "k=1": {
+   "calls": 44,
+   "SemNoScope": {
+    "data_calls": 28,
+    "hit_rate": 0.429,
+    "n_exec": 16,
+    "wrong": 4,
+    "other": 0.143,
+    "xscope": 0.143,
+    "self": 0.286,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 28,
+    "hit_rate": 0.357,
+    "n_exec": 18,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.357,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 28,
+    "hit_rate": 0.357,
+    "n_exec": 18,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.357,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 28,
+    "hit_rate": 0.857,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.857
+   },
+   "ScopeCache": {
+    "data_calls": 28,
+    "hit_rate": 0.857,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.857
+   },
+   "SC-online": {
+    "data_calls": 28,
+    "hit_rate": 0.821,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.714,
+    "xscope": 0.714,
+    "self": 0.107,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=2": {
+   "calls": 91,
+   "SemNoScope": {
+    "data_calls": 57,
+    "hit_rate": 0.754,
+    "n_exec": 14,
+    "wrong": 35,
+    "other": 0.667,
+    "xscope": 0.667,
+    "self": 0.088,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 57,
+    "hit_rate": 0.333,
+    "n_exec": 38,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.333,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 57,
+    "hit_rate": 0.333,
+    "n_exec": 38,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.333,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 57,
+    "hit_rate": 0.912,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.912
+   },
+   "ScopeCache": {
+    "data_calls": 57,
+    "hit_rate": 0.947,
+    "n_exec": 3,
+    "wrong": 0,
+    "other": 0.035,
+    "xscope": 0.035,
+    "self": 0.0,
+    "view": 0.912
+   },
+   "SC-online": {
+    "data_calls": 57,
+    "hit_rate": 0.912,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.877,
+    "xscope": 0.877,
+    "self": 0.035,
+    "view": 0.0
+   },
+   "red_vs_view": 0.4
+  },
+  "k=3": {
+   "calls": 131,
+   "SemNoScope": {
+    "data_calls": 93,
+    "hit_rate": 0.817,
+    "n_exec": 17,
+    "wrong": 67,
+    "other": 0.763,
+    "xscope": 0.763,
+    "self": 0.054,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 93,
+    "hit_rate": 0.301,
+    "n_exec": 65,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.301,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 93,
+    "hit_rate": 0.301,
+    "n_exec": 65,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.301,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 93,
+    "hit_rate": 0.892,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.892
+   },
+   "ScopeCache": {
+    "data_calls": 93,
+    "hit_rate": 0.946,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.054,
+    "xscope": 0.054,
+    "self": 0.0,
+    "view": 0.892
+   },
+   "SC-online": {
+    "data_calls": 93,
+    "hit_rate": 0.935,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.903,
+    "xscope": 0.903,
+    "self": 0.032,
+    "view": 0.0
+   },
+   "red_vs_view": 0.5
+  },
+  "k=5": {
+   "calls": 216,
+   "SemNoScope": {
+    "data_calls": 147,
+    "hit_rate": 0.891,
+    "n_exec": 16,
+    "wrong": 117,
+    "other": 0.85,
+    "xscope": 0.85,
+    "self": 0.041,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 147,
+    "hit_rate": 0.313,
+    "n_exec": 101,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.313,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 147,
+    "hit_rate": 0.313,
+    "n_exec": 101,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.313,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 147,
+    "hit_rate": 0.891,
+    "n_exec": 16,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.891
+   },
+   "ScopeCache": {
+    "data_calls": 147,
+    "hit_rate": 0.952,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.061,
+    "xscope": 0.061,
+    "self": 0.0,
+    "view": 0.891
+   },
+   "SC-online": {
+    "data_calls": 147,
+    "hit_rate": 0.946,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.898,
+    "xscope": 0.898,
+    "self": 0.048,
+    "view": 0.0
+   },
+   "red_vs_view": 0.562
+  },
+  "k=all": {
+   "calls": 403,
+   "SemNoScope": {
+    "data_calls": 261,
+    "hit_rate": 0.954,
+    "n_exec": 12,
+    "wrong": 215,
+    "other": 0.935,
+    "xscope": 0.912,
+    "self": 0.019,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 261,
+    "hit_rate": 0.276,
+    "n_exec": 189,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.276,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 261,
+    "hit_rate": 0.352,
+    "n_exec": 169,
+    "wrong": 0,
+    "other": 0.107,
+    "xscope": 0.0,
+    "self": 0.245,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 261,
+    "hit_rate": 0.958,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.958
+   },
+   "ScopeCache": {
+    "data_calls": 261,
+    "hit_rate": 0.958,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.958
+   },
+   "SC-online": {
+    "data_calls": 261,
+    "hit_rate": 0.954,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.931,
+    "xscope": 0.897,
+    "self": 0.023,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  }
+ },
+ "ent/deepseek/s0": {
+  "k=1": {
+   "calls": 36,
+   "SemNoScope": {
+    "data_calls": 27,
+    "hit_rate": 0.296,
+    "n_exec": 19,
+    "wrong": 4,
+    "other": 0.148,
+    "xscope": 0.148,
+    "self": 0.148,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 27,
+    "hit_rate": 0.148,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.148,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 27,
+    "hit_rate": 0.148,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.148,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 27,
+    "hit_rate": 0.407,
+    "n_exec": 16,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.407
+   },
+   "ScopeCache": {
+    "data_calls": 27,
+    "hit_rate": 0.556,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.148,
+    "view": 0.407
+   },
+   "SC-online": {
+    "data_calls": 27,
+    "hit_rate": 0.333,
+    "n_exec": 18,
+    "wrong": 0,
+    "other": 0.185,
+    "xscope": 0.185,
+    "self": 0.148,
+    "view": 0.0
+   },
+   "red_vs_view": 0.25
+  },
+  "k=2": {
+   "calls": 73,
+   "SemNoScope": {
+    "data_calls": 52,
+    "hit_rate": 0.635,
+    "n_exec": 19,
+    "wrong": 28,
+    "other": 0.558,
+    "xscope": 0.538,
+    "self": 0.077,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 52,
+    "hit_rate": 0.154,
+    "n_exec": 44,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.154,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 52,
+    "hit_rate": 0.192,
+    "n_exec": 42,
+    "wrong": 0,
+    "other": 0.038,
+    "xscope": 0.0,
+    "self": 0.154,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 52,
+    "hit_rate": 0.692,
+    "n_exec": 16,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.692
+   },
+   "ScopeCache": {
+    "data_calls": 52,
+    "hit_rate": 0.769,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.038,
+    "xscope": 0.0,
+    "self": 0.038,
+    "view": 0.692
+   },
+   "SC-online": {
+    "data_calls": 52,
+    "hit_rate": 0.5,
+    "n_exec": 26,
+    "wrong": 0,
+    "other": 0.346,
+    "xscope": 0.288,
+    "self": 0.154,
+    "view": 0.0
+   },
+   "red_vs_view": 0.25
+  },
+  "k=3": {
+   "calls": 108,
+   "SemNoScope": {
+    "data_calls": 76,
+    "hit_rate": 0.763,
+    "n_exec": 18,
+    "wrong": 52,
+    "other": 0.724,
+    "xscope": 0.684,
+    "self": 0.039,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 76,
+    "hit_rate": 0.132,
+    "n_exec": 66,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.132,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 76,
+    "hit_rate": 0.184,
+    "n_exec": 62,
+    "wrong": 0,
+    "other": 0.053,
+    "xscope": 0.0,
+    "self": 0.132,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 76,
+    "hit_rate": 0.697,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.697
+   },
+   "ScopeCache": {
+    "data_calls": 76,
+    "hit_rate": 0.776,
+    "n_exec": 17,
+    "wrong": 0,
+    "other": 0.053,
+    "xscope": 0.0,
+    "self": 0.026,
+    "view": 0.697
+   },
+   "SC-online": {
+    "data_calls": 76,
+    "hit_rate": 0.5,
+    "n_exec": 38,
+    "wrong": 0,
+    "other": 0.382,
+    "xscope": 0.316,
+    "self": 0.118,
+    "view": 0.0
+   },
+   "red_vs_view": 0.261
+  },
+  "k=5": {
+   "calls": 180,
+   "SemNoScope": {
+    "data_calls": 124,
+    "hit_rate": 0.863,
+    "n_exec": 17,
+    "wrong": 96,
+    "other": 0.839,
+    "xscope": 0.782,
+    "self": 0.024,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 124,
+    "hit_rate": 0.153,
+    "n_exec": 105,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.153,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 124,
+    "hit_rate": 0.226,
+    "n_exec": 96,
+    "wrong": 0,
+    "other": 0.081,
+    "xscope": 0.0,
+    "self": 0.145,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 124,
+    "hit_rate": 0.694,
+    "n_exec": 38,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.694
+   },
+   "ScopeCache": {
+    "data_calls": 124,
+    "hit_rate": 0.782,
+    "n_exec": 27,
+    "wrong": 0,
+    "other": 0.04,
+    "xscope": 0.0,
+    "self": 0.048,
+    "view": 0.694
+   },
+   "SC-online": {
+    "data_calls": 124,
+    "hit_rate": 0.516,
+    "n_exec": 60,
+    "wrong": 0,
+    "other": 0.371,
+    "xscope": 0.306,
+    "self": 0.145,
+    "view": 0.0
+   },
+   "red_vs_view": 0.289
+  },
+  "k=all": {
+   "calls": 365,
+   "SemNoScope": {
+    "data_calls": 247,
+    "hit_rate": 0.947,
+    "n_exec": 13,
+    "wrong": 222,
+    "other": 0.943,
+    "xscope": 0.903,
+    "self": 0.004,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 247,
+    "hit_rate": 0.146,
+    "n_exec": 211,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.146,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 247,
+    "hit_rate": 0.231,
+    "n_exec": 190,
+    "wrong": 0,
+    "other": 0.093,
+    "xscope": 0.0,
+    "self": 0.138,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 247,
+    "hit_rate": 0.976,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.976
+   },
+   "ScopeCache": {
+    "data_calls": 247,
+    "hit_rate": 0.98,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.004,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.976
+   },
+   "SC-online": {
+    "data_calls": 247,
+    "hit_rate": 0.575,
+    "n_exec": 105,
+    "wrong": 0,
+    "other": 0.441,
+    "xscope": 0.368,
+    "self": 0.134,
+    "view": 0.0
+   },
+   "red_vs_view": 0.167
+  }
+ },
+ "ent/deepseek/s1": {
+  "k=1": {
+   "calls": 36,
+   "SemNoScope": {
+    "data_calls": 25,
+    "hit_rate": 0.28,
+    "n_exec": 18,
+    "wrong": 3,
+    "other": 0.12,
+    "xscope": 0.12,
+    "self": 0.16,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 25,
+    "hit_rate": 0.16,
+    "n_exec": 21,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.16,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 25,
+    "hit_rate": 0.16,
+    "n_exec": 21,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.16,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 25,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "ScopeCache": {
+    "data_calls": 25,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "SC-online": {
+    "data_calls": 25,
+    "hit_rate": 0.44,
+    "n_exec": 14,
+    "wrong": 0,
+    "other": 0.28,
+    "xscope": 0.28,
+    "self": 0.16,
+    "view": 0.0
+   },
+   "red_vs_view": null
+  },
+  "k=2": {
+   "calls": 72,
+   "SemNoScope": {
+    "data_calls": 47,
+    "hit_rate": 0.66,
+    "n_exec": 16,
+    "wrong": 27,
+    "other": 0.574,
+    "xscope": 0.574,
+    "self": 0.085,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 47,
+    "hit_rate": 0.128,
+    "n_exec": 41,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.128,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 47,
+    "hit_rate": 0.128,
+    "n_exec": 41,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.128,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 47,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "ScopeCache": {
+    "data_calls": 47,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "SC-online": {
+    "data_calls": 47,
+    "hit_rate": 0.489,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.362,
+    "xscope": 0.362,
+    "self": 0.128,
+    "view": 0.0
+   },
+   "red_vs_view": null
+  },
+  "k=3": {
+   "calls": 105,
+   "SemNoScope": {
+    "data_calls": 73,
+    "hit_rate": 0.726,
+    "n_exec": 20,
+    "wrong": 49,
+    "other": 0.671,
+    "xscope": 0.671,
+    "self": 0.055,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 73,
+    "hit_rate": 0.11,
+    "n_exec": 65,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.11,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 73,
+    "hit_rate": 0.11,
+    "n_exec": 65,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.11,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 73,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "ScopeCache": {
+    "data_calls": 73,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "SC-online": {
+    "data_calls": 73,
+    "hit_rate": 0.479,
+    "n_exec": 38,
+    "wrong": 0,
+    "other": 0.37,
+    "xscope": 0.356,
+    "self": 0.11,
+    "view": 0.0
+   },
+   "red_vs_view": null
+  },
+  "k=5": {
+   "calls": 183,
+   "SemNoScope": {
+    "data_calls": 128,
+    "hit_rate": 0.852,
+    "n_exec": 19,
+    "wrong": 102,
+    "other": 0.82,
+    "xscope": 0.797,
+    "self": 0.031,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 128,
+    "hit_rate": 0.18,
+    "n_exec": 105,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.18,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 128,
+    "hit_rate": 0.188,
+    "n_exec": 104,
+    "wrong": 0,
+    "other": 0.023,
+    "xscope": 0.0,
+    "self": 0.164,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 128,
+    "hit_rate": 0.992,
+    "n_exec": 1,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.992
+   },
+   "ScopeCache": {
+    "data_calls": 128,
+    "hit_rate": 0.992,
+    "n_exec": 1,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.992
+   },
+   "SC-online": {
+    "data_calls": 128,
+    "hit_rate": 0.516,
+    "n_exec": 62,
+    "wrong": 0,
+    "other": 0.398,
+    "xscope": 0.359,
+    "self": 0.117,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=all": {
+   "calls": 349,
+   "SemNoScope": {
+    "data_calls": 253,
+    "hit_rate": 0.929,
+    "n_exec": 18,
+    "wrong": 226,
+    "other": 0.921,
+    "xscope": 0.897,
+    "self": 0.008,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 253,
+    "hit_rate": 0.138,
+    "n_exec": 218,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.138,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 253,
+    "hit_rate": 0.225,
+    "n_exec": 196,
+    "wrong": 0,
+    "other": 0.107,
+    "xscope": 0.0,
+    "self": 0.119,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 253,
+    "hit_rate": 0.98,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.98
+   },
+   "ScopeCache": {
+    "data_calls": 253,
+    "hit_rate": 0.984,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.004,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.98
+   },
+   "SC-online": {
+    "data_calls": 253,
+    "hit_rate": 0.561,
+    "n_exec": 111,
+    "wrong": 0,
+    "other": 0.478,
+    "xscope": 0.387,
+    "self": 0.083,
+    "view": 0.0
+   },
+   "red_vs_view": 0.2
+  }
+ },
+ "ent/glm/s0": {
+  "k=1": {
+   "calls": 42,
+   "SemNoScope": {
+    "data_calls": 28,
+    "hit_rate": 0.179,
+    "n_exec": 23,
+    "wrong": 2,
+    "other": 0.071,
+    "xscope": 0.071,
+    "self": 0.107,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 28,
+    "hit_rate": 0.143,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.143,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 28,
+    "hit_rate": 0.143,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.143,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 28,
+    "hit_rate": 0.571,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.571
+   },
+   "ScopeCache": {
+    "data_calls": 28,
+    "hit_rate": 0.571,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.571
+   },
+   "SC-online": {
+    "data_calls": 28,
+    "hit_rate": 0.286,
+    "n_exec": 20,
+    "wrong": 0,
+    "other": 0.143,
+    "xscope": 0.143,
+    "self": 0.143,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=2": {
+   "calls": 87,
+   "SemNoScope": {
+    "data_calls": 63,
+    "hit_rate": 0.571,
+    "n_exec": 27,
+    "wrong": 28,
+    "other": 0.508,
+    "xscope": 0.492,
+    "self": 0.063,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 63,
+    "hit_rate": 0.206,
+    "n_exec": 50,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.206,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 63,
+    "hit_rate": 0.222,
+    "n_exec": 49,
+    "wrong": 0,
+    "other": 0.016,
+    "xscope": 0.0,
+    "self": 0.206,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 63,
+    "hit_rate": 0.794,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.794
+   },
+   "ScopeCache": {
+    "data_calls": 63,
+    "hit_rate": 0.81,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.016,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.794
+   },
+   "SC-online": {
+    "data_calls": 63,
+    "hit_rate": 0.444,
+    "n_exec": 35,
+    "wrong": 0,
+    "other": 0.317,
+    "xscope": 0.302,
+    "self": 0.127,
+    "view": 0.0
+   },
+   "red_vs_view": 0.077
+  },
+  "k=3": {
+   "calls": 131,
+   "SemNoScope": {
+    "data_calls": 96,
+    "hit_rate": 0.74,
+    "n_exec": 25,
+    "wrong": 64,
+    "other": 0.708,
+    "xscope": 0.698,
+    "self": 0.031,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 96,
+    "hit_rate": 0.24,
+    "n_exec": 73,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.24,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 96,
+    "hit_rate": 0.25,
+    "n_exec": 72,
+    "wrong": 0,
+    "other": 0.01,
+    "xscope": 0.0,
+    "self": 0.24,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 96,
+    "hit_rate": 0.708,
+    "n_exec": 28,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.708
+   },
+   "ScopeCache": {
+    "data_calls": 96,
+    "hit_rate": 0.792,
+    "n_exec": 20,
+    "wrong": 0,
+    "other": 0.01,
+    "xscope": 0.0,
+    "self": 0.073,
+    "view": 0.708
+   },
+   "SC-online": {
+    "data_calls": 96,
+    "hit_rate": 0.479,
+    "n_exec": 50,
+    "wrong": 0,
+    "other": 0.344,
+    "xscope": 0.333,
+    "self": 0.135,
+    "view": 0.0
+   },
+   "red_vs_view": 0.286
+  },
+  "k=5": {
+   "calls": 233,
+   "SemNoScope": {
+    "data_calls": 168,
+    "hit_rate": 0.857,
+    "n_exec": 24,
+    "wrong": 132,
+    "other": 0.839,
+    "xscope": 0.792,
+    "self": 0.018,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 168,
+    "hit_rate": 0.262,
+    "n_exec": 124,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.262,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 168,
+    "hit_rate": 0.327,
+    "n_exec": 113,
+    "wrong": 0,
+    "other": 0.071,
+    "xscope": 0.0,
+    "self": 0.256,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 168,
+    "hit_rate": 0.673,
+    "n_exec": 55,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.673
+   },
+   "ScopeCache": {
+    "data_calls": 168,
+    "hit_rate": 0.804,
+    "n_exec": 33,
+    "wrong": 0,
+    "other": 0.024,
+    "xscope": 0.0,
+    "self": 0.107,
+    "view": 0.673
+   },
+   "SC-online": {
+    "data_calls": 168,
+    "hit_rate": 0.554,
+    "n_exec": 75,
+    "wrong": 0,
+    "other": 0.375,
+    "xscope": 0.333,
+    "self": 0.179,
+    "view": 0.0
+   },
+   "red_vs_view": 0.4
+  },
+  "k=all": {
+   "calls": 471,
+   "SemNoScope": {
+    "data_calls": 337,
+    "hit_rate": 0.923,
+    "n_exec": 26,
+    "wrong": 301,
+    "other": 0.914,
+    "xscope": 0.896,
+    "self": 0.009,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 337,
+    "hit_rate": 0.276,
+    "n_exec": 244,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.276,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 337,
+    "hit_rate": 0.335,
+    "n_exec": 224,
+    "wrong": 0,
+    "other": 0.074,
+    "xscope": 0.0,
+    "self": 0.261,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 337,
+    "hit_rate": 0.982,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.982
+   },
+   "ScopeCache": {
+    "data_calls": 337,
+    "hit_rate": 0.982,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.982
+   },
+   "SC-online": {
+    "data_calls": 337,
+    "hit_rate": 0.591,
+    "n_exec": 138,
+    "wrong": 0,
+    "other": 0.442,
+    "xscope": 0.401,
+    "self": 0.148,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  }
+ },
+ "ent/glm/s1": {
+  "k=1": {
+   "calls": 41,
+   "SemNoScope": {
+    "data_calls": 30,
+    "hit_rate": 0.367,
+    "n_exec": 19,
+    "wrong": 1,
+    "other": 0.033,
+    "xscope": 0.033,
+    "self": 0.333,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 30,
+    "hit_rate": 0.333,
+    "n_exec": 20,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.333,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 30,
+    "hit_rate": 0.333,
+    "n_exec": 20,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.333,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 30,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "ScopeCache": {
+    "data_calls": 30,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "SC-online": {
+    "data_calls": 30,
+    "hit_rate": 0.433,
+    "n_exec": 17,
+    "wrong": 0,
+    "other": 0.2,
+    "xscope": 0.2,
+    "self": 0.233,
+    "view": 0.0
+   },
+   "red_vs_view": null
+  },
+  "k=2": {
+   "calls": 85,
+   "SemNoScope": {
+    "data_calls": 57,
+    "hit_rate": 0.614,
+    "n_exec": 22,
+    "wrong": 24,
+    "other": 0.439,
+    "xscope": 0.439,
+    "self": 0.175,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 57,
+    "hit_rate": 0.228,
+    "n_exec": 44,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.228,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 57,
+    "hit_rate": 0.228,
+    "n_exec": 44,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.228,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 57,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "ScopeCache": {
+    "data_calls": 57,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "SC-online": {
+    "data_calls": 57,
+    "hit_rate": 0.439,
+    "n_exec": 32,
+    "wrong": 0,
+    "other": 0.298,
+    "xscope": 0.298,
+    "self": 0.14,
+    "view": 0.0
+   },
+   "red_vs_view": null
+  },
+  "k=3": {
+   "calls": 121,
+   "SemNoScope": {
+    "data_calls": 83,
+    "hit_rate": 0.675,
+    "n_exec": 27,
+    "wrong": 51,
+    "other": 0.627,
+    "xscope": 0.627,
+    "self": 0.048,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 83,
+    "hit_rate": 0.145,
+    "n_exec": 71,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.145,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 83,
+    "hit_rate": 0.145,
+    "n_exec": 71,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.145,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 83,
+    "hit_rate": 0.988,
+    "n_exec": 1,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.988
+   },
+   "ScopeCache": {
+    "data_calls": 83,
+    "hit_rate": 0.988,
+    "n_exec": 1,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.988
+   },
+   "SC-online": {
+    "data_calls": 83,
+    "hit_rate": 0.41,
+    "n_exec": 49,
+    "wrong": 0,
+    "other": 0.325,
+    "xscope": 0.325,
+    "self": 0.084,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=5": {
+   "calls": 220,
+   "SemNoScope": {
+    "data_calls": 156,
+    "hit_rate": 0.859,
+    "n_exec": 22,
+    "wrong": 127,
+    "other": 0.84,
+    "xscope": 0.833,
+    "self": 0.019,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 156,
+    "hit_rate": 0.308,
+    "n_exec": 108,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.308,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 156,
+    "hit_rate": 0.314,
+    "n_exec": 107,
+    "wrong": 0,
+    "other": 0.006,
+    "xscope": 0.0,
+    "self": 0.308,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 156,
+    "hit_rate": 0.987,
+    "n_exec": 2,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.987
+   },
+   "ScopeCache": {
+    "data_calls": 156,
+    "hit_rate": 0.987,
+    "n_exec": 2,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.987
+   },
+   "SC-online": {
+    "data_calls": 156,
+    "hit_rate": 0.558,
+    "n_exec": 69,
+    "wrong": 0,
+    "other": 0.365,
+    "xscope": 0.353,
+    "self": 0.192,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=all": {
+   "calls": 407,
+   "SemNoScope": {
+    "data_calls": 295,
+    "hit_rate": 0.915,
+    "n_exec": 25,
+    "wrong": 258,
+    "other": 0.912,
+    "xscope": 0.885,
+    "self": 0.003,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 295,
+    "hit_rate": 0.244,
+    "n_exec": 223,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.244,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 295,
+    "hit_rate": 0.298,
+    "n_exec": 207,
+    "wrong": 0,
+    "other": 0.081,
+    "xscope": 0.0,
+    "self": 0.217,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 295,
+    "hit_rate": 0.983,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.983
+   },
+   "ScopeCache": {
+    "data_calls": 295,
+    "hit_rate": 0.986,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.003,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.983
+   },
+   "SC-online": {
+    "data_calls": 295,
+    "hit_rate": 0.576,
+    "n_exec": 125,
+    "wrong": 0,
+    "other": 0.441,
+    "xscope": 0.373,
+    "self": 0.136,
+    "view": 0.0
+   },
+   "red_vs_view": 0.2
+  }
+ },
+ "ent/kimi/s0": {
+  "k=1": {
+   "calls": 51,
+   "SemNoScope": {
+    "data_calls": 39,
+    "hit_rate": 0.359,
+    "n_exec": 25,
+    "wrong": 2,
+    "other": 0.051,
+    "xscope": 0.051,
+    "self": 0.308,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 39,
+    "hit_rate": 0.308,
+    "n_exec": 27,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.308,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 39,
+    "hit_rate": 0.308,
+    "n_exec": 27,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.308,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 39,
+    "hit_rate": 0.436,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.436
+   },
+   "ScopeCache": {
+    "data_calls": 39,
+    "hit_rate": 0.667,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.231,
+    "view": 0.436
+   },
+   "SC-online": {
+    "data_calls": 39,
+    "hit_rate": 0.487,
+    "n_exec": 20,
+    "wrong": 0,
+    "other": 0.154,
+    "xscope": 0.154,
+    "self": 0.333,
+    "view": 0.0
+   },
+   "red_vs_view": 0.409
+  },
+  "k=2": {
+   "calls": 101,
+   "SemNoScope": {
+    "data_calls": 73,
+    "hit_rate": 0.589,
+    "n_exec": 30,
+    "wrong": 31,
+    "other": 0.438,
+    "xscope": 0.425,
+    "self": 0.151,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 73,
+    "hit_rate": 0.274,
+    "n_exec": 53,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.274,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 73,
+    "hit_rate": 0.288,
+    "n_exec": 52,
+    "wrong": 0,
+    "other": 0.014,
+    "xscope": 0.0,
+    "self": 0.274,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 73,
+    "hit_rate": 0.658,
+    "n_exec": 25,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.658
+   },
+   "ScopeCache": {
+    "data_calls": 73,
+    "hit_rate": 0.781,
+    "n_exec": 16,
+    "wrong": 0,
+    "other": 0.014,
+    "xscope": 0.0,
+    "self": 0.11,
+    "view": 0.658
+   },
+   "SC-online": {
+    "data_calls": 73,
+    "hit_rate": 0.548,
+    "n_exec": 33,
+    "wrong": 0,
+    "other": 0.315,
+    "xscope": 0.288,
+    "self": 0.233,
+    "view": 0.0
+   },
+   "red_vs_view": 0.36
+  },
+  "k=3": {
+   "calls": 151,
+   "SemNoScope": {
+    "data_calls": 109,
+    "hit_rate": 0.716,
+    "n_exec": 31,
+    "wrong": 64,
+    "other": 0.615,
+    "xscope": 0.587,
+    "self": 0.101,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 109,
+    "hit_rate": 0.266,
+    "n_exec": 80,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.266,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 109,
+    "hit_rate": 0.294,
+    "n_exec": 77,
+    "wrong": 0,
+    "other": 0.028,
+    "xscope": 0.0,
+    "self": 0.266,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 109,
+    "hit_rate": 0.706,
+    "n_exec": 32,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.706
+   },
+   "ScopeCache": {
+    "data_calls": 109,
+    "hit_rate": 0.807,
+    "n_exec": 21,
+    "wrong": 0,
+    "other": 0.028,
+    "xscope": 0.0,
+    "self": 0.073,
+    "view": 0.706
+   },
+   "SC-online": {
+    "data_calls": 109,
+    "hit_rate": 0.55,
+    "n_exec": 49,
+    "wrong": 0,
+    "other": 0.376,
+    "xscope": 0.339,
+    "self": 0.174,
+    "view": 0.0
+   },
+   "red_vs_view": 0.344
+  },
+  "k=5": {
+   "calls": 249,
+   "SemNoScope": {
+    "data_calls": 178,
+    "hit_rate": 0.843,
+    "n_exec": 28,
+    "wrong": 131,
+    "other": 0.792,
+    "xscope": 0.742,
+    "self": 0.051,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 178,
+    "hit_rate": 0.292,
+    "n_exec": 126,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.292,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 178,
+    "hit_rate": 0.354,
+    "n_exec": 115,
+    "wrong": 0,
+    "other": 0.067,
+    "xscope": 0.0,
+    "self": 0.287,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 178,
+    "hit_rate": 0.691,
+    "n_exec": 55,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.691
+   },
+   "ScopeCache": {
+    "data_calls": 178,
+    "hit_rate": 0.815,
+    "n_exec": 33,
+    "wrong": 0,
+    "other": 0.034,
+    "xscope": 0.0,
+    "self": 0.09,
+    "view": 0.691
+   },
+   "SC-online": {
+    "data_calls": 178,
+    "hit_rate": 0.601,
+    "n_exec": 71,
+    "wrong": 0,
+    "other": 0.399,
+    "xscope": 0.343,
+    "self": 0.202,
+    "view": 0.0
+   },
+   "red_vs_view": 0.4
+  },
+  "k=all": {
+   "calls": 524,
+   "SemNoScope": {
+    "data_calls": 370,
+    "hit_rate": 0.922,
+    "n_exec": 29,
+    "wrong": 312,
+    "other": 0.897,
+    "xscope": 0.851,
+    "self": 0.024,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 370,
+    "hit_rate": 0.332,
+    "n_exec": 247,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.332,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 370,
+    "hit_rate": 0.403,
+    "n_exec": 221,
+    "wrong": 0,
+    "other": 0.086,
+    "xscope": 0.0,
+    "self": 0.316,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 370,
+    "hit_rate": 0.978,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.978
+   },
+   "ScopeCache": {
+    "data_calls": 370,
+    "hit_rate": 0.981,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.003,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.978
+   },
+   "SC-online": {
+    "data_calls": 370,
+    "hit_rate": 0.668,
+    "n_exec": 123,
+    "wrong": 0,
+    "other": 0.43,
+    "xscope": 0.37,
+    "self": 0.238,
+    "view": 0.0
+   },
+   "red_vs_view": 0.125
+  }
+ },
+ "ent/kimi/s1": {
+  "k=1": {
+   "calls": 49,
+   "SemNoScope": {
+    "data_calls": 36,
+    "hit_rate": 0.417,
+    "n_exec": 21,
+    "wrong": 6,
+    "other": 0.167,
+    "xscope": 0.167,
+    "self": 0.25,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 36,
+    "hit_rate": 0.25,
+    "n_exec": 27,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.25,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 36,
+    "hit_rate": 0.25,
+    "n_exec": 27,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.25,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 36,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "ScopeCache": {
+    "data_calls": 36,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "SC-online": {
+    "data_calls": 36,
+    "hit_rate": 0.5,
+    "n_exec": 18,
+    "wrong": 0,
+    "other": 0.278,
+    "xscope": 0.278,
+    "self": 0.222,
+    "view": 0.0
+   },
+   "red_vs_view": null
+  },
+  "k=2": {
+   "calls": 97,
+   "SemNoScope": {
+    "data_calls": 66,
+    "hit_rate": 0.712,
+    "n_exec": 19,
+    "wrong": 39,
+    "other": 0.591,
+    "xscope": 0.591,
+    "self": 0.121,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 66,
+    "hit_rate": 0.227,
+    "n_exec": 51,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.227,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 66,
+    "hit_rate": 0.227,
+    "n_exec": 51,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.227,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 66,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "ScopeCache": {
+    "data_calls": 66,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "SC-online": {
+    "data_calls": 66,
+    "hit_rate": 0.561,
+    "n_exec": 29,
+    "wrong": 0,
+    "other": 0.379,
+    "xscope": 0.379,
+    "self": 0.182,
+    "view": 0.0
+   },
+   "red_vs_view": null
+  },
+  "k=3": {
+   "calls": 147,
+   "SemNoScope": {
+    "data_calls": 106,
+    "hit_rate": 0.764,
+    "n_exec": 25,
+    "wrong": 69,
+    "other": 0.651,
+    "xscope": 0.651,
+    "self": 0.113,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 106,
+    "hit_rate": 0.292,
+    "n_exec": 75,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.292,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 106,
+    "hit_rate": 0.292,
+    "n_exec": 75,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.292,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 106,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "ScopeCache": {
+    "data_calls": 106,
+    "hit_rate": 1.0,
+    "n_exec": 0,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 1.0
+   },
+   "SC-online": {
+    "data_calls": 106,
+    "hit_rate": 0.594,
+    "n_exec": 43,
+    "wrong": 0,
+    "other": 0.368,
+    "xscope": 0.34,
+    "self": 0.226,
+    "view": 0.0
+   },
+   "red_vs_view": null
+  },
+  "k=5": {
+   "calls": 259,
+   "SemNoScope": {
+    "data_calls": 187,
+    "hit_rate": 0.845,
+    "n_exec": 29,
+    "wrong": 144,
+    "other": 0.781,
+    "xscope": 0.77,
+    "self": 0.064,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 187,
+    "hit_rate": 0.294,
+    "n_exec": 132,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.294,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 187,
+    "hit_rate": 0.305,
+    "n_exec": 130,
+    "wrong": 0,
+    "other": 0.016,
+    "xscope": 0.0,
+    "self": 0.289,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 187,
+    "hit_rate": 0.979,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.979
+   },
+   "ScopeCache": {
+    "data_calls": 187,
+    "hit_rate": 0.979,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.979
+   },
+   "SC-online": {
+    "data_calls": 187,
+    "hit_rate": 0.604,
+    "n_exec": 74,
+    "wrong": 0,
+    "other": 0.38,
+    "xscope": 0.348,
+    "self": 0.225,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=all": {
+   "calls": 484,
+   "SemNoScope": {
+    "data_calls": 354,
+    "hit_rate": 0.918,
+    "n_exec": 29,
+    "wrong": 315,
+    "other": 0.901,
+    "xscope": 0.893,
+    "self": 0.017,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 354,
+    "hit_rate": 0.291,
+    "n_exec": 251,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.291,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 354,
+    "hit_rate": 0.347,
+    "n_exec": 231,
+    "wrong": 0,
+    "other": 0.082,
+    "xscope": 0.0,
+    "self": 0.266,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 354,
+    "hit_rate": 0.972,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.972
+   },
+   "ScopeCache": {
+    "data_calls": 354,
+    "hit_rate": 0.975,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.003,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.972
+   },
+   "SC-online": {
+    "data_calls": 354,
+    "hit_rate": 0.644,
+    "n_exec": 126,
+    "wrong": 0,
+    "other": 0.466,
+    "xscope": 0.398,
+    "self": 0.178,
+    "view": 0.0
+   },
+   "red_vs_view": 0.1
+  }
+ },
+ "tpcds/deepseek/s0": {
+  "k=1": {
+   "calls": 38,
+   "SemNoScope": {
+    "data_calls": 23,
+    "hit_rate": 0.304,
+    "n_exec": 16,
+    "wrong": 4,
+    "other": 0.174,
+    "xscope": 0.174,
+    "self": 0.13,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 23,
+    "hit_rate": 0.13,
+    "n_exec": 20,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.13,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 23,
+    "hit_rate": 0.13,
+    "n_exec": 20,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.13,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 23,
+    "hit_rate": 0.739,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.739
+   },
+   "ScopeCache": {
+    "data_calls": 23,
+    "hit_rate": 0.783,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.043,
+    "view": 0.739
+   },
+   "SC-online": {
+    "data_calls": 23,
+    "hit_rate": 0.783,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.696,
+    "xscope": 0.696,
+    "self": 0.087,
+    "view": 0.0
+   },
+   "red_vs_view": 0.167
+  },
+  "k=2": {
+   "calls": 75,
+   "SemNoScope": {
+    "data_calls": 46,
+    "hit_rate": 0.543,
+    "n_exec": 21,
+    "wrong": 22,
+    "other": 0.543,
+    "xscope": 0.5,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 46,
+    "hit_rate": 0.043,
+    "n_exec": 44,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.043,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 46,
+    "hit_rate": 0.109,
+    "n_exec": 41,
+    "wrong": 0,
+    "other": 0.065,
+    "xscope": 0.0,
+    "self": 0.043,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 46,
+    "hit_rate": 0.739,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.739
+   },
+   "ScopeCache": {
+    "data_calls": 46,
+    "hit_rate": 0.848,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.087,
+    "xscope": 0.087,
+    "self": 0.022,
+    "view": 0.739
+   },
+   "SC-online": {
+    "data_calls": 46,
+    "hit_rate": 0.848,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.804,
+    "xscope": 0.804,
+    "self": 0.043,
+    "view": 0.0
+   },
+   "red_vs_view": 0.417
+  },
+  "k=3": {
+   "calls": 111,
+   "SemNoScope": {
+    "data_calls": 68,
+    "hit_rate": 0.691,
+    "n_exec": 21,
+    "wrong": 42,
+    "other": 0.676,
+    "xscope": 0.632,
+    "self": 0.015,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 68,
+    "hit_rate": 0.103,
+    "n_exec": 61,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.103,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 68,
+    "hit_rate": 0.162,
+    "n_exec": 57,
+    "wrong": 0,
+    "other": 0.059,
+    "xscope": 0.0,
+    "self": 0.103,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 68,
+    "hit_rate": 0.779,
+    "n_exec": 15,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.779
+   },
+   "ScopeCache": {
+    "data_calls": 68,
+    "hit_rate": 0.882,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.088,
+    "xscope": 0.088,
+    "self": 0.015,
+    "view": 0.779
+   },
+   "SC-online": {
+    "data_calls": 68,
+    "hit_rate": 0.882,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.853,
+    "xscope": 0.853,
+    "self": 0.029,
+    "view": 0.0
+   },
+   "red_vs_view": 0.467
+  },
+  "k=5": {
+   "calls": 188,
+   "SemNoScope": {
+    "data_calls": 116,
+    "hit_rate": 0.784,
+    "n_exec": 25,
+    "wrong": 81,
+    "other": 0.776,
+    "xscope": 0.707,
+    "self": 0.009,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 116,
+    "hit_rate": 0.095,
+    "n_exec": 105,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.095,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 116,
+    "hit_rate": 0.19,
+    "n_exec": 94,
+    "wrong": 0,
+    "other": 0.095,
+    "xscope": 0.0,
+    "self": 0.095,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 116,
+    "hit_rate": 0.793,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.793
+   },
+   "ScopeCache": {
+    "data_calls": 116,
+    "hit_rate": 0.905,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.103,
+    "xscope": 0.103,
+    "self": 0.009,
+    "view": 0.793
+   },
+   "SC-online": {
+    "data_calls": 116,
+    "hit_rate": 0.905,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.897,
+    "xscope": 0.862,
+    "self": 0.009,
+    "view": 0.0
+   },
+   "red_vs_view": 0.542
+  },
+  "k=all": {
+   "calls": 387,
+   "SemNoScope": {
+    "data_calls": 239,
+    "hit_rate": 0.921,
+    "n_exec": 19,
+    "wrong": 205,
+    "other": 0.921,
+    "xscope": 0.879,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 239,
+    "hit_rate": 0.105,
+    "n_exec": 214,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.105,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 239,
+    "hit_rate": 0.226,
+    "n_exec": 185,
+    "wrong": 0,
+    "other": 0.13,
+    "xscope": 0.0,
+    "self": 0.096,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 239,
+    "hit_rate": 0.975,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.975
+   },
+   "ScopeCache": {
+    "data_calls": 239,
+    "hit_rate": 0.975,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.975
+   },
+   "SC-online": {
+    "data_calls": 239,
+    "hit_rate": 0.954,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.95,
+    "xscope": 0.925,
+    "self": 0.004,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  }
+ },
+ "tpcds/deepseek/s1": {
+  "k=1": {
+   "calls": 40,
+   "SemNoScope": {
+    "data_calls": 26,
+    "hit_rate": 0.192,
+    "n_exec": 21,
+    "wrong": 2,
+    "other": 0.077,
+    "xscope": 0.077,
+    "self": 0.115,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 26,
+    "hit_rate": 0.115,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.115,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 26,
+    "hit_rate": 0.115,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.115,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 26,
+    "hit_rate": 0.692,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.692
+   },
+   "ScopeCache": {
+    "data_calls": 26,
+    "hit_rate": 0.808,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.077,
+    "xscope": 0.077,
+    "self": 0.038,
+    "view": 0.692
+   },
+   "SC-online": {
+    "data_calls": 26,
+    "hit_rate": 0.808,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.769,
+    "xscope": 0.769,
+    "self": 0.038,
+    "view": 0.0
+   },
+   "red_vs_view": 0.375
+  },
+  "k=2": {
+   "calls": 80,
+   "SemNoScope": {
+    "data_calls": 48,
+    "hit_rate": 0.604,
+    "n_exec": 19,
+    "wrong": 26,
+    "other": 0.542,
+    "xscope": 0.542,
+    "self": 0.062,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 48,
+    "hit_rate": 0.104,
+    "n_exec": 43,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.104,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 48,
+    "hit_rate": 0.104,
+    "n_exec": 43,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.104,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 48,
+    "hit_rate": 0.792,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.792
+   },
+   "ScopeCache": {
+    "data_calls": 48,
+    "hit_rate": 0.896,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.083,
+    "xscope": 0.083,
+    "self": 0.021,
+    "view": 0.792
+   },
+   "SC-online": {
+    "data_calls": 48,
+    "hit_rate": 0.896,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.854,
+    "xscope": 0.854,
+    "self": 0.042,
+    "view": 0.0
+   },
+   "red_vs_view": 0.5
+  },
+  "k=3": {
+   "calls": 119,
+   "SemNoScope": {
+    "data_calls": 73,
+    "hit_rate": 0.712,
+    "n_exec": 21,
+    "wrong": 49,
+    "other": 0.685,
+    "xscope": 0.671,
+    "self": 0.027,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 73,
+    "hit_rate": 0.096,
+    "n_exec": 66,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.096,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 73,
+    "hit_rate": 0.123,
+    "n_exec": 64,
+    "wrong": 0,
+    "other": 0.027,
+    "xscope": 0.0,
+    "self": 0.096,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 73,
+    "hit_rate": 0.959,
+    "n_exec": 3,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.959
+   },
+   "ScopeCache": {
+    "data_calls": 73,
+    "hit_rate": 0.986,
+    "n_exec": 1,
+    "wrong": 0,
+    "other": 0.027,
+    "xscope": 0.027,
+    "self": 0.0,
+    "view": 0.959
+   },
+   "SC-online": {
+    "data_calls": 73,
+    "hit_rate": 0.945,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.877,
+    "xscope": 0.836,
+    "self": 0.068,
+    "view": 0.0
+   },
+   "red_vs_view": 0.667
+  },
+  "k=5": {
+   "calls": 198,
+   "SemNoScope": {
+    "data_calls": 117,
+    "hit_rate": 0.812,
+    "n_exec": 22,
+    "wrong": 89,
+    "other": 0.795,
+    "xscope": 0.786,
+    "self": 0.017,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 117,
+    "hit_rate": 0.111,
+    "n_exec": 104,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.111,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 117,
+    "hit_rate": 0.137,
+    "n_exec": 101,
+    "wrong": 0,
+    "other": 0.026,
+    "xscope": 0.0,
+    "self": 0.111,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 117,
+    "hit_rate": 0.949,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.949
+   },
+   "ScopeCache": {
+    "data_calls": 117,
+    "hit_rate": 0.983,
+    "n_exec": 2,
+    "wrong": 0,
+    "other": 0.034,
+    "xscope": 0.034,
+    "self": 0.0,
+    "view": 0.949
+   },
+   "SC-online": {
+    "data_calls": 117,
+    "hit_rate": 0.949,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.906,
+    "xscope": 0.889,
+    "self": 0.043,
+    "view": 0.0
+   },
+   "red_vs_view": 0.667
+  },
+  "k=all": {
+   "calls": 395,
+   "SemNoScope": {
+    "data_calls": 232,
+    "hit_rate": 0.888,
+    "n_exec": 26,
+    "wrong": 192,
+    "other": 0.888,
+    "xscope": 0.849,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 232,
+    "hit_rate": 0.108,
+    "n_exec": 207,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.108,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 232,
+    "hit_rate": 0.25,
+    "n_exec": 174,
+    "wrong": 0,
+    "other": 0.151,
+    "xscope": 0.0,
+    "self": 0.099,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 232,
+    "hit_rate": 0.927,
+    "n_exec": 17,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.927
+   },
+   "ScopeCache": {
+    "data_calls": 232,
+    "hit_rate": 0.974,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.047,
+    "xscope": 0.047,
+    "self": 0.0,
+    "view": 0.927
+   },
+   "SC-online": {
+    "data_calls": 232,
+    "hit_rate": 0.957,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.944,
+    "xscope": 0.918,
+    "self": 0.013,
+    "view": 0.0
+   },
+   "red_vs_view": 0.647
+  }
+ },
+ "tpcds/glm/s0": {
+  "k=1": {
+   "calls": 46,
+   "SemNoScope": {
+    "data_calls": 30,
+    "hit_rate": 0.267,
+    "n_exec": 22,
+    "wrong": 1,
+    "other": 0.033,
+    "xscope": 0.033,
+    "self": 0.233,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 30,
+    "hit_rate": 0.233,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.233,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 30,
+    "hit_rate": 0.233,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.233,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 30,
+    "hit_rate": 0.833,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.833
+   },
+   "ScopeCache": {
+    "data_calls": 30,
+    "hit_rate": 0.867,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.033,
+    "view": 0.833
+   },
+   "SC-online": {
+    "data_calls": 30,
+    "hit_rate": 0.767,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.733,
+    "xscope": 0.633,
+    "self": 0.033,
+    "view": 0.0
+   },
+   "red_vs_view": 0.2
+  },
+  "k=2": {
+   "calls": 88,
+   "SemNoScope": {
+    "data_calls": 59,
+    "hit_rate": 0.525,
+    "n_exec": 28,
+    "wrong": 20,
+    "other": 0.407,
+    "xscope": 0.356,
+    "self": 0.119,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 59,
+    "hit_rate": 0.169,
+    "n_exec": 49,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.169,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 59,
+    "hit_rate": 0.203,
+    "n_exec": 47,
+    "wrong": 0,
+    "other": 0.051,
+    "xscope": 0.0,
+    "self": 0.153,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 59,
+    "hit_rate": 0.831,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.831
+   },
+   "ScopeCache": {
+    "data_calls": 59,
+    "hit_rate": 0.898,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.051,
+    "xscope": 0.051,
+    "self": 0.017,
+    "view": 0.831
+   },
+   "SC-online": {
+    "data_calls": 59,
+    "hit_rate": 0.881,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.864,
+    "xscope": 0.746,
+    "self": 0.017,
+    "view": 0.0
+   },
+   "red_vs_view": 0.4
+  },
+  "k=3": {
+   "calls": 154,
+   "SemNoScope": {
+    "data_calls": 104,
+    "hit_rate": 0.721,
+    "n_exec": 29,
+    "wrong": 64,
+    "other": 0.654,
+    "xscope": 0.615,
+    "self": 0.067,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 104,
+    "hit_rate": 0.308,
+    "n_exec": 72,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.308,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 104,
+    "hit_rate": 0.337,
+    "n_exec": 69,
+    "wrong": 0,
+    "other": 0.038,
+    "xscope": 0.0,
+    "self": 0.298,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 104,
+    "hit_rate": 0.875,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.875
+   },
+   "ScopeCache": {
+    "data_calls": 104,
+    "hit_rate": 0.933,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.038,
+    "xscope": 0.038,
+    "self": 0.019,
+    "view": 0.875
+   },
+   "SC-online": {
+    "data_calls": 104,
+    "hit_rate": 0.933,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.913,
+    "xscope": 0.827,
+    "self": 0.019,
+    "view": 0.0
+   },
+   "red_vs_view": 0.462
+  },
+  "k=5": {
+   "calls": 242,
+   "SemNoScope": {
+    "data_calls": 163,
+    "hit_rate": 0.822,
+    "n_exec": 29,
+    "wrong": 115,
+    "other": 0.785,
+    "xscope": 0.73,
+    "self": 0.037,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 163,
+    "hit_rate": 0.233,
+    "n_exec": 125,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.233,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 163,
+    "hit_rate": 0.282,
+    "n_exec": 117,
+    "wrong": 0,
+    "other": 0.061,
+    "xscope": 0.0,
+    "self": 0.221,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 163,
+    "hit_rate": 0.963,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.963
+   },
+   "ScopeCache": {
+    "data_calls": 163,
+    "hit_rate": 0.963,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.963
+   },
+   "SC-online": {
+    "data_calls": 163,
+    "hit_rate": 0.951,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.939,
+    "xscope": 0.871,
+    "self": 0.012,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=all": {
+   "calls": 489,
+   "SemNoScope": {
+    "data_calls": 321,
+    "hit_rate": 0.9,
+    "n_exec": 32,
+    "wrong": 266,
+    "other": 0.9,
+    "xscope": 0.879,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 321,
+    "hit_rate": 0.165,
+    "n_exec": 268,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.165,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 321,
+    "hit_rate": 0.268,
+    "n_exec": 235,
+    "wrong": 0,
+    "other": 0.121,
+    "xscope": 0.0,
+    "self": 0.146,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 321,
+    "hit_rate": 0.963,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.963
+   },
+   "ScopeCache": {
+    "data_calls": 321,
+    "hit_rate": 0.966,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.003,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.963
+   },
+   "SC-online": {
+    "data_calls": 321,
+    "hit_rate": 0.96,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.944,
+    "xscope": 0.897,
+    "self": 0.016,
+    "view": 0.0
+   },
+   "red_vs_view": 0.083
+  }
+ },
+ "tpcds/glm/s1": {
+  "k=1": {
+   "calls": 49,
+   "SemNoScope": {
+    "data_calls": 36,
+    "hit_rate": 0.222,
+    "n_exec": 28,
+    "wrong": 2,
+    "other": 0.056,
+    "xscope": 0.056,
+    "self": 0.167,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 36,
+    "hit_rate": 0.194,
+    "n_exec": 29,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.194,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 36,
+    "hit_rate": 0.194,
+    "n_exec": 29,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.194,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 36,
+    "hit_rate": 0.667,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.667
+   },
+   "ScopeCache": {
+    "data_calls": 36,
+    "hit_rate": 0.861,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.111,
+    "xscope": 0.111,
+    "self": 0.083,
+    "view": 0.667
+   },
+   "SC-online": {
+    "data_calls": 36,
+    "hit_rate": 0.833,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.75,
+    "xscope": 0.75,
+    "self": 0.083,
+    "view": 0.0
+   },
+   "red_vs_view": 0.583
+  },
+  "k=2": {
+   "calls": 101,
+   "SemNoScope": {
+    "data_calls": 68,
+    "hit_rate": 0.632,
+    "n_exec": 25,
+    "wrong": 38,
+    "other": 0.559,
+    "xscope": 0.559,
+    "self": 0.074,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 68,
+    "hit_rate": 0.235,
+    "n_exec": 52,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.235,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 68,
+    "hit_rate": 0.235,
+    "n_exec": 52,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.235,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 68,
+    "hit_rate": 0.868,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.868
+   },
+   "ScopeCache": {
+    "data_calls": 68,
+    "hit_rate": 0.941,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.059,
+    "xscope": 0.059,
+    "self": 0.015,
+    "view": 0.868
+   },
+   "SC-online": {
+    "data_calls": 68,
+    "hit_rate": 0.926,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.912,
+    "xscope": 0.912,
+    "self": 0.015,
+    "view": 0.0
+   },
+   "red_vs_view": 0.556
+  },
+  "k=3": {
+   "calls": 163,
+   "SemNoScope": {
+    "data_calls": 110,
+    "hit_rate": 0.727,
+    "n_exec": 30,
+    "wrong": 72,
+    "other": 0.682,
+    "xscope": 0.664,
+    "self": 0.045,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 110,
+    "hit_rate": 0.291,
+    "n_exec": 78,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.291,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 110,
+    "hit_rate": 0.318,
+    "n_exec": 75,
+    "wrong": 0,
+    "other": 0.082,
+    "xscope": 0.0,
+    "self": 0.236,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 110,
+    "hit_rate": 0.873,
+    "n_exec": 14,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.873
+   },
+   "ScopeCache": {
+    "data_calls": 110,
+    "hit_rate": 0.964,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.082,
+    "xscope": 0.073,
+    "self": 0.009,
+    "view": 0.873
+   },
+   "SC-online": {
+    "data_calls": 110,
+    "hit_rate": 0.964,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.955,
+    "xscope": 0.936,
+    "self": 0.009,
+    "view": 0.0
+   },
+   "red_vs_view": 0.714
+  },
+  "k=5": {
+   "calls": 256,
+   "SemNoScope": {
+    "data_calls": 166,
+    "hit_rate": 0.843,
+    "n_exec": 26,
+    "wrong": 130,
+    "other": 0.813,
+    "xscope": 0.801,
+    "self": 0.03,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 166,
+    "hit_rate": 0.223,
+    "n_exec": 129,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.223,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 166,
+    "hit_rate": 0.253,
+    "n_exec": 124,
+    "wrong": 0,
+    "other": 0.066,
+    "xscope": 0.0,
+    "self": 0.187,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 166,
+    "hit_rate": 0.861,
+    "n_exec": 23,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.861
+   },
+   "ScopeCache": {
+    "data_calls": 166,
+    "hit_rate": 0.964,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.096,
+    "xscope": 0.09,
+    "self": 0.006,
+    "view": 0.861
+   },
+   "SC-online": {
+    "data_calls": 166,
+    "hit_rate": 0.964,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.94,
+    "xscope": 0.928,
+    "self": 0.024,
+    "view": 0.0
+   },
+   "red_vs_view": 0.739
+  },
+  "k=all": {
+   "calls": 448,
+   "SemNoScope": {
+    "data_calls": 289,
+    "hit_rate": 0.903,
+    "n_exec": 28,
+    "wrong": 239,
+    "other": 0.889,
+    "xscope": 0.844,
+    "self": 0.014,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 289,
+    "hit_rate": 0.125,
+    "n_exec": 253,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.125,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 289,
+    "hit_rate": 0.253,
+    "n_exec": 216,
+    "wrong": 0,
+    "other": 0.131,
+    "xscope": 0.0,
+    "self": 0.121,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 289,
+    "hit_rate": 0.924,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.924
+   },
+   "ScopeCache": {
+    "data_calls": 289,
+    "hit_rate": 0.969,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.045,
+    "xscope": 0.038,
+    "self": 0.0,
+    "view": 0.924
+   },
+   "SC-online": {
+    "data_calls": 289,
+    "hit_rate": 0.965,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.948,
+    "xscope": 0.917,
+    "self": 0.017,
+    "view": 0.0
+   },
+   "red_vs_view": 0.591
+  }
+ },
+ "tpcds/kimi/s0": {
+  "k=1": {
+   "calls": 54,
+   "SemNoScope": {
+    "data_calls": 33,
+    "hit_rate": 0.303,
+    "n_exec": 23,
+    "wrong": 1,
+    "other": 0.152,
+    "xscope": 0.03,
+    "self": 0.152,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 33,
+    "hit_rate": 0.273,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.273,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 33,
+    "hit_rate": 0.273,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.121,
+    "xscope": 0.0,
+    "self": 0.152,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 33,
+    "hit_rate": 0.758,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.758
+   },
+   "ScopeCache": {
+    "data_calls": 33,
+    "hit_rate": 0.818,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.061,
+    "view": 0.758
+   },
+   "SC-online": {
+    "data_calls": 33,
+    "hit_rate": 0.788,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.636,
+    "xscope": 0.636,
+    "self": 0.152,
+    "view": 0.0
+   },
+   "red_vs_view": 0.25
+  },
+  "k=2": {
+   "calls": 103,
+   "SemNoScope": {
+    "data_calls": 66,
+    "hit_rate": 0.545,
+    "n_exec": 30,
+    "wrong": 23,
+    "other": 0.47,
+    "xscope": 0.364,
+    "self": 0.076,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 66,
+    "hit_rate": 0.227,
+    "n_exec": 51,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.227,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 66,
+    "hit_rate": 0.258,
+    "n_exec": 49,
+    "wrong": 0,
+    "other": 0.106,
+    "xscope": 0.0,
+    "self": 0.152,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 66,
+    "hit_rate": 0.742,
+    "n_exec": 17,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.742
+   },
+   "ScopeCache": {
+    "data_calls": 66,
+    "hit_rate": 0.864,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.091,
+    "xscope": 0.091,
+    "self": 0.03,
+    "view": 0.742
+   },
+   "SC-online": {
+    "data_calls": 66,
+    "hit_rate": 0.864,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.833,
+    "xscope": 0.833,
+    "self": 0.03,
+    "view": 0.0
+   },
+   "red_vs_view": 0.471
+  },
+  "k=3": {
+   "calls": 161,
+   "SemNoScope": {
+    "data_calls": 103,
+    "hit_rate": 0.68,
+    "n_exec": 33,
+    "wrong": 51,
+    "other": 0.592,
+    "xscope": 0.505,
+    "self": 0.087,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 103,
+    "hit_rate": 0.291,
+    "n_exec": 73,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.291,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 103,
+    "hit_rate": 0.32,
+    "n_exec": 70,
+    "wrong": 0,
+    "other": 0.087,
+    "xscope": 0.0,
+    "self": 0.233,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 103,
+    "hit_rate": 0.767,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.767
+   },
+   "ScopeCache": {
+    "data_calls": 103,
+    "hit_rate": 0.893,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.107,
+    "xscope": 0.107,
+    "self": 0.019,
+    "view": 0.767
+   },
+   "SC-online": {
+    "data_calls": 103,
+    "hit_rate": 0.893,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.874,
+    "xscope": 0.874,
+    "self": 0.019,
+    "view": 0.0
+   },
+   "red_vs_view": 0.542
+  },
+  "k=5": {
+   "calls": 273,
+   "SemNoScope": {
+    "data_calls": 176,
+    "hit_rate": 0.835,
+    "n_exec": 29,
+    "wrong": 122,
+    "other": 0.79,
+    "xscope": 0.71,
+    "self": 0.045,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 176,
+    "hit_rate": 0.29,
+    "n_exec": 125,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.29,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 176,
+    "hit_rate": 0.347,
+    "n_exec": 115,
+    "wrong": 0,
+    "other": 0.091,
+    "xscope": 0.0,
+    "self": 0.256,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 176,
+    "hit_rate": 0.938,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.938
+   },
+   "ScopeCache": {
+    "data_calls": 176,
+    "hit_rate": 0.938,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.938
+   },
+   "SC-online": {
+    "data_calls": 176,
+    "hit_rate": 0.926,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.92,
+    "xscope": 0.886,
+    "self": 0.006,
+    "view": 0.0
+   },
+   "red_vs_view": 0.0
+  },
+  "k=all": {
+   "calls": 563,
+   "SemNoScope": {
+    "data_calls": 362,
+    "hit_rate": 0.942,
+    "n_exec": 21,
+    "wrong": 310,
+    "other": 0.934,
+    "xscope": 0.892,
+    "self": 0.008,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 362,
+    "hit_rate": 0.298,
+    "n_exec": 254,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.298,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 362,
+    "hit_rate": 0.398,
+    "n_exec": 218,
+    "wrong": 0,
+    "other": 0.13,
+    "xscope": 0.0,
+    "self": 0.268,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 362,
+    "hit_rate": 0.959,
+    "n_exec": 15,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.959
+   },
+   "ScopeCache": {
+    "data_calls": 362,
+    "hit_rate": 0.964,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.006,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.959
+   },
+   "SC-online": {
+    "data_calls": 362,
+    "hit_rate": 0.964,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.961,
+    "xscope": 0.939,
+    "self": 0.003,
+    "view": 0.0
+   },
+   "red_vs_view": 0.133
+  }
+ },
+ "tpcds/kimi/s1": {
+  "k=1": {
+   "calls": 58,
+   "SemNoScope": {
+    "data_calls": 40,
+    "hit_rate": 0.325,
+    "n_exec": 27,
+    "wrong": 8,
+    "other": 0.2,
+    "xscope": 0.2,
+    "self": 0.125,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 40,
+    "hit_rate": 0.225,
+    "n_exec": 31,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.225,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 40,
+    "hit_rate": 0.225,
+    "n_exec": 31,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.225,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 40,
+    "hit_rate": 0.65,
+    "n_exec": 14,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.65
+   },
+   "ScopeCache": {
+    "data_calls": 40,
+    "hit_rate": 0.825,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.05,
+    "xscope": 0.05,
+    "self": 0.125,
+    "view": 0.65
+   },
+   "SC-online": {
+    "data_calls": 40,
+    "hit_rate": 0.8,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.65,
+    "xscope": 0.65,
+    "self": 0.15,
+    "view": 0.0
+   },
+   "red_vs_view": 0.5
+  },
+  "k=2": {
+   "calls": 116,
+   "SemNoScope": {
+    "data_calls": 72,
+    "hit_rate": 0.611,
+    "n_exec": 28,
+    "wrong": 38,
+    "other": 0.528,
+    "xscope": 0.528,
+    "self": 0.083,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 72,
+    "hit_rate": 0.208,
+    "n_exec": 57,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.208,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 72,
+    "hit_rate": 0.208,
+    "n_exec": 57,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.208,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 72,
+    "hit_rate": 0.778,
+    "n_exec": 16,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.778
+   },
+   "ScopeCache": {
+    "data_calls": 72,
+    "hit_rate": 0.917,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.097,
+    "xscope": 0.097,
+    "self": 0.042,
+    "view": 0.778
+   },
+   "SC-online": {
+    "data_calls": 72,
+    "hit_rate": 0.903,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.847,
+    "xscope": 0.847,
+    "self": 0.056,
+    "view": 0.0
+   },
+   "red_vs_view": 0.625
+  },
+  "k=3": {
+   "calls": 172,
+   "SemNoScope": {
+    "data_calls": 108,
+    "hit_rate": 0.75,
+    "n_exec": 27,
+    "wrong": 71,
+    "other": 0.676,
+    "xscope": 0.657,
+    "self": 0.074,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 108,
+    "hit_rate": 0.231,
+    "n_exec": 83,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.231,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 108,
+    "hit_rate": 0.259,
+    "n_exec": 80,
+    "wrong": 0,
+    "other": 0.028,
+    "xscope": 0.0,
+    "self": 0.231,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 108,
+    "hit_rate": 0.944,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.944
+   },
+   "ScopeCache": {
+    "data_calls": 108,
+    "hit_rate": 0.963,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.019,
+    "xscope": 0.019,
+    "self": 0.0,
+    "view": 0.944
+   },
+   "SC-online": {
+    "data_calls": 108,
+    "hit_rate": 0.944,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.935,
+    "xscope": 0.917,
+    "self": 0.009,
+    "view": 0.0
+   },
+   "red_vs_view": 0.333
+  },
+  "k=5": {
+   "calls": 284,
+   "SemNoScope": {
+    "data_calls": 173,
+    "hit_rate": 0.844,
+    "n_exec": 27,
+    "wrong": 133,
+    "other": 0.798,
+    "xscope": 0.786,
+    "self": 0.046,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 173,
+    "hit_rate": 0.208,
+    "n_exec": 137,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.208,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 173,
+    "hit_rate": 0.231,
+    "n_exec": 133,
+    "wrong": 0,
+    "other": 0.023,
+    "xscope": 0.0,
+    "self": 0.208,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 173,
+    "hit_rate": 0.931,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.931
+   },
+   "ScopeCache": {
+    "data_calls": 173,
+    "hit_rate": 0.954,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.023,
+    "xscope": 0.023,
+    "self": 0.0,
+    "view": 0.931
+   },
+   "SC-online": {
+    "data_calls": 173,
+    "hit_rate": 0.942,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.908,
+    "xscope": 0.896,
+    "self": 0.035,
+    "view": 0.0
+   },
+   "red_vs_view": 0.333
+  },
+  "k=all": {
+   "calls": 566,
+   "SemNoScope": {
+    "data_calls": 342,
+    "hit_rate": 0.915,
+    "n_exec": 29,
+    "wrong": 286,
+    "other": 0.906,
+    "xscope": 0.863,
+    "self": 0.009,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 342,
+    "hit_rate": 0.196,
+    "n_exec": 275,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.196,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 342,
+    "hit_rate": 0.313,
+    "n_exec": 235,
+    "wrong": 0,
+    "other": 0.146,
+    "xscope": 0.0,
+    "self": 0.167,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 342,
+    "hit_rate": 0.918,
+    "n_exec": 28,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.918
+   },
+   "ScopeCache": {
+    "data_calls": 342,
+    "hit_rate": 0.95,
+    "n_exec": 17,
+    "wrong": 0,
+    "other": 0.032,
+    "xscope": 0.032,
+    "self": 0.0,
+    "view": 0.918
+   },
+   "SC-online": {
+    "data_calls": 342,
+    "hit_rate": 0.947,
+    "n_exec": 18,
+    "wrong": 0,
+    "other": 0.927,
+    "xscope": 0.901,
+    "self": 0.02,
+    "view": 0.0
+   },
+   "red_vs_view": 0.393
+  }
+ },
+ "tpch/deepseek/s0": {
+  "k=1": {
+   "calls": 30,
+   "SemNoScope": {
+    "data_calls": 22,
+    "hit_rate": 0.227,
+    "n_exec": 17,
+    "wrong": 1,
+    "other": 0.045,
+    "xscope": 0.045,
+    "self": 0.182,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 22,
+    "hit_rate": 0.182,
+    "n_exec": 18,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.182,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 22,
+    "hit_rate": 0.182,
+    "n_exec": 18,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.182,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 22,
+    "hit_rate": 0.682,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.682
+   },
+   "ScopeCache": {
+    "data_calls": 22,
+    "hit_rate": 0.773,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.045,
+    "xscope": 0.045,
+    "self": 0.045,
+    "view": 0.682
+   },
+   "SC-online": {
+    "data_calls": 22,
+    "hit_rate": 0.727,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.682,
+    "xscope": 0.682,
+    "self": 0.045,
+    "view": 0.0
+   },
+   "red_vs_view": 0.286
+  },
+  "k=2": {
+   "calls": 68,
+   "SemNoScope": {
+    "data_calls": 49,
+    "hit_rate": 0.571,
+    "n_exec": 21,
+    "wrong": 26,
+    "other": 0.531,
+    "xscope": 0.531,
+    "self": 0.041,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 49,
+    "hit_rate": 0.143,
+    "n_exec": 42,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.143,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 49,
+    "hit_rate": 0.143,
+    "n_exec": 42,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.143,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 49,
+    "hit_rate": 0.694,
+    "n_exec": 15,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.694
+   },
+   "ScopeCache": {
+    "data_calls": 49,
+    "hit_rate": 0.878,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.163,
+    "xscope": 0.163,
+    "self": 0.02,
+    "view": 0.694
+   },
+   "SC-online": {
+    "data_calls": 49,
+    "hit_rate": 0.857,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.837,
+    "xscope": 0.837,
+    "self": 0.02,
+    "view": 0.0
+   },
+   "red_vs_view": 0.6
+  },
+  "k=3": {
+   "calls": 103,
+   "SemNoScope": {
+    "data_calls": 73,
+    "hit_rate": 0.753,
+    "n_exec": 18,
+    "wrong": 52,
+    "other": 0.726,
+    "xscope": 0.726,
+    "self": 0.027,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 73,
+    "hit_rate": 0.178,
+    "n_exec": 60,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.178,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 73,
+    "hit_rate": 0.192,
+    "n_exec": 59,
+    "wrong": 0,
+    "other": 0.014,
+    "xscope": 0.0,
+    "self": 0.178,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 73,
+    "hit_rate": 0.671,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.671
+   },
+   "ScopeCache": {
+    "data_calls": 73,
+    "hit_rate": 0.918,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.219,
+    "xscope": 0.219,
+    "self": 0.027,
+    "view": 0.671
+   },
+   "SC-online": {
+    "data_calls": 73,
+    "hit_rate": 0.904,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.877,
+    "xscope": 0.863,
+    "self": 0.027,
+    "view": 0.0
+   },
+   "red_vs_view": 0.75
+  },
+  "k=5": {
+   "calls": 173,
+   "SemNoScope": {
+    "data_calls": 123,
+    "hit_rate": 0.87,
+    "n_exec": 16,
+    "wrong": 101,
+    "other": 0.862,
+    "xscope": 0.829,
+    "self": 0.008,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 123,
+    "hit_rate": 0.171,
+    "n_exec": 102,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.171,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 123,
+    "hit_rate": 0.22,
+    "n_exec": 96,
+    "wrong": 0,
+    "other": 0.049,
+    "xscope": 0.0,
+    "self": 0.171,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 123,
+    "hit_rate": 0.74,
+    "n_exec": 32,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.74
+   },
+   "ScopeCache": {
+    "data_calls": 123,
+    "hit_rate": 0.959,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.22,
+    "xscope": 0.211,
+    "self": 0.0,
+    "view": 0.74
+   },
+   "SC-online": {
+    "data_calls": 123,
+    "hit_rate": 0.959,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.951,
+    "xscope": 0.919,
+    "self": 0.008,
+    "view": 0.0
+   },
+   "red_vs_view": 0.844
+  },
+  "k=all": {
+   "calls": 347,
+   "SemNoScope": {
+    "data_calls": 256,
+    "hit_rate": 0.953,
+    "n_exec": 12,
+    "wrong": 239,
+    "other": 0.953,
+    "xscope": 0.938,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 256,
+    "hit_rate": 0.188,
+    "n_exec": 208,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.188,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 256,
+    "hit_rate": 0.258,
+    "n_exec": 190,
+    "wrong": 0,
+    "other": 0.098,
+    "xscope": 0.0,
+    "self": 0.16,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 256,
+    "hit_rate": 0.898,
+    "n_exec": 26,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.898
+   },
+   "ScopeCache": {
+    "data_calls": 256,
+    "hit_rate": 0.977,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.078,
+    "xscope": 0.074,
+    "self": 0.0,
+    "view": 0.898
+   },
+   "SC-online": {
+    "data_calls": 256,
+    "hit_rate": 0.973,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.969,
+    "xscope": 0.957,
+    "self": 0.004,
+    "view": 0.0
+   },
+   "red_vs_view": 0.769
+  }
+ },
+ "tpch/deepseek/s1": {
+  "k=1": {
+   "calls": 36,
+   "SemNoScope": {
+    "data_calls": 25,
+    "hit_rate": 0.16,
+    "n_exec": 21,
+    "wrong": 1,
+    "other": 0.04,
+    "xscope": 0.04,
+    "self": 0.12,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 25,
+    "hit_rate": 0.12,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.12,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 25,
+    "hit_rate": 0.12,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.12,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 25,
+    "hit_rate": 0.76,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.76
+   },
+   "ScopeCache": {
+    "data_calls": 25,
+    "hit_rate": 0.8,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.04,
+    "xscope": 0.04,
+    "self": 0.0,
+    "view": 0.76
+   },
+   "SC-online": {
+    "data_calls": 25,
+    "hit_rate": 0.72,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.64,
+    "xscope": 0.64,
+    "self": 0.08,
+    "view": 0.0
+   },
+   "red_vs_view": 0.167
+  },
+  "k=2": {
+   "calls": 67,
+   "SemNoScope": {
+    "data_calls": 48,
+    "hit_rate": 0.625,
+    "n_exec": 18,
+    "wrong": 27,
+    "other": 0.562,
+    "xscope": 0.562,
+    "self": 0.062,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 48,
+    "hit_rate": 0.146,
+    "n_exec": 41,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.146,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 48,
+    "hit_rate": 0.146,
+    "n_exec": 41,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.146,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 48,
+    "hit_rate": 0.792,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.792
+   },
+   "ScopeCache": {
+    "data_calls": 48,
+    "hit_rate": 0.917,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.125,
+    "xscope": 0.125,
+    "self": 0.0,
+    "view": 0.792
+   },
+   "SC-online": {
+    "data_calls": 48,
+    "hit_rate": 0.896,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.854,
+    "xscope": 0.792,
+    "self": 0.042,
+    "view": 0.0
+   },
+   "red_vs_view": 0.6
+  },
+  "k=3": {
+   "calls": 99,
+   "SemNoScope": {
+    "data_calls": 72,
+    "hit_rate": 0.736,
+    "n_exec": 19,
+    "wrong": 50,
+    "other": 0.694,
+    "xscope": 0.694,
+    "self": 0.042,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 72,
+    "hit_rate": 0.125,
+    "n_exec": 63,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.125,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 72,
+    "hit_rate": 0.125,
+    "n_exec": 63,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.125,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 72,
+    "hit_rate": 0.792,
+    "n_exec": 15,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.792
+   },
+   "ScopeCache": {
+    "data_calls": 72,
+    "hit_rate": 0.944,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.153,
+    "xscope": 0.153,
+    "self": 0.0,
+    "view": 0.792
+   },
+   "SC-online": {
+    "data_calls": 72,
+    "hit_rate": 0.931,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.889,
+    "xscope": 0.847,
+    "self": 0.042,
+    "view": 0.0
+   },
+   "red_vs_view": 0.733
+  },
+  "k=5": {
+   "calls": 170,
+   "SemNoScope": {
+    "data_calls": 124,
+    "hit_rate": 0.863,
+    "n_exec": 17,
+    "wrong": 99,
+    "other": 0.847,
+    "xscope": 0.831,
+    "self": 0.016,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 124,
+    "hit_rate": 0.137,
+    "n_exec": 107,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.137,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 124,
+    "hit_rate": 0.161,
+    "n_exec": 104,
+    "wrong": 0,
+    "other": 0.04,
+    "xscope": 0.0,
+    "self": 0.121,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 124,
+    "hit_rate": 0.847,
+    "n_exec": 19,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.847
+   },
+   "ScopeCache": {
+    "data_calls": 124,
+    "hit_rate": 0.968,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.121,
+    "xscope": 0.121,
+    "self": 0.0,
+    "view": 0.847
+   },
+   "SC-online": {
+    "data_calls": 124,
+    "hit_rate": 0.952,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.919,
+    "xscope": 0.863,
+    "self": 0.032,
+    "view": 0.0
+   },
+   "red_vs_view": 0.789
+  },
+  "k=all": {
+   "calls": 332,
+   "SemNoScope": {
+    "data_calls": 248,
+    "hit_rate": 0.948,
+    "n_exec": 13,
+    "wrong": 225,
+    "other": 0.944,
+    "xscope": 0.94,
+    "self": 0.004,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 248,
+    "hit_rate": 0.101,
+    "n_exec": 223,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.101,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 248,
+    "hit_rate": 0.185,
+    "n_exec": 202,
+    "wrong": 0,
+    "other": 0.117,
+    "xscope": 0.0,
+    "self": 0.069,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 248,
+    "hit_rate": 0.786,
+    "n_exec": 53,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.786
+   },
+   "ScopeCache": {
+    "data_calls": 248,
+    "hit_rate": 0.948,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.161,
+    "xscope": 0.149,
+    "self": 0.0,
+    "view": 0.786
+   },
+   "SC-online": {
+    "data_calls": 248,
+    "hit_rate": 0.944,
+    "n_exec": 14,
+    "wrong": 0,
+    "other": 0.927,
+    "xscope": 0.895,
+    "self": 0.016,
+    "view": 0.0
+   },
+   "red_vs_view": 0.755
+  }
+ },
+ "tpch/glm/s0": {
+  "k=1": {
+   "calls": 44,
+   "SemNoScope": {
+    "data_calls": 34,
+    "hit_rate": 0.294,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.294,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 34,
+    "hit_rate": 0.294,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.294,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 34,
+    "hit_rate": 0.294,
+    "n_exec": 24,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.294,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 34,
+    "hit_rate": 0.529,
+    "n_exec": 16,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.529
+   },
+   "ScopeCache": {
+    "data_calls": 34,
+    "hit_rate": 0.706,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.176,
+    "view": 0.529
+   },
+   "SC-online": {
+    "data_calls": 34,
+    "hit_rate": 0.676,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.471,
+    "xscope": 0.471,
+    "self": 0.206,
+    "view": 0.0
+   },
+   "red_vs_view": 0.375
+  },
+  "k=2": {
+   "calls": 85,
+   "SemNoScope": {
+    "data_calls": 62,
+    "hit_rate": 0.613,
+    "n_exec": 24,
+    "wrong": 29,
+    "other": 0.484,
+    "xscope": 0.468,
+    "self": 0.129,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 62,
+    "hit_rate": 0.226,
+    "n_exec": 48,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.226,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 62,
+    "hit_rate": 0.242,
+    "n_exec": 47,
+    "wrong": 0,
+    "other": 0.016,
+    "xscope": 0.0,
+    "self": 0.226,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 62,
+    "hit_rate": 0.742,
+    "n_exec": 16,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.742
+   },
+   "ScopeCache": {
+    "data_calls": 62,
+    "hit_rate": 0.855,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.081,
+    "xscope": 0.081,
+    "self": 0.032,
+    "view": 0.742
+   },
+   "SC-online": {
+    "data_calls": 62,
+    "hit_rate": 0.823,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.758,
+    "xscope": 0.742,
+    "self": 0.065,
+    "view": 0.0
+   },
+   "red_vs_view": 0.438
+  },
+  "k=3": {
+   "calls": 126,
+   "SemNoScope": {
+    "data_calls": 92,
+    "hit_rate": 0.75,
+    "n_exec": 23,
+    "wrong": 58,
+    "other": 0.685,
+    "xscope": 0.674,
+    "self": 0.065,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 92,
+    "hit_rate": 0.272,
+    "n_exec": 67,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.272,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 92,
+    "hit_rate": 0.283,
+    "n_exec": 66,
+    "wrong": 0,
+    "other": 0.011,
+    "xscope": 0.0,
+    "self": 0.272,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 92,
+    "hit_rate": 0.728,
+    "n_exec": 25,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.728
+   },
+   "ScopeCache": {
+    "data_calls": 92,
+    "hit_rate": 0.88,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.13,
+    "xscope": 0.13,
+    "self": 0.022,
+    "view": 0.728
+   },
+   "SC-online": {
+    "data_calls": 92,
+    "hit_rate": 0.859,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.826,
+    "xscope": 0.804,
+    "self": 0.033,
+    "view": 0.0
+   },
+   "red_vs_view": 0.56
+  },
+  "k=5": {
+   "calls": 217,
+   "SemNoScope": {
+    "data_calls": 159,
+    "hit_rate": 0.881,
+    "n_exec": 19,
+    "wrong": 131,
+    "other": 0.862,
+    "xscope": 0.849,
+    "self": 0.019,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 159,
+    "hit_rate": 0.302,
+    "n_exec": 111,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.302,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 159,
+    "hit_rate": 0.321,
+    "n_exec": 108,
+    "wrong": 0,
+    "other": 0.031,
+    "xscope": 0.0,
+    "self": 0.289,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 159,
+    "hit_rate": 0.811,
+    "n_exec": 30,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.811
+   },
+   "ScopeCache": {
+    "data_calls": 159,
+    "hit_rate": 0.925,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.101,
+    "xscope": 0.094,
+    "self": 0.013,
+    "view": 0.811
+   },
+   "SC-online": {
+    "data_calls": 159,
+    "hit_rate": 0.918,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.906,
+    "xscope": 0.874,
+    "self": 0.013,
+    "view": 0.0
+   },
+   "red_vs_view": 0.6
+  },
+  "k=all": {
+   "calls": 421,
+   "SemNoScope": {
+    "data_calls": 319,
+    "hit_rate": 0.966,
+    "n_exec": 11,
+    "wrong": 296,
+    "other": 0.959,
+    "xscope": 0.956,
+    "self": 0.006,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 319,
+    "hit_rate": 0.323,
+    "n_exec": 216,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.323,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 319,
+    "hit_rate": 0.373,
+    "n_exec": 200,
+    "wrong": 0,
+    "other": 0.094,
+    "xscope": 0.0,
+    "self": 0.279,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 319,
+    "hit_rate": 0.918,
+    "n_exec": 26,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.918
+   },
+   "ScopeCache": {
+    "data_calls": 319,
+    "hit_rate": 0.984,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.066,
+    "xscope": 0.063,
+    "self": 0.0,
+    "view": 0.918
+   },
+   "SC-online": {
+    "data_calls": 319,
+    "hit_rate": 0.953,
+    "n_exec": 15,
+    "wrong": 0,
+    "other": 0.953,
+    "xscope": 0.94,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "red_vs_view": 0.808
+  }
+ },
+ "tpch/glm/s1": {
+  "k=1": {
+   "calls": 38,
+   "SemNoScope": {
+    "data_calls": 28,
+    "hit_rate": 0.286,
+    "n_exec": 20,
+    "wrong": 2,
+    "other": 0.071,
+    "xscope": 0.071,
+    "self": 0.214,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 28,
+    "hit_rate": 0.214,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.214,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 28,
+    "hit_rate": 0.214,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.214,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 28,
+    "hit_rate": 0.714,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.714
+   },
+   "ScopeCache": {
+    "data_calls": 28,
+    "hit_rate": 0.821,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.107,
+    "view": 0.714
+   },
+   "SC-online": {
+    "data_calls": 28,
+    "hit_rate": 0.786,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.571,
+    "xscope": 0.571,
+    "self": 0.214,
+    "view": 0.0
+   },
+   "red_vs_view": 0.375
+  },
+  "k=2": {
+   "calls": 72,
+   "SemNoScope": {
+    "data_calls": 54,
+    "hit_rate": 0.667,
+    "n_exec": 18,
+    "wrong": 30,
+    "other": 0.593,
+    "xscope": 0.593,
+    "self": 0.074,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 54,
+    "hit_rate": 0.222,
+    "n_exec": 42,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.222,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 54,
+    "hit_rate": 0.222,
+    "n_exec": 42,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.222,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 54,
+    "hit_rate": 0.704,
+    "n_exec": 16,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.704
+   },
+   "ScopeCache": {
+    "data_calls": 54,
+    "hit_rate": 0.889,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.13,
+    "xscope": 0.13,
+    "self": 0.056,
+    "view": 0.704
+   },
+   "SC-online": {
+    "data_calls": 54,
+    "hit_rate": 0.889,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.833,
+    "xscope": 0.759,
+    "self": 0.056,
+    "view": 0.0
+   },
+   "red_vs_view": 0.625
+  },
+  "k=3": {
+   "calls": 110,
+   "SemNoScope": {
+    "data_calls": 82,
+    "hit_rate": 0.756,
+    "n_exec": 20,
+    "wrong": 54,
+    "other": 0.707,
+    "xscope": 0.707,
+    "self": 0.049,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 82,
+    "hit_rate": 0.22,
+    "n_exec": 64,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.22,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 82,
+    "hit_rate": 0.22,
+    "n_exec": 64,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.22,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 82,
+    "hit_rate": 0.695,
+    "n_exec": 25,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.695
+   },
+   "ScopeCache": {
+    "data_calls": 82,
+    "hit_rate": 0.915,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.183,
+    "xscope": 0.183,
+    "self": 0.037,
+    "view": 0.695
+   },
+   "SC-online": {
+    "data_calls": 82,
+    "hit_rate": 0.915,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.878,
+    "xscope": 0.817,
+    "self": 0.037,
+    "view": 0.0
+   },
+   "red_vs_view": 0.72
+  },
+  "k=5": {
+   "calls": 192,
+   "SemNoScope": {
+    "data_calls": 143,
+    "hit_rate": 0.874,
+    "n_exec": 18,
+    "wrong": 110,
+    "other": 0.86,
+    "xscope": 0.832,
+    "self": 0.014,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 143,
+    "hit_rate": 0.238,
+    "n_exec": 109,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.238,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 143,
+    "hit_rate": 0.259,
+    "n_exec": 106,
+    "wrong": 0,
+    "other": 0.056,
+    "xscope": 0.0,
+    "self": 0.203,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 143,
+    "hit_rate": 0.811,
+    "n_exec": 27,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.811
+   },
+   "ScopeCache": {
+    "data_calls": 143,
+    "hit_rate": 0.979,
+    "n_exec": 3,
+    "wrong": 0,
+    "other": 0.168,
+    "xscope": 0.168,
+    "self": 0.0,
+    "view": 0.811
+   },
+   "SC-online": {
+    "data_calls": 143,
+    "hit_rate": 0.93,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.86,
+    "xscope": 0.804,
+    "self": 0.07,
+    "view": 0.0
+   },
+   "red_vs_view": 0.889
+  },
+  "k=all": {
+   "calls": 379,
+   "SemNoScope": {
+    "data_calls": 291,
+    "hit_rate": 0.966,
+    "n_exec": 10,
+    "wrong": 254,
+    "other": 0.955,
+    "xscope": 0.948,
+    "self": 0.01,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 291,
+    "hit_rate": 0.292,
+    "n_exec": 206,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.292,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 291,
+    "hit_rate": 0.375,
+    "n_exec": 182,
+    "wrong": 0,
+    "other": 0.117,
+    "xscope": 0.0,
+    "self": 0.258,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 291,
+    "hit_rate": 0.749,
+    "n_exec": 73,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.749
+   },
+   "ScopeCache": {
+    "data_calls": 291,
+    "hit_rate": 0.962,
+    "n_exec": 11,
+    "wrong": 0,
+    "other": 0.213,
+    "xscope": 0.199,
+    "self": 0.0,
+    "view": 0.749
+   },
+   "SC-online": {
+    "data_calls": 291,
+    "hit_rate": 0.935,
+    "n_exec": 19,
+    "wrong": 0,
+    "other": 0.89,
+    "xscope": 0.869,
+    "self": 0.045,
+    "view": 0.0
+   },
+   "red_vs_view": 0.849
+  }
+ },
+ "tpch/kimi/s0": {
+  "k=1": {
+   "calls": 41,
+   "SemNoScope": {
+    "data_calls": 31,
+    "hit_rate": 0.29,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.29,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 31,
+    "hit_rate": 0.29,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.29,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 31,
+    "hit_rate": 0.29,
+    "n_exec": 22,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.29,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 31,
+    "hit_rate": 0.71,
+    "n_exec": 9,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.71
+   },
+   "ScopeCache": {
+    "data_calls": 31,
+    "hit_rate": 0.839,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.129,
+    "view": 0.71
+   },
+   "SC-online": {
+    "data_calls": 31,
+    "hit_rate": 0.774,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.581,
+    "xscope": 0.581,
+    "self": 0.194,
+    "view": 0.0
+   },
+   "red_vs_view": 0.444
+  },
+  "k=2": {
+   "calls": 94,
+   "SemNoScope": {
+    "data_calls": 69,
+    "hit_rate": 0.652,
+    "n_exec": 24,
+    "wrong": 33,
+    "other": 0.478,
+    "xscope": 0.478,
+    "self": 0.174,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 69,
+    "hit_rate": 0.348,
+    "n_exec": 45,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.348,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 69,
+    "hit_rate": 0.348,
+    "n_exec": 45,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.348,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 69,
+    "hit_rate": 0.696,
+    "n_exec": 21,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.696
+   },
+   "ScopeCache": {
+    "data_calls": 69,
+    "hit_rate": 0.928,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.188,
+    "xscope": 0.188,
+    "self": 0.043,
+    "view": 0.696
+   },
+   "SC-online": {
+    "data_calls": 69,
+    "hit_rate": 0.899,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.826,
+    "xscope": 0.826,
+    "self": 0.072,
+    "view": 0.0
+   },
+   "red_vs_view": 0.762
+  },
+  "k=3": {
+   "calls": 147,
+   "SemNoScope": {
+    "data_calls": 107,
+    "hit_rate": 0.813,
+    "n_exec": 20,
+    "wrong": 74,
+    "other": 0.72,
+    "xscope": 0.72,
+    "self": 0.093,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 107,
+    "hit_rate": 0.402,
+    "n_exec": 64,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.402,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 107,
+    "hit_rate": 0.411,
+    "n_exec": 63,
+    "wrong": 0,
+    "other": 0.009,
+    "xscope": 0.0,
+    "self": 0.402,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 107,
+    "hit_rate": 0.72,
+    "n_exec": 30,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.72
+   },
+   "ScopeCache": {
+    "data_calls": 107,
+    "hit_rate": 0.953,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.206,
+    "xscope": 0.206,
+    "self": 0.028,
+    "view": 0.72
+   },
+   "SC-online": {
+    "data_calls": 107,
+    "hit_rate": 0.935,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.888,
+    "xscope": 0.879,
+    "self": 0.047,
+    "view": 0.0
+   },
+   "red_vs_view": 0.833
+  },
+  "k=5": {
+   "calls": 250,
+   "SemNoScope": {
+    "data_calls": 183,
+    "hit_rate": 0.923,
+    "n_exec": 14,
+    "wrong": 160,
+    "other": 0.902,
+    "xscope": 0.891,
+    "self": 0.022,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 183,
+    "hit_rate": 0.399,
+    "n_exec": 110,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.399,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 183,
+    "hit_rate": 0.421,
+    "n_exec": 106,
+    "wrong": 0,
+    "other": 0.044,
+    "xscope": 0.0,
+    "self": 0.377,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 183,
+    "hit_rate": 0.781,
+    "n_exec": 40,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.781
+   },
+   "ScopeCache": {
+    "data_calls": 183,
+    "hit_rate": 0.978,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.191,
+    "xscope": 0.186,
+    "self": 0.005,
+    "view": 0.781
+   },
+   "SC-online": {
+    "data_calls": 183,
+    "hit_rate": 0.978,
+    "n_exec": 4,
+    "wrong": 0,
+    "other": 0.973,
+    "xscope": 0.945,
+    "self": 0.005,
+    "view": 0.0
+   },
+   "red_vs_view": 0.9
+  },
+  "k=all": {
+   "calls": 511,
+   "SemNoScope": {
+    "data_calls": 386,
+    "hit_rate": 0.956,
+    "n_exec": 17,
+    "wrong": 359,
+    "other": 0.953,
+    "xscope": 0.948,
+    "self": 0.003,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 386,
+    "hit_rate": 0.394,
+    "n_exec": 234,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.394,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 386,
+    "hit_rate": 0.435,
+    "n_exec": 218,
+    "wrong": 0,
+    "other": 0.085,
+    "xscope": 0.0,
+    "self": 0.35,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 386,
+    "hit_rate": 0.915,
+    "n_exec": 33,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.915
+   },
+   "ScopeCache": {
+    "data_calls": 386,
+    "hit_rate": 0.987,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.073,
+    "xscope": 0.07,
+    "self": 0.0,
+    "view": 0.915
+   },
+   "SC-online": {
+    "data_calls": 386,
+    "hit_rate": 0.987,
+    "n_exec": 5,
+    "wrong": 0,
+    "other": 0.987,
+    "xscope": 0.977,
+    "self": 0.0,
+    "view": 0.0
+   },
+   "red_vs_view": 0.848
+  }
+ },
+ "tpch/kimi/s1": {
+  "k=1": {
+   "calls": 51,
+   "SemNoScope": {
+    "data_calls": 37,
+    "hit_rate": 0.351,
+    "n_exec": 24,
+    "wrong": 2,
+    "other": 0.054,
+    "xscope": 0.054,
+    "self": 0.297,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 37,
+    "hit_rate": 0.324,
+    "n_exec": 25,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.324,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 37,
+    "hit_rate": 0.324,
+    "n_exec": 25,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.324,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 37,
+    "hit_rate": 0.73,
+    "n_exec": 10,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.73
+   },
+   "ScopeCache": {
+    "data_calls": 37,
+    "hit_rate": 0.811,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.081,
+    "view": 0.73
+   },
+   "SC-online": {
+    "data_calls": 37,
+    "hit_rate": 0.784,
+    "n_exec": 8,
+    "wrong": 0,
+    "other": 0.676,
+    "xscope": 0.676,
+    "self": 0.108,
+    "view": 0.0
+   },
+   "red_vs_view": 0.3
+  },
+  "k=2": {
+   "calls": 100,
+   "SemNoScope": {
+    "data_calls": 74,
+    "hit_rate": 0.662,
+    "n_exec": 25,
+    "wrong": 37,
+    "other": 0.527,
+    "xscope": 0.527,
+    "self": 0.135,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 74,
+    "hit_rate": 0.378,
+    "n_exec": 46,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.378,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 74,
+    "hit_rate": 0.378,
+    "n_exec": 46,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.378,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 74,
+    "hit_rate": 0.662,
+    "n_exec": 25,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.662
+   },
+   "ScopeCache": {
+    "data_calls": 74,
+    "hit_rate": 0.919,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.216,
+    "xscope": 0.216,
+    "self": 0.041,
+    "view": 0.662
+   },
+   "SC-online": {
+    "data_calls": 74,
+    "hit_rate": 0.919,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.878,
+    "xscope": 0.811,
+    "self": 0.041,
+    "view": 0.0
+   },
+   "red_vs_view": 0.76
+  },
+  "k=3": {
+   "calls": 140,
+   "SemNoScope": {
+    "data_calls": 105,
+    "hit_rate": 0.743,
+    "n_exec": 27,
+    "wrong": 66,
+    "other": 0.648,
+    "xscope": 0.648,
+    "self": 0.095,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 105,
+    "hit_rate": 0.333,
+    "n_exec": 70,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.333,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 105,
+    "hit_rate": 0.333,
+    "n_exec": 70,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.333,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 105,
+    "hit_rate": 0.667,
+    "n_exec": 35,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.667
+   },
+   "ScopeCache": {
+    "data_calls": 105,
+    "hit_rate": 0.933,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.238,
+    "xscope": 0.238,
+    "self": 0.029,
+    "view": 0.667
+   },
+   "SC-online": {
+    "data_calls": 105,
+    "hit_rate": 0.933,
+    "n_exec": 7,
+    "wrong": 0,
+    "other": 0.905,
+    "xscope": 0.848,
+    "self": 0.029,
+    "view": 0.0
+   },
+   "red_vs_view": 0.8
+  },
+  "k=5": {
+   "calls": 249,
+   "SemNoScope": {
+    "data_calls": 190,
+    "hit_rate": 0.858,
+    "n_exec": 27,
+    "wrong": 138,
+    "other": 0.8,
+    "xscope": 0.774,
+    "self": 0.058,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 190,
+    "hit_rate": 0.347,
+    "n_exec": 124,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.347,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 190,
+    "hit_rate": 0.368,
+    "n_exec": 120,
+    "wrong": 0,
+    "other": 0.042,
+    "xscope": 0.0,
+    "self": 0.326,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 190,
+    "hit_rate": 0.726,
+    "n_exec": 52,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.726
+   },
+   "ScopeCache": {
+    "data_calls": 190,
+    "hit_rate": 0.968,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.226,
+    "xscope": 0.226,
+    "self": 0.016,
+    "view": 0.726
+   },
+   "SC-online": {
+    "data_calls": 190,
+    "hit_rate": 0.968,
+    "n_exec": 6,
+    "wrong": 0,
+    "other": 0.905,
+    "xscope": 0.868,
+    "self": 0.063,
+    "view": 0.0
+   },
+   "red_vs_view": 0.885
+  },
+  "k=all": {
+   "calls": 476,
+   "SemNoScope": {
+    "data_calls": 362,
+    "hit_rate": 0.953,
+    "n_exec": 17,
+    "wrong": 322,
+    "other": 0.945,
+    "xscope": 0.936,
+    "self": 0.008,
+    "view": 0.0
+   },
+   "PerUser": {
+    "data_calls": 362,
+    "hit_rate": 0.329,
+    "n_exec": 243,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.329,
+    "view": 0.0
+   },
+   "PerScope": {
+    "data_calls": 362,
+    "hit_rate": 0.403,
+    "n_exec": 216,
+    "wrong": 0,
+    "other": 0.119,
+    "xscope": 0.0,
+    "self": 0.285,
+    "view": 0.0
+   },
+   "ViewRewrite": {
+    "data_calls": 362,
+    "hit_rate": 0.834,
+    "n_exec": 60,
+    "wrong": 0,
+    "other": 0.0,
+    "xscope": 0.0,
+    "self": 0.0,
+    "view": 0.834
+   },
+   "ScopeCache": {
+    "data_calls": 362,
+    "hit_rate": 0.967,
+    "n_exec": 12,
+    "wrong": 0,
+    "other": 0.133,
+    "xscope": 0.124,
+    "self": 0.0,
+    "view": 0.834
+   },
+   "SC-online": {
+    "data_calls": 362,
+    "hit_rate": 0.964,
+    "n_exec": 13,
+    "wrong": 0,
+    "other": 0.931,
+    "xscope": 0.917,
+    "self": 0.033,
+    "view": 0.0
+   },
+   "red_vs_view": 0.8
+  }
+ }
+}

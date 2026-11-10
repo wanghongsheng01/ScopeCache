@@ -1,0 +1,379 @@
+{"ep": 0, "step": 0, "user": 199, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 1, "step": 0, "user": 333, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 2, "step": 1, "user": 1, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 2, "step": 2, "user": 1, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199706, 199708], "result": "rows", "n_rows": 5}
+{"ep": 3, "step": 0, "user": 291, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 4, "step": 1, "user": 216, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 5, "step": 1, "user": 228, "task": 3, "metrics": ["order_lines", "avg_qty"], "group": ["l_shipmode"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 7}
+{"ep": 6, "step": 1, "user": 356, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 7, "step": 0, "user": 228, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 7, "step": 1, "user": 228, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 7, "step": 3, "user": 228, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 7, "step": 4, "user": 228, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [["c_region", ["AFRICA", "ASIA", "EUROPE", "MIDDLE EAST"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 8, "step": 0, "user": 4, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 9, "step": 0, "user": 14, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 10, "step": 0, "user": 221, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 11, "step": 0, "user": 48, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 12, "step": 1, "user": 311, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 2}
+{"ep": 12, "step": 2, "user": 311, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199706, 199708], "result": "rows", "n_rows": 2}
+{"ep": 12, "step": 3, "user": 311, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [["p_mfgr", ["Manufacturer#1", "Manufacturer#2", "Manufacturer#3", "Manufacturer#4", "Manufacturer#5"]]], "months": [199806, 199808], "result": "rows", "n_rows": 2}
+{"ep": 12, "step": 4, "user": 311, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [["p_mfgr", ["Manufacturer#1", "Manufacturer#2", "Manufacturer#3", "Manufacturer#4", "Manufacturer#5"]]], "months": [199706, 199708], "result": "rows", "n_rows": 2}
+{"ep": 13, "step": 0, "user": 199, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 13, "step": 1, "user": 199, "task": 0, "metrics": ["revenue"], "group": ["month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 14, "step": 0, "user": 389, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 14, "step": 1, "user": 389, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 14, "step": 2, "user": 389, "task": 14, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 14, "step": 4, "user": 389, "task": 14, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 15, "step": 0, "user": 291, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 16, "step": 0, "user": 351, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [["c_mktsegment", ["AUTOMOBILE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 0}
+{"ep": 16, "step": 2, "user": 351, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [["c_mktsegment", ["AUTOMOBILE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 0}
+{"ep": 16, "step": 3, "user": 351, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 80}
+{"ep": 17, "step": 2, "user": 390, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 18, "step": 0, "user": 60, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 2}
+{"ep": 19, "step": 0, "user": 194, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 20, "step": 1, "user": 241, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 21, "step": 0, "user": 333, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 21, "step": 1, "user": 333, "task": 0, "metrics": ["revenue"], "group": ["month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 21, "step": 2, "user": 333, "task": 0, "metrics": ["revenue"], "group": ["c_region"], "filters": [], "months": [199708, 199709], "result": "rows", "n_rows": 5}
+{"ep": 21, "step": 3, "user": 333, "task": 0, "metrics": ["revenue"], "group": ["c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 22, "step": 1, "user": 216, "task": 3, "metrics": ["order_lines", "avg_qty"], "group": ["l_shipmode"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 7}
+{"ep": 23, "step": 0, "user": 107, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 23, "step": 1, "user": 107, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 24, "step": 1, "user": 249, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 24, "step": 2, "user": 249, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment", "month"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 40}
+{"ep": 25, "step": 0, "user": 130, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 25}
+{"ep": 26, "step": 0, "user": 110, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [["c_mktsegment", ["AUTOMOBILE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 80}
+{"ep": 27, "step": 0, "user": 392, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 25}
+{"ep": 27, "step": 1, "user": 392, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 25}
+{"ep": 28, "step": 0, "user": 107, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 24}
+{"ep": 28, "step": 1, "user": 107, "task": 0, "metrics": ["revenue"], "group": ["month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 29, "step": 1, "user": 195, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 29, "step": 2, "user": 195, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [["p_mfgr", ["Manufacturer#3"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 29, "step": 3, "user": 195, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [["p_mfgr", ["Manufacturer#1"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 30, "step": 0, "user": 199, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 30, "step": 1, "user": 199, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 30, "step": 2, "user": 199, "task": 14, "metrics": ["margin_rate"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 31, "step": 1, "user": 136, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 32, "step": 0, "user": 249, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 0}
+{"ep": 32, "step": 3, "user": 249, "task": 11, "metrics": ["revenue"], "group": ["s_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 0}
+{"ep": 32, "step": 4, "user": 249, "task": 11, "metrics": ["revenue"], "group": ["s_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 0}
+{"ep": 33, "step": 1, "user": 130, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 34, "step": 0, "user": 13, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 25}
+{"ep": 34, "step": 1, "user": 13, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 25}
+{"ep": 34, "step": 2, "user": 13, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 25}
+{"ep": 34, "step": 3, "user": 13, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 25}
+{"ep": 35, "step": 0, "user": 68, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 35, "step": 1, "user": 68, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 35, "step": 3, "user": 68, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 35, "step": 4, "user": 68, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [["c_region", ["AFRICA", "ASIA", "EUROPE", "MIDDLE EAST"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 36, "step": 0, "user": 230, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 37, "step": 0, "user": 52, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 38, "step": 0, "user": 369, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 39, "step": 1, "user": 356, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 39, "step": 3, "user": 356, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 1}
+{"ep": 40, "step": 1, "user": 32, "task": 3, "metrics": ["order_lines", "avg_qty"], "group": ["l_shipmode"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 7}
+{"ep": 41, "step": 0, "user": 68, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 42, "step": 0, "user": 277, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 43, "step": 0, "user": 249, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 44, "step": 0, "user": 392, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 45, "step": 0, "user": 4, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 45, "step": 1, "user": 4, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 45, "step": 2, "user": 4, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 45, "step": 3, "user": 4, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 46, "step": 0, "user": 332, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 46, "step": 1, "user": 332, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 46, "step": 2, "user": 332, "task": 14, "metrics": ["margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 46, "step": 4, "user": 332, "task": 14, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 47, "step": 1, "user": 392, "task": 3, "metrics": ["order_lines", "avg_qty"], "group": ["l_shipmode"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 7}
+{"ep": 48, "step": 1, "user": 389, "task": 3, "metrics": ["order_lines", "avg_qty"], "group": ["l_shipmode"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 7}
+{"ep": 49, "step": 0, "user": 194, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199807, 199808], "result": "rows", "n_rows": 2}
+{"ep": 49, "step": 1, "user": 194, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199707, 199708], "result": "rows", "n_rows": 2}
+{"ep": 50, "step": 0, "user": 107, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 2}
+{"ep": 50, "step": 1, "user": 107, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 2}
+{"ep": 50, "step": 2, "user": 107, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 2}
+{"ep": 50, "step": 3, "user": 107, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 2}
+{"ep": 51, "step": 1, "user": 277, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 51, "step": 3, "user": 277, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 25}
+{"ep": 52, "step": 0, "user": 291, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 53, "step": 0, "user": 277, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 54, "step": 1, "user": 32, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 55, "step": 1, "user": 277, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 56, "step": 0, "user": 390, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 2}
+{"ep": 57, "step": 0, "user": 195, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199807, 199808], "result": "rows", "n_rows": 2}
+{"ep": 58, "step": 1, "user": 4, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 59, "step": 1, "user": 136, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 60, "step": 0, "user": 48, "task": 4, "metrics": ["margin_rate"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 60, "step": 1, "user": 48, "task": 4, "metrics": ["margin"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 60, "step": 2, "user": 48, "task": 4, "metrics": ["revenue"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 60, "step": 4, "user": 48, "task": 4, "metrics": ["gross_sales"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 61, "step": 0, "user": 136, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [["c_mktsegment", ["AUTOMOBILE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 80}
+{"ep": 62, "step": 0, "user": 68, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 63, "step": 1, "user": 302, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 63, "step": 3, "user": 302, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 25}
+{"ep": 64, "step": 1, "user": 241, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 64, "step": 3, "user": 241, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 1}
+{"ep": 65, "step": 0, "user": 369, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199807, 199808], "result": "rows", "n_rows": 2}
+{"ep": 65, "step": 1, "user": 369, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199707, 199708], "result": "rows", "n_rows": 2}
+{"ep": 66, "step": 1, "user": 351, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 66, "step": 2, "user": 351, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [["p_mfgr", ["Manufacturer#1"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 67, "step": 0, "user": 14, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 25}
+{"ep": 68, "step": 1, "user": 136, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 68, "step": 2, "user": 136, "task": 12, "metrics": ["revenue"], "group": ["p_brand"], "filters": [["p_mfgr", ["Manufacturer#3"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 68, "step": 3, "user": 136, "task": 12, "metrics": ["revenue"], "group": ["p_brand"], "filters": [["p_mfgr", ["Manufacturer#2"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 69, "step": 0, "user": 302, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 69, "step": 1, "user": 302, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 69, "step": 2, "user": 302, "task": 14, "metrics": ["gross_sales"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 69, "step": 4, "user": 302, "task": 14, "metrics": ["margin_rate"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 69, "step": 5, "user": 302, "task": 14, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 69, "step": 6, "user": 302, "task": 14, "metrics": ["gross_sales"], "group": ["brand_group"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 70, "step": 1, "user": 389, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 70, "step": 2, "user": 389, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199706, 199708], "result": "rows", "n_rows": 5}
+{"ep": 71, "step": 0, "user": 117, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 71, "step": 1, "user": 117, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [["c_region", ["AMERICA", "ASIA", "EUROPE"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 71, "step": 3, "user": 117, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [["c_region", ["AMERICA", "ASIA", "EUROPE", "MIDDLE EAST"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 72, "step": 1, "user": 241, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 72, "step": 2, "user": 241, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment", "month"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 40}
+{"ep": 73, "step": 1, "user": 253, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 74, "step": 0, "user": 60, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 75, "step": 1, "user": 389, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 75, "step": 4, "user": 389, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 25}
+{"ep": 76, "step": 0, "user": 117, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 76, "step": 2, "user": 117, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 76, "step": 3, "user": 117, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [["c_region", ["AFRICA", "AMERICA", "ASIA", "EUROPE", "MIDDLE EAST"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 77, "step": 0, "user": 332, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 78, "step": 1, "user": 302, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 1}
+{"ep": 78, "step": 2, "user": 302, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 1}
+{"ep": 78, "step": 3, "user": 302, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 79, "step": 0, "user": 253, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 80, "step": 0, "user": 241, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 80, "step": 1, "user": 241, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [["c_nation", ["KENYA"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 80, "step": 3, "user": 241, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [["c_nation", ["ALGERIA", "ARGENTINA", "BRAZIL", "CANADA", "CHINA", "EGYPT", "ETHIOPIA", "FRANCE", "GERMANY", "INDIA", "INDONESIA", "IRAN", "IRAQ", "JAPAN", "JORDAN", "KENYA", "MOROCCO", "MOZAMBIQUE", "PERU", "ROMANIA", "RUSSIA", "SAUDI ARABIA", "UNITED KINGDOM", "UNITED STATES", "VIETNAM"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 81, "step": 1, "user": 277, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 2}
+{"ep": 81, "step": 2, "user": 277, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 10}
+{"ep": 82, "step": 0, "user": 356, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 82, "step": 1, "user": 356, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 83, "step": 2, "user": 14, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 84, "step": 1, "user": 15, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 85, "step": 0, "user": 356, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 86, "step": 1, "user": 391, "task": 3, "metrics": ["order_lines", "avg_qty"], "group": ["l_shipmode"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 7}
+{"ep": 87, "step": 1, "user": 194, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 87, "step": 2, "user": 194, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [["p_mfgr", ["Manufacturer#5"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 88, "step": 1, "user": 13, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 89, "step": 0, "user": 162, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 89, "step": 1, "user": 162, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [["c_region", ["AMERICA", "ASIA", "EUROPE"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 89, "step": 3, "user": 162, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [["c_region", ["AMERICA", "ASIA", "EUROPE", "MIDDLE EAST"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 90, "step": 0, "user": 1, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 25}
+{"ep": 90, "step": 1, "user": 1, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 25}
+{"ep": 90, "step": 2, "user": 1, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 25}
+{"ep": 90, "step": 3, "user": 1, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 25}
+{"ep": 91, "step": 2, "user": 291, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 1}
+{"ep": 92, "step": 0, "user": 333, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 93, "step": 1, "user": 11, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 93, "step": 2, "user": 11, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment", "month"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 40}
+{"ep": 93, "step": 3, "user": 11, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment", "month"], "filters": [], "months": [199701, 199712], "result": "rows", "n_rows": 60}
+{"ep": 94, "step": 1, "user": 333, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 94, "step": 3, "user": 333, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 25}
+{"ep": 95, "step": 1, "user": 369, "task": 3, "metrics": ["order_lines", "avg_qty"], "group": ["l_shipmode"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 7}
+{"ep": 96, "step": 0, "user": 228, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [["c_mktsegment", ["AUTOMOBILE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 80}
+{"ep": 97, "step": 1, "user": 14, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 98, "step": 0, "user": 311, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 25}
+{"ep": 98, "step": 1, "user": 311, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 25}
+{"ep": 98, "step": 2, "user": 311, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 25}
+{"ep": 99, "step": 0, "user": 356, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 1}
+{"ep": 99, "step": 1, "user": 356, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 1}
+{"ep": 99, "step": 2, "user": 356, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 1}
+{"ep": 99, "step": 3, "user": 356, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 1}
+{"ep": 99, "step": 4, "user": 356, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 1}
+{"ep": 100, "step": 0, "user": 68, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 101, "step": 0, "user": 162, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 102, "step": 0, "user": 291, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 103, "step": 0, "user": 195, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 25}
+{"ep": 104, "step": 0, "user": 199, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [["c_mktsegment", ["AUTOMOBILE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 80}
+{"ep": 105, "step": 1, "user": 332, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 2}
+{"ep": 105, "step": 2, "user": 332, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment", "month"], "filters": [["c_mktsegment", ["BUILDING", "HOUSEHOLD"]]], "months": [199801, 199808], "result": "rows", "n_rows": 16}
+{"ep": 106, "step": 0, "user": 391, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 106, "step": 1, "user": 391, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 106, "step": 2, "user": 391, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 106, "step": 3, "user": 391, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 106, "step": 4, "user": 391, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 107, "step": 0, "user": 230, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 108, "step": 0, "user": 117, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199807, 199808], "result": "rows", "n_rows": 2}
+{"ep": 108, "step": 1, "user": 117, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199707, 199708], "result": "rows", "n_rows": 2}
+{"ep": 109, "step": 0, "user": 311, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 110, "step": 1, "user": 13, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 111, "step": 0, "user": 332, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 111, "step": 1, "user": 332, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 111, "step": 2, "user": 332, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 111, "step": 3, "user": 332, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 112, "step": 1, "user": 13, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 112, "step": 3, "user": 13, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 25}
+{"ep": 113, "step": 0, "user": 13, "task": 4, "metrics": ["margin_rate"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 30}
+{"ep": 113, "step": 1, "user": 13, "task": 4, "metrics": ["margin_rate"], "group": ["c_region"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 5}
+{"ep": 114, "step": 0, "user": 48, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 114, "step": 1, "user": 48, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 114, "step": 3, "user": 48, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 114, "step": 4, "user": 48, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["c_region", ["AFRICA", "AMERICA", "ASIA", "EUROPE", "MIDDLE EAST"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 114, "step": 5, "user": 48, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A", "N", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 114, "step": 6, "user": 48, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["c_region", ["AFRICA"]], ["l_returnflag", ["A", "N", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 114, "step": 7, "user": 48, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["c_region", ["AMERICA"]], ["l_returnflag", ["A", "N", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 115, "step": 1, "user": 392, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 115, "step": 4, "user": 392, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 25}
+{"ep": 116, "step": 1, "user": 117, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 117, "step": 0, "user": 228, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 118, "step": 0, "user": 194, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 119, "step": 1, "user": 391, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 120, "step": 0, "user": 1, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 121, "step": 1, "user": 390, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 2}
+{"ep": 121, "step": 2, "user": 390, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199706, 199708], "result": "rows", "n_rows": 2}
+{"ep": 122, "step": 0, "user": 162, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [["c_mktsegment", ["AUTOMOBILE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 80}
+{"ep": 122, "step": 1, "user": 162, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [["c_mktsegment", ["AUTOMOBILE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 80}
+{"ep": 123, "step": 1, "user": 253, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 123, "step": 2, "user": 253, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [["p_mfgr", ["Manufacturer#3"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 124, "step": 2, "user": 11, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 124, "step": 3, "user": 11, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 124, "step": 4, "user": 11, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 125, "step": 0, "user": 351, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199807, 199808], "result": "rows", "n_rows": 2}
+{"ep": 125, "step": 1, "user": 351, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199707, 199708], "result": "rows", "n_rows": 2}
+{"ep": 126, "step": 1, "user": 15, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 3}
+{"ep": 126, "step": 2, "user": 15, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment", "month"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 24}
+{"ep": 126, "step": 3, "user": 15, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199701, 199712], "result": "rows", "n_rows": 3}
+{"ep": 127, "step": 0, "user": 117, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 128, "step": 1, "user": 230, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 128, "step": 2, "user": 230, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [["p_mfgr", ["Manufacturer#1"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 129, "step": 1, "user": 1, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 129, "step": 3, "user": 1, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 25}
+{"ep": 130, "step": 0, "user": 107, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 131, "step": 1, "user": 241, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 131, "step": 2, "user": 241, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [["p_mfgr", ["Manufacturer#3"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 132, "step": 0, "user": 332, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 132, "step": 1, "user": 332, "task": 0, "metrics": ["revenue"], "group": ["month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 132, "step": 2, "user": 332, "task": 0, "metrics": ["revenue"], "group": ["c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 133, "step": 0, "user": 52, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 134, "step": 1, "user": 1, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 135, "step": 0, "user": 130, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 136, "step": 0, "user": 110, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 136, "step": 1, "user": 110, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 137, "step": 0, "user": 68, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 137, "step": 1, "user": 68, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 137, "step": 2, "user": 68, "task": 14, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 138, "step": 1, "user": 195, "task": 3, "metrics": ["order_lines", "avg_qty"], "group": ["l_shipmode"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 7}
+{"ep": 139, "step": 1, "user": 391, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 140, "step": 1, "user": 60, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 141, "step": 1, "user": 249, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 142, "step": 2, "user": 228, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 142, "step": 3, "user": 228, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 142, "step": 4, "user": 228, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 143, "step": 0, "user": 11, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 143, "step": 2, "user": 11, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 143, "step": 3, "user": 11, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [["c_region", ["AFRICA", "AMERICA", "ASIA", "EUROPE", "MIDDLE EAST"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 144, "step": 0, "user": 110, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 145, "step": 1, "user": 11, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 146, "step": 0, "user": 14, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 147, "step": 1, "user": 311, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 148, "step": 1, "user": 195, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 149, "step": 0, "user": 130, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 150, "step": 0, "user": 52, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 150, "step": 1, "user": 52, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 150, "step": 2, "user": 52, "task": 14, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 150, "step": 5, "user": 52, "task": 14, "metrics": ["revenue"], "group": ["month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 150, "step": 6, "user": 52, "task": 14, "metrics": ["revenue"], "group": ["month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 151, "step": 0, "user": 194, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 152, "step": 1, "user": 216, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 2}
+{"ep": 152, "step": 2, "user": 216, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 10}
+{"ep": 153, "step": 0, "user": 162, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 154, "step": 1, "user": 32, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 155, "step": 0, "user": 390, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 155, "step": 2, "user": 390, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [["c_region", ["AFRICA", "AMERICA", "ASIA", "EUROPE"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 155, "step": 3, "user": 390, "task": 0, "metrics": ["revenue"], "group": ["month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 156, "step": 1, "user": 15, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 157, "step": 1, "user": 11, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 157, "step": 2, "user": 11, "task": 2, "metrics": ["gross_sales"], "group": ["p_mfgr"], "filters": [], "months": [199706, 199708], "result": "rows", "n_rows": 5}
+{"ep": 158, "step": 0, "user": 216, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 2}
+{"ep": 158, "step": 1, "user": 216, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 2}
+{"ep": 158, "step": 2, "user": 216, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 2}
+{"ep": 158, "step": 3, "user": 216, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 2}
+{"ep": 159, "step": 1, "user": 4, "task": 3, "metrics": ["order_lines", "avg_qty"], "group": ["l_shipmode"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 7}
+{"ep": 160, "step": 1, "user": 253, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 161, "step": 0, "user": 389, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 162, "step": 0, "user": 390, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 162, "step": 1, "user": 390, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 162, "step": 2, "user": 390, "task": 14, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 162, "step": 5, "user": 390, "task": 14, "metrics": ["revenue"], "group": ["month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 163, "step": 0, "user": 32, "task": 10, "metrics": ["order_lines", "avg_qty"], "group": ["month"], "filters": [["c_mktsegment", ["AUTOMOBILE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 80}
+{"ep": 164, "step": 0, "user": 392, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 165, "step": 1, "user": 110, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 166, "step": 0, "user": 199, "task": 17, "metrics": ["tax"], "group": ["c_region"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 167, "step": 1, "user": 60, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 2}
+{"ep": 167, "step": 2, "user": 60, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 10}
+{"ep": 168, "step": 1, "user": 52, "task": 13, "metrics": ["discount_rate"], "group": ["l_shipmode"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 7}
+{"ep": 169, "step": 1, "user": 162, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 169, "step": 2, "user": 162, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [["p_mfgr", ["Manufacturer#3"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 170, "step": 1, "user": 351, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 171, "step": 0, "user": 369, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 25}
+{"ep": 171, "step": 1, "user": 369, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 25}
+{"ep": 171, "step": 2, "user": 369, "task": 8, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199709, 199802], "result": "rows", "n_rows": 25}
+{"ep": 172, "step": 0, "user": 15, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 173, "step": 0, "user": 110, "task": 4, "metrics": ["margin_rate"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 30}
+{"ep": 174, "step": 0, "user": 249, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 174, "step": 1, "user": 249, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["c_region", ["AFRICA", "AMERICA", "ASIA", "EUROPE", "MIDDLE EAST"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 174, "step": 3, "user": 249, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 174, "step": 4, "user": 249, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A", "N", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 175, "step": 0, "user": 60, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 176, "step": 0, "user": 221, "task": 7, "metrics": ["revenue", "tax"], "group": ["o_orderpriority"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 177, "step": 0, "user": 221, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 177, "step": 1, "user": 221, "task": 0, "metrics": ["revenue"], "group": ["month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 177, "step": 2, "user": 221, "task": 0, "metrics": ["revenue"], "group": ["c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 178, "step": 0, "user": 311, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199807, 199808], "result": "rows", "n_rows": 2}
+{"ep": 178, "step": 1, "user": 311, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199707, 199708], "result": "rows", "n_rows": 2}
+{"ep": 179, "step": 1, "user": 48, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr"], "filters": [], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 179, "step": 2, "user": 48, "task": 12, "metrics": ["revenue"], "group": ["p_mfgr", "p_brand"], "filters": [["p_mfgr", ["Manufacturer#3"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 180, "step": 0, "user": 369, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 180, "step": 1, "user": 369, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 180, "step": 2, "user": 369, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 181, "step": 0, "user": 15, "task": 4, "metrics": ["margin_rate"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 30}
+{"ep": 182, "step": 0, "user": 221, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199807, 199808], "result": "rows", "n_rows": 2}
+{"ep": 182, "step": 1, "user": 221, "task": 19, "metrics": ["gross_sales", "revenue"], "group": ["month"], "filters": [], "months": [199707, 199708], "result": "rows", "n_rows": 2}
+{"ep": 183, "step": 2, "user": 48, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 183, "step": 3, "user": 48, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 183, "step": 4, "user": 48, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 5}
+{"ep": 184, "step": 0, "user": 333, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 184, "step": 1, "user": 333, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 184, "step": 2, "user": 333, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 184, "step": 4, "user": 333, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 185, "step": 1, "user": 302, "task": 1, "metrics": ["discount_rate"], "group": ["c_mktsegment"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 186, "step": 0, "user": 230, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 187, "step": 0, "user": 230, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 187, "step": 1, "user": 230, "task": 15, "metrics": ["avg_qty"], "group": ["c_nation"], "filters": [["c_nation", ["RUSSIA"]]], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 188, "step": 0, "user": 253, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}
+{"ep": 189, "step": 0, "user": 130, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 189, "step": 1, "user": 130, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 190, "step": 0, "user": 391, "task": 14, "metrics": ["revenue", "margin"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 190, "step": 1, "user": 391, "task": 14, "metrics": ["revenue"], "group": ["brand_group", "month"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 60}
+{"ep": 191, "step": 0, "user": 351, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 191, "step": 1, "user": 351, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 191, "step": 2, "user": 351, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 191, "step": 3, "user": 351, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 191, "step": 4, "user": 351, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 191, "step": 5, "user": 351, "task": 0, "metrics": ["revenue"], "group": ["month", "c_region"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 12}
+{"ep": 192, "step": 1, "user": 32, "task": 9, "metrics": ["max_price"], "group": ["p_type1"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 6}
+{"ep": 193, "step": 2, "user": 107, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 193, "step": 3, "user": 107, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [["c_region", ["ASIA"]]], "months": [199709, 199808], "result": "rows", "n_rows": 0}
+{"ep": 193, "step": 4, "user": 107, "task": 18, "metrics": ["revenue"], "group": ["c_mktsegment"], "filters": [], "months": [199709, 199808], "result": "rows", "n_rows": 2}
+{"ep": 194, "step": 0, "user": 216, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 194, "step": 1, "user": 216, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 194, "step": 3, "user": 216, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 1}
+{"ep": 195, "step": 0, "user": 136, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 195, "step": 1, "user": 136, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 195, "step": 2, "user": 136, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 195, "step": 3, "user": 136, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 195, "step": 4, "user": 136, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 195, "step": 5, "user": 136, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["N"]]], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 195, "step": 6, "user": 136, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A", "N", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 5}
+{"ep": 195, "step": 7, "user": 136, "task": 6, "metrics": ["order_lines"], "group": ["c_region", "l_returnflag"], "filters": [["l_returnflag", ["A", "R"]]], "months": [199801, 199808], "result": "rows", "n_rows": 0}
+{"ep": 196, "step": 0, "user": 302, "task": 4, "metrics": ["margin_rate"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 196, "step": 1, "user": 302, "task": 4, "metrics": ["margin"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "DENY", "n_rows": 0}
+{"ep": 196, "step": 2, "user": 302, "task": 4, "metrics": ["revenue"], "group": ["c_region", "month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 30}
+{"ep": 197, "step": 0, "user": 4, "task": 11, "metrics": ["revenue"], "group": ["s_region", "c_region"], "filters": [["c_region", ["EUROPE"]]], "months": [199201, 199808], "result": "rows", "n_rows": 5}
+{"ep": 198, "step": 1, "user": 221, "task": 5, "metrics": ["revenue"], "group": ["brand_group"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 5}
+{"ep": 198, "step": 3, "user": 221, "task": 5, "metrics": ["revenue"], "group": ["c_nation"], "filters": [], "months": [199806, 199808], "result": "rows", "n_rows": 25}
+{"ep": 199, "step": 0, "user": 52, "task": 16, "metrics": ["customers"], "group": ["month"], "filters": [], "months": [199803, 199808], "result": "rows", "n_rows": 6}

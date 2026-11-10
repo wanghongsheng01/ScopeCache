@@ -1,0 +1,419 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage[T1]{fontenc}  % for \DJ and other accented names in the references
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[ruled,linesnumbered,vlined]{algorithm2e}
+\usepackage[hidelinks]{hyperref}
+\renewcommand{\IEEEQED}{}  % no end-of-proof box
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{assumption}{Assumption}
+\newcommand{\M}[1]{\textsf{#1}}
+\newcommand{\scope}{\mathit{scope}}
+\newcommand{\takeaway}[1]{\smallskip\noindent\fbox{\parbox{0.97\columnwidth}{\small\textbf{Takeaway.} #1}}\smallskip}
+\SetKwComment{tcp}{// }{}
+\SetAlFnt{\small}
+\input{numbers}
+
+\begin{document}
+\bstctlcite{IEEEexample:BSTcontrol}
+
+\title{ScopeCache: Permission- and Version-Safe Result Reuse for Multi-Principal Data Agents}
+
+\author{\IEEEauthorblockN{Hongsheng Wang}
+\IEEEauthorblockA{\textit{College of Computer Science and Technology, Zhejiang University}\\
+Hangzhou, China\\
+\textit{Artificial Intelligence Department, Loctek Ergonomic Technology Corp.}\\
+Ningbo, China\\
+wanghongsheng@zju.edu.cn}}
+
+\maketitle
+
+\begin{abstract}
+LLM data agents query governed warehouses through metric tools for many employees, each restricted by row- and column-level permissions that change while the agents run, over a semantic layer whose definitions are republished. Existing result caches key entries on the requester or its scope, which confines reuse to principals with identical permissions, or on the query intent alone, which returns other principals' data. We present ScopeCache, a result cache that shares work across principals with different scopes and never returns data outside the requester's view. It stores principal-independent partial aggregates grouped by the policy attributes, applies the requester's current scope and the current metric definitions at lookup time, and lifts predicates on a miss so that one execution serves many principals. We prove that every answer equals a fresh execution under the current policy and semantic layer and depends only on rows in the requester's scope, that permission changes need no invalidation, and that a republish invalidates only the changed measures. On five setups, including the real grants of an ERP system, with \nMainDataCalls{} differentially tested data calls per cache, and on \nAgentCalls{} metric calls of LLM agents from three vendors, ScopeCache returned no wrong answer and served \agentXscopeLo--\agentXscopeHi\% of agent data calls from entries created under another scope. Without a training workload it needed \redPSPlusLo--\redPSPlusHi\% fewer warehouse executions than the same cache partitioned by scope, and with one \redVRLo--\redVRHi\% fewer than access-controlled materialized views. Code and traces are released.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Enterprises increasingly expose their warehouses to LLM agents through governed tools: a semantic layer compiles a request for metrics, dimensions, filters, and a time range into SQL over a fact table, and a policy engine conjoins the requester's row predicate and rejects hidden columns~\cite{mcpgw26,authzarch26}. Agents generate a heavy and repetitive workload: they explore speculatively, break a metric down, drill into a value, switch metrics, and retry~\cite{agentfirst25,wadlom26}, and many employees' agents ask the same business questions. In the platform that motivated this work, every warehouse call costs a connection, a semantic-snapshot fetch, and the query itself, about half a second at the median, and the platform caches neither tool results nor permission decisions, so that a revoked grant takes effect at the next call. Result reuse is the textbook remedy~\cite{hru96,goldstein01,ivanova09,dursun17}, yet it has been switched off here for a reason: two principals asking the same question are entitled to different answers.
+
+Existing caches resolve this conflict in one of two ways (Table~\ref{tab:gap}). \emph{Partitioned} caches key an entry on the requester, its role, its scope, or the rewritten statement that already contains its row predicate; Snowflake's result cache and fine-grained-access-control rewriting work this way~\cite{snowflake16,stonebraker74,rizvi04}. They are safe but only principals with identical permissions share entries. \emph{Shared} caches key an entry on the request or its intent, as semantic OLAP caches~\cite{bindschaedler26}, LLM semantic caches~\cite{gptcache23,vcache25}, and agent tool caches do; they reuse across principals but return results computed for someone else. Materialized views with a row predicate applied at query time (VPD over views) avoid both problems when the workload is known in advance~\cite{hru96,chaudhuri07}, but they are chosen offline and recomputed whenever a metric definition changes.
+
+\begin{table}[t]
+\centering
+\caption{Result caches for multi-principal metric workloads. Sound: every answer equals a fresh execution under the requester's policy. Cross-scope: an entry computed for one scope answers a principal with another scope. Online: needs no training workload. Events: permission changes take effect at the next call. Rows: Snowflake-style result caches~\cite{snowflake16}, per-user or per-scope semantic caches, intent-keyed OLAP caches~\cite{bindschaedler26}, shared caches with expiry, and views with a query-time row filter~\cite{rizvi04}.}
+\label{tab:gap}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Cache & Sound & Cross-scope & Online & Events\\
+\midrule
+SQL result cache & \checkmark & -- & \checkmark & \checkmark\\
+Per-user/scope cache & \checkmark & -- & \checkmark & \checkmark\\
+Intent-keyed cache & -- & \checkmark & \checkmark & --\\
+Expiring shared cache & -- & \checkmark & \checkmark & --\\
+Views + row filter & \checkmark & \checkmark & -- & \checkmark\\
+\textbf{ScopeCache} & \checkmark & \checkmark & \checkmark & \checkmark\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig1_agent.pdf}
+\caption{Real LLM-agent traces (\nAgentTraces{} traces; mean, whiskers: range). Light: data calls a scope-partitioned cache answers. Dark: data calls ScopeCache (without pinned views, so that every hit has a creator) answers from an entry created under a different scope, each equal to a fresh execution under the requester's policy.}
+\label{fig:agent}
+\end{figure}
+
+Partitioning shares little in practice because real scopes are fine-grained: in the ERP system of the company that motivated this work, \erpShopAccounts{} accounts hold \erpShopScopes{} distinct shop scopes, and the median scope belongs to a single account. Fig.~\ref{fig:agent} measures what partitioning gives up on real agent workloads. We recorded LLM agents of three vendors answering business questions for principals with different row scopes over four setups. A scope-partitioned cache answers \agentPSLo--\agentPSHi\% of their data calls, whereas \agentXscopeLo--\agentXscopeHi\% of the calls can be derived, exactly and within the requester's view, from aggregates computed for a principal with a \emph{different} scope. The opportunity comes from two sources: different principals ask overlapping questions, and the questions of one agent roll up from, filter, or sub-range the questions of another.
+
+Exploiting this opportunity safely raises three challenges.
+\textbf{C1 (Soundness and non-interference).} An answer derived from another principal's work must equal a fresh execution under the requester's row predicate and column grants, and must not depend on rows the requester may not see.
+\textbf{C2 (Dynamics).} Memberships, grants, and column permissions change, and the change must take effect at the next call; metric formulas, measure definitions, and dimension mappings are republished, and flushing the cache on every republish wastes the reuse.
+\textbf{C3 (Efficiency).} Sharing across scopes must pay for its larger entries within a storage budget, both for an unknown online workload and when a training workload is available.
+
+\textbf{Approach.} ScopeCache stores \emph{principal-independent} partial aggregates. Each entry is computed once, without any row predicate, grouped by the requested dimensions and by all policy attributes, so that every cell lies entirely inside or entirely outside any principal's scope. To address C1, a lookup evaluates the requester's current scope and column grants, keeps only the cells inside the scope, and combines distributive aggregates; non-decomposable aggregates take a scope-keyed fallback path. To address C2, entries contain no principal and no metric formula: permission events require no invalidation, formulas are applied at lookup time, and a republish invalidates only the measure columns whose definition changed. To address C3, a miss lifts filters into the grouping and widens the time window when the result fits an admission bound, computes all measures of the fact table together, and combines online entries with pinned views selected under a budget with a constant-factor guarantee.
+
+\textbf{Contributions.}
+\begin{itemize}
+\item We formalize permission- and version-safe result reuse for multi-principal metric workloads, with soundness, non-interference, and freshness under permission and semantic-layer events (Section~\ref{sec:problem}).
+\item We design ScopeCache and prove that its answers are sound and non-interfering (Theorem~\ref{thm:sound}), that permission events need no invalidation (Theorem~\ref{thm:events}), that republish invalidation is minimal (Theorem~\ref{thm:republish}), and that view selection is within a factor $(1-1/e)/2$ of optimal (Proposition~\ref{prop:select}) (Section~\ref{sec:method}).
+\item We evaluate ScopeCache against ten caches and four of its variants on five setups, where each of \nSafeCachesWord{} safe caches answers the same \nMainDataCalls{} differentially tested data calls, on \nAgentCalls{} tool calls of real LLM agents, and on the real shop grants of a production ERP system (\erpShopAccounts{} accounts, \erpShopScopes{} distinct scopes) over a synthetic fact table, calibrated with that system's permission-event rate. ScopeCache returns no wrong answer, needs \redPSPlusLo--\redPSPlusHi\% fewer warehouse executions than the same cache partitioned by scope and \redVRLo--\redVRHi\% fewer than access-controlled views, and keeps its hit rate when events are 16 times more frequent (Section~\ref{sec:exp}). Code and traces are released.\footnote{\url{\artifactURL}}
+\end{itemize}
+
+\section{Problem Definition}
+\label{sec:problem}
+
+\subsection{Data, semantic layer, and queries}
+A \emph{fact table} $R(\mathcal{P}, \mathcal{B}, T, X)$ has policy attributes $\mathcal{P}=\{P_1,\dots,P_k\}$ (the columns that grants refer to, such as department, brand, or region), other dimensions $\mathcal{B}$, a month attribute $T$, and numeric columns $X$. A \emph{semantic-layer snapshot} $\Sigma$ defines base measures $b=(\mathit{agg}_b, \mathit{expr}_b)$, each a SUM, COUNT, MIN, or MAX of an expression over $X$, metrics $m$ given by a formula $f_m$ over base measures (for example, a margin rate $\mathit{profit}/\mathit{sales}$) or by a non-decomposable aggregate such as $\mathrm{COUNT}(\mathrm{DISTINCT}\ c)$, and mapped dimensions $d=(\mathit{src}_d,\mu_d)$ that group the values of a source attribute. Each base measure has a definition hash $h_\Sigma(b)$; a \emph{republish} replaces a measure definition, a metric formula, or a mapping. This is the single-fact-table model of metric layers.
+
+A \emph{call} $q=(M_q, G_q, \psi_q, W_q)$ requests metrics $M_q$ grouped by dimensions $G_q$ (possibly mapped dimensions and the month), under a conjunction $\psi_q$ of IN filters, over a month window $W_q$, which is the request format of governed metric tools.
+
+\subsection{Policies and events}
+A \emph{grant literal} is $(P_j \in V)$ for a finite value set $V$, and a \emph{conjunct} is a conjunction of literals over distinct policy attributes. A principal $u$ obtains conjuncts $\Gamma_\pi(u)$ through memberships, groups, and roles under policy state $\pi$, and its row scope is the DNF
+\[
+\scope_\pi(u)=\bigvee_{c\in\Gamma_\pi(u)} c .
+\]
+This covers equality grants, IN lists, their Cartesian products, and the union across roles found in commercial platforms and predicated grants~\cite{chaudhuri07}. A principal also has a set $C_\pi(u)$ of visible sensitive columns. Rows follow Truman semantics (silently filtered) and columns non-Truman semantics: a call that needs a hidden column is rejected (\M{DENY}), and a principal without any grant ($\Gamma_\pi(u)=\emptyset$, for example after a deactivation) is rejected (\M{NOGRANT})~\cite{rizvi04}. A row whose policy value is NULL satisfies no literal, as under SQL's IN. \emph{Permission events} change $\pi$: membership moves, revocations, re-activations, grant edits that widen or narrow a value set, and column-grant edits.
+
+The \emph{fresh answer} $\mathit{Ans}(u,q)$ under data $D$, snapshot $\Sigma$, and policy $\pi$ is \M{DENY} or \M{NOGRANT} when the column or grant check fails, and otherwise the result of
+\[
+\begin{aligned}
+&\mathrm{SELECT}\ G_q,\ f_{M_q}(\mathit{aggs})\ \mathrm{FROM}\ R\\
+&\mathrm{WHERE}\ \psi_q\wedge W_q\wedge\scope_\pi(u)\ \mathrm{GROUP\ BY}\ G_q .
+\end{aligned}
+\]
+
+\subsection{The problem}
+
+\begin{definition}[Safe multi-principal result reuse]
+\label{def:problem}
+\emph{Input:} an online sequence of calls $(u_i,q_i)$ interleaved with permission events and republishes, a fact table $D$, and a storage budget $B$ in rows. \emph{Output:} for each call an answer $A_i$, obtained either by executing SQL on the warehouse or by computation over the cache state $S_i$. \emph{Constraints:}
+(S1) soundness: $A_i=\mathit{Ans}_{t_i}(u_i,q_i)$ value by value, under the policy and snapshot current at the call, including \M{DENY} and \M{NOGRANT};
+(S2) non-interference: $A_i$, as a function of $D$, depends only on $D$ restricted to $\scope_{\pi_{t_i}}(u_i)$ and on columns visible to $u_i$;
+(S3) $|S_i|\le B$.
+\emph{Objective:} minimize warehouse executions.
+\end{definition}
+
+S1 implies a zero staleness window: a revocation must affect the very next call. Two baselines bracket the problem: a cache partitioned by scope satisfies S1--S3 but shares only between principals with equal scopes, and a cache keyed on the request maximizes sharing but violates S1 and S2.
+
+\textbf{Threat model.} The cache is a server-side component in the trust domain of the warehouse and the policy engine, like a buffer pool. It stores aggregates over rows that the current requester may not see and never returns them. A principal observes the returned values, including \M{DENY} and \M{NOGRANT}, which S2 covers, and the response time. Response time reveals whether a call hit~\cite{gu25,song24}; a hit on an entry created for another scope tells the requester that someone asked a related question. A deployment that must close this channel can answer every call at the latency of a miss; ScopeCache then keeps all savings of warehouse work, which is the cost the problem minimizes, and gives up its latency gain. Finer-grained padding that keeps the latency gain for some calls needs its own analysis, because which entry answers a call depends on other principals' calls. The base data changes in loads; as for materialized views, a load of a fact table invalidates its entries, and we consider the reuse between loads.
+
+\section{ScopeCache}
+\label{sec:method}
+
+\subsection{Principal-independent partial aggregates}
+
+An \emph{entry} $E=(G_E,\psi_E,W_E,\mathcal{M}_E,\mathcal{H}_E,P_E)$ stores, for grouping attributes $G_E\supseteq\mathcal{P}$, filters $\psi_E$, a month window $W_E$, and base measures $\mathcal{M}_E$ with definition hashes $\mathcal{H}_E$, the table
+\[
+\begin{aligned}
+P_E={}&\mathrm{SELECT}\ G_E,\ \mathrm{COUNT}(*),\ \mathit{agg}_b(\mathit{expr}_b)_{b\in\mathcal{M}_E}\\
+&\mathrm{FROM}\ R\ \mathrm{WHERE}\ \psi_E\wedge W_E\ \mathrm{GROUP\ BY}\ G_E,
+\end{aligned}
+\]
+computed without any row predicate. A row of $P_E$ is a \emph{cell}. Because $G_E$ contains every policy attribute, a cell fixes a value $a_j$ of each $P_j$.
+
+\begin{lemma}[Cell purity]
+\label{lem:pure}
+For every principal $u$, policy state $\pi$, and cell $\gamma$ of an entry, either all rows of $R$ aggregated into $\gamma$ satisfy $\scope_\pi(u)$ or none does, and membership is decided by evaluating $\scope_\pi(u)$ on the policy values of $\gamma$ in $O(|\Gamma_\pi(u)|\cdot k)$ time.
+\end{lemma}
+\begin{IEEEproof}
+$\scope_\pi(u)$ is a Boolean combination of literals $(P_j\in V)$ and therefore a function of the policy values only, including NULL, which satisfies no literal. All rows of a cell share these values.
+\end{IEEEproof}
+
+Entries are keyed on nothing that depends on the principal; an entry created on behalf of one principal is a candidate for every other.
+
+\textbf{Example.} Fig.~\ref{fig:example} shows a sales table with policy attributes department and brand. Principal $u_1$ may see departments $\{d_1,d_2\}$, principal $u_2$ may see brand $b_1$ in every department, and $u_3$ holds $(d_1\wedge b_2)\vee d_3$. When $u_1$'s agent asks for quarterly sales, ScopeCache computes one entry grouped by quarter, department, and brand (Algorithm~\ref{alg:miss} lifts the policy attributes into the grouping). A later request of $u_2$ for sales by department in the second quarter is derived from the same entry: the cells with brand $b_1$ in Q2, regrouped by department; $u_3$ uses the cells $(d_1,b_2)$ and $(d_3,\cdot)$. A scope-keyed cache executes both calls; an intent-keyed cache returns $u_1$'s totals to $u_2$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_example.pdf}
+\caption{One entry grouped by quarter and the policy attributes (department, brand); each cell holds a SUM and a COUNT. It serves three scopes: $u_1$ (dashed, departments $d_1,d_2$), $u_2$ (shaded, brand $b_1$), and $u_3$ (dotted, $(d_1\wedge b_2)\vee d_3$).}
+\label{fig:example}
+\end{figure}
+
+\subsection{Lookup and derivation}
+
+A call $q$ is \emph{derivable} from an entry $E$ when
+(i) every base measure used by $M_q$ is in $\mathcal{M}_E$ with the current hash $h_{\Sigma_t}$;
+(ii) every plain dimension of $G_q$ is in $G_E$, and every mapped dimension of $G_q$ has its source attribute in $G_E$;
+(iii) for every filter $(A\in V_E)$ of $E$, $q$ has a filter $(A\in V_q)$ with $V_q\subseteq V_E$, and $A\in G_E$ if $V_q\neq V_E$; every filter of $q$ on an attribute that $E$ does not filter is on an attribute of $G_E$;
+(iv) $W_q\subseteq W_E$, and $T\in G_E$ if $W_q\neq W_E$.
+These are the roll-up, filter-push-down, and sub-range rules of view matching~\cite{goldstein01,deshpande98} with one more grouping dimension per policy attribute. Algorithm~\ref{alg:lookup} answers a call.
+
+\begin{algorithm}[t]
+\caption{ScopeCache lookup for call $(u,q)$ at time $t$}
+\label{alg:lookup}
+\KwIn{cache state $S$, policy $\pi_t$, snapshot $\Sigma_t$}
+$\sigma\gets\scope_{\pi_t}(u)$;\ \lIf{$\sigma=\emptyset$}{\Return \M{NOGRANT}}
+\lIf{$q$ needs a sensitive column $\notin C_{\pi_t}(u)$}{\Return \M{DENY}}
+\If{$M_q$ has a non-decomposable metric}{\Return fallback($u,q$)}
+\ForEach{entry $E\in S$ (pinned views first)}{
+  \If{$q$ derivable from $E$ under $\Sigma_t$}{
+    $C\gets$ cells of $E$ satisfying $\psi_q$, $W_q$, and $\sigma$\tcp*{Lemma~\ref{lem:pure}}
+    $Y\gets$ group $C$ by $G_q$ (mapped through $\mu_d$ of $\Sigma_t$), merge each $\mathit{agg}_b$\;
+    \Return $f_m(Y)$ for $m\in M_q$ under $\Sigma_t$\;
+  }
+}
+\Return miss($u,q$) \tcp*{Algorithm~\ref{alg:miss}}
+\end{algorithm}
+
+\begin{theorem}[Soundness and non-interference]
+\label{thm:sound}
+If $q$ is derivable from an entry $E$ that was computed on the current data, Algorithm~\ref{alg:lookup} returns $\mathit{Ans}_t(u,q)$, and its answer depends only on $D$ restricted to $\scope_{\pi_t}(u)$ and on the columns visible to $u$.
+\end{theorem}
+\begin{IEEEproof}
+The checks in lines 1--2 use $\pi_t$ and coincide with those of the fresh execution. By (iii) and (iv), each residual filter and the window are predicates on attributes of $G_E$, and by Lemma~\ref{lem:pure} the scope is a predicate on attributes of $G_E$ too; hence the rows of $R$ that satisfy $\psi_q\wedge W_q\wedge\sigma$ are exactly the disjoint union of the rows of the selected cells $C$ (filters of $E$ are implied by those of $q$, so no qualifying row was excluded when $E$ was computed). SUM, COUNT, MIN, and MAX are distributive over disjoint unions, and by (ii) the groups of $q$ are unions of groups of $G_E$, so merging $C$ by $G_q$ yields the base measures of the fresh query; by (i) they follow the current definitions, and line 8 applies the current formulas. For non-interference, the answer is a function of the cells in $C$, each of which aggregates only rows inside $\sigma$ by Lemma~\ref{lem:pure}; two instances that agree on the rows inside $\sigma$ have identical cells in $C$ and therefore identical answers. Hidden columns never reach the answer because line 2 rejects such calls. Equality is exact for COUNT, MIN, MAX, and integer sums, and holds up to the reassociation of floating-point additions otherwise; a fresh execution in a parallel engine has the same freedom.
+\end{IEEEproof}
+
+The fallback for non-decomposable aggregates (line 3) keys the stored answer on the normalized scope, the request, and the definition hashes. Calls whose lifted entry would exceed the admission bound also store their answer under the normalized scope, and later calls of principals with the \emph{same} scope may derive from it by the rules above. Both are sound for the same reason as a scope-partitioned cache: the scope key is computed under $\pi_t$, so the entry was computed for exactly the requester's current scope.
+
+\subsection{Miss path: predicate lifting and measure bundles}
+
+A miss could store the requested answer, but then only principals with the same scope and nearly the same request could use it. ScopeCache instead executes a \emph{lifted} query that serves the requester and many future calls (Algorithm~\ref{alg:miss}). It groups by $G_q$ and all policy attributes and tries three liftings in order: the full history, the enclosing calendar years, and $W_q$ itself. The first two also move each filter on a policy attribute or on a dimension with at most 32 values into the grouping (and add the month when the window was widened); the third keeps the filters of $q$. Every lifting computes \emph{all} base measures of the fact table (a measure bundle), so that a later call for another metric of the same table also hits. ScopeCache takes the first lifting whose estimated size $\mathit{est}(G,W)$, the product of the domain sizes of the grouping attributes capped by the number of policy-value combinations present, is at most the admission bound $\min(B/10, B-B_{\mathit{pin}})$, where $B_{\mathit{pin}}$ is the space of pinned views. An entry that could not be admitted is never computed. If no lifting fits, the call takes the scope-keyed fallback path.
+
+\begin{algorithm}[t]
+\caption{ScopeCache miss for call $(u,q)$}
+\label{alg:miss}
+\ForEach{window $W\in\langle \text{full history}, \text{years}(W_q), W_q\rangle$}{
+  $G\gets G_q\cup\mathcal{P}$\;
+  \If{$W\neq W_q$}{$G\gets G\cup\{T\}\cup\{$filtered attributes with $\le 32$ values$\}$}
+  $\psi\gets$ filters of $q$ on attributes $\notin G$\;
+  \If{$\mathit{est}(G,W)\le\min(B/10,\,B-B_{\mathit{pin}})$}{
+    $E\gets$ execute $P_E$ for $(G,\psi,W,$ all base measures$)$\;
+    admit $E$ (evict by cost-aware GreedyDual~\cite{young94}); \Return lookup of $q$ on $E$\;
+  }
+}
+\Return fallback($u,q$)\;
+\end{algorithm}
+
+Eviction follows GreedyDual with priority $L+\mathit{cost}\cdot\mathit{freq}/\mathit{size}$, where $\mathit{cost}$ is the measured execution time and $L$ the priority of the last victim~\cite{young94,lbsc24}; pinned views are never evicted.
+
+\subsection{Permission events and republishes}
+
+\begin{theorem}[Zero invalidation on permission events]
+\label{thm:events}
+Membership moves, revocations, re-activations, grant edits, and column-grant edits require no invalidation of any entry, and the call immediately after such an event is answered according to the new policy.
+\end{theorem}
+\begin{IEEEproof}
+Derivation entries contain no principal, no scope, and no column grant, so their content is the same under every policy state. Algorithm~\ref{alg:lookup} evaluates $\scope_{\pi_t}$ and $C_{\pi_t}$ on every call, and fallback keys are computed under $\pi_t$, so Theorem~\ref{thm:sound} applies to the first call after the event.
+\end{IEEEproof}
+
+\begin{assumption}
+\label{ass:hash}
+Definition hashes are collision-free: $h(b)=h(b')$ implies that $b$ and $b'$ are the same expression.
+\end{assumption}
+
+\begin{theorem}[Minimal invalidation on republish]
+\label{thm:republish}
+Under Assumption~\ref{ass:hash}, after a republish an entry column for base measure $b$ remains valid on every instance if $h_\Sigma(b)$ is unchanged, and changes of metric formulas, or of mappings of dimensions whose source attribute the entry stores, invalidate nothing. Among invalidation policies that observe definitions only through their hashes, no policy that is sound on every instance keeps a column whose hash changed.
+\end{theorem}
+\begin{IEEEproof}
+Validity of unchanged columns follows from Theorem~\ref{thm:sound}: by Assumption~\ref{ass:hash} the stored aggregate is that of the current expression, and formulas and mappings are applied at lookup time under $\Sigma_t$. For minimality, if $h(b)$ changes, the old and new expressions differ syntactically; a policy that sees only hashes cannot distinguish this from a change that alters values on some instance, for example a new factor on a column that is non-zero in some cell, so keeping the column violates S1 on that instance.
+\end{IEEEproof}
+
+A mapped dimension whose source attribute has more than 32 values is stored as its mapped expression, tagged with the mapping version, and a republish of that mapping makes the column underivable. An online entry is dropped when all its measure columns are invalid and otherwise keeps serving the valid ones; a pinned view is recomputed only if one of its measures changed. A cache keyed on the snapshot identifier, as production metric layers stamp results, flushes everything instead.
+
+\subsection{Pinned views selected under a budget}
+
+When a prefix of the workload is available, ScopeCache pins views before serving. A candidate view is $P_E$ over the full history and all base measures, grouped by the attributes of one training grouping plus all policy attributes; its benefit is the total fresh-execution time of the training calls it derives, and its cost is its row count. Selecting views under budget $B_v$ to maximize covered benefit is a budgeted maximum coverage problem.
+
+\begin{proposition}[Selection]
+\label{prop:select}
+Covered benefit is monotone submodular in the selected set. The better of the benefit-per-row greedy solution and the best single view that fits is within a factor $(1-1/e)/2$ of the optimal selection.
+\end{proposition}
+\begin{IEEEproof}
+Benefit is a weighted coverage function, which is monotone and submodular; the bound is that of the modified greedy algorithm for budgeted maximum coverage~\cite{kmn99,celf07}.
+\end{IEEEproof}
+
+Pinned views and online entries share one budget: views are selected first and the remainder serves the online path. This generalizes greedy view selection on the data-cube lattice~\cite{hru96} with the policy attributes kept in every view. Without them, a view could not be filtered by a principal's scope; with them, a view built for one role serves every role.
+
+\subsection{Implementation and cost}
+\label{sec:impl}
+ScopeCache runs as a library between the metric tool and the warehouse. Entries are pandas frames over DuckDB results, grouped into one shared bucket (derivation entries and pinned views) and one bucket per scope key (fallback entries). A lookup tests the derivation conditions (i)--(iv) on each candidate, which needs only the entry's metadata, and then evaluates the scope on the policy columns of the candidate's cells with vectorized IN tests, one per literal of $\Gamma_\pi(u)$; with $n_E$ cells this costs $O(n_E\cdot|\Gamma_\pi(u)|\cdot k)$, plus a hash aggregation of the selected cells. The size of an entry is at most the number of policy-value combinations present in the data times the product of the domain sizes of its other grouping attributes, which is the estimate the admission bound uses. A miss issues one SQL statement that groups by the lifted attributes and computes the full measure bundle; the warehouse cost of lifting is a wider GROUP BY in the same scan.
+
+\subsection{Discussion: cell granularity}
+\label{sec:granularity}
+Cells could be coarsened from raw policy values to the classes of values that no grant literal distinguishes (for attribute $P_j$, $v\equiv v'$ iff every value set in a literal on $P_j$ contains both or neither); Lemma~\ref{lem:pure} still holds for scopes over such literals. We evaluate this variant (\M{SC-atoms}, Section~\ref{sec:ablation}); it changes warehouse executions by \atomsDeltaLo{} to \atomsDeltaHi\%, and on the grants of a production ERP system it would reduce the number of cells only by a factor of \erpCompShop{} (shop) and \erpCompWh{} (warehouse). ScopeCache therefore keys cells on raw values, which also makes grant edits that introduce new value sets free.
+
+\section{Experimental Evaluation}
+\label{sec:exp}
+
+We answer five questions. \textbf{RQ1}: Are all answers sound, and what do unsafe caches return? \textbf{RQ2}: How much warehouse work does ScopeCache save on rule-based multi-principal workloads? \textbf{RQ3}: How much cross-scope reuse do real LLM agents generate? \textbf{RQ4}: How do permission events and republishes affect reuse? \textbf{RQ5}: Which components matter, and what does ScopeCache cost?
+
+\subsection{Setup}
+\label{sec:setup}
+
+\textbf{Setups.} Table~\ref{tab:setups} lists five fact tables built in DuckDB~\cite{duckdb19}: TPC-H (scale factor 1; lineitem joined with orders, customer, nation, region, part, and supplier)~\cite{tpch}, TPC-DS (scale factor 1; store sales with date, item, store, customer address, and demographics)~\cite{tpcds02}, the BIRD \emph{financial} database (transactions with accounts and districts)~\cite{bird23}, and ERP, which takes the real account-to-shop grants of the company's ERP system (\erpShopAccounts{} active accounts; account and shop identifiers recoded) as the policy, one role per distinct shop set, over a synthetic sales fact table on the same 287 shops; and ENT, a synthetic reconstruction of an enterprise metric platform whose organization tree (813 departments, of which 456 leaves hold sales), grant modes, metric types, and query format follow the platform's code, with synthetic values only. Each setup has 6--8 base measures, 8--10 metrics including ratios and a COUNT DISTINCT, one mapped dimension, and one or two sensitive columns. The four synthetic policies have 400 principals mapped through 60 groups to roles of five kinds: hierarchical (for example, a region and its nations, or a department subtree), two-value, single-value, IN-product, and OR-of-conjuncts roles; 20--30\% of roles see the sensitive columns.
+
+\input{tab_setups}
+
+\textbf{Rule-based workloads.} Sessions imitate agent exploration: a monthly trend of a metric, followed by 2--8 actions drawn with weights 3 (break down by a dimension), 3 (drill into a value from the principal's own scope and break down by another dimension), 1.5 (switch metric), 1 (year-over-year), 1 (scalar), and 1 (retry). Principal activity follows a Zipf(0.8) distribution, metric popularity Zipf(0.9), and dimension popularity Zipf(0.7). Events occur per call with probability 0.004 (membership move), 0.002 (revocation), 0.001 (re-activation), 0.002 (grant edit), 0.001 (column-grant edit), and 0.001 (republish of a measure, a formula, or a mapping); after 50\% of permission events, the affected principal immediately replays its previous call, which tests the zero staleness window adversarially. Each setup runs three seeds of 3{,}000 calls; the first 20\% warm the caches and train the views, and metrics are computed on the remaining 80\%.
+
+\textbf{Agent traces.} Tool-calling agents answer 20 business questions per setup (for example, ``which channels have the highest refund rate this year, and is it rising?''), written before any recording to cover each setup's metrics and dimensions and released with the traces, for 40 principals with five questions each, through three tools: listing dimension values, a metric query (1--3 metrics, at most two dimensions, IN filters, a month range), and a final answer, with at most six tool calls. The warehouse applies the principal's row scope. We use deepseek-chat (DeepSeek), GLM-4.5-flash, and Kimi-K2.6 at temperature 0 (Kimi: 0.6, the only value its endpoint accepts), accessed November 7--10, 2026, with two recording seeds that draw different principals and policies (\nAgentTraces{} traces, \nAgentCalls{} metric calls, \$\agentCost{} in total). Traces are replayed through every cache with the same differential test; as in the rule-based runs, the first 20\% of each trace train the views and warm the caches, and metrics are computed on the \nAgentDataCalls{} data calls after the prefix (the other metric calls are in the prefix or are rejected).
+
+\textbf{Baselines.} \M{NoCache} (the production setting); \M{Exact}, keyed on the rewritten SQL including the row predicate and the metric definitions (like a warehouse result cache~\cite{snowflake16}); \M{PerUser}; \M{PerScope}, keyed on the normalized scope, which is a scope-aware semantic cache with roll-up and filter derivation; \M{TTL}, a per-user cache whose entries expire after 500 calls and are served without re-checking the current policy; \M{SemNoScope}, an intent-keyed OLAP semantic cache with roll-up and filter push-down that ignores the requester~\cite{bindschaedler26}; \M{ViewRewrite}, views selected offline by benefit-per-row greedy over the same training prefix and filtered by the scope at query time (VPD over views~\cite{rizvi04,hru96}), with views recomputed when a measure changes, as BI aggregate-awareness layers route queries to pre-aggregates and apply access filters; \M{VR-adapt}, which re-selects its views every 600 calls on the last 600 calls and pays the rebuilds as warehouse executions; and \M{PerScope+}, which uses ScopeCache's lifting, measure bundles, and hash-based invalidation but computes each entry for the requester's scope and shares it only within that scope, isolating the effect of cross-scope sharing; \M{PerScope+V} adds ScopeCache's pinned views to \M{PerScope+}. \M{ViewRewrite} executes calls that its views do not cover. The request-, user-, and scope-keyed caches flush on every snapshot change, as results stamped with a snapshot identifier are. All caches have a budget of $B=10^6$ rows, use the same derivation code, and run in one process.
+
+\textbf{Metrics.} Every answer of every method is compared value by value with a fresh execution under the requester's current policy and snapshot (relative tolerance $10^{-6}$); a wrong answer is \emph{over-privileged} if it uses rows outside the requester's scope, and \emph{stale} otherwise. The oracle aggregates in SQL and applies metric formulas in Python; an independent oracle that evaluates the formulas in SQL agreed with it on \oracleAgree{} of \oracleChecked{} sampled calls under the policy and snapshot current at each call. We report the hit rate over data calls and the number of warehouse executions, the cost the problem minimizes; each avoided execution saves a warehouse call, which costs about 0.5\,s at the median on the production platform (connection, snapshot fetch, and query). The runs shared one Apple M4 machine with other jobs, so we report no wall-clock times except the derivation overhead below; eviction priorities use measured execution times, so execution counts can differ between reruns: rerunning the configuration of ScopeCache from an earlier run on an idle machine reproduced the count exactly in \rerunSame{} of \rerunN{} runs and differed by at most \rerunDiff\%. The derivation overhead was measured separately on an idle machine (Section~\ref{sec:ablation}). DuckDB 1.4.5 executes all queries.
+
+\subsection{RQ1: Soundness}
+\label{sec:rq1}
+
+\textbf{Standing.} ScopeCache is best, tied with the other safe caches, in all four wrong-answer columns of Table~\ref{tab:safety}: no wrong answer in \nMainDataCalls{} rule-based and \nAgentDataCalls{} agent data calls.
+
+\input{tab_safety}
+
+Table~\ref{tab:safety} counts wrong answers over all runs. ScopeCache, its variants, and the partitioned caches each answered the \nMainDataCalls{} data calls of the rule-based workloads, and each cache replayed on the agent traces their \nAgentDataCalls{} data calls, without a wrong answer (\nSafeDataCalls{} rule-based answers over all \nSafeCachesWord{} safe caches), including every adversarial replay right after a revocation. The two shared caches did not: \M{SemNoScope} returned over-privileged answers in \semOverLo--\semOverHi\% of data calls, and \M{TTL}, whose entries outlive permission changes, returned wrong answers to \ttlReplayWrong{} of \ttlReplayCalls{} adversarial replays at the 16-fold event rate. Sharing without a permission-independent entry format is therefore not an option, and the remaining questions compare ScopeCache with the safe caches.
+
+\takeaway{On \nMainDataCalls{} rule-based and \nAgentDataCalls{} agent data calls, every ScopeCache answer equaled a fresh execution under the current policy, including the first call after each revocation.}
+
+\subsection{RQ2: Efficiency on multi-principal workloads}
+\label{sec:rq2}
+
+\textbf{Standing.} ScopeCache is best in \scBestCells{} of the \mainCells{} cells of Table~\ref{tab:main}; the closest competitor, \rivalName, is \rivalStanding, and ScopeCache needs \redVRLo--\redVRHi\% fewer executions than \M{ViewRewrite}.
+
+\input{tab_main}
+
+Table~\ref{tab:main} reports the main grid (\nMainRuns{} runs). ScopeCache answers \scHitLo--\scHitHi\% of data calls without the warehouse. The answer caches partitioned by user or scope reach \partHitLo--\partHitHi\%, because the synthetic policies give 400 principals \nScopesLo--\nScopesHi{} distinct scopes and ERP gives 721 accounts \erpShopScopes; ScopeCache needs \redPSmainLo--\redPSmainHi\% fewer executions than \M{PerScope} and \redNCLo--\redNCHi\% fewer than \M{NoCache}. \M{PerScope+} isolates the sharing: with the same lifting and measure bundles but entries confined to one scope, it reaches \ppHitLo--\ppHitHi\%, and ScopeCache's online path (\M{SC-online}, also without views) needs \redPSPlusLo--\redPSPlusHi\% fewer executions than \M{PerScope+} (median \redPSPlusMed\%). Pinned views are themselves shared across scopes; \M{PerScope+V}, which adds ScopeCache's pinned views to \M{PerScope+} and partitions only the online entries, is the closest competitor, and sharing the online entries as well saves a further \psvTpchLo--\psvTpchHi\% of its executions on TPC-H, at most \psvSmallHi\% on TPC-DS and ERP, and none on \psvZeroSetups, where pinned views already answer the calls that online entries could share (Fig.~\ref{fig:breakdown}). Against \M{ViewRewrite}, which receives the same training prefix and keeps the policy attributes in its views, ScopeCache needs \redVRLo--\redVRHi\% fewer executions in all \nRedVRruns{} runs (median \redVRMed\%), and \redVRALo--\redVRAHi\% fewer than \M{VR-adapt}, whose periodic re-selection pays for every rebuilt view without raising the hit rate above that of \M{ViewRewrite}. The gap is largest on TPC-H, whose workload spreads over 10 dimensions and a 25-value policy attribute, so that a fixed set of views covers fewer calls; on BIRD and ENT, whose calls concentrate on few groupings, the views of \M{ViewRewrite} already cover \vrHitBird\% and \vrHitEnt\% of calls, and ScopeCache adds the calls that the training prefix did not anticipate.
+
+\takeaway{Sharing partial aggregates across scopes turns the \partHitLo--\partHitHi\% hit rate of scope-partitioned answer caches into \scHitLo--\scHitHi\%; with the same lifting and bundles, sharing saves \redPSPlusLo--\redPSPlusHi\% of executions over partitioning, and the online path saves \redVRLo--\redVRHi\% over access-controlled views selected from the same training prefix.}
+
+\textbf{Real grants.} On ERP, whose \erpShopScopes{} scopes are the shop grants of \erpShopAccounts{} real accounts, the median scope has one account. \M{PerScope} answers \erpPSHit\% of data calls and ScopeCache \erpScHit\%; ScopeCache needs \erpRedPS\% fewer executions than \M{PerScope}, \erpRedVR\% fewer than \M{ViewRewrite}, and its online path \erpRedPSPlus\% fewer than \M{PerScope+}.
+
+\textbf{Where do the hits come from?} Fig.~\ref{fig:breakdown} attributes every ScopeCache hit to the entry that served it. Pinned views serve \bdViewLo--\bdViewHi\% of data calls, entries the requester itself created \bdSelfLo--\bdSelfHi\%, and entries created by other principals \bdOtherLo--\bdOtherHi\%, almost all of them under a different scope (\bdXLo--\bdXHi\% of data calls). Hits on online entries of the requester's own scope, the only online hits a scope-partitioned cache could also obtain, are \bdSelfSameLo--\bdSelfSameHi\% of data calls. Pinned views supply most hits; they are themselves principal-independent, and with fewer views the online path supplies the cross-scope reuse (Table~\ref{tab:ablation}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_breakdown.pdf}
+\caption{Source of ScopeCache hits in the main grid (mean of three seeds), as a share of data calls: pinned views, online entries created by the requester, by another principal with the same scope, and by a principal with a different scope.}
+\label{fig:breakdown}
+\end{figure}
+
+\subsection{RQ3: Real LLM agents}
+\label{sec:rq3}
+
+\textbf{Standing.} ScopeCache is best in \agBestCells{} of the \agCells{} hit-rate and execution cells of Table~\ref{tab:agent}; its cross-scope reuse is lowest on ENT (\agentXscopeEntD\%), whose 456-department policy attribute makes lifted entries exceed the admission bound.
+
+\input{tab_agent}
+
+Table~\ref{tab:agent} and Fig.~\ref{fig:agent} replay the recorded traces; we attribute hits to their creators with the configuration without pinned views (\M{SC-online}), because a view serves calls of all principals. Agents issue \agentCallsPerEpLo--\agentCallsPerEpHi{} metric calls per question, and their calls repeat across principals: ScopeCache serves \agentXscopeLo--\agentXscopeHi\% of data calls from entries created under a different scope, and needs \redPSLo--\redPSHi\% fewer executions than \M{PerScope}, at hit rates of \agentScHitLo--\agentScHitHi\% (\M{ViewRewrite}: \agentVRHitLo--\agentVRHitHi\%); ScopeCache needs \agentRedVRmed\% fewer executions than \M{ViewRewrite} at the median over traces, and its online variant, which receives no training prefix, needs \agentRedOnlinePSLo--\agentRedOnlinePSHi\% fewer than \M{PerScope}. On ENT, online calls therefore fall back to scope-keyed entries more often, and the pinned views answer most calls of the full system.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_sens.pdf}
+\caption{Cross-scope reuse on agent traces when each question is asked by only the first $k$ principals assigned to it (\M{SC-online}; mean over vendors and recording seeds; whiskers: range).}
+\label{fig:sens}
+\end{figure}
+
+\textbf{Agents and vendors.} The three vendors explore differently: Kimi-K2.6 and GLM-4.5-flash issue more calls per question than deepseek-chat (Table~\ref{tab:agentvendor}). Cross-scope reuse is high for every vendor, and no safe cache returned a wrong answer on any trace. The intent-keyed \M{SemNoScope} reaches hit rates of \agentSemHitLo--\agentSemHitHi\% on these traces, but \agentSemOverLo--\agentSemOverHi\% of its data calls return another principal's result (Table~\ref{tab:safety}).
+
+\input{tab_agentvendor}
+
+\textbf{When do principals share questions?} In our traces each question is assigned to about ten principals. Fig.~\ref{fig:sens} keeps only the first $k$ principals per question. With a single principal per question ($k=1$), every cross-scope hit reuses an entry created for a \emph{different} question, as is or by roll-up, filtering, or sub-ranging; ScopeCache still serves \sensOneLo--\sensOneHi\% of data calls from other scopes (\sensOneTpch\% on TPC-H; \sensOneEnt\% on ENT, the setup with the largest policy domain, 456 departments), and the share rises to \sensTwoLo--\sensTwoHi\% at $k=2$. Human BI use in the ERP system lies in this range: an aggregation endpoint is called by \erpEndpointUsersMed{} accounts in a median hour (\erpEndpointUsersPninety{} at the 90th percentile), although most repeated calls of an endpoint within an hour come from the same account (\erpSameUserHour\%); its access log records no request parameters, so it cannot tell which of these calls are derivable from one another.
+
+\takeaway{Real agents generate cross-scope reuse: \agentXscopeLo--\agentXscopeHi\% of their data calls are answered exactly from aggregates computed for another scope, and \sensOneLo--\sensOneHi\% even when no two principals ask the same question.}
+
+\subsection{RQ4: Permission events and republishes}
+\label{sec:rq4}
+
+\textbf{Standing.} ScopeCache needs the fewest executions at \evBest{} of the \evPoints{} setup and event-rate points of Fig.~\ref{fig:events}, tied with \M{SC-snap} at rate 0, where no republish occurs.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_events.pdf}
+\caption{Warehouse executions as the event rate grows from 0 to 16 times the default (seed 0, about 2{,}400 measured calls per point). \M{SC-snap} flushes on every snapshot change, so it coincides with ScopeCache at 0$\times$; markers are offset horizontally for legibility.}
+\label{fig:events}
+\end{figure*}
+
+Fig.~\ref{fig:events} scales all event probabilities by 0, 4, and 16. As Theorems~\ref{thm:events} and~\ref{thm:republish} predict, events barely change ScopeCache's reuse: across the four setups, its hit rate at 16 times the default rates of permission events and republishes differs from the event-free run by at most \evHitDropMax{} points. \M{SC-snap}, which is ScopeCache keyed on the snapshot identifier, needs \snapFactorLo--\snapFactorHi$\times$ the executions of ScopeCache at the default rate and up to \snapFactorSixteen$\times$ at 16 times. \M{ViewRewrite} recomputes a view whenever one of its measures changes (\vrMaintViews{} view rebuilds per run at the default rate).
+
+\textbf{Calibration on a production system.} The access log of the ERP system of the company that motivated this work records \erpPermWrites{} permission-management writes in 411 days (about \erpPermPerDay{} per day: user edits, role edits, deactivations, shop assignments), against about \erpReportPerDay{} report calls per day, i.e., about $10^{-4}$ permission events per call, two orders of magnitude below our default rate. Events are rare but consequential: \erpDeact{} deactivations and \erpRoleEdits{} role edits in 411 days would each have exposed stale results in a cache with expiry. Under ScopeCache they cost nothing.
+
+\takeaway{Permission events cost ScopeCache no invalidation, and a republish only the changed measure columns; flushing on snapshot changes multiplies warehouse executions by up to \snapFactorSixteen$\times$.}
+
+\subsection{RQ5: Ablation, robustness, and overhead}
+\label{sec:ablation}
+
+\textbf{Standing.} The full system is best in \abBest{} of the \abCols{} columns of Table~\ref{tab:ablation} and second in the other \abSecond, where coarsening cells to grant-literal classes saves \atomsMeanSave\% of executions; that variant needs \atomsMeanWorse\% more on TPC-DS.
+
+\input{tab_ablation}
+
+Table~\ref{tab:ablation} removes one component at a time. Without pinned views (\M{SC-online}), ScopeCache needs \onlineFactorLo--\onlineFactorHi$\times$ the executions of the full system; the factor is largest on ENT (\onlineFactorEnt$\times$), whose 456 departments make lifted entries large, so that pinned views supply the coverage there and the online path supplies it where the training prefix did not anticipate the calls. Partitioning the online entries by scope (\M{PerScope+}) multiplies executions further. With pinned views in place, removing predicate lifting (\M{SC-nolift}) changes executions by \noliftLo{} to \noliftHi\%, because the views already hold the lifted groupings of the training prefix; on the online path, lifting saves work: without it, \M{SC-online} needs \onlineNoliftLo--\onlineNoliftHi$\times$ the executions (\onlineNoliftEnt$\times$ on ENT, where lifted entries mostly exceed the admission bound). Coarsening cells to grant-literal classes (\M{SC-atoms}) changes executions by \atomsDeltaLo{} to \atomsDeltaHi\%.
+
+\textbf{Interest drift and budget.} When metric and dimension popularity are reshuffled every 30 sessions, the training prefix no longer matches the workload, and ScopeCache needs \driftRedLo--\driftRedHi\% fewer executions than \M{ViewRewrite}. With a budget of $10^5$ rows, ScopeCache needs \smallRedLo--\smallRedHi\% fewer.
+
+\textbf{Policy-domain size.} To see how sharing scales with the granularity of grants, a synthetic fact table has one policy attribute with 50 to 3{,}000 values and 400 principals with random value sets (median about 5\% of the values), so that from 300 values on nearly every principal has its own scope (Fig.~\ref{fig:domain}). Across the four sizes, \M{PerScope} answers \domPSHitLo--\domPSHitHi\% of data calls and ScopeCache \domScHitLo--\domScHitHi\%; ScopeCache's online path needs \domRedPSPlusLo--\domRedPSPlusHi\% fewer executions than \M{PerScope+}, and the full system \domRedVRLo--\domRedVRHi\% fewer than \M{ViewRewrite} and \domRedPSVLo--\domRedPSVHi\% fewer than \M{PerScope+V}. Both gaps are largest at 3{,}000 values, where pinned views cover fewer calls and the online entries, shared across scopes, supply the rest.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_domain.pdf}
+\caption{Warehouse executions as the policy attribute grows from 50 to 3{,}000 values (400 principals with random value sets, seed 0, about 2{,}400 measured calls per point; lower is better). Markers are offset horizontally where \M{PerScope+V} and ScopeCache coincide.}
+\label{fig:domain}
+\end{figure}
+
+\textbf{Overhead.} A hit evaluates the scope on the cells of the candidate entries and merges the selected cells; measured on an idle machine with the same configuration, it takes \deriveMsLo--\deriveMsHi\,ms on average in our Python implementation, against about 500\,ms for each avoided warehouse call, and the 95th-percentile local time of a call, including executions on a miss, is \lookupPninetyFiveLo--\lookupPninetyFiveHi\,ms. Peak cache occupancy stays within the budget by construction, and view selection and materialization take at most \viewSelSecMax\,s per run. \fallbackLo--\fallbackHi\% of data calls take the scope-keyed fallback path.
+
+\takeaway{Cross-scope sharing of partial aggregates, pinned views, and, on the online path, predicate lifting account for the savings; ScopeCache keeps its advantage over access-controlled views under interest drift and a ten-times smaller budget, at a few milliseconds per hit.}
+
+\section{Discussion}
+\label{sec:discussion}
+\textbf{Deployment.} ScopeCache sits below the policy check of a metric tool and above the warehouse, in the trust domain of both, and needs from the platform only the evaluation of a principal's grants as a DNF over policy attributes, the definition hashes of base measures, and the request format of the tool. The metric platform that motivated this work exposes all three: its grants are equality or IN conjunctions per role, combined by union, and every result carries a semantic-snapshot identifier; the ERP system's shop and warehouse grants are IN lists of the same form.
+
+\textbf{Scope of the guarantees.} Theorems~\ref{thm:sound}--\ref{thm:republish} hold for distributive aggregates over one fact table between data loads and for policies whose row predicates are DNFs over attributes of that table; these cover the metric layers and grant models above. Policies that refer to other tables (for example, a manager relation) are first resolved to value sets of a policy attribute, as the platforms do when they compile grants. Distinct counts take the scope-keyed path and remain sound; mergeable sketches would let them share across scopes approximately.
+
+\textbf{Storage and confidentiality.} Entries contain aggregates over rows that some requesters may not see, as materialized views and the warehouse's own buffers do. Placing the cache inside the warehouse's trust domain and encrypting it at rest with the warehouse's keys keeps the confidentiality boundary unchanged.
+
+\section{Related Work}
+\label{sec:related}
+
+\textbf{Answering queries with views and caches.} Rewriting queries over materialized views~\cite{levy95,halevy01,chaudhuri95,goldstein01}, predicate and chunk caching~\cite{keller96,deshpande98,kalnis01}, view selection on the cube lattice~\cite{hru96,mistry01}, dynamic and partial materialization~\cite{dynmv07}, and recycling of intermediates~\cite{ivanova09,nagel13,dursun17} reuse work for a single principal. Cloud services reuse common subexpressions~\cite{cloudviews18}, cache results and predicates~\cite{crystal21,predcache24,lbsc24}, and predict views~\cite{mvgpt26}; Snowflake reuses a result only for an identical statement and re-checks the role~\cite{snowflake16}. ScopeCache adds the policy attributes as a grouping dimension of every entry, which makes the derivation rules of view matching safe across principals, and adds the event semantics.
+
+\textbf{Fine-grained access control.} Query modification~\cite{stonebraker74}, Truman and non-Truman models~\cite{rizvi04}, authorization views~\cite{zhang05}, predicated grants~\cite{chaudhuri07}, disclosure control~\cite{lefevre04}, and provable security definitions~\cite{guarnieri16} define what a principal may see; Kabra et al.\ show how rewriting leaks through side effects~\cite{kabra06}. Sieve scales policy evaluation with guards~\cite{sieve20} and its extension caches guard evaluations~\cite{shakya25}; Data Guard compiles purpose-based policies into masked views~\cite{dataguard26}; HONEYBEE partitions vector indexes along role structure~\cite{honeybee25}. These systems enforce policies per query or cache policy decisions; ScopeCache reuses query results across principals and proves non-interference for them.
+
+\textbf{Semantic and LLM caches.} OLAP semantic caching canonicalizes queries into intent signatures with roll-up and filter derivation~\cite{bindschaedler26}; GPTCache, MeanCache, and vCache cache LLM responses by similarity, per user, or with error bounds~\cite{gptcache23,meancache24,vcache25}; agentic plan caching reuses plans~\cite{plancache25}. Shared caches leak through timing and key collisions~\cite{gu25,song24,keycoll26}. None of these considers row scopes; ScopeCache provides exact reuse with zero over-privileged answers.
+
+\textbf{Agents over governed data.} Agent-first data systems call for sharing across speculative agent queries~\cite{agentfirst25,wadlom26}; MCP gateways and authorization architectures route agent tool calls through policy engines~\cite{mcpgw26,authzarch26}; recent work defines revocation outcomes and evidence reuse at the gateway~\cite{revocation26,matoi26,notrace26}, studies post-filtering attacks~\cite{plaintext26}, and benchmarks text-to-SQL under access control~\cite{rbact2s26,rolerefusal25}. ScopeCache operates below the gateway, on the results of governed metric tools, and gives a zero staleness window by construction.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+ScopeCache shows that a result cache can serve principals with different row scopes from the same work: entries that group by the policy attributes and contain no principal and no formula admit exact, non-interfering derivation, make permission changes free, and limit republish invalidation to the changed measures. On five setups, including the real grants of an ERP system, and on traces of real LLM agents, it returned no wrong answer, answered \agentXscopeLo--\agentXscopeHi\% of agent data calls from aggregates computed for other scopes, and needed \redPSPlusLo--\redPSPlusHi\% fewer warehouse executions than the same cache partitioned by scope and \redVRLo--\redVRHi\% fewer than access-controlled views. Extending the entry format to joins across fact tables and to sketches for distinct counts is future work.
+
+\section*{AI-Generated Content Acknowledgment}
+deepseek-chat (DeepSeek), GLM-4.5-flash, and Kimi-K2.6 were used as the evaluated agents that generated the recorded tool-call traces (Section~\ref{sec:rq3}). An AI assistant (Claude, Anthropic) was used, under the author's direction, to implement the experiment code and to draft and edit the text of all sections; all numbers are generated by scripts from the released results, and the author verified all content.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
