@@ -121,7 +121,7 @@ for key, ident in REFS:
     kind, f = arxiv(key, ident[6:]) if ident.startswith("arXiv:") else crossref(key, ident)
     log.append((key, ident, f["title"][:80], f["year"]))
     f.update(OVERRIDE.get(key, {}))
-    out.append(f"@{kind}{{{key},\n" + ",\n".join(f"  {k} = {v}" if k == "title" else f"  {k} = {{{v}}}" for k, v in f.items()) + "\n}\n")
+    out.append(f"@{kind}{{{key},\n" + ",\n".join(f"  {k} = {v}" if k == "title" else f"  {k} = {{{v}}}" for k, v in f.items()) + ",\n}\n")   # trailing comma: CMT checkers expect "field = {...},"
     time.sleep(0.4)
 extra = """@IEEEtranBSTCTL{IEEEexample:BSTcontrol,
   CTLuse_forced_etal = "yes",
