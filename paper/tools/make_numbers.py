@@ -482,7 +482,7 @@ def mark(printed, higher_better, exclude=()):
 
 UNSAFE = ("TTL", "SemNoScope")
 with open(os.path.join(OUTDIR, "tab_safety.tex"), "w") as f:
-    f.write("\\begin{table}[t]\n\\centering\n\\caption{Only the two shared caches are unsafe; no safe cache returns a wrong answer. Wrong answers over the main grid (five setups $\\times$ three seeds) and the agent traces; fewer is better; " + RANK_NOTE + " among the safe methods.}\n\\label{tab:safety}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
+    f.write("\\begin{table}[t]\n\\centering\n\\caption{Only the two shared caches are unsafe; no safe cache returns a wrong answer. Wrong answers in the main grid and the agent traces.}\n\\label{tab:safety}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
     f.write("\\begin{tabular}{@{}lrrrrr@{}}\n\\toprule\n & \\multicolumn{3}{c}{Main grid} & \\multicolumn{2}{c}{Agent traces}\\\\\n\\cmidrule(lr){2-4}\\cmidrule(l){5-6}\nMethod & Data calls & Wrong & Over-priv. & Wrong & Over-priv.\\\\\n\\midrule\n")
     cols = {c: {} for c in ("w", "o", "aw", "ao")}
     dcs = {}
@@ -534,7 +534,7 @@ for m in MAINM:
 _buf.append("\\bottomrule\n\\end{tabular}\n")
 open(os.path.join(OUTDIR, "tab_main_tabular.tex"), "w").write("".join(_buf))
 with open(os.path.join(OUTDIR, "tab_main.tex"), "w") as f:
-    f.write("\\begin{table*}[t]\n\\centering\n\\caption{" + ("ScopeCache has the highest hit rate and the fewest executions on every setup. " if counts["ScopeCache"][0] == ncell else "") + "Hit rate (\\%, higher is better) and executions (lower is better), mean $\\pm$ std.\\ over three seeds; " + RANK_NOTE + ", counted in B/2; \\M{TTL} is unsafe and unranked.}\n\\label{tab:main}\n\\footnotesize\n\\setlength{\\tabcolsep}{3.4pt}\n")
+    f.write("\\begin{table*}[t]\n\\centering\n\\caption{" + ("ScopeCache has the highest hit rate and the fewest executions on every setup. " if counts["ScopeCache"][0] == ncell else "") + "Hit rate (\\%) and warehouse executions, mean $\\pm$ std.\\ over three seeds; B/2: best and second-best cells.}\n\\label{tab:main}\n\\footnotesize\n\\setlength{\\tabcolsep}{3.4pt}\n")
     f.write("\\begin{tabular}{@{}l" + "rr" * len(MSETUPS) + "c@{}}\n\\toprule\n")
     f.write(" & " + " & ".join(f"\\multicolumn{{2}}{{c}}{{{NAME[s_]}}}" for s_ in MSETUPS) + " & \\\\\n")
     f.write("".join(f"\\cmidrule(lr){{{2 + 2 * i}-{3 + 2 * i}}}" for i in range(len(MSETUPS))) + "\n")
@@ -546,7 +546,7 @@ with open(os.path.join(OUTDIR, "tab_main.tex"), "w") as f:
     f.write("\\bottomrule\n\\end{tabular}\n\\end{table*}\n")
 
 with open(os.path.join(OUTDIR, "tab_ablation.tex"), "w") as f:
-    f.write("\\begin{table}[t]\n\\centering\n\\caption{Removing any component costs executions on at least one setup. Executions relative to ScopeCache (Table~\\ref{tab:main}), mean of three seeds, lower is better; G.\\,mean: geometric mean over setups; " + RANK_NOTE + ". $^\\dagger$Relative to \\M{SC-online}, seed 0.}\n\\label{tab:ablation}\n\\footnotesize\n\\setlength{\\tabcolsep}{3.6pt}\n")
+    f.write("\\begin{table}[t]\n\\centering\n\\caption{Removing any component costs executions on at least one setup. Executions relative to ScopeCache; G.\\,mean: geometric mean over setups. $^\\dagger$Relative to \\M{SC-online}, seed 0.}\n\\label{tab:ablation}\n\\footnotesize\n\\setlength{\\tabcolsep}{3.6pt}\n")
     f.write("\\begin{tabular}{@{}l" + "r" * len(MSETUPS) + "@{\\hspace{7pt}}r@{}}\n\\toprule\nVariant & " + " & ".join(NAME[s] for s in MSETUPS) + " & G.\\,mean\\\\\n\\midrule\n")
     VARS = ["ScopeCache", "SC-online", "PerScope+", "SC-nolift", "SC-snap", "SC-atoms"]
     colmk, abt = {}, []
@@ -583,7 +583,7 @@ AGM = [m for m in AGM if all(m in ag[k]["methods"] for k in keys)]      # dry ru
 ag_counts = [0, 0, 0]
 ag_bc = {(m, c): [0, 0] for m in AGM for c in ("hit", "exe")}
 with open(os.path.join(OUTDIR, "tab_agent.tex"), "w") as f:
-    f.write("\\begin{table*}[t]\n\\centering\n\\caption{ScopeCache has the highest hit rate and the fewest executions on every setup of the agent traces. Mean per trace; data calls: total. PS(+)(V): \\M{PerScope(+)(V)}; VR: \\M{ViewRewrite}; SC: ScopeCache; X-sc.: cross-scope share of \\M{SC-online}; " + RANK_NOTE + ".}\n\\label{tab:agent}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
+    f.write("\\begin{table*}[t]\n\\centering\n\\caption{ScopeCache has the highest hit rate and the fewest executions on every setup of the agent traces. X-sc.: cross-scope share of \\M{SC-online}; abbreviations in Section~\\ref{sec:rq3}.}\n\\label{tab:agent}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
     f.write("\\begin{tabular}{@{}lrr" + "r" * len(AGM) + "r" + "r" * len(AGM) + "@{}}\n\\toprule\n")
     f.write(f" & & & \\multicolumn{{{len(AGM)}}}{{c}}{{Hit rate (\\%)}} & & \\multicolumn{{{len(AGM)}}}{{c}}{{Executions}}\\\\\n")
     f.write(f"\\cmidrule(lr){{4-{3 + len(AGM)}}}\\cmidrule(l){{{5 + len(AGM)}-{4 + 2 * len(AGM)}}}\n")
@@ -611,7 +611,7 @@ assert ag_counts[1] == ag_counts[0], "Table V caption claims ScopeCache is best 
 
 VNAME = {"deepseek": "deepseek-chat", "glm": "GLM-4.5-flash", "kimi": "Kimi-K2.6", "gpt6": "GPT-6 (gpt-6-sol)", "claude": "Claude Opus 5.5"}
 with open(os.path.join(OUTDIR, "tab_agentvendor.tex"), "w") as f:
-    f.write("\\begin{table}[t]\n\\centering\n\\caption{Cross-scope reuse and the savings over \\M{PerScope} hold for every agent model. Per model over all setups and recording seeds; Exec. ratio: ScopeCache executions over those of \\M{PerScope}. Rows are models, not methods, so the table is not ranked.}\n\\label{tab:agentvendor}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
+    f.write("\\begin{table}[t]\n\\centering\n\\caption{Cross-scope reuse and the savings over \\M{PerScope} hold for every agent model. Exec. ratio: ScopeCache executions over those of \\M{PerScope}.}\n\\label{tab:agentvendor}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
     f.write("\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\nModel & Calls/q. & Hit (\\%) & X-sc. (\\%) & Exec. ratio\\\\\n\\midrule\n")
     for v in ["deepseek", "glm", "kimi", "gpt6", "claude"]:
         ks = [k for k in keys if k.split("/")[1] == v]
