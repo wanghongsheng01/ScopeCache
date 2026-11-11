@@ -9,7 +9,12 @@ from engine import Env, Query, fresh, Policy
 from run import run_method, defkey
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-METHODS = ["NoCache", "Exact", "SemNoScope", "PerUser", "PerScope", "ViewRewrite", "ScopeCache", "SC-online", "SC-atoms", "PerScope+", "VR-adapt"]
+METHODS = ["NoCache", "Exact", "SemNoScope", "PerUser", "PerScope", "ViewRewrite", "ScopeCache", "SC-online", "SC-atoms", "PerScope+", "VR-adapt",
+           "PerScope+V"]
+# optional restriction (budget sensitivity): SC_SETUPS=ent SC_METHODS=ScopeCache,SC-online
+if os.environ.get("SC_METHODS"):
+    METHODS = os.environ["SC_METHODS"].split(",")
+SETUPS = os.environ.get("SC_SETUPS", "").split(",") if os.environ.get("SC_SETUPS") else None
 
 
 def parse_name(path):
@@ -55,6 +60,8 @@ if __name__ == "__main__":
     os.makedirs(pdir, exist_ok=True)
     for path in sorted(glob.glob(os.path.join(ROOT, "results", "agent", "*_*.jsonl"))):
         setup, model, seed = parse_name(path)
+        if SETUPS and setup not in SETUPS:
+            continue
         key = f"{setup}/{model}/s{seed}"
         part = os.path.join(pdir, key.replace("/", "_") + ".json")
         prev = json.load(open(part)) if os.path.exists(part) and os.path.getmtime(part) > os.path.getmtime(path) else None
@@ -70,7 +77,7 @@ if __name__ == "__main__":
             out[key]["methods"][m] = {k: r.get(k, 0) for k in ["data_calls", "hits", "hit_rate", "wrong", "overpriv", "stale", "n_exec", "lat_model_mean", "peak_rows", "hit_self", "hit_other", "hit_view", "hit_xscope"]}
             out[key]["methods"][m]["other_share"] = round(r.get("hit_other", 0) / dc, 3)
             out[key]["methods"][m]["xscope_share"] = round(r.get("hit_xscope", 0) / dc, 3)
-        so = out[key]["methods"]["SC-online"]; pu = out[key]["methods"]["PerUser"]
+        so = out[key]["methods"].get("SC-online", {"other_share": None})
         out[key]["C1_cross_principal_share"] = so["other_share"]
         print(key, out[key]["calls"], "C1=", so["other_share"], "exact", out[key]["exact_intent_overlap"],
               {m: (round(v["hit_rate"], 3), v["n_exec"], v["overpriv"]) for m, v in out[key]["methods"].items()}, flush=True)

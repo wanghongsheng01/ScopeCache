@@ -6,7 +6,7 @@ Terminology (see 01_研究计划书.md):
                membership signature form one class; a block (policy atom) is a tuple of classes.
   entry      = partial aggregates of base measures grouped by G' (and by block for ScopeCache).
 """
-import hashlib, json, math, time, random, itertools
+import hashlib, json, math, os, time, random, itertools
 from collections import defaultdict
 import duckdb, numpy as np, pandas as pd
 from datasets import spec, DB
@@ -321,6 +321,8 @@ class Env:
     def __init__(self, name, seed=0, n_users=400):
         self.name, self.sp = name, spec(name)
         self.con = duckdb.connect(self.sp.get("db", DB), read_only=True)
+        # DuckDB threads (default 4, so that two runs leave room on a shared 10-core machine); counts do not depend on it
+        self.con.execute(f"SET threads TO {int(os.environ.get('SC_THREADS', '4'))}")
         self.con.execute("SET threads=8")
         self.t = self.sp["table"]
         cols = set(self.sp["dims"]) | set(self.sp["policy"])
@@ -444,10 +446,13 @@ def fresh(env, u, q):
 
 
 # ------------------------------------------------------------------------------------------------ workload
-def gen_workload(env, n_calls, seed, ev_rate=1.0, replay=0.5, drift=0):
+def gen_workload(env, n_calls, seed, ev_rate=1.0, replay=0.5, drift=0, crn=False):
     """Agent sessions (overview -> breakdown -> drill -> swap/compare/scalar/retry) interleaved with permission
     and semantic-layer events.  Returns a list of ('call', u, Query) | ('event', kind)."""
     rng = random.Random(seed)
+    # crn: events draw from their own stream, so runs at different event rates issue the same calls
+    # (common random numbers) and the events at a higher rate are a superset of those at a lower rate
+    erng = random.Random(seed * 7919 + 17) if crn else rng
     sp = env.sp
     mets = list(sp["metrics"])
     mw = np.array([1.0 / (i + 1) ** 0.9 for i in range(len(mets))])
@@ -475,7 +480,8 @@ def gen_workload(env, n_calls, seed, ev_rate=1.0, replay=0.5, drift=0):
         return rng.choice(sorted(env.domains[d], key=str)[:12])
 
     nsess = 0
-    while len(out) < n_calls:
+    ncall = lambda: sum(1 for it in out if it[0] == "call") if crn else len(out)
+    while ncall() < n_calls:
         nsess += 1
         if drift and nsess % drift == 0:          # interest drift: re-rank metric and dimension popularity
             rng.shuffle(mets); rng.shuffle(dims)
@@ -508,9 +514,18 @@ def gen_workload(env, n_calls, seed, ev_rate=1.0, replay=0.5, drift=0):
             seq.append(q)
         for q in seq:
             for kind, p in rates.items():
-                if rng.random() < p * ev_rate:
+                if erng.random() < p * ev_rate:
                     out.append(("event", kind))
-                    if kind != "republish" and replay and rng.random() < replay:
+                    if kind != "republish" and replay and erng.random() < replay:
                         out.append(("replay", None))
             out.append(("call", u, q))
+    if crn:          # the same n_calls calls at every event rate; events and the replays they trigger come on top
+        res, c = [], 0
+        for it in out:
+            if it[0] == "call":
+                if c >= n_calls:
+                    break
+                c += 1
+            res.append(it)
+        return res
     return out[:n_calls]

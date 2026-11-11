@@ -193,6 +193,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 218,
+    "hits": 212,
+    "hit_rate": 0.9724770642201835,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 6,
+    "lat_model_mean": 0.01984370850627613,
+    "peak_rows": 244301,
+    "hit_self": 0,
+    "hit_other": 2,
+    "hit_view": 210,
+    "hit_xscope": 0,
+    "other_share": 0.009,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.972
@@ -391,6 +408,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 231,
+    "hits": 225,
+    "hit_rate": 0.974025974025974,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 6,
+    "lat_model_mean": 0.019170079422131225,
+    "peak_rows": 155157,
+    "hit_self": 0,
+    "hit_other": 2,
+    "hit_view": 223,
+    "hit_xscope": 0,
+    "other_share": 0.009,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.974
@@ -583,6 +617,23 @@
     "n_exec": 9,
     "lat_model_mean": 0.03318083219468974,
     "peak_rows": 155109,
+    "hit_self": 0,
+    "hit_other": 0,
+    "hit_view": 204,
+    "hit_xscope": 0,
+    "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 213,
+    "hits": 204,
+    "hit_rate": 0.9577464788732394,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 9,
+    "lat_model_mean": 0.028005154371681343,
+    "peak_rows": 155169,
     "hit_self": 0,
     "hit_other": 0,
     "hit_view": 204,
@@ -787,6 +838,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 326,
+    "hits": 317,
+    "hit_rate": 0.9723926380368099,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 9,
+    "lat_model_mean": 0.018249111657142863,
+    "peak_rows": 155167,
+    "hit_self": 0,
+    "hit_other": 4,
+    "hit_view": 313,
+    "hit_xscope": 0,
+    "other_share": 0.012,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.972
@@ -979,6 +1047,23 @@
     "n_exec": 13,
     "lat_model_mean": 0.024759578324138908,
     "peak_rows": 155109,
+    "hit_self": 0,
+    "hit_other": 0,
+    "hit_view": 251,
+    "hit_xscope": 0,
+    "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 264,
+    "hits": 251,
+    "hit_rate": 0.9507575757575758,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 13,
+    "lat_model_mean": 0.03047882928965507,
+    "peak_rows": 155178,
     "hit_self": 0,
     "hit_other": 0,
     "hit_view": 251,
@@ -1183,6 +1268,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 218,
+    "hits": 211,
+    "hit_rate": 0.9678899082568807,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 7,
+    "lat_model_mean": 0.021767674419913407,
+    "peak_rows": 155159,
+    "hit_self": 0,
+    "hit_other": 2,
+    "hit_view": 209,
+    "hit_xscope": 0,
+    "other_share": 0.009,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.963
@@ -1381,6 +1483,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 283,
+    "hits": 274,
+    "hit_rate": 0.9681978798586572,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 9,
+    "lat_model_mean": 0.01950644718154755,
+    "peak_rows": 155167,
+    "hit_self": 0,
+    "hit_other": 2,
+    "hit_view": 272,
+    "hit_xscope": 0,
+    "other_share": 0.007,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.968
@@ -1573,6 +1692,23 @@
     "n_exec": 11,
     "lat_model_mean": 0.02217201316099185,
     "peak_rows": 155109,
+    "hit_self": 0,
+    "hit_other": 0,
+    "hit_view": 250,
+    "hit_xscope": 0,
+    "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 261,
+    "hits": 250,
+    "hit_rate": 0.9578544061302682,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 11,
+    "lat_model_mean": 0.02434223579256966,
+    "peak_rows": 155173,
     "hit_self": 0,
     "hit_other": 0,
     "hit_view": 250,
@@ -1777,6 +1913,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 260,
+    "hits": 255,
+    "hit_rate": 0.9807692307692307,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 5,
+    "lat_model_mean": 0.03364116609589041,
+    "peak_rows": 734078,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 254,
+    "hit_xscope": 0,
+    "other_share": 0.004,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.442
@@ -1974,6 +2127,23 @@
     "hit_view": 241,
     "hit_xscope": 0,
     "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 247,
+    "hits": 242,
+    "hit_rate": 0.979757085020243,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 5,
+    "lat_model_mean": 0.034408236989726455,
+    "peak_rows": 734078,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 241,
+    "hit_xscope": 0,
+    "other_share": 0.004,
     "xscope_share": 0.0
    }
   },
@@ -2173,6 +2343,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 253,
+    "hits": 249,
+    "hit_rate": 0.9841897233201581,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 4,
+    "lat_model_mean": 0.02881912127857166,
+    "peak_rows": 734094,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 248,
+    "hit_xscope": 0,
+    "other_share": 0.004,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.478
@@ -2365,6 +2552,23 @@
     "n_exec": 6,
     "lat_model_mean": 0.034950166877980395,
     "peak_rows": 734045,
+    "hit_self": 0,
+    "hit_other": 0,
+    "hit_view": 331,
+    "hit_xscope": 0,
+    "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 337,
+    "hits": 331,
+    "hit_rate": 0.9821958456973294,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 6,
+    "lat_model_mean": 0.026816928456233773,
+    "peak_rows": 734394,
     "hit_self": 0,
     "hit_other": 0,
     "hit_view": 331,
@@ -2569,6 +2773,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 295,
+    "hits": 291,
+    "hit_rate": 0.9864406779661017,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 4,
+    "lat_model_mean": 0.025534873328221026,
+    "peak_rows": 734094,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 290,
+    "hit_xscope": 0,
+    "other_share": 0.003,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.441
@@ -2766,6 +2987,23 @@
     "hit_view": 248,
     "hit_xscope": 0,
     "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 254,
+    "hits": 249,
+    "hit_rate": 0.9803149606299213,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 5,
+    "lat_model_mean": 0.027061043557491702,
+    "peak_rows": 734078,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 248,
+    "hit_xscope": 0,
+    "other_share": 0.004,
     "xscope_share": 0.0
    }
   },
@@ -2965,6 +3203,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 370,
+    "hits": 363,
+    "hit_rate": 0.981081081081081,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 7,
+    "lat_model_mean": 0.03236459076666699,
+    "peak_rows": 734202,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 362,
+    "hit_xscope": 0,
+    "other_share": 0.003,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.43
@@ -3163,6 +3418,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 354,
+    "hits": 345,
+    "hit_rate": 0.9745762711864406,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 9,
+    "lat_model_mean": 0.03792164239690786,
+    "peak_rows": 734664,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 344,
+    "hit_xscope": 0,
+    "other_share": 0.003,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.466
@@ -3355,6 +3627,23 @@
     "n_exec": 7,
     "lat_model_mean": 0.020268954778481042,
     "peak_rows": 920620,
+    "hit_self": 0,
+    "hit_other": 0,
+    "hit_view": 253,
+    "hit_xscope": 0,
+    "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 260,
+    "hits": 253,
+    "hit_rate": 0.9730769230769231,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 7,
+    "lat_model_mean": 0.03154887181012707,
+    "peak_rows": 920671,
     "hit_self": 0,
     "hit_other": 0,
     "hit_view": 253,
@@ -3559,6 +3848,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 239,
+    "hits": 233,
+    "hit_rate": 0.9748953974895398,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 6,
+    "lat_model_mean": 0.020658329964515675,
+    "peak_rows": 920662,
+    "hit_self": 0,
+    "hit_other": 0,
+    "hit_view": 233,
+    "hit_xscope": 0,
+    "other_share": 0.0,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.95
@@ -3756,6 +4062,23 @@
     "hit_view": 215,
     "hit_xscope": 0,
     "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 232,
+    "hits": 216,
+    "hit_rate": 0.9310344827586207,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 16,
+    "lat_model_mean": 0.04166189042721575,
+    "peak_rows": 661001,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 215,
+    "hit_xscope": 0,
+    "other_share": 0.004,
     "xscope_share": 0.0
    }
   },
@@ -3955,6 +4278,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 321,
+    "hits": 310,
+    "hit_rate": 0.9657320872274143,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 11,
+    "lat_model_mean": 0.03051432437500001,
+    "peak_rows": 920711,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 309,
+    "hit_xscope": 0,
+    "other_share": 0.003,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.944
@@ -4153,6 +4493,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 289,
+    "hits": 270,
+    "hit_rate": 0.9342560553633218,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 19,
+    "lat_model_mean": 0.04086877310027782,
+    "peak_rows": 662444,
+    "hit_self": 0,
+    "hit_other": 3,
+    "hit_view": 267,
+    "hit_xscope": 0,
+    "other_share": 0.01,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.948
@@ -4345,6 +4702,23 @@
     "n_exec": 6,
     "lat_model_mean": 0.01873356166153826,
     "peak_rows": 920620,
+    "hit_self": 0,
+    "hit_other": 0,
+    "hit_view": 267,
+    "hit_xscope": 0,
+    "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 273,
+    "hits": 267,
+    "hit_rate": 0.978021978021978,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 6,
+    "lat_model_mean": 0.028345391418462127,
+    "peak_rows": 920662,
     "hit_self": 0,
     "hit_other": 0,
     "hit_view": 267,
@@ -4549,6 +4923,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 362,
+    "hits": 349,
+    "hit_rate": 0.9640883977900553,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 13,
+    "lat_model_mean": 0.0264979201840357,
+    "peak_rows": 920975,
+    "hit_self": 0,
+    "hit_other": 2,
+    "hit_view": 347,
+    "hit_xscope": 0,
+    "other_share": 0.006,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.961
@@ -4746,6 +5137,23 @@
     "hit_view": 314,
     "hit_xscope": 0,
     "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 342,
+    "hits": 315,
+    "hit_rate": 0.9210526315789473,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 27,
+    "lat_model_mean": 0.04282319251876297,
+    "peak_rows": 661418,
+    "hit_self": 0,
+    "hit_other": 1,
+    "hit_view": 314,
+    "hit_xscope": 0,
+    "other_share": 0.003,
     "xscope_share": 0.0
    }
   },
@@ -4945,6 +5353,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 309,
+    "hits": 292,
+    "hit_rate": 0.9449838187702265,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 17,
+    "lat_model_mean": 0.05223822202187378,
+    "peak_rows": 991750,
+    "hit_self": 8,
+    "hit_other": 1,
+    "hit_view": 283,
+    "hit_xscope": 0,
+    "other_share": 0.003,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.984
@@ -5142,6 +5567,23 @@
     "hit_view": 230,
     "hit_xscope": 0,
     "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 256,
+    "hits": 235,
+    "hit_rate": 0.91796875,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 21,
+    "lat_model_mean": 0.05511341846762565,
+    "peak_rows": 987754,
+    "hit_self": 4,
+    "hit_other": 1,
+    "hit_view": 230,
+    "hit_xscope": 0,
+    "other_share": 0.004,
     "xscope_share": 0.0
    }
   },
@@ -5341,6 +5783,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 248,
+    "hits": 199,
+    "hit_rate": 0.8024193548387096,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 49,
+    "lat_model_mean": 0.10805429464661563,
+    "peak_rows": 999083,
+    "hit_self": 1,
+    "hit_other": 3,
+    "hit_view": 195,
+    "hit_xscope": 0,
+    "other_share": 0.012,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.927
@@ -5538,6 +5997,23 @@
     "hit_view": 293,
     "hit_xscope": 0,
     "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 319,
+    "hits": 295,
+    "hit_rate": 0.9247648902821317,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 24,
+    "lat_model_mean": 0.05953295123738938,
+    "peak_rows": 996727,
+    "hit_self": 0,
+    "hit_other": 2,
+    "hit_view": 293,
+    "hit_xscope": 0,
+    "other_share": 0.006,
     "xscope_share": 0.0
    }
   },
@@ -5737,6 +6213,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 291,
+    "hits": 254,
+    "hit_rate": 0.872852233676976,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 37,
+    "lat_model_mean": 0.08866239309210755,
+    "peak_rows": 992423,
+    "hit_self": 30,
+    "hit_other": 6,
+    "hit_view": 218,
+    "hit_xscope": 0,
+    "other_share": 0.021,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.89
@@ -5934,6 +6427,23 @@
     "hit_view": 269,
     "hit_xscope": 0,
     "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 291,
+    "hits": 274,
+    "hit_rate": 0.9415807560137457,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 17,
+    "lat_model_mean": 0.052159385137704586,
+    "peak_rows": 991750,
+    "hit_self": 4,
+    "hit_other": 1,
+    "hit_view": 269,
+    "hit_xscope": 0,
+    "other_share": 0.003,
     "xscope_share": 0.0
    }
   },
@@ -6133,6 +6643,23 @@
     "hit_xscope": 0,
     "other_share": 0.0,
     "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 386,
+    "hits": 352,
+    "hit_rate": 0.9119170984455959,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 34,
+    "lat_model_mean": 0.06346870347188353,
+    "peak_rows": 999789,
+    "hit_self": 30,
+    "hit_other": 3,
+    "hit_view": 319,
+    "hit_xscope": 0,
+    "other_share": 0.008,
+    "xscope_share": 0.0
    }
   },
   "C1_cross_principal_share": 0.987
@@ -6330,6 +6857,23 @@
     "hit_view": 302,
     "hit_xscope": 0,
     "other_share": 0.0,
+    "xscope_share": 0.0
+   },
+   "PerScope+V": {
+    "data_calls": 362,
+    "hits": 324,
+    "hit_rate": 0.8950276243093923,
+    "wrong": 0,
+    "overpriv": 0,
+    "stale": 0,
+    "n_exec": 38,
+    "lat_model_mean": 0.0793074436850401,
+    "peak_rows": 992429,
+    "hit_self": 17,
+    "hit_other": 5,
+    "hit_view": 302,
+    "hit_xscope": 0,
+    "other_share": 0.014,
     "xscope_share": 0.0
    }
   },

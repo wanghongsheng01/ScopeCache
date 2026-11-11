@@ -18,7 +18,9 @@ METHODS = {"NoCache": dict(mode="nocache"), "Exact": dict(mode="exact"), "SemNoS
            # baselines added after the mock review (2026-11-10)
            "PerScope+": dict(mode="scopeplus"), "VR-adapt": dict(mode="views", adapt=600),
            "SC-online-nolift": dict(mode="raw", lift=False),
-           "PerScope+V": dict(mode="scopeplus", hybrid=True)}
+           "PerScope+V": dict(mode="scopeplus", hybrid=True),
+           # VR-adapt with other re-selection periods (2026-11-11)
+           "VR-adapt300": dict(mode="views", adapt=300), "VR-adapt1200": dict(mode="views", adapt=1200)}
 
 
 def apply_event(env, kind):
@@ -34,9 +36,9 @@ def defkey(env, q):
               {g: sem.mapver[g] for g in q.group if g in sem.mapping}])
 
 
-def oracle_pass(name, seed, n_calls, ev_rate, n_users, drift=0):
+def oracle_pass(name, seed, n_calls, ev_rate, n_users, drift=0, crn=False):
     env0 = Env(name, seed, n_users)
-    wl = gen_workload(env0, n_calls, seed, ev_rate, drift=drift)
+    wl = gen_workload(env0, n_calls, seed, ev_rate, drift=drift, crn=crn)
     env0.con.close()
     env = Env(name, seed, n_users)
     trace, last_q, affected = [], {}, []
@@ -96,8 +98,9 @@ def run_method(name, seed, n_users, trace, mname, budget, train_frac, ovh):
     if cfg["mode"] == "views" or cfg.get("hybrid"):
         tr = calls[:n_train]
         cache.build_views([(t[1], t[2]) for t in tr], [env.rows_in(t[2].months) if DETCOST else t[3]["sec"] for t in tr])
-    rec = dict(calls=0, data_calls=0, hits=0, wrong=0, overpriv=0, stale=0, exec_s=0.0, derive_s=0.0, n_exec=0,
-               lat_local=[], lat_model=[], lat_pad=[], replay_calls=0, replay_wrong=0, peak_rows=0, view_rebuilds=0)
+    rec = dict(calls=0, data_calls=0, hits=0, wrong=0, overpriv=0, stale=0, exec_s=0.0, derive_s=0.0, n_exec=0, rows_scanned=0,
+               lat_local=[], lat_model=[], lat_pad=[], replay_calls=0, replay_wrong=0, peak_rows=0, view_rebuilds=0, readapt_mat=0)
+    mat0 = (cache.stats.get("mat_n", 0), cache.stats.get("mat_rows", 0))
     window = []
     ci = 0
     t_start = time.time()
@@ -116,8 +119,10 @@ def run_method(name, seed, n_users, trace, mname, budget, train_frac, ovh):
         if adapt and ci > n_train and (ci - n_train) % adapt == 0:      # re-select views on the last `adapt` calls
             w = window[-adapt:]
             nv, sec = cache.readapt([(a, b) for a, b, _ in w], [c for _, _, c in w])
-            rec["n_exec"] += nv; rec["exec_s"] += sec; rec["view_rebuilds"] += 1
+            rec["n_exec"] += nv; rec["exec_s"] += sec; rec["view_rebuilds"] += 1; rec["readapt_mat"] += nv
         if ci <= n_train:
+            if ci == n_train:      # view materializations from here on (maintenance, re-selection) are measured work
+                mat0 = (cache.stats.get("mat_n", 0), cache.stats.get("mat_rows", 0))
             continue
         rec["calls"] += 1
         data = not isinstance(orc["ans"], str)
@@ -151,6 +156,8 @@ def run_method(name, seed, n_users, trace, mname, budget, train_frac, ovh):
         if orc["replay"]:
             rec["replay_calls"] += 1; rec["replay_wrong"] += (not ok)
         rec["exec_s"] += r["exec"]; rec["derive_s"] += r["derive"]; rec["n_exec"] += r["n_exec"]
+        if r["n_exec"]:
+            rec["rows_scanned"] += r.get("rows", env.rows_in(q.months))
         loc = r["exec"] + r["derive"]
         rec["lat_local"].append(loc); rec["lat_model"].append(loc + ovh * r["n_exec"])
         # SC-pad: a hit on an entry not created under the requester's current scope (or on a pinned view) is
@@ -159,6 +166,10 @@ def run_method(name, seed, n_users, trace, mname, budget, train_frac, ovh):
                                      Policy.scope_key(env.pol.scope(r["creator"])) != orc["skey"])
         rec["lat_pad"].append(loc + (orc["sec"] + ovh if pad else ovh * r["n_exec"]))
         rec["peak_rows"] = max(rec["peak_rows"], cache.used)
+    # view rebuilds after a republish are warehouse executions too (re-selections of VR-adapt are counted above)
+    rec["view_maint"] = cache.stats.get("mat_n", 0) - mat0[0] - rec["readapt_mat"]
+    rec["n_exec"] += rec["view_maint"]
+    rec["rows_scanned"] += cache.stats.get("mat_rows", 0) - mat0[1]
     ll, lm, lp = np.array(rec.pop("lat_local")), np.array(rec.pop("lat_model")), np.array(rec.pop("lat_pad"))
     rec.update(hit_rate=rec["hits"] / max(1, rec["data_calls"]), lat_local_mean=float(ll.mean()),
                lat_local_p50=float(np.percentile(ll, 50)), lat_local_p95=float(np.percentile(ll, 95)),
@@ -175,16 +186,16 @@ if __name__ == "__main__":
     ap.add_argument("--users", type=int, default=400); ap.add_argument("--budget", type=int, default=1_000_000)
     ap.add_argument("--ev", type=float, default=1.0); ap.add_argument("--ovh", type=float, default=0.5)
     ap.add_argument("--methods", default=",".join(METHODS)); ap.add_argument("--tag", default="main")
-    ap.add_argument("--drift", type=int, default=0)
+    ap.add_argument("--drift", type=int, default=0); ap.add_argument("--crn", action="store_true")
     a = ap.parse_args()
     t0 = time.time()
-    trace = oracle_pass(a.setup, a.seed, a.calls, a.ev, a.users, a.drift)
+    trace = oracle_pass(a.setup, a.seed, a.calls, a.ev, a.users, a.drift, a.crn)
     ev = {}
     for t in trace:
         if t[0] == "event":
             ev[t[1]] = ev.get(t[1], 0) + 1
     print(f"oracle done {time.time()-t0:.0f}s events={ev}", flush=True)
-    out = dict(drift=a.drift, setup=a.setup, seed=a.seed, calls=a.calls, users=a.users, budget=a.budget, ev=a.ev, ovh=a.ovh, events=ev, methods={})
+    out = dict(crn=a.crn, drift=a.drift, setup=a.setup, seed=a.seed, calls=a.calls, users=a.users, budget=a.budget, ev=a.ev, ovh=a.ovh, events=ev, methods={})
     for m in a.methods.split(","):
         r = run_method(a.setup, a.seed, a.users, trace, m, a.budget, 0.2, a.ovh)
         out["methods"][m] = r

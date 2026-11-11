@@ -14,7 +14,7 @@ regenerate every number of the paper.
 | `code/datasets.py` | Builds the four fact tables into `data/scopecache.duckdb` |
 | `code/agent_trace.py` | Records tool-calling LLM agents (five models from five vendors: deepseek-chat, GLM-4.5-flash, Kimi-K2.6, GPT-6, Claude Opus 5.5) answering business questions for principals with different scopes |
 | `code/agent_eval.py`, `code/agent_sens.py` | Replay of the recorded traces through all caches; sensitivity to the number of principals per question |
-| `results/` | All result JSON files used in the paper (`v4main_*`, `v4ev*_*`, `v4drift_*`, `v4b100k_*`, `v4dom_*`, `v4scale_*`, `agent_eval_v4_b1000000.json`, `agent_sens_v4.json`; earlier `v2*`/`v3*` runs are kept for reference) and the recorded traces `results/agent/*.jsonl` |
+| `results/` | All result JSON files used in the paper (`v5main_*`, `v5cev*_*`, `v5drift_*`, `v5b100k_*`, `v5dom_*`, `v5scale_*`, `agent_eval_v4_b1000000.json`, `agent_eval_v4_b10000000.json`, `agent_sens_v4.json`; earlier `v2*`/`v3*`/`v4*` runs are kept for reference) and the recorded traces `results/agent/*.jsonl` |
 | `results/erp_*.json`, `results/*_erp_s*.json` | Aggregate statistics of the enterprise ERP system and the results of the ERP setup, which uses the system's real account-to-shop grants over a synthetic fact table. The grant file itself is not released; all other setups are fully reproducible |
 | `results/main_*_s*.json` | Earlier runs (2026-11-05, idle machine) with the v1 method names (`SC-raw` = today's `ScopeCache`); the paper uses them only for the per-hit derivation time |
 | `code/oracle_check.py`, `results/oracle_check.json` | Independent SQL-only oracle (formulas evaluated by DuckDB) compared with the experiment oracle on sampled calls |
@@ -68,6 +68,12 @@ MIT (code). TPC data are generated under the TPC EULA; BIRD is distributed under
 
 ## Changelog
 
+- 2026-11-11 (v5): executions include view rebuilds after a republish and view re-selections, and every run reports
+  `rows_scanned` (fact-table rows scanned by executions, rebuilds, and re-selections); a TTL miss on a call that the
+  policy rejects executes nothing; VR-adapt keeps the views it re-selects and materializes only new ones (periods
+  300, 600, 1,200); the event sweep (tag `v5cev*`) uses common random numbers (`--crn`: the same 3,000 calls at every rate, events and the replays they trigger on top) and includes ERP; the intermediate `v5ev*` runs, in which events took the places of calls, are kept for reference; PerScope+V is replayed on
+  the agent traces, and ENT traces are replayed with a budget of 10^7 rows. DuckDB uses 4 threads by default
+  (`SC_THREADS`); counts do not depend on it. The agent replays have no events and keep the `v4` files.
 - 2026-11-11: agent traces of GPT-6 (gpt-6-sol) and Claude Opus 5.5 added (32 traces in total); all replays re-run under `v4`.
 - 2026-11-10 night: deterministic eviction and view-selection costs (`SC_DETCOST=1`) and a NULL-preserving merge of
   partial sums (a SUM over only NULL values is NULL, as in SQL); all experiments re-run under the `v4` tags, plus the PerScope+V baseline, the policy-domain sweep (`dom*`), and TPC-H at scale factor 5.

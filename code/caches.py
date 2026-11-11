@@ -268,6 +268,7 @@ class Cache:
             return dict(ans=orc["ans"], exec=orc["sec"], derive=0.0, hit=False, src=None, n_exec=1)
 
         part = self.part_of(u, sc)
+        rejected = mode == "ttl" and isinstance(orc["ans"], str)   # TTL hits skip the check; a miss is checked by the warehouse
         distinct = any(sem.metrics[m].startswith("DISTINCT:") for m in q.metrics)
         check_sem = mode != "ttl"
         # 1) exact side store (non-decomposable aggregates); ttl ignores definitions
@@ -279,6 +280,8 @@ class Cache:
                 self.touch(e)
                 return dict(ans=e.answer, exec=0.0, derive=time.perf_counter() - t0, hit=True, creator=e.creator, src=e.src, n_exec=0)
             if distinct:
+                if rejected:
+                    return dict(ans=orc["ans"], exec=0.0, derive=0.0, hit=False, src=None, n_exec=0)
                 if orc["df"] is not None and mode != "views":
                     self._admit_answer(k, orc, sc, q)
                 self.stats["fallback"] += 1
@@ -313,6 +316,8 @@ class Cache:
             return dict(ans=orc["ans"], exec=orc["sec"], derive=0.0, hit=False, src=None, n_exec=1)
         if mode == "views":
             return dict(ans=orc["ans"], exec=orc["sec"], derive=0.0, hit=False, src=None, n_exec=1)
+        if rejected:
+            return dict(ans=orc["ans"], exec=0.0, derive=0.0, hit=False, src=None, n_exec=0)
         self._admit_scoped(part, q, orc, sc)
         return dict(ans=orc["ans"], exec=orc["sec"], derive=0.0, hit=False, src=None, n_exec=1)
 
@@ -453,11 +458,11 @@ class Cache:
             ans = self.derive(e, q, mf, True)
             if ans is None:      # cannot happen for a fresh entry under the current vocabulary
                 raise RuntimeError("fresh entry not derivable")
-            return dict(ans=ans, exec=sec, derive=0.0, hit=False, src=None, n_exec=1)
+            return dict(ans=ans, exec=sec, derive=0.0, hit=False, src=None, n_exec=1, rows=env.rows_in(months))
         return None
 
     # ------------------------------------------------------------------ static views
-    def build_views(self, train_calls, oracle_times):
+    def build_views(self, train_calls, oracle_times, keep=None):
         """Offline greedy selection (HRU-style marginal benefit per row) over candidate views, one per
         distinct training grouping: required columns + month over the whole history + policy columns,
         full measure bundle.  ViewRewrite keeps raw policy attributes; ScopeCache stores policy atoms when
@@ -522,7 +527,11 @@ class Cache:
         self.stats["view_build_sec"] = time.perf_counter() - t0
         self.view_keys = []
         for key, at in chosen:
-            self.stats["view_build_sec"] += self._materialize(tuple(sorted(key)), at)
+            old = (keep or {}).get((tuple(sorted(key)), at))
+            if old is not None:                  # still selected: keep the materialized view
+                self.buckets.setdefault("*", []).append(old); self.used += old.size; self.pinned += old.size
+            else:
+                self.stats["view_build_sec"] += self._materialize(tuple(sorted(key)), at)
             self.view_keys.append((key, at))
 
     def _materialize(self, key, atoms=False):
@@ -543,6 +552,8 @@ class Cache:
         else:
             sql, e.G = inner, tuple(npc + rest)
         df, sec = env.run(sql)
+        self.stats["mat_n"] = self.stats.get("mat_n", 0) + 1
+        self.stats["mat_rows"] = self.stats.get("mat_rows", 0) + env.rows_in((env.months[0], env.months[-1]))
         e.df = df; e.size = len(df); e.cost = sec * 1e6; e.part = "*"; e.freq = 1; e.prio = 1e12; e.pinned = True; e.creator = "view"
         e.filters = {}; e.months = (env.months[0], env.months[-1]); e.key = key; e.atoms = atoms
         e.meas = {m: sem.mhash(m) for m in ms}
@@ -552,10 +563,11 @@ class Cache:
     def readapt(self, window_calls, window_times):
         """ViewRewrite-adaptive: drop the pinned views and select new ones on the recent window; returns the
         number of materializations and their seconds (online warehouse work)."""
+        keep = {(e.key, e.atoms): e for e in self.buckets.get("*", []) if e.pinned}
         self.drop(lambda e: e.pinned)
-        n0, t0 = self.stats.get("view_mat", 0), self.stats.get("view_build_sec", 0.0)
-        self.build_views(window_calls, window_times)
-        return len(self.view_keys), self.stats["view_build_sec"]
+        n0, t0 = self.stats.get("mat_n", 0), self.stats.get("view_build_sec", 0.0)
+        self.build_views(window_calls, window_times, keep=keep)
+        return self.stats.get("mat_n", 0) - n0, self.stats["view_build_sec"] - t0
 
     def rebuild_views(self):
         """ViewRewrite maintenance on republication: any view with a changed measure is recomputed."""

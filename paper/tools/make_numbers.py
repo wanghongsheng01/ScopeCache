@@ -31,7 +31,10 @@ def pct(x, nd=0):
 
 # result generation: v4 = deterministic eviction cost and NULL-preserving merge of partial sums; v3 = deterministic eviction cost (all methods of the main grid in one file per run);
 # v2 = the earlier runs, kept for reference (main grid split over v2main/v2sup/v2psv/v2nolift)
-PFX = os.environ.get("SC_PFX", "v4")
+PFX = os.environ.get("SC_PFX", "v5")
+# v5 = v4 plus view rebuilds counted as executions, rows scanned, TTL misses checked by the warehouse, VR-adapt keeping
+# re-selected views, and the event sweep with common random numbers; the agent replays have no events and keep v4
+AGPFX = os.environ.get("SC_AGPFX", "v4")
 
 
 def load(tag, setup, seed=0):
@@ -85,6 +88,40 @@ mac("nRedVRruns", str(len(red_vr))); mac("nRedVRpos", str(sum(x > 0 for x in red
 rpp = reds("PerScope+", "SC-online")            # same machinery, shared vs partitioned (both without views)
 rng_mac("redPSPlus", rpp); mac("redPSPlusMed", pct(st.median(rpp)) if rpp else "??")
 rng_mac("redVRA", reds("VR-adapt"))
+# VR-adapt with re-selection every 300 and 1,200 calls; fewest executions over the three periods
+vra_all = [m for m in ("VR-adapt300", "VR-adapt", "VR-adapt1200") if all(m in r["methods"] for s_ in MSETUPS for r in main[s_])]
+if len(vra_all) == 3:
+    assert all(r["methods"][m]["wrong"] == 0 for s_ in MSETUPS for r in main[s_] for m in vra_all)
+    best_vra = [1 - r["methods"]["ScopeCache"]["n_exec"] / min(r["methods"][m]["n_exec"] for m in vra_all) for s_ in MSETUPS for r in main[s_]]
+    rng_mac("redVRAbest", best_vra); mac("nVRAbestNeg", str(sum(x < 0 for x in best_vra)))
+    vra_hit = [r["methods"][m]["hit_rate"] - r["methods"]["ViewRewrite"]["hit_rate"] for s_ in MSETUPS for r in main[s_] for m in vra_all]
+    chg = [s_ for s_ in MSETUPS if any(r["methods"][m]["n_exec"] != r["methods"]["ViewRewrite"]["n_exec"] + 0 for r in main[s_] for m in vra_all)]
+    mac("vraChangedSetups", (", ".join(NAME[x] for x in chg[:-1]) + ({1: "", 2: " and "}.get(len(chg), ", and ")) + NAME[chg[-1]]) if chg else "none")
+    mac("vraHitGainMax", f"{100 * max(vra_hit):.1f}")
+# fact-table rows scanned (executions on a miss, view rebuilds, re-selections), per run
+if all("rows_scanned" in r["methods"]["ScopeCache"] for s_ in MSETUPS for r in main[s_]):
+    rred = lambda base, var="ScopeCache": [1 - r["methods"][var]["rows_scanned"] / r["methods"][base]["rows_scanned"] for s_ in MSETUPS for r in main[s_]]
+    rpe = [r["methods"][m]["rows_scanned"] / max(1, r["methods"][m]["n_exec"]) / (r["methods"]["NoCache"]["rows_scanned"] / r["methods"]["NoCache"]["n_exec"]) for s_ in MSETUPS for r in main[s_] for m in ("ScopeCache",)]
+    rng_mac("rowsPerExecSC", rpe, f=lambda v: f"{v:.1f}")
+    rng_mac("rowsRedNC", rred("NoCache")); rng_mac("rowsRedPS", rred("PerScope"))
+    rng_mac("rowsRedPSPlus", rred("PerScope+", "SC-online")); rng_mac("rowsRedPSV", rred("PerScope+V"))
+    assert min(rred("PerScope")) > 0 and min(rred("NoCache")) > 0 and min(rred("PerScope+", "SC-online")) > 0
+    # against ViewRewrite, per setup (mean over seeds): a lifted miss scans the full history, a ViewRewrite miss only W_q
+    rvs = {s_: st.mean(1 - r["methods"]["ScopeCache"]["rows_scanned"] / r["methods"]["ViewRewrite"]["rows_scanned"] for r in main[s_]) for s_ in MSETUPS}
+    fav = [s_ for s_ in MSETUPS if rvs[s_] > 0]; unf = [s_ for s_ in MSETUPS if rvs[s_] <= 0]
+    names = lambda ss: ", ".join(NAME[x] for x in ss[:-1]) + ({1: "", 2: " and "}.get(len(ss), ", and ")) + NAME[ss[-1]]
+    head = (f"Counting fact-table rows instead of executions, ScopeCache scans {pct(min(rred('PerScope')))}--{pct(max(rred('PerScope')))}\\% fewer rows than \\M{{PerScope}}, "
+            f"its online path {pct(min(rred('PerScope+', 'SC-online')))}--{pct(max(rred('PerScope+', 'SC-online')))}\\% fewer than \\M{{PerScope+}}, and the full system "
+            f"{pct(min(rvs[x] for x in fav))}--{pct(max(rvs[x] for x in fav))}\\% fewer than \\M{{ViewRewrite}} on {names(fav)}")
+    if unf:
+        _rpu = [st.mean(r["methods"]["ScopeCache"]["rows_scanned"] / r["methods"]["ScopeCache"]["n_exec"] / (r["methods"]["ViewRewrite"]["rows_scanned"] / r["methods"]["ViewRewrite"]["n_exec"]) for r in main[x]) for x in unf]
+        assert min(_rpu) > 1
+        mac("rowsSentence", head + f". On {names(unf)}, a ScopeCache execution scans {min(_rpu):.1f}$\\times$ the rows of a \\M{{ViewRewrite}} execution, because a lifted execution covers a wider window than the call that triggers it, whereas a miss of \\M{{ViewRewrite}} scans only the requested window; ScopeCache therefore scans {pct(max(-rvs[x] for x in unf))}\\% more rows there while needing fewer executions." if len(unf) == 1 else head + ".")
+    else:
+        mac("rowsSentence", head + ".")
+
+    vmaint = [r["methods"][m].get("view_maint", 0) for s_ in MSETUPS for r in main[s_] for m in ("ScopeCache", "ViewRewrite", "PerScope+V")]
+    mac("viewMaintLo", str(min(vmaint))); mac("viewMaintHi", str(max(vmaint)))
 if "erp" in MSETUPS:
     erp_vr = reds("ViewRewrite", setups=["erp"]); erp_ps = reds("PerScope", setups=["erp"]); erp_pp = reds("PerScope+", "SC-online", setups=["erp"])
     mac("erpRedVR", pct(st.mean(erp_vr))); mac("erpRedPS", pct(st.mean(erp_ps))); mac("erpRedPSPlus", pct(st.mean(erp_pp)))
@@ -123,10 +160,15 @@ for s_ in SETUPS:
             x, y = a["methods"]["SC-raw"]["n_exec"], b["methods"]["ScopeCache"]["n_exec"]
             rr.append(abs(y / x - 1)); nsame += x == y
 mac("rerunDiff", pct(max(rr)) if rr else "??"); mac("rerunSame", str(nsame)); mac("rerunN", str(len(rr)))
+# v5: a separate timing run of ScopeCache per setup (tag v5time, seed 0) with no other experiment of ours running
+_tm = [load(f"{PFX}time", s_, 0) for s_ in MSETUPS] if PFX >= "v5" else []
+if _tm and all(_tm):
+    der = [x["methods"]["ScopeCache"]["derive_s"] / max(1, x["methods"]["ScopeCache"]["hits"]) for x in _tm]
+    p95 = [x["methods"]["ScopeCache"]["lat_local_p95"] for x in _tm]
 mac("deriveMsLo", f"{1e3 * min(der):.0f}"); mac("deriveMsHi", f"{1e3 * max(der):.0f}")
 mac("lookupPninetyFiveLo", f"{1e3 * min(p95):.0f}"); mac("lookupPninetyFiveHi", f"{1e3 * max(p95):.0f}")
 
-vm = [r["methods"]["ViewRewrite"]["stats"].get("flushed", 0) for s in MSETUPS for r in main[s]]
+vm = [r["methods"]["ViewRewrite"].get("view_maint", r["methods"]["ViewRewrite"]["stats"].get("flushed", 0)) for s in MSETUPS for r in main[s]]
 mac("vrMaintViews", f"{min(vm)}--{max(vm)}")
 vsel = []
 for s_ in SETUPS:
@@ -134,6 +176,8 @@ for s_ in SETUPS:
         r = load("main", s_, k)
         if r and "SC-raw" in r["methods"]:
             vsel.append(r["methods"]["SC-raw"]["stats"].get("view_build_sec", 0))
+if _tm and all(_tm):
+    vsel = [x["methods"]["ScopeCache"]["stats"].get("view_build_sec", 0) for x in _tm]
 mac("viewSelSecMax", f"{max(vsel):.0f}")
 
 # hit breakdown (main grid): views, own, same-scope other, other scope
@@ -154,7 +198,7 @@ mac("padFastLo", pct(min(fast))); mac("padFastHi", pct(max(fast)))
 def rel(s, var):
     return [r["methods"][var]["n_exec"] / r["methods"]["ScopeCache"]["n_exec"] for r in main[s] if var in r["methods"]]
 nolift = [x for s in MSETUPS for x in rel(s, "SC-nolift")]
-mac("noliftAbsMax", pct(max(abs(x - 1) for x in nolift)))
+mac("noliftAbsMax", pct(max(abs(st.mean(rel(s, "SC-nolift")) - 1) for s in MSETUPS)))
 mac("noliftLo", ("$-$" if min(nolift) < 1 else "+") + pct(abs(min(nolift) - 1))); mac("noliftHi", ("+" if max(nolift) >= 1 else "$-$") + pct(abs(max(nolift) - 1)))
 atoms = [x for s in MSETUPS for x in rel(s, "SC-atoms")]
 sgn = lambda v: ("$-$" if v < 0 else "+") + pct(abs(v))
@@ -171,8 +215,8 @@ vals = [v for k, v in onl.items() if k != "ent"]
 mac("onlineNoliftLo", f"{min(vals):.2f}" if vals else "??"); mac("onlineNoliftHi", f"{max(vals):.2f}" if vals else "??")
 mac("onlineNoliftEnt", f"{onl.get('ent', float('nan')):.2f}")
 mac("onlineNoliftSaveLo", pct(1 - 1 / min(vals)) if vals else "??"); mac("onlineNoliftSaveHi", pct(1 - 1 / max(vals)) if vals else "??")
-snap = [x for s in MSETUPS for x in rel(s, "SC-snap")]
-mac("snapFactorLo", f"{min(snap):.1f}"); mac("snapFactorHi", f"{max(snap):.1f}")
+snap = [st.mean(rel(s, "SC-snap")) for s in MSETUPS]
+mac("snapFactorLo", f"{min(snap):.2f}"); mac("snapFactorHi", f"{max(snap):.2f}")
 
 
 # PerScope+V (same pinned views, online entries partitioned by scope) and the policy-domain sweep
@@ -229,24 +273,29 @@ for m in ["NoCache", "Exact", "PerUser", "PerScope", "PerScope+", "PerScope+V", 
     o = sum(r["methods"][m]["overpriv"] for s in MSETUPS for r in main[s] if m in r["methods"])
     rows.append([m, dc, w, o])
 
+EVSETUPS = SETUPS + (["erp"] if PFX >= "v5" else [])   # v5: ERP joins the event sweep
 # event sweep (seed 0): v2ev0/4/16 and v2main seed 0 for rate 1
 ev = {}
-for s in SETUPS:
+for s in EVSETUPS:
     ev[s] = {}
-    for rate, tag in [(0, "v2ev0"), (1, "v2main"), (4, "v2ev4"), (16, "v2ev16")]:
+    # v5: common random numbers with the same 3,000 calls at every rate (tag v5cev*)
+    _evt = [(0, "v2cev0"), (1, "v2cev1"), (4, "v2cev4"), (16, "v2cev16")] if PFX >= "v5" else [(0, "v2ev0"), (1, "v2main"), (4, "v2ev4"), (16, "v2ev16")]
+    for rate, tag in _evt:
         r = load(tag, s, 0)
         if r:
             ev[s][rate] = r["methods"]
-replay_w = sum(ev[s][16]["TTL"]["replay_wrong"] for s in SETUPS if 16 in ev[s])
-replay_c = sum(ev[s][16]["TTL"]["replay_calls"] for s in SETUPS if 16 in ev[s])
+replay_w = sum(ev[s][16]["TTL"]["replay_wrong"] for s in EVSETUPS if 16 in ev[s])
+replay_c = sum(ev[s][16]["TTL"]["replay_calls"] for s in EVSETUPS if 16 in ev[s])
 mac("ttlReplayWrong", str(replay_w)); mac("ttlReplayCalls", str(replay_c))
-sc_replay_w = sum(ev[s][k]["ScopeCache"]["replay_wrong"] for s in SETUPS for k in ev[s])
+sc_replay_w = sum(ev[s][k]["ScopeCache"]["replay_wrong"] for s in EVSETUPS for k in ev[s])
 assert sc_replay_w == 0
-drop = [100 * abs(ev[s][0]["ScopeCache"]["hit_rate"] - ev[s][16]["ScopeCache"]["hit_rate"]) for s in SETUPS if 0 in ev[s] and 16 in ev[s]]
+drop = [100 * abs(ev[s][0]["ScopeCache"]["hit_rate"] - ev[s][16]["ScopeCache"]["hit_rate"]) for s in EVSETUPS if 0 in ev[s] and 16 in ev[s]]
 mac("evHitDropMax", f"{max(drop):.1f}" if drop else "??")
-evb = [ev[s][r]["ScopeCache"]["n_exec"] <= min(ev[s][r][m]["n_exec"] for m in ("PerScope", "ViewRewrite", "SC-snap")) for s in SETUPS for r in ev[s]]
+evb = [ev[s][r]["ScopeCache"]["n_exec"] <= min(ev[s][r][m]["n_exec"] for m in ("PerScope", "ViewRewrite", "SC-snap", "PerScope+V") if m in ev[s][r]) for s in EVSETUPS for r in ev[s]]
 mac("evBest", str(sum(evb))); mac("evPoints", str(len(evb)))
-snap16 = [ev[s][16]["SC-snap"]["n_exec"] / ev[s][16]["ScopeCache"]["n_exec"] for s in SETUPS if 16 in ev[s]]
+_pt = [x for x in EVSETUPS if ev[x] and all("PerScope+V" in ev[x][r] and ev[x][r]["PerScope+V"]["n_exec"] == ev[x][r]["ScopeCache"]["n_exec"] for r in ev[x])]
+mac("evPSVTieSetups", (", ".join(NAME[x] for x in _pt[:-1]) + ({1: "", 2: " and "}.get(len(_pt), ", and ")) + NAME[_pt[-1]]) if _pt else "none")
+snap16 = [ev[s][16]["SC-snap"]["n_exec"] / ev[s][16]["ScopeCache"]["n_exec"] for s in EVSETUPS if 16 in ev[s]]
 mac("snapFactorSixteen", f"{max(snap16):.1f}" if snap16 else "??")
 for m in ["TTL"]:
     pass
@@ -264,8 +313,8 @@ mac("driftRedLo", pct(min(dr)) if dr else "??"); mac("driftRedHi", pct(max(dr)) 
 mac("smallRedLo", pct(min(sm)) if sm else "??"); mac("smallRedHi", pct(max(sm)) if sm else "??")
 
 # ------------------------------------------------------------------ agent traces
-ag = json.load(open(os.path.join(RES, f"agent_eval_{PFX}_b1000000.json")))
-sens = json.load(open(os.path.join(RES, f"agent_sens_{PFX}.json")))
+ag = json.load(open(os.path.join(RES, f"agent_eval_{AGPFX}_b1000000.json")))
+sens = json.load(open(os.path.join(RES, f"agent_sens_{AGPFX}.json")))
 keys = sorted(ag)
 mac("nAgentTraces", str(len(keys)))
 mac("nAgentCalls", fmt_int(sum(ag[k]["calls"] for k in keys)))
@@ -305,6 +354,30 @@ mac("sensOneLo", pct(min(k1.values()))); mac("sensOneHi", pct(max(k1.values())))
 mac("sensTwoLo", pct(min(k2.values()))); mac("sensTwoHi", pct(max(k2.values())))
 mac("sensOneTpch", pct(st.mean(v for k, v in k1.items() if k.startswith("tpch/"))))
 mac("sensOneEnt", pct(st.mean(v for k, v in k1.items() if k.startswith("ent/"))))
+mac("sensOneCalls", fmt_int(sum(v["k=1"]["ScopeCache"]["data_calls"] for v in sens.values())))
+# PerScope+V on the agent traces
+if all("PerScope+V" in ag[k]["methods"] for k in keys):
+    rpsv = [1 - ag[k]["methods"]["ScopeCache"]["n_exec"] / ag[k]["methods"]["PerScope+V"]["n_exec"] for k in keys]
+    rng_mac("agentRedPSV", rpsv); mac("agentRedPSVMed", pct(st.median(rpsv))); mac("agentPSVneg", str(sum(x < 0 for x in rpsv)))
+    _pm = {s_: 1 - st.mean(ag[k]["methods"]["ScopeCache"]["n_exec"] for k in keys if k.startswith(s_ + "/")) / st.mean(ag[k]["methods"]["PerScope+V"]["n_exec"] for k in keys if k.startswith(s_ + "/")) for s_ in SETUPS}
+    _gap = [x for x in SETUPS if _pm[x] > 0.005]; _tie = [x for x in SETUPS if abs(_pm[x]) <= 0.005]
+    assert all(_pm[x] >= -0.005 for x in SETUPS)
+    _nm = lambda ss: ", ".join(NAME[x] for x in ss[:-1]) + ({1: "", 2: " and "}.get(len(ss), ", and ")) + NAME[ss[-1]]
+    _sent = f"Against \\M{{PerScope+V}}, which has the same pinned views, ScopeCache needs {pct(min(_pm[x] for x in _gap))}--{pct(max(_pm[x] for x in _gap))}\\% fewer executions on {_nm(_gap)}" if _gap else ""
+    if _tie:
+        _vh = [st.mean(ag[k]["methods"]["ScopeCache"]["hit_view"] / max(1, ag[k]["methods"]["ScopeCache"]["data_calls"]) for k in keys if k.startswith(x + "/")) for x in _tie]
+        _sent += f" and as many on {_nm(_tie)}, where pinned views answer {pct(min(_vh))}--{pct(max(_vh))}\\% of data calls"
+    mac("agentPSVSentence", _sent + ".")
+    rng_mac("agentRedPSVMean", [1 - st.mean(ag[k]["methods"]["ScopeCache"]["n_exec"] for k in keys if k.startswith(s_ + "/")) / st.mean(ag[k]["methods"]["PerScope+V"]["n_exec"] for k in keys if k.startswith(s_ + "/")) for s_ in SETUPS])
+# ENT with a ten-times larger budget: lifted entries fit under the admission bound
+_big = os.path.join(RES, f"agent_eval_{AGPFX}_b10000000.json")
+if os.path.exists(_big):
+    big = json.load(open(_big))
+    ek = [k for k in big if k.startswith("ent/")]
+    if ek and all("SC-online" in big[k]["methods"] for k in ek):
+        mac("entBigXscope", pct(st.mean(big[k]["methods"]["SC-online"]["xscope_share"] for k in ek)))
+        mac("entBigRedPSPlus", pct(1 - st.mean(big[k]["methods"]["SC-online"]["n_exec"] for k in ek) / st.mean(big[k]["methods"]["PerScope+"]["n_exec"] for k in ek)))
+        assert all(v["wrong"] == 0 for k in ek for v in big[k]["methods"].values())
 
 # LLM cost from the usage log (list prices, $/M tokens: input miss, input cache hit, output)
 PRICE = {"deepseek-chat": (0.27, 0.07, 1.10), "glm-4.5-flash": (0.0, 0.0, 0.0), "kimi-k2.6": (0.95, 0.16, 4.00)}
@@ -344,9 +417,13 @@ mac("erpPermWrites", fmt_int(erp["total"])); mac("erpPermPerDay", f"{erp['per_da
 mac("erpReportPerDay", fmt_int(erp["report_calls_per_day"])); mac("erpDeact", str(erp["deactivations"])); mac("erpRoleEdits", str(erp["role_edits"]))
 mac("erpCompShop", f"{pol['shop']['compression_raw_over_atoms']:.2f}"); mac("erpCompWh", f"{pol['warehouse']['compression_raw_over_atoms']:.2f}")
 wl = json.load(open(os.path.join(RES, "erp_workload_stats.json")))
+_r10 = wl["repeat_upper_bounds"]["10min"]
+mac("erpLogCalls", f"{wl['calls'] / 1e6:.1f}"); mac("erpLogDays", f"{wl['days']:.1f}")
+mac("erpXscopeTen", pct(_r10["all"]["different_scope_only"])); mac("erpXscopeTenAgg", pct(_r10["aggregation_like"]["different_scope_only"]))
 mac("erpEndpointUsersMed", f"{wl['agg_endpoint_hour']['p50_users']:.0f}"); mac("erpEndpointUsersPninety", f"{wl['agg_endpoint_hour']['p90_users']:.0f}")
 mac("erpSameUserHour", pct(wl["repeat_upper_bounds"]["1h"]["all"]["same_user"]))
 mac("erpShopAccounts", str(pol["shop"]["accounts_with_grant"])); mac("erpShopScopes", str(pol["shop"]["distinct_scopes"]))
+mac("erpAcctPerScope", f"{pol['shop']['accounts_with_grant'] / pol['shop']['distinct_scopes']:.1f}")
 oc = json.load(open(os.path.join(RES, "oracle_check.json"))) if os.path.exists(os.path.join(RES, "oracle_check.json")) else {}
 mac("oracleChecked", fmt_int(sum(v["checked"] for v in oc.values()))); mac("oracleAgree", fmt_int(sum(v["agree"] for v in oc.values())))
 mac("artifactURL", "https://github.com/wanghongsheng01/ScopeCache")
@@ -395,7 +472,7 @@ def mark(printed, higher_better, exclude=()):
 
 UNSAFE = ("TTL", "SemNoScope")
 with open(os.path.join(OUTDIR, "tab_safety.tex"), "w") as f:
-    f.write("\\begin{table}[t]\n\\centering\n\\caption{Only the two shared caches return wrong answers. Wrong answers over the main grid (five setups $\\times$ three seeds) and the agent traces. " + RANK_NOTE + "; fewer is better.}\n\\label{tab:safety}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
+    f.write("\\begin{table}[t]\n\\centering\n\\caption{Only the two shared caches return wrong answers. Wrong answers over the main grid (five setups $\\times$ three seeds) and the agent traces. " + RANK_NOTE + " among the safe methods (\\M{TTL} and \\M{SemNoScope} are not ranked); fewer is better.}\n\\label{tab:safety}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
     f.write("\\begin{tabular}{@{}lrrrrr@{}}\n\\toprule\n & \\multicolumn{3}{c}{Main grid} & \\multicolumn{2}{c}{Agent traces}\\\\\n\\cmidrule(lr){2-4}\\cmidrule(l){5-6}\nMethod & Data calls & Wrong & Over-priv. & Wrong & Over-priv.\\\\\n\\midrule\n")
     cols = {c: {} for c in ("w", "o", "aw", "ao")}
     dcs = {}
@@ -407,7 +484,7 @@ with open(os.path.join(OUTDIR, "tab_safety.tex"), "w") as f:
         cols["w"][m] = fmt_int(w); cols["o"][m] = fmt_int(o)
         cols["aw"][m] = fmt_int(sum(ag[k]["methods"][m]["wrong"] for k in keys if m in ag[k]["methods"])) if has else "--"
         cols["ao"][m] = fmt_int(sum(ag[k]["methods"][m]["overpriv"] for k in keys if m in ag[k]["methods"])) if has else "--"
-    mk = {c: mark(v, False)[0] for c, v in cols.items()}
+    mk = {c: mark(v, False, exclude=UNSAFE)[0] for c, v in cols.items()}
     for m in dcs:
         nm = "\\textbf{ScopeCache}" if m == "ScopeCache" else "\\M{" + m + "}"
         f.write(f"{nm} & {fmt_int(dcs[m])} & {mk['w'][m]} & {mk['o'][m]} & {mk['aw'][m]} & {mk['ao'][m]}\\\\\n")
@@ -447,7 +524,7 @@ for m in MAINM:
 _buf.append("\\bottomrule\n\\end{tabular}\n")
 open(os.path.join(OUTDIR, "tab_main_tabular.tex"), "w").write("".join(_buf))
 with open(os.path.join(OUTDIR, "tab_main.tex"), "w") as f:
-    f.write("\\begin{table*}[t]\n\\centering\n\\caption{" + ("ScopeCache has the highest hit rate and the fewest executions on every setup. " if counts["ScopeCache"][0] == ncell else "") + "Main grid: hit rate over data calls (\\%, higher is better) and warehouse executions (lower is better), mean $\\pm$ standard deviation over three seeds of about 2{,}400 measured calls each. " + RANK_NOTE + " among the safe methods; B/2: number of best and second-best cells per method. \\M{TTL} returns wrong answers (Table~\\ref{tab:safety}) and is not ranked; \\M{VR-adapt} counts the executions that rebuild its views; \\M{PerScope+V} adds ScopeCache's pinned views to \\M{PerScope+}.}\n\\label{tab:main}\n\\footnotesize\n\\setlength{\\tabcolsep}{3.4pt}\n")
+    f.write("\\begin{table*}[t]\n\\centering\n\\caption{" + ("ScopeCache has the highest hit rate and the fewest executions on every setup. " if counts["ScopeCache"][0] == ncell else "") + "Main grid: hit rate over data calls (\\%, higher is better) and warehouse executions (lower is better), mean $\\pm$ standard deviation over three seeds of about 2{,}400 measured calls each. " + RANK_NOTE + " among the safe methods; B/2: number of best and second-best cells per method. \\M{TTL} returns wrong answers (Table~\\ref{tab:safety}) and is not ranked; executions include view rebuilds after a republish and the re-selections of \\M{VR-adapt}; \\M{PerScope+V} adds ScopeCache's pinned views to \\M{PerScope+}.}\n\\label{tab:main}\n\\footnotesize\n\\setlength{\\tabcolsep}{3.4pt}\n")
     f.write("\\begin{tabular}{@{}l" + "rr" * len(MSETUPS) + "c@{}}\n\\toprule\n")
     f.write(" & " + " & ".join(f"\\multicolumn{{2}}{{c}}{{{NAME[s_]}}}" for s_ in MSETUPS) + " & \\\\\n")
     f.write("".join(f"\\cmidrule(lr){{{2 + 2 * i}-{3 + 2 * i}}}" for i in range(len(MSETUPS))) + "\n")
@@ -480,11 +557,12 @@ with open(os.path.join(OUTDIR, "tab_ablation.tex"), "w") as f:
     f.write("\\midrule\n\\M{SC-online-nolift}$^\\dagger$ & " + " & ".join(f"{onl[s]:.2f}$\\times$" if s in onl else "--" for s in MSETUPS) + "\\\\\n")
     f.write("\\bottomrule\n\\end{tabular}\n\\end{table}\n")
 
-AGM = ["PerScope", "PerScope+", "ViewRewrite", "VR-adapt", "ScopeCache"]
-AGL = {"PerScope": "PS", "PerScope+": "PS+", "ViewRewrite": "VR", "VR-adapt": "VR-a", "ScopeCache": "SC"}
+AGM = ["PerScope", "PerScope+", "PerScope+V", "ViewRewrite", "ScopeCache"]
+AGL = {"PerScope": "PS", "PerScope+": "PS+", "PerScope+V": "PS+V", "ViewRewrite": "VR", "ScopeCache": "SC"}
+AGM = [m for m in AGM if all(m in ag[k]["methods"] for k in keys)]      # dry runs before every replay is done
 ag_counts = [0, 0, 0]
 with open(os.path.join(OUTDIR, "tab_agent.tex"), "w") as f:
-    f.write("\\begin{table*}[t]\n\\centering\n\\caption{ScopeCache has the highest hit rate and the fewest executions on every setup of the real agent traces. Replay of real agent traces, per setup (mean over three vendors and two recording seeds; data calls summed). PS: \\M{PerScope}; PS+: \\M{PerScope+}; VR: \\M{ViewRewrite}; VR-a: \\M{VR-adapt}; SC: ScopeCache. X-sc.: share of data calls that ScopeCache without pinned views (\\M{SC-online}) answers from an entry created under another scope. " + RANK_NOTE + " (hit rate: higher is better; executions: lower is better).}\n\\label{tab:agent}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
+    f.write("\\begin{table*}[t]\n\\centering\n\\caption{ScopeCache has the highest hit rate and the fewest executions on every setup of the real agent traces. Replay of real agent traces, per setup (mean over the traces of five models: two recording seeds for DeepSeek, GLM, and Kimi, one for GPT-6 and Claude; data calls summed). PS: \\M{PerScope}; PS+: \\M{PerScope+}; PS+V: \\M{PerScope+V}; VR: \\M{ViewRewrite}; SC: ScopeCache. \\M{VR-adapt} coincides with \\M{ViewRewrite} because every trace is shorter than its re-selection period. X-sc.: share of data calls that ScopeCache without pinned views (\\M{SC-online}) answers from an entry created under another scope. " + RANK_NOTE + " (hit rate: higher is better; executions: lower is better).}\n\\label{tab:agent}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n")
     f.write("\\begin{tabular}{@{}lrr" + "r" * len(AGM) + "r" + "r" * len(AGM) + "@{}}\n\\toprule\n")
     f.write(f" & & & \\multicolumn{{{len(AGM)}}}{{c}}{{Hit rate (\\%)}} & & \\multicolumn{{{len(AGM)}}}{{c}}{{Executions}}\\\\\n")
     f.write(f"\\cmidrule(lr){{4-{3 + len(AGM)}}}\\cmidrule(l){{{5 + len(AGM)}-{4 + 2 * len(AGM)}}}\n")
@@ -564,13 +642,13 @@ ax.set_xlabel("principals per question $k$"); ax.set_ylabel("cross-scope hits (%
 ax.legend(ncol=4, frameon=False, fontsize=6.8, loc="lower center", bbox_to_anchor=(0.5, 1.0))
 fig.tight_layout(pad=0.3); fig.savefig(os.path.join(OUTDIR, "fig_sens.pdf")); plt.close(fig)
 
-fig, axs = plt.subplots(1, 4, figsize=(7.0, 1.6), sharey=False)
-for ax, s in zip(axs, SETUPS):
+fig, axs = plt.subplots(1, len(EVSETUPS), figsize=(7.0, 1.6), sharey=False)
+for ax, s in zip(axs, EVSETUPS):
     rates = sorted(ev[s])
-    for (m, mk), dx in zip([("PerScope", "v"), ("ViewRewrite", "s"), ("SC-snap", "^"), ("ScopeCache", "o")], (-0.2, -0.07, 0.07, 0.2)):
+    for (m, mk), dx in zip([("PerScope", "v"), ("ViewRewrite", "s"), ("SC-snap", "^"), ("PerScope+V", "D"), ("ScopeCache", "o")], (-0.36, -0.18, 0.0, 0.18, 0.36)):
         ys = [ev[s][r][m]["n_exec"] for r in rates if m in ev[s][r]]
         sty = SC_STYLE if m == "ScopeCache" else dict(lw=1)
-        ax.plot(np.arange(len(ys)) + dx, ys, marker=mk, ms=3, color=MC[m], label=m, **sty)   # dodge: SC-snap = ScopeCache at 0x
+        ax.plot(np.arange(len(ys)) + dx, ys, marker=mk, ms=2.4, color=MC[m], label=m, **sty)   # dodge: SC-snap = ScopeCache at 0x
     ax.set_xticks(range(len(rates))); ax.set_xticklabels([f"{r}x" for r in rates]); ax.set_yscale("log")
     from matplotlib.ticker import LogLocator, FuncFormatter, NullFormatter
     ax.yaxis.set_major_locator(LogLocator(base=10, subs=(1.0, 2.0, 5.0)))
@@ -578,7 +656,7 @@ for ax, s in zip(axs, SETUPS):
     ax.set_title(NAME[s], fontsize=8, pad=2); ax.set_xlabel("event rate")
 axs[0].set_ylabel("executions (log)")
 h, l = axs[0].get_legend_handles_labels()
-fig.legend(h, l, ncol=4, frameon=False, fontsize=7, loc="upper center", bbox_to_anchor=(0.5, 1.04))
+fig.legend(h, l, ncol=5, frameon=False, fontsize=7, loc="upper center", bbox_to_anchor=(0.5, 1.04))
 fig.tight_layout(pad=0.3, rect=(0, 0, 1, 0.9)); fig.savefig(os.path.join(OUTDIR, "fig_events.pdf")); plt.close(fig)
 
 fig, ax = plt.subplots(figsize=(3.4, 1.6))
