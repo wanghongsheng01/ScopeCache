@@ -3,7 +3,7 @@ resolved trace with identical policy/semantic events.  Every served answer is co
 import sys, json, time, argparse, os
 import numpy as np
 from engine import Env, gen_workload, fresh, same, H, Policy
-from caches import Cache
+from caches import Cache, DETCOST
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 METHODS = {"NoCache": dict(mode="nocache"), "Exact": dict(mode="exact"), "SemNoScope": dict(mode="none"),
@@ -95,7 +95,7 @@ def run_method(name, seed, n_users, trace, mname, budget, train_frac, ovh):
     n_train = int(len(calls) * train_frac)
     if cfg["mode"] == "views" or cfg.get("hybrid"):
         tr = calls[:n_train]
-        cache.build_views([(t[1], t[2]) for t in tr], [t[3]["sec"] for t in tr])
+        cache.build_views([(t[1], t[2]) for t in tr], [env.rows_in(t[2].months) if DETCOST else t[3]["sec"] for t in tr])
     rec = dict(calls=0, data_calls=0, hits=0, wrong=0, overpriv=0, stale=0, exec_s=0.0, derive_s=0.0, n_exec=0,
                lat_local=[], lat_model=[], lat_pad=[], replay_calls=0, replay_wrong=0, peak_rows=0, view_rebuilds=0)
     window = []
@@ -112,7 +112,7 @@ def run_method(name, seed, n_users, trace, mname, budget, train_frac, ovh):
         cache.now = ci
         r = cache.handle(u, q, orc)
         ci += 1
-        window.append((u, q, orc["sec"]))
+        window.append((u, q, env.rows_in(q.months) if DETCOST else orc["sec"]))
         if adapt and ci > n_train and (ci - n_train) % adapt == 0:      # re-select views on the last `adapt` calls
             w = window[-adapt:]
             nv, sec = cache.readapt([(a, b) for a, b, _ in w], [c for _, _, c in w])
@@ -132,6 +132,18 @@ def run_method(name, seed, n_users, trace, mname, budget, train_frac, ovh):
         ok = same(r["ans"], orc["ans"])
         if not ok:
             rec["wrong"] += 1
+            if len(rec.setdefault("wrong_examples", [])) < 5:      # diagnostics for any wrong answer
+                a, b = r["ans"], orc["ans"]
+                diff = None
+                if isinstance(a, dict) and isinstance(b, dict):
+                    ks = sorted(set(a) ^ set(b), key=str)[:3]
+                    vk = [k for k in a if k in b and not same({0: a[k]}, {0: b[k]})][:2]
+                    diff = {"keys_only_one_side": [str(k) for k in ks], "n": [len(a), len(b)],
+                            "vals": [[str(k), list(a[k]), list(b[k])] for k in vk]}
+                rec["wrong_examples"].append({"call": ci, "hit": bool(r["hit"]), "metrics": q.metrics, "group": q.group,
+                                              "filters": [[c, list(map(str, v))] for c, v in q.filters], "months": list(q.months),
+                                              "ans": str(a)[:120] if not isinstance(a, dict) else None, "orc": str(b)[:120] if not isinstance(b, dict) else None,
+                                              "diff": diff})
             if overpriv(env, r["src"], u, q, orc["ans"]):
                 rec["overpriv"] += 1
             else:

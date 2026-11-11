@@ -2,7 +2,7 @@
 # Smoke test (about 10 minutes): one setup, one seed, 600 calls, every method; checks zero wrong answers.
 set -e
 cd "$(dirname "$0")/../code"
-python -W ignore run.py bird --seed 0 --calls 600 --tag quick
+SC_DETCOST=1 python -W ignore run.py bird --seed 0 --calls 600 --tag quick
 python - <<'PY'
 import json; d = json.load(open("../results/quick_bird_s0.json"))
 for m, r in d["methods"].items():

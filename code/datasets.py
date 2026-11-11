@@ -11,9 +11,9 @@ DB = os.path.join(ROOT, "data", "scopecache.duckdb")
 BIRD = os.environ.get("BIRD_FINANCIAL", os.path.join(ROOT, "data", "financial.sqlite"))
 
 
-def build_tpch(con):
-    con.execute("INSTALL tpch; LOAD tpch; CALL dbgen(sf=1)")
-    con.execute("""CREATE OR REPLACE TABLE tpch_wide AS
+def build_tpch(con, sf=1, name="tpch_wide"):
+    con.execute(f"INSTALL tpch; LOAD tpch; CALL dbgen(sf={sf})")
+    con.execute(f"""CREATE OR REPLACE TABLE {name} AS
       SELECT (year(o_orderdate)*100+month(o_orderdate))::INT AS month,
              r.r_name AS c_region, n.n_name AS c_nation, c_mktsegment, p_mfgr, p_brand,
              split_part(p_type,' ',1) AS p_type1, l_shipmode, l_returnflag, o_orderpriority,
@@ -190,6 +190,10 @@ def build_dom(con, n, rows=1_000_000, seed=17, n_users=400):
 # hier: policy attribute -> (coarse attribute) used to phrase region-level grants.
 
 def spec(name):
+    if name.startswith("tpch") and name[4:].isdigit():          # scale run: TPC-H at scale factor N
+        sp = spec("tpch")
+        sp.update(table=f"{name}_wide", db=DB.replace("scopecache.duckdb", f"scopecache_{name}.duckdb"))
+        return sp
     if name == "tpch":
         brands = [f"Brand#{a}{b}" for a in range(1, 6) for b in range(1, 6)]
         return dict(table="tpch_wide", policy=["c_nation", "c_mktsegment", "p_mfgr"],
@@ -304,7 +308,11 @@ if __name__ == "__main__":
     which = sys.argv[1:] or ["tpch", "tpcds", "bird", "ent"]
     for w in which:
         mem = duckdb.connect()  # generate in memory so dropped base tables never touch the disk file
+        if w.startswith("tpch") and w[4:].isdigit():   # large scale factors: bounded memory, spill to a local temp dir
+            mem.execute("SET memory_limit='5GB'; SET threads=4; SET preserve_insertion_order=false")
+            mem.execute(f"SET temp_directory='{os.path.join(ROOT, 'data', 'tmp_build')}'")
         (lambda c: build_dom(c, int(w[3:])))(mem) if w.startswith("dom") else \
+        (lambda c: build_tpch(c, int(w[4:]), f"{w}_wide"))(mem) if (w.startswith("tpch") and w[4:].isdigit()) else \
             {"tpch": build_tpch, "tpcds": build_tpcds, "bird": build_bird, "ent": build_ent, "erp": build_erp}[w](mem)
         mem.execute(f"ATTACH '{spec(w).get('db', DB)}' AS out")
         mem.execute(f"CREATE OR REPLACE TABLE out.{w}_wide AS SELECT * FROM {w}_wide ORDER BY month")

@@ -3,6 +3,7 @@ For k in K, keep only the episodes of the first k distinct principals that were 
 (k=1: every question is asked by a single principal, so any cross-principal hit comes from derivation
 across different questions).  Writes results/agent_sens.json."""
 import os, json, glob
+VER = os.environ.get("SC_VER", "v2")   # result-name prefix (v3: deterministic eviction cost)
 from agent_eval import build_trace, parse_name, ROOT
 from run import run_method
 
@@ -25,7 +26,7 @@ def subsample(path, k):
 if __name__ == "__main__":
     out = {}
     tmp = os.path.join(os.environ.get("TMPDIR", "/tmp"), f"scopecache_agent_sub_{os.getpid()}.jsonl")
-    pdir = os.path.join(ROOT, "results", "agent_sens_v2")                   # one file per trace, reused if newer than the trace
+    pdir = os.path.join(ROOT, "results", f"agent_sens_{VER}")                   # one file per trace, reused if newer than the trace
     os.makedirs(pdir, exist_ok=True)
     for path in sorted(glob.glob(os.path.join(ROOT, "results", "agent", "*_*.jsonl"))):
         if path.endswith("_sub.jsonl"):
@@ -56,4 +57,4 @@ if __name__ == "__main__":
                   "other=", res["SC-online"]["other"], "exec VR/SC/SCo/PS=", vr, sc, res["SC-online"]["n_exec"], res["PerScope"]["n_exec"],
                   "red", res["red_vs_view"], flush=True)
         json.dump(out[key], open(part, "w"), indent=1)
-    json.dump(out, open(os.path.join(ROOT, "results", "agent_sens_v2.json"), "w"), indent=1)
+    json.dump(out, open(os.path.join(ROOT, "results", f"agent_sens_{VER}.json"), "w"), indent=1)

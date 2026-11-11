@@ -10,7 +10,10 @@ CACHE_DIR = os.path.join(ROOT, "code", "cache")
 os.makedirs(CACHE_DIR, exist_ok=True)
 # Endpoints verified on 2026-11-03: GLM plus-tier models return "balance insufficient", the second GLM key
 # only reaches glm-4.5-air, and kimi-k2.6 accepts temperature 0.6 only.
-MODELS = {"deepseek": ("deepseek", "deepseek-chat"), "deepseek-r": ("deepseek", "deepseek-reasoner"),
+# tokens1688 (OpenAI-compatible) for the international models; key only from the environment (T1688_KEY)
+if os.environ.get("T1688_KEY"):
+    KEYS["t1688"] = {"base_url": os.environ.get("T1688_BASE", "https://www.tokens1688.com/v1"), "api_key": os.environ["T1688_KEY"]}
+MODELS = {"gpt6": ("t1688", "gpt-6-sol"), "claude": ("t1688", "claude-opus-5-5"), "deepseek": ("deepseek", "deepseek-chat"), "deepseek-r": ("deepseek", "deepseek-reasoner"),
           "glm": ("glm", "glm-4.5-flash"), "glm-air": ("glm2", "glm-4.5-air"), "kimi": ("kimi", "kimi-k2.6")}
 FIXED = {"glm": {"thinking": {"type": "disabled"}}, "kimi": {"thinking": {"type": "disabled"}, "temperature": 0.6},
          "glm-air": {"thinking": {"type": "disabled"}}}
@@ -23,6 +26,10 @@ def chat(model, messages, temperature=0.0, max_tokens=512, retries=8, **kw):
         else: kw.setdefault(k, v)
     body = {"model": kw.pop("model_name", name), "messages": messages, "temperature": temperature,
             "max_tokens": max_tokens, **kw}
+    if prov == "t1688":                     # reasoning-capable models: no temperature for Claude, more output room
+        body["max_tokens"] = max(max_tokens, 2000)
+        if "claude" in body["model"]:
+            body.pop("temperature", None)
     key = hashlib.sha256(json.dumps([prov, body], sort_keys=True).encode()).hexdigest()
     path = os.path.join(CACHE_DIR, key[:2], key + ".json")
     if os.path.exists(path):

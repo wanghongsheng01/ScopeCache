@@ -327,12 +327,17 @@ class Env:
         self.domains = {c: [r[0] for r in self.con.execute(f"SELECT DISTINCT {c} FROM {self.t} WHERE {c} IS NOT NULL").fetchall()]
                         for c in cols}
         self.months = sorted(r[0] for r in self.con.execute(f"SELECT DISTINCT month FROM {self.t}").fetchall())
+        self.month_rows = dict(self.con.execute(f"SELECT month, COUNT(*) FROM {self.t} GROUP BY month").fetchall())
         self.rng = random.Random(seed)
         self._coarse()
         self.sem = Semantic(self.sp, self.domains, random.Random(seed + 1))
         self.pol = Policy(self.sp, self.domains, random.Random(seed + 2), n_users=n_users)
         combos = self.con.execute(f"SELECT DISTINCT {','.join(self.sp['policy'])} FROM {self.t}").fetchall()
         self.combos = pd.DataFrame(combos, columns=self.sp["policy"])
+
+    def rows_in(self, months):
+        """Rows of the fact table in a month window: the deterministic re-computation cost used for eviction."""
+        return float(sum(n for m, n in self.month_rows.items() if months[0] <= m <= months[1])) if months else float(sum(self.month_rows.values()))
 
     def _coarse(self):
         sp = self.sp; sp.setdefault("coarse", {})

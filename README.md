@@ -12,9 +12,9 @@ regenerate every number of the paper.
 | `code/caches.py` | All caches: `nocache`, `exact`, `none` (SemNoScope), `user`, `scope`, `ttl`, `views` (ViewRewrite), `raw` (ScopeCache), `atoms` (grant-literal classes) |
 | `code/run.py` | Runs every method on the same resolved trace and compares each answer with a fresh execution; writes `results/<tag>_<setup>_s<seed>.json` |
 | `code/datasets.py` | Builds the four fact tables into `data/scopecache.duckdb` |
-| `code/agent_trace.py` | Records tool-calling LLM agents (three vendors) answering business questions for principals with different scopes |
+| `code/agent_trace.py` | Records tool-calling LLM agents (five models from five vendors: deepseek-chat, GLM-4.5-flash, Kimi-K2.6, GPT-6, Claude Opus 5.5) answering business questions for principals with different scopes |
 | `code/agent_eval.py`, `code/agent_sens.py` | Replay of the recorded traces through all caches; sensitivity to the number of principals per question |
-| `results/` | All result JSON files used in the paper (`v2main_*`, `v2ev*_*`, `v2drift_*`, `v2b100k_*`, `agent_eval_v2_b1000000.json`, `agent_sens_v2.json`) and the recorded traces `results/agent/*.jsonl` |
+| `results/` | All result JSON files used in the paper (`v4main_*`, `v4ev*_*`, `v4drift_*`, `v4b100k_*`, `v4dom_*`, `v4scale_*`, `agent_eval_v4_b1000000.json`, `agent_sens_v4.json`; earlier `v2*`/`v3*` runs are kept for reference) and the recorded traces `results/agent/*.jsonl` |
 | `results/erp_*.json`, `results/*_erp_s*.json` | Aggregate statistics of the enterprise ERP system and the results of the ERP setup, which uses the system's real account-to-shop grants over a synthetic fact table. The grant file itself is not released; all other setups are fully reproducible |
 | `results/main_*_s*.json` | Earlier runs (2026-11-05, idle machine) with the v1 method names (`SC-raw` = today's `ScopeCache`); the paper uses them only for the per-hit derivation time |
 | `code/oracle_check.py`, `results/oracle_check.json` | Independent SQL-only oracle (formulas evaluated by DuckDB) compared with the experiment oracle on sampled calls |
@@ -46,13 +46,14 @@ python paper/tools/make_numbers.py   # regenerate numbers.tex, tables, and figur
 ```
 
 `make_numbers.py` run on the released `results/` reproduces `paper/numbers.tex` and the table files of the paper
-exactly. Wrong-answer counts are deterministic for a given seed. Warehouse executions and hit rates are
-nearly so: GreedyDual eviction uses measured execution times, so on a different machine they can differ by a few
-percent (12 reruns of the 2026-11-05 configuration: 8 identical, at most 5% apart). Measured times depend on the machine.
+exactly. With `SC_DETCOST=1` (set by the scripts), eviction priorities and view benefits use the number of fact-table
+rows a re-computation scans, so wrong-answer counts, warehouse executions, and hit rates are deterministic for a
+given seed. Measured times depend on the machine.
 
 To re-record the agent traces, unpack the LLM cache (`tar xzf data/llm_cache.tar.gz -C code`) and run
 `scripts/record_agents.sh`; cached requests need no API key. New requests need a JSON key file named by
-`SCOPECACHE_LLM_KEYS` with entries `{"deepseek": {"base_url": ..., "api_key": ...}, "glm": ..., "kimi": ...}`.
+`SCOPECACHE_LLM_KEYS` with entries `{"deepseek": {"base_url": ..., "api_key": ...}, "glm": ..., "kimi": ...}`; GPT-6 and
+Claude Opus 5.5 were called through an OpenAI-compatible gateway whose key is read from the `T1688_KEY` environment variable.
 
 ## Data
 
@@ -66,6 +67,10 @@ enterprise metric platform, and all of its values are generated with fixed seeds
 MIT (code). TPC data are generated under the TPC EULA; BIRD is distributed under its own license.
 
 ## Changelog
+
+- 2026-11-11: agent traces of GPT-6 (gpt-6-sol) and Claude Opus 5.5 added (32 traces in total); all replays re-run under `v4`.
+- 2026-11-10 night: deterministic eviction and view-selection costs (`SC_DETCOST=1`) and a NULL-preserving merge of
+  partial sums (a SUM over only NULL values is NULL, as in SQL); all experiments re-run under the `v4` tags, plus the PerScope+V baseline, the policy-domain sweep (`dom*`), and TPC-H at scale factor 5.
 
 - 2026-11-10 10:16: `caches.py` gained the `scopeplus` mode (PerScope+) and a guard that applies scope-keyed entries
   without a cell mask; `run.py` gained VR-adapt. Neither change touches the other modes; runs started before this

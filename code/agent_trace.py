@@ -13,8 +13,9 @@ import llm
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "results", "agent")
-PRICE = {"deepseek-chat": (0.27, 0.07, 1.10), "glm-4.5-flash": (0.0, 0.0, 0.0), "kimi-k2.6": (0.95, 0.16, 4.00)}  # $/M in-miss, in-hit, out (conservative)
-CAP = {"deepseek": 4.0, "glm": 0.0, "kimi": 5.0}          # per-run spend guard in $, far below the $20/day/model limit
+PRICE = {"deepseek-chat": (0.27, 0.07, 1.10), "glm-4.5-flash": (0.0, 0.0, 0.0), "kimi-k2.6": (0.95, 0.16, 4.00),
+         "gpt-6-sol": (5.0, 0.5, 20.0), "claude-opus-5-5": (5.0, 0.5, 25.0)}   # conservative placeholders for the spend guard  # $/M in-miss, in-hit, out (conservative)
+CAP = {"deepseek": 4.0, "glm": 0.0, "kimi": 5.0, "gpt6": 60.0, "claude": 60.0}          # per-run spend guard in $, far below the $20/day/model limit
 
 TASKS = {
  "tpch": ["How did revenue develop month by month over the last year, and which customer region drove the change?",

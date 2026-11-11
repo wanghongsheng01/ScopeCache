@@ -18,7 +18,9 @@ and semantic-layer changes are handled.
   mode "scopeplus"  PerScope+: the same lifting and bundles, but entries computed for and keyed on one scope.
   run.py also defines SC-nolift / SC-snap (ablations) and VR-adapt (ViewRewrite re-selected on a window).
 """
-import time, math
+import time, math, os
+# SC_DETCOST=1: eviction priorities use the rows a re-computation scans (deterministic) instead of measured seconds
+DETCOST = os.environ.get("SC_DETCOST") == "1"
 import numpy as np, pandas as pd
 from engine import Policy, H, in_sql, classify, answer_from, needed_cols, AGG_PD
 
@@ -229,9 +231,16 @@ class Cache:
         for c in agg:
             part[c] = sub[c]
         if keys:
-            g = part.groupby(keys, sort=False, dropna=False).agg(agg).reset_index()
+            gb = part.groupby(keys, sort=False, dropna=False)
+            # SQL semantics: a SUM over only NULL partials is NULL (pandas would return 0), so use min_count=1
+            sums = [c for c, a in agg.items() if a == "sum"]
+            others = {c: a for c, a in agg.items() if a != "sum"}
+            g = gb[sums].sum(min_count=1)
+            if others:
+                g = g.join(gb.agg(others))
+            g = g[list(agg)].reset_index()
         else:
-            g = pd.DataFrame({c: [part[c].agg(a)] for c, a in agg.items()})
+            g = pd.DataFrame({c: [part[c].sum(min_count=1) if a == "sum" else part[c].agg(a)] for c, a in agg.items()})
         return answer_from(env, q, g, keys)
 
     # ------------------------------------------------------------------ main entry point
@@ -255,7 +264,7 @@ class Cache:
             if e is not None:
                 self.touch(e)
                 return dict(ans=e.answer, exec=0.0, derive=time.perf_counter() - t0, hit=True, creator=e.creator, src=e.src, n_exec=0)
-            self._admit_answer(k, orc, sc)
+            self._admit_answer(k, orc, sc, q)
             return dict(ans=orc["ans"], exec=orc["sec"], derive=0.0, hit=False, src=None, n_exec=1)
 
         part = self.part_of(u, sc)
@@ -271,7 +280,7 @@ class Cache:
                 return dict(ans=e.answer, exec=0.0, derive=time.perf_counter() - t0, hit=True, creator=e.creator, src=e.src, n_exec=0)
             if distinct:
                 if orc["df"] is not None and mode != "views":
-                    self._admit_answer(k, orc, sc)
+                    self._admit_answer(k, orc, sc, q)
                 self.stats["fallback"] += 1
                 return dict(ans=orc["ans"], exec=orc["sec"], derive=0.0, hit=False, src=None, n_exec=1)
         # 2) derivation entries
@@ -344,10 +353,11 @@ class Cache:
         e.creator = getattr(self, "cur_user", None)
         return e
 
-    def _admit_answer(self, k, orc, sc):
+    def _admit_answer(self, k, orc, sc, q=None):
         e = self._base_entry(sc)
         e.answer = orc["ans"]; e.size = max(1, len(orc["ans"]) if isinstance(orc["ans"], dict) else 1)
-        e.cost = orc["sec"]; e.part = k; e.snap = orc["snap"] if self.mode == "exact" else orc["defkey"]
+        e.cost = self.env.rows_in(q.months) if (DETCOST and q is not None) else orc["sec"]
+        e.part = k; e.snap = orc["snap"] if self.mode == "exact" else orc["defkey"]
         e.G = (); e.filters = {}; e.months = (); e.meas = {}; e.df = None
         self.admit(e)
 
@@ -356,7 +366,7 @@ class Cache:
             return
         env, sem = self.env, self.env.sem
         e = self._base_entry(sc)
-        e.df = orc["df"]; e.size = max(1, len(e.df)); e.cost = orc["sec"]; e.part = part
+        e.df = orc["df"]; e.size = max(1, len(e.df)); e.cost = self.env.rows_in(q.months) if DETCOST else orc["sec"]; e.part = part
         e.G = tuple(e.df.columns[:len(q.group)])
         e.maptag = {g: f"{g}@{sem.mapver[g]}" for g in q.group if g in sem.mapping}
         e.filters = {c: set(v) for c, v in q.filters}; e.months = q.months
@@ -435,7 +445,7 @@ class Cache:
             df, sec = env.run(sql)
             e = self._base_entry(None)
             bucket = Policy.scope_key(sc) if self.mode == "scopeplus" else "*"
-            e.df = df; e.size = max(1, len(df)); e.cost = sec; e.part = bucket; e.voc = vid
+            e.df = df; e.size = max(1, len(df)); e.cost = self.env.rows_in(months) if DETCOST else sec; e.part = bucket; e.voc = vid
             e.G = tuple(G + pol_cols); e.filters = filters; e.months = months
             e.meas = {m: sem.mhash(m) for m in ms}
             self.admit(e, bucket)

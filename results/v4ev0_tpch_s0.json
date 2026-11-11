@@ -1,0 +1,545 @@
+{
+ "drift": 0,
+ "setup": "tpch",
+ "seed": 0,
+ "calls": 3000,
+ "users": 400,
+ "budget": 1000000,
+ "ev": 0.0,
+ "ovh": 0.5,
+ "events": {},
+ "methods": {
+  "NoCache": {
+   "calls": 2400,
+   "data_calls": 2150,
+   "hits": 0,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 29.866541293999965,
+   "derive_s": 0.0,
+   "n_exec": 2150,
+   "replay_calls": 0,
+   "replay_wrong": 0,
+   "peak_rows": 0,
+   "view_rebuilds": 0,
+   "hit_rate": 0.0,
+   "lat_local_mean": 0.01244439220583332,
+   "lat_local_p50": 0.007393229000001611,
+   "lat_local_p95": 0.038103012800001286,
+   "lat_model_mean": 0.46036105887249995,
+   "lat_model_p95": 0.5381030128000013,
+   "lat_pad_mean": 0.46036105887249995,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 0,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 0.27097392082214355,
+   "views": 0
+  },
+  "Exact": {
+   "calls": 2400,
+   "data_calls": 2150,
+   "hits": 301,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 25.545028792999993,
+   "derive_s": 0.031783208000035756,
+   "n_exec": 1849,
+   "replay_calls": 0,
+   "replay_wrong": 0,
+   "peak_rows": 14072,
+   "view_rebuilds": 0,
+   "hit_self": 266,
+   "hit_other": 35,
+   "hit_xscope": 1,
+   "hit_rate": 0.14,
+   "lat_local_mean": 0.01065700500041668,
+   "lat_local_p50": 0.006021125000001959,
+   "lat_local_p95": 0.033510529450000714,
+   "lat_model_mean": 0.39586533833375,
+   "lat_model_p95": 0.5335105294500008,
+   "lat_pad_mean": 0.3960774130908334,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 0,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 0.9053738117218018,
+   "views": 0
+  },
+  "SemNoScope": {
+   "calls": 2400,
+   "data_calls": 2150,
+   "hits": 1019,
+   "wrong": 753,
+   "overpriv": 662,
+   "stale": 91,
+   "exec_s": 17.092958244000016,
+   "derive_s": 55.499498661000224,
+   "n_exec": 1131,
+   "replay_calls": 0,
+   "replay_wrong": 0,
+   "peak_rows": 10147,
+   "view_rebuilds": 0,
+   "hit_other": 790,
+   "hit_xscope": 759,
+   "wrong_examples": [
+    {
+     "call": 603,
+     "hit": true,
+     "metrics": [
+      "revenue"
+     ],
+     "group": [
+      "month"
+     ],
+     "filters": [],
+     "months": [
+      199803,
+      199808
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       6,
+       6
+      ],
+      "vals": [
+       [
+        "(199803,)",
+        [
+         1264131917.6010976
+        ],
+        [
+         1111492349.399599
+        ]
+       ],
+       [
+        "(199804,)",
+        [
+         1207354885.1591055
+        ],
+        [
+         1087383732.2494955
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "call": 605,
+     "hit": true,
+     "metrics": [
+      "revenue"
+     ],
+     "group": [
+      "c_region"
+     ],
+     "filters": [],
+     "months": [
+      199803,
+      199808
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       5,
+       5
+      ],
+      "vals": [
+       [
+        "('AFRICA',)",
+        [
+         1117901071.1725981
+        ],
+        [
+         1114831378.038199
+        ]
+       ],
+       [
+        "('EUROPE',)",
+        [
+         1827786289.7438982
+        ],
+        [
+         1145335165.4703043
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "call": 606,
+     "hit": true,
+     "metrics": [
+      "revenue"
+     ],
+     "group": [
+      "c_region"
+     ],
+     "filters": [],
+     "months": [
+      199803,
+      199808
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       5,
+       5
+      ],
+      "vals": [
+       [
+        "('AFRICA',)",
+        [
+         1117901071.1725981
+        ],
+        [
+         1114831378.038199
+        ]
+       ],
+       [
+        "('EUROPE',)",
+        [
+         1827786289.7438982
+        ],
+        [
+         1145335165.4703043
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "call": 609,
+     "hit": true,
+     "metrics": [
+      "gross_sales"
+     ],
+     "group": [
+      "c_region"
+     ],
+     "filters": [],
+     "months": [
+      199807,
+      199807
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       5,
+       5
+      ],
+      "vals": [
+       [
+        "('AFRICA',)",
+        [
+         237825565.77000007
+        ],
+        [
+         594511074.080001
+        ]
+       ],
+       [
+        "('AMERICA',)",
+        [
+         239407620.35000017
+        ],
+        [
+         589302324.7900031
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "call": 610,
+     "hit": true,
+     "metrics": [
+      "gross_sales"
+     ],
+     "group": [
+      "c_region"
+     ],
+     "filters": [],
+     "months": [
+      199807,
+      199807
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       5,
+       5
+      ],
+      "vals": [
+       [
+        "('AFRICA',)",
+        [
+         237825565.77000007
+        ],
+        [
+         594511074.080001
+        ]
+       ],
+       [
+        "('AMERICA',)",
+        [
+         239407620.35000017
+        ],
+        [
+         589302324.7900031
+        ]
+       ]
+      ]
+     }
+    }
+   ],
+   "hit_self": 229,
+   "hit_rate": 0.473953488372093,
+   "lat_local_mean": 0.030246857043750096,
+   "lat_local_p50": 0.010427541500007464,
+   "lat_local_p95": 0.12830943990000063,
+   "lat_model_mean": 0.2658718570437501,
+   "lat_model_p95": 0.5278779523999999,
+   "lat_pad_mean": 0.42779001427041674,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 143,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 158.685045003891,
+   "views": 0
+  },
+  "PerUser": {
+   "calls": 2400,
+   "data_calls": 2150,
+   "hits": 454,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 23.835839300999957,
+   "derive_s": 5.049336588999807,
+   "n_exec": 1696,
+   "replay_calls": 0,
+   "replay_wrong": 0,
+   "peak_rows": 13764,
+   "view_rebuilds": 0,
+   "hit_self": 454,
+   "hit_rate": 0.2111627906976744,
+   "lat_local_mean": 0.012035489954166569,
+   "lat_local_p50": 0.00639083349999936,
+   "lat_local_p95": 0.03725171285000108,
+   "lat_model_mean": 0.3653688232874999,
+   "lat_model_p95": 0.532657331549998,
+   "lat_pad_mean": 0.3653688232874999,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 153,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 12.892597913742065,
+   "views": 0
+  },
+  "PerScope": {
+   "calls": 2400,
+   "data_calls": 2150,
+   "hits": 523,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 23.291484132999983,
+   "derive_s": 12.201224088999936,
+   "n_exec": 1627,
+   "replay_calls": 0,
+   "replay_wrong": 0,
+   "peak_rows": 13442,
+   "view_rebuilds": 0,
+   "hit_self": 426,
+   "hit_other": 97,
+   "hit_rate": 0.24325581395348836,
+   "lat_local_mean": 0.014788628425833299,
+   "lat_local_p50": 0.00625054150000004,
+   "lat_local_p95": 0.038103012800001286,
+   "lat_model_mean": 0.35374696175916664,
+   "lat_model_p95": 0.5324018749999979,
+   "lat_pad_mean": 0.35374696175916664,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 153,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 19.805907011032104,
+   "views": 0
+  },
+  "TTL": {
+   "calls": 2400,
+   "data_calls": 2150,
+   "hits": 426,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 24.182708592999973,
+   "derive_s": 2.914774451999932,
+   "n_exec": 1974,
+   "replay_calls": 0,
+   "replay_wrong": 0,
+   "peak_rows": 13885,
+   "view_rebuilds": 0,
+   "hit_self": 426,
+   "hit_rate": 0.19813953488372094,
+   "lat_local_mean": 0.011290617935416627,
+   "lat_local_p50": 0.005926875000000109,
+   "lat_local_p95": 0.036192379200010366,
+   "lat_model_mean": 0.42254061793541664,
+   "lat_model_p95": 0.5327090996499988,
+   "lat_pad_mean": 0.42254061793541664,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 160,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 5.544949054718018,
+   "views": 0
+  },
+  "ViewRewrite": {
+   "calls": 2400,
+   "data_calls": 2150,
+   "hits": 1732,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 5.989152082000022,
+   "derive_s": 63.42037282100108,
+   "n_exec": 418,
+   "replay_calls": 0,
+   "replay_wrong": 0,
+   "peak_rows": 925838,
+   "view_rebuilds": 0,
+   "hit_view": 1732,
+   "hit_rate": 0.8055813953488372,
+   "lat_local_mean": 0.028920635376250458,
+   "lat_local_p50": 0.008313229000012967,
+   "lat_local_p95": 0.11941562499999879,
+   "lat_model_mean": 0.11600396870958378,
+   "lat_model_p95": 0.5163170420000004,
+   "lat_pad_mean": 0.4867862142145839,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 170,
+    "evicted": 0,
+    "maint_sec": 0.0,
+    "view_cover_sec": [
+     162758427.0
+    ],
+    "view_build_sec": 10.967471585000027
+   },
+   "wall": 99.00755214691162,
+   "views": 5
+  },
+  "ScopeCache": {
+   "calls": 2400,
+   "data_calls": 2150,
+   "hits": 1840,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 24.74745862900039,
+   "derive_s": 65.16946509099984,
+   "n_exec": 310,
+   "replay_calls": 0,
+   "replay_wrong": 0,
+   "peak_rows": 999956,
+   "view_rebuilds": 0,
+   "hit_view": 1732,
+   "hit_self": 56,
+   "hit_other": 52,
+   "hit_xscope": 48,
+   "hit_rate": 0.8558139534883721,
+   "lat_local_mean": 0.037465384883333425,
+   "lat_local_p50": 0.007287687499996309,
+   "lat_local_p95": 0.1439200473000254,
+   "lat_model_mean": 0.10204871821666676,
+   "lat_model_p95": 0.540528811850017,
+   "lat_pad_mean": 0.4830326657345834,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 153,
+    "evicted": 218,
+    "maint_sec": 0.0,
+    "view_cover_sec": [
+     162758427.0
+    ],
+    "view_build_sec": 26.70770216599999
+   },
+   "wall": 139.6981978416443,
+   "views": 5
+  },
+  "SC-snap": {
+   "calls": 2400,
+   "data_calls": 2150,
+   "hits": 1840,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 15.930390840000202,
+   "derive_s": 72.30648589000066,
+   "n_exec": 310,
+   "replay_calls": 0,
+   "replay_wrong": 0,
+   "peak_rows": 999956,
+   "view_rebuilds": 0,
+   "hit_view": 1732,
+   "hit_self": 56,
+   "hit_other": 52,
+   "hit_xscope": 48,
+   "hit_rate": 0.8558139534883721,
+   "lat_local_mean": 0.036765365304167026,
+   "lat_local_p50": 0.0115652290000412,
+   "lat_local_p95": 0.15077570835003362,
+   "lat_model_mean": 0.10134869863750036,
+   "lat_model_p95": 0.5361906336499999,
+   "lat_pad_mean": 0.48233264615541693,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 153,
+    "evicted": 218,
+    "maint_sec": 0.0,
+    "view_cover_sec": [
+     162758427.0
+    ],
+    "view_build_sec": 13.040325875000008
+   },
+   "wall": 113.91855382919312,
+   "views": 5
+  }
+ }
+}

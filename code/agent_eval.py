@@ -1,7 +1,9 @@
 """Replay recorded agent traces through every cache and measure cross-principal reuse (gate C1).
 C1 metric = share of data calls that SC-online (no offline views) serves from an entry created by a
 different principal.  Writes results/agent_eval.json."""
-import os, json, glob, sys
+import os, json, glob
+import sys
+VER = os.environ.get("SC_VER", "v2")   # result-name prefix (v3: deterministic eviction cost)
 import numpy as np
 from engine import Env, Query, fresh, Policy
 from run import run_method, defkey
@@ -49,7 +51,7 @@ def exact_overlap(trace):
 if __name__ == "__main__":
     budget = int(sys.argv[1]) if len(sys.argv) > 1 else 1_000_000
     out = {}
-    pdir = os.path.join(ROOT, "results", f"agent_eval_v2_b{budget}")      # one file per trace, reused if newer than the trace
+    pdir = os.path.join(ROOT, "results", f"agent_eval_{VER}_b{budget}")      # one file per trace, reused if newer than the trace
     os.makedirs(pdir, exist_ok=True)
     for path in sorted(glob.glob(os.path.join(ROOT, "results", "agent", "*_*.jsonl"))):
         setup, model, seed = parse_name(path)
@@ -73,4 +75,4 @@ if __name__ == "__main__":
         print(key, out[key]["calls"], "C1=", so["other_share"], "exact", out[key]["exact_intent_overlap"],
               {m: (round(v["hit_rate"], 3), v["n_exec"], v["overpriv"]) for m, v in out[key]["methods"].items()}, flush=True)
         json.dump(out[key], open(part, "w"), indent=1)
-    json.dump(out, open(os.path.join(ROOT, "results", f"agent_eval_v2_b{budget}.json"), "w"), indent=1)
+    json.dump(out, open(os.path.join(ROOT, "results", f"agent_eval_{VER}_b{budget}.json"), "w"), indent=1)
