@@ -68,6 +68,9 @@ MIT (code). TPC data are generated under the TPC EULA; BIRD is distributed under
 
 ## Changelog
 
+- 2026-11-11 (presentation): `paper/tools/make_numbers.py` writes shorter table captions, a geometric-mean column in the
+  ablation table, a Best/2nd row in the agent table, and the event figure without PerScope (its range is a macro);
+  new macros for the text; no experiment was re-run and no reported value changed.
 - 2026-11-11 (v5): executions include view rebuilds after a republish and view re-selections, and every run reports
   `rows_scanned` (fact-table rows scanned by executions, rebuilds, and re-selections); a TTL miss on a call that the
   policy rejects executes nothing; VR-adapt keeps the views it re-selects and materializes only new ones (periods
