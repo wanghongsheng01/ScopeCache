@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{On SYN-FG at four event rates (development seed 0, common random numbers; \emph{not} part of the unseen-seed headline), ScopeCache needs 9.2--14.3\% fewer executions than \M{PerScope+V} (4 wins, 0 ties, 0 losses). The holdout selected $\mathit{pop30}$ at every rate. The sixteen public-setup event cells were measured with \M{SC-hybrid} and were not rerun with the full system; under that configuration ScopeCache was already best or tied on those cells. Warehouse executions and hit rate (\%); bold is best.}
+\label{tab:events}
+\footnotesize
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & $0\times$ & $1\times$ & $4\times$ & $16\times$\\
+\midrule
+\M{PerScope+V} exec. & 643 & 649 & 676 & 704\\
+\textbf{ScopeCache} exec. & \textbf{551} & \textbf{571} & \textbf{614} & \textbf{611}\\
+Relative reduction & 14.3\% & 12.0\% & 9.2\% & 13.2\%\\
+\midrule
+\M{PerScope+V} hit & 69.9 & 69.7 & 68.7 & 68.2\\
+\textbf{ScopeCache} hit & \textbf{74.2} & \textbf{73.3} & \textbf{71.3} & \textbf{71.7}\\
+\bottomrule
+\end{tabular}
+\end{table}

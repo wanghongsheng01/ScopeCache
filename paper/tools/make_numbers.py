@@ -9,9 +9,14 @@ import matplotlib.pyplot as plt
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAPER = os.path.dirname(HERE)
 OUTDIR = os.environ.get("SC_OUT", PAPER)          # dry runs write elsewhere
-RES = os.environ.get("SC_RES", os.path.join(os.path.dirname(PAPER), "results"))
+# VLDB working copy lives under 04_稿件/vldb2027; results stay in 03_方法与实验/impl
+_impl_guess = os.path.abspath(os.path.join(PAPER, "..", "..", "03_方法与实验", "impl"))
+if not os.path.isdir(os.path.join(_impl_guess, "results")):
+    _impl_guess = os.path.dirname(PAPER)          # public-artifact layout: paper/ next to results/
+IMPL = os.environ.get("SC_IMPL", _impl_guess)
+RES = os.environ.get("SC_RES", os.path.join(IMPL, "results"))
 SETUPS = ["tpch", "tpcds", "bird", "ent"]
-NAME = {"tpch": "TPC-H", "tpcds": "TPC-DS", "bird": "BIRD", "ent": "ENT"}
+NAME = {"tpch": "TPC-H", "tpcds": "TPC-DS", "bird": "BIRD", "ent": "ENT", "synfg": "SYN-FG", "erp": "ERP"}
 SAFE = ["Exact", "PerUser", "PerScope", "ViewRewrite", "ScopeCache", "SC-online", "SC-nolift", "SC-snap", "SC-atoms"]
 MAC = {}
 
@@ -51,8 +56,7 @@ def fmt_int(n):
 
 
 # ------------------------------------------------------------------ main grid (v2main + v2sup, 3 seeds, 5 setups)
-MSETUPS = os.environ.get("SC_MAIN", "tpch,tpcds,bird,ent,erp").split(",")
-NAME["erp"] = "ERP"
+MSETUPS = os.environ.get("SC_MAIN", "tpch,tpcds,bird,ent,synfg").split(",")
 main = {}
 for s in MSETUPS:
     runs = []
@@ -134,8 +138,8 @@ if "erp" in MSETUPS:
     erp_vr = reds("ViewRewrite", setups=["erp"]); erp_ps = reds("PerScope", setups=["erp"]); erp_pp = reds("PerScope+", "SC-online", setups=["erp"])
     mac("erpRedVR", pct(st.mean(erp_vr))); mac("erpRedPS", pct(st.mean(erp_ps))); mac("erpRedPSPlus", pct(st.mean(erp_pp)))
     mac("erpScHit", pct(st.mean(M("erp", "ScopeCache", "hit_rate")))); mac("erpPSHit", pct(st.mean(M("erp", "PerScope", "hit_rate"))))
-schit = [st.mean(M(s, "ScopeCache", "hit_rate")) for s in MSETUPS]
-mac("scHitLo", pct(min(schit))); mac("scHitHi", pct(max(schit)))
+schit = [r["methods"]["ScopeCache"]["hit_rate"] for s in MSETUPS for r in main[s]]
+mac("scHitLo", pct(min(schit), 1)); mac("scHitHi", pct(max(schit), 1))
 parthit = [st.mean(M(s, m, "hit_rate")) for s in MSETUPS for m in ("PerUser", "PerScope", "Exact")]
 mac("partHitLo", pct(min(parthit))); mac("partHitHi", pct(max(parthit)))
 pphit = [st.mean(M(s, "PerScope+", "hit_rate")) for s in MSETUPS if all("PerScope+" in r["methods"] for r in main[s])]
@@ -143,7 +147,8 @@ rng_mac("ppHit", pphit)
 mac("vrHitBird", pct(st.mean(M("bird", "ViewRewrite", "hit_rate")))); mac("vrHitEnt", pct(st.mean(M("ent", "ViewRewrite", "hit_rate"))))
 sem_share = [r["methods"]["SemNoScope"]["overpriv"] / r["methods"]["SemNoScope"]["data_calls"] for s in MSETUPS for r in main[s]]
 mac("semOverLo", pct(min(sem_share))); mac("semOverHi", pct(max(sem_share)))
-stats = json.load(open(os.path.join(RES, "setup_stats.json")))
+_sp = os.path.join(RES, "setup_stats_vldb.json")
+stats = json.load(open(_sp if os.path.exists(_sp) else os.path.join(RES, "setup_stats.json")))
 mac("nScopesLo", str(min(stats[s]["distinct_scopes"] for s in SETUPS))); mac("nScopesHi", str(max(stats[s]["distinct_scopes"] for s in SETUPS)))
 fb = [r["methods"]["ScopeCache"]["stats"]["fallback"] / r["methods"]["ScopeCache"]["data_calls"] for s in MSETUPS for r in main[s]]
 mac("fallbackLo", pct(min(fb))); mac("fallbackHi", pct(max(fb)))
@@ -169,8 +174,9 @@ for s_ in SETUPS:
             rr.append(abs(y / x - 1)); nsame += x == y
 mac("rerunDiff", pct(max(rr)) if rr else "??"); mac("rerunSame", str(nsame)); mac("rerunN", str(len(rr)))
 # v5: a separate timing run of ScopeCache per setup (tag v5time, seed 0) with no other experiment of ours running
-_tm = [load(f"{PFX}time", s_, 0) for s_ in MSETUPS] if PFX >= "v5" else []
-if _tm and all(_tm):
+# derivation times from the paper's machine; skip setups with no v5time (SYN-FG) and ERP
+_tm = [t for s_ in MSETUPS if s_ not in ("synfg", "erp") for t in [load(f"{PFX}time", s_, 0)] if t] if PFX >= "v5" else []
+if _tm:
     der = [x["methods"]["ScopeCache"]["derive_s"] / max(1, x["methods"]["ScopeCache"]["hits"]) for x in _tm]
     p95 = [x["methods"]["ScopeCache"]["lat_local_p95"] for x in _tm]
 mac("deriveMsLo", f"{1e3 * min(der):.0f}"); mac("deriveMsHi", f"{1e3 * max(der):.0f}")
@@ -184,7 +190,7 @@ for s_ in SETUPS:
         r = load("main", s_, k)
         if r and "SC-raw" in r["methods"]:
             vsel.append(r["methods"]["SC-raw"]["stats"].get("view_build_sec", 0))
-if _tm and all(_tm):
+if _tm:
     vsel = [x["methods"]["ScopeCache"]["stats"].get("view_build_sec", 0) for x in _tm]
 mac("viewSelSecMax", f"{max(vsel):.0f}")
 
@@ -245,7 +251,10 @@ for s_ in MSETUPS:
             v.append(1 - r["methods"]["ScopeCache"]["n_exec"] / x["methods"]["PerScope+V"]["n_exec"])
     psv_s[s_] = v
 if all(psv_s.values()):
-    rng_mac("psvTpch", psv_s["tpch"]); mac("psvSmallHi", pct(max(psv_s["tpcds"] + psv_s["erp"])))
+    rng_mac("psvTpch", psv_s["tpch"])
+    _psmall = [x for k, vs in psv_s.items() if k != "tpch" for x in vs]
+    if _psmall:
+        mac("psvSmallHi", pct(max(_psmall)))
     mac("psvZeroSetups", "BIRD and ENT" if max(psv_s["bird"] + psv_s["ent"]) == 0 else "??")
 DOMS = [50, 300, 1000, 3000]
 dom = {n: load("v2dom", f"dom{n}", 0) for n in DOMS}
@@ -281,7 +290,7 @@ for m in ["NoCache", "Exact", "PerUser", "PerScope", "PerScope+", "PerScope+V", 
     o = sum(r["methods"][m]["overpriv"] for s in MSETUPS for r in main[s] if m in r["methods"])
     rows.append([m, dc, w, o])
 
-EVSETUPS = SETUPS + (["erp"] if PFX >= "v5" else [])   # v5: ERP joins the event sweep
+EVSETUPS = [s for s in MSETUPS] if PFX >= "v5" else list(SETUPS)   # v5: public setups + SYN-FG; ERP is excluded
 # event sweep (seed 0): v2ev0/4/16 and v2main seed 0 for rate 1
 ev = {}
 for s in EVSETUPS:
@@ -299,6 +308,9 @@ sc_replay_w = sum(ev[s][k]["ScopeCache"]["replay_wrong"] for s in EVSETUPS for k
 assert sc_replay_w == 0
 drop = [100 * abs(ev[s][0]["ScopeCache"]["hit_rate"] - ev[s][16]["ScopeCache"]["hit_rate"]) for s in EVSETUPS if 0 in ev[s] and 16 in ev[s]]
 mac("evHitDropMax", f"{max(drop):.1f}" if drop else "??")
+if "synfg" in ev and 0 in ev["synfg"] and 16 in ev["synfg"]:
+    mac("evSynfgHitZero", f"{100 * ev['synfg'][0]['ScopeCache']['hit_rate']:.1f}")
+    mac("evSynfgHitSixteen", f"{100 * ev['synfg'][16]['ScopeCache']['hit_rate']:.1f}")
 evb = [ev[s][r]["ScopeCache"]["n_exec"] <= min(ev[s][r][m]["n_exec"] for m in ("PerScope", "ViewRewrite", "SC-snap", "PerScope+V") if m in ev[s][r]) for s in EVSETUPS for r in ev[s]]
 mac("evBest", str(sum(evb))); mac("evPoints", str(len(evb)))
 _evps = [ev[s][r]["PerScope"]["n_exec"] for s in EVSETUPS for r in ev[s]]
@@ -313,7 +325,7 @@ for m in ["TTL"]:
 # drift and small budget
 def red_from(tag):
     out = []
-    for s in SETUPS:
+    for s in MSETUPS:
         r = load(tag, s, 0)
         if r:
             out.append(1 - r["methods"]["ScopeCache"]["n_exec"] / r["methods"]["ViewRewrite"]["n_exec"])
@@ -392,12 +404,13 @@ if os.path.exists(_big):
 # LLM cost from the usage log (list prices, $/M tokens: input miss, input cache hit, output)
 PRICE = {"deepseek-chat": (0.27, 0.07, 1.10), "glm-4.5-flash": (0.0, 0.0, 0.0), "kimi-k2.6": (0.95, 0.16, 4.00)}
 cost = 0.0
-_ul = os.path.join(os.path.dirname(PAPER), "code", "cache", "usage.log")
+_ul = os.path.join(IMPL, "code", "cache", "usage.log")
 if os.path.exists(_ul):
     _lines = open(_ul).read().splitlines()
 else:  # artifact: read the log from the released LLM cache archive
     import tarfile
-    with tarfile.open(os.path.join(os.path.dirname(PAPER), "data", "llm_cache.tar.gz")) as _t:
+    _tar = os.path.join(IMPL, "data", "llm_cache.tar.gz")
+    with tarfile.open(_tar) as _t:
         _lines = _t.extractfile("cache/usage.log").read().decode().splitlines()
 for l in _lines:
     r = json.loads(l)
@@ -420,22 +433,44 @@ for k in keys:
 _cm = {m: st.mean(v) for m, v in _cpq.items()}
 mac("callsPerQLo", f"{min(_cm.values()):.1f}"); mac("callsPerQHi", f"{max(_cm.values()):.1f}")
 
-# ------------------------------------------------------------------ ERP
-erp = json.load(open(os.path.join(RES, "erp_event_counts.json")))
-pol = json.load(open(os.path.join(RES, "erp_policy_stats.json")))
-mac("erpPermWrites", fmt_int(erp["total"])); mac("erpPermPerDay", f"{erp['per_day']:.1f}")
-mac("erpReportPerDay", fmt_int(erp["report_calls_per_day"])); mac("erpDeact", str(erp["deactivations"])); mac("erpRoleEdits", str(erp["role_edits"]))
-mac("erpCompShop", f"{pol['shop']['compression_raw_over_atoms']:.2f}"); mac("erpCompWh", f"{pol['warehouse']['compression_raw_over_atoms']:.2f}")
-wl = json.load(open(os.path.join(RES, "erp_workload_stats.json")))
-_r10 = wl["repeat_upper_bounds"]["10min"]
-mac("erpLogCalls", f"{wl['calls'] / 1e6:.1f}"); mac("erpLogDays", f"{wl['days']:.1f}")
-mac("erpXscopeTen", pct(_r10["all"]["different_scope_only"])); mac("erpXscopeTenAgg", pct(_r10["aggregation_like"]["different_scope_only"]))
-mac("erpEndpointUsersMed", f"{wl['agg_endpoint_hour']['p50_users']:.0f}"); mac("erpEndpointUsersPninety", f"{wl['agg_endpoint_hour']['p90_users']:.0f}")
-mac("erpSameUserHour", pct(wl["repeat_upper_bounds"]["1h"]["all"]["same_user"]))
-mac("erpShopAccounts", str(pol["shop"]["accounts_with_grant"])); mac("erpShopScopes", str(pol["shop"]["distinct_scopes"]))
-mac("erpAcctPerScope", f"{pol['shop']['accounts_with_grant'] / pol['shop']['distinct_scopes']:.1f}")
+# ------------------------------------------------------------------ SYN-FG (replaces ERP in the VLDB manuscript)
+# ERP JSON files are not loaded; no 721/292/3085 or log-calibration macros are defined.
+if "synfg" in main and main["synfg"]:
+    _sf = stats.get("synfg", {})
+    _sp = _sf.get("synfg_policy", {})
+    mac("synfgUsers", str(_sp.get("n_users", _sf.get("users", 700))))
+    mac("synfgScopes", str(_sp.get("distinct_scopes", _sf.get("distinct_scopes", 300))))
+    mac("synfgMedian", f"{_sp.get('users_per_scope_median', 1):.0f}")
+    mac("synfgMean", f"{_sp.get('users_per_scope_mean', 2.333):.1f}")
+    mac("synfgMax", str(_sp.get("users_per_scope_max", 40)))
+    mac("synfgSharedGroups", str(_sp.get("n_shared_groups", 60)))
+    mac("synfgSingletons", str(_sp.get("n_singleton_groups", 240)))
+    mac("synfgGroups", str(_sp.get("n_groups", 300)))
+    mac("synfgShops", str(_sf.get("policy", {}).get("shop", 300)))
+    mac("synfgSensitivePct", pct(_sp.get("frac_roles_sensitive", 0.25)))
+    mac("synfgRows", f"{_sf.get('rows', 6001215) / 1e6:.1f}")
+    mac("synfgRedVRLo", pct(min(reds("ViewRewrite", setups=["synfg"])), 1))
+    mac("synfgRedVRHi", pct(max(reds("ViewRewrite", setups=["synfg"])), 1))
+    mac("synfgRedPSLo", pct(min(reds("PerScope", setups=["synfg"])), 1))
+    mac("synfgRedPSHi", pct(max(reds("PerScope", setups=["synfg"])), 1))
+    mac("synfgScHitLo", pct(min(M("synfg", "ScopeCache", "hit_rate")), 1))
+    mac("synfgScHitHi", pct(max(M("synfg", "ScopeCache", "hit_rate")), 1))
+    mac("synfgPSHitLo", pct(min(M("synfg", "PerScope", "hit_rate")), 1))
+    mac("synfgPSHitHi", pct(max(M("synfg", "PerScope", "hit_rate")), 1))
+    _pev = [1 - r["methods"]["ScopeCache"]["n_exec"] / r["methods"]["PerScope+V"]["n_exec"] for r in main["synfg"]]
+    mac("synfgRedPSVLo", pct(min(_pev), 1)); mac("synfgRedPSVHi", pct(max(_pev), 1))
+    # printed as "needs X--Y% more" (positive) when worse than PerScope+V
+    mac("synfgMorePSVLo", pct(-max(_pev), 1)); mac("synfgMorePSVHi", pct(-min(_pev), 1))
+    _evict = [r["methods"]["ScopeCache"]["stats"]["evicted"] for r in main["synfg"]]
+    mac("synfgEvictedLo", fmt_int(min(_evict))); mac("synfgEvictedHi", fmt_int(max(_evict)))
+    _on = [1 - r["methods"]["SC-online"]["n_exec"] / r["methods"]["ScopeCache"]["n_exec"] for r in main["synfg"]]
+    mac("synfgOnlineVsSCLo", pct(min(_on), 1)); mac("synfgOnlineVsSCHi", pct(max(_on), 1))
+    mac("synfgOnlineExecLo", fmt_int(min(M("synfg", "SC-online", "n_exec"))))
+    mac("synfgOnlineExecHi", fmt_int(max(M("synfg", "SC-online", "n_exec"))))
+    mac("synfgScExecLo", fmt_int(min(M("synfg", "ScopeCache", "n_exec"))))
+    mac("synfgScExecHi", fmt_int(max(M("synfg", "ScopeCache", "n_exec"))))
 oc = json.load(open(os.path.join(RES, "oracle_check.json"))) if os.path.exists(os.path.join(RES, "oracle_check.json")) else {}
-mac("oracleChecked", fmt_int(sum(v["checked"] for v in oc.values()))); mac("oracleAgree", fmt_int(sum(v["agree"] for v in oc.values())))
+mac("oracleChecked", fmt_int(sum(v["checked"] for v in oc.values()) if oc else 0)); mac("oracleAgree", fmt_int(sum(v["agree"] for v in oc.values()) if oc else 0))
 mac("artifactURL", "https://github.com/wanghongsheng01/ScopeCache")
 
 
@@ -446,17 +481,22 @@ def ms(vals, nd=2, scale=1.0):
     sd = (st.pstdev(vals) * scale) if len(vals) > 1 else 0
     return m, sd
 
-erp_env_scopes = json.load(open(os.path.join(RES, "erp_policy_stats.json")))["shop"]
 with open(os.path.join(OUTDIR, "tab_setups.tex"), "w") as f:
-    f.write("\\begin{table}[t]\n\\centering\n\\caption{Scopes are fine-grained: every setup has " + f"{min([stats[x]['distinct_scopes'] for x in SETUPS] + [erp_env_scopes['distinct_scopes']])}--{max([stats[x]['distinct_scopes'] for x in SETUPS] + [erp_env_scopes['distinct_scopes']])}" + " distinct scopes. Principals: 400 per synthetic policy, 721 real accounts in ERP; scopes counted at seed 0.}\n\\label{tab:setups}\n\\footnotesize\n\\setlength{\\tabcolsep}{2.5pt}\n")
+    _sc = [stats[x]["distinct_scopes"] for x in MSETUPS]
+    f.write("\\begin{table}[t]\n\\centering\n\\caption{Scopes are fine-grained: every setup has "
+            + f"{min(_sc)}--{max(_sc)}"
+            + " distinct scopes. Principals: 400 on TPC-H, TPC-DS, BIRD, and ENT; 700 on SYN-FG "
+            + "(60 shared groups and 240 singleton groups). Scopes counted at seed 0.}\n"
+            "\\label{tab:setups}\n\\footnotesize\n\\setlength{\\tabcolsep}{2.5pt}\n")
     f.write("\\begin{tabular}{@{}lrrlr@{}}\n\\toprule\nSetup & Rows & Months & Policy attributes (values) & Scopes\\\\\n\\midrule\n")
-    PA = {"tpch": "nation, segm., mfgr", "tpcds": "state, category", "bird": "district, freq.", "ent": "dept., brand, chan."}
-    for s_ in SETUPS:
+    PA = {"tpch": "nation, segm., mfgr", "tpcds": "state, category", "bird": "district, freq.",
+          "ent": "dept., brand, chan.", "synfg": "shop, segm."}
+    for s_ in MSETUPS:
         d = stats[s_]
         card = "$\\times$".join(str(v) for v in d["policy"].values())
         f.write(f"{NAME[s_]} & {d['rows'] / 1e6:.1f}M & {d['months']} & {PA[s_]} ({card}) & {d['distinct_scopes']}\\\\\n")
-    f.write(f"ERP & 2.0M & 36 & shop ({erp_env_scopes['domain']}) & {erp_env_scopes['distinct_scopes']}\\\\\n")
     f.write("\\bottomrule\n\\end{tabular}\n\\end{table}\n")
+
 
 RANK_NOTE = "bold/underlined: best/second best"
 
@@ -534,7 +574,9 @@ for m in MAINM:
 _buf.append("\\bottomrule\n\\end{tabular}\n")
 open(os.path.join(OUTDIR, "tab_main_tabular.tex"), "w").write("".join(_buf))
 with open(os.path.join(OUTDIR, "tab_main.tex"), "w") as f:
-    f.write("\\begin{table*}[t]\n\\centering\n\\caption{" + ("ScopeCache has the highest hit rate and the fewest executions on every setup. " if counts["ScopeCache"][0] == ncell else "") + "Hit rate (\\%) and warehouse executions, mean $\\pm$ std.\\ over three seeds; B/2: best and second-best cells.}\n\\label{tab:main}\n\\footnotesize\n\\setlength{\\tabcolsep}{3.4pt}\n")
+    _cap = ("ScopeCache has the highest hit rate and the fewest executions on every setup. " if counts["ScopeCache"][0] == ncell
+            else "ScopeCache has the highest hit rate and the fewest executions on the four coarser setups, and is second to \\M{PerScope+V} on the fine-grained SYN-FG policy. ")
+    f.write("\\begin{table*}[t]\n\\centering\n\\caption{" + _cap + "Hit rate (\\%) and warehouse executions, mean $\\pm$ std.\\ over three seeds; B/2: best and second-best cells.}\n\\label{tab:main}\n\\footnotesize\n\\setlength{\\tabcolsep}{2.8pt}\n")
     f.write("\\begin{tabular}{@{}l" + "rr" * len(MSETUPS) + "c@{}}\n\\toprule\n")
     f.write(" & " + " & ".join(f"\\multicolumn{{2}}{{c}}{{{NAME[s_]}}}" for s_ in MSETUPS) + " & \\\\\n")
     f.write("".join(f"\\cmidrule(lr){{{2 + 2 * i}-{3 + 2 * i}}}" for i in range(len(MSETUPS))) + "\n")

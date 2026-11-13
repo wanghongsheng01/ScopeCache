@@ -4,6 +4,7 @@ import sys, json, time, argparse, os
 import numpy as np
 from engine import Env, gen_workload, fresh, same, H, Policy
 from caches import Cache, DETCOST
+from adapt_select import select_config
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 METHODS = {"NoCache": dict(mode="nocache"), "Exact": dict(mode="exact"), "SemNoScope": dict(mode="none"),
@@ -19,6 +20,12 @@ METHODS = {"NoCache": dict(mode="nocache"), "Exact": dict(mode="exact"), "SemNoS
            "PerScope+": dict(mode="scopeplus"), "VR-adapt": dict(mode="views", adapt=600),
            "SC-online-nolift": dict(mode="raw", lift=False),
            "PerScope+V": dict(mode="scopeplus", hybrid=True),
+           # SC-adapt: holdout selection on the training prefix (see adapt_select.py)
+           "SC-adapt": dict(mode="raw", hybrid=True, adapt_select=True),
+           "SC-POP": dict(mode="raw", hybrid=True, pop=True),
+           # SC-adaptP: same training-only portfolio as SC-adapt, plus always-on POP.
+           # Val scores also use pop=True so selection matches test-time behaviour.
+           "SC-adaptP": dict(mode="raw", hybrid=True, adapt_select=True, pop=True),
            # VR-adapt with other re-selection periods (2026-11-11)
            "VR-adapt300": dict(mode="views", adapt=300), "VR-adapt1200": dict(mode="views", adapt=1200)}
 
@@ -36,9 +43,11 @@ def defkey(env, q):
               {g: sem.mapver[g] for g in q.group if g in sem.mapping}])
 
 
-def oracle_pass(name, seed, n_calls, ev_rate, n_users, drift=0, crn=False):
+def oracle_pass(name, seed, n_calls, ev_rate, n_users, drift=0, crn=False,
+                user_exp=0.8, metric_exp=0.9, dim_exp=0.7):
     env0 = Env(name, seed, n_users)
-    wl = gen_workload(env0, n_calls, seed, ev_rate, drift=drift, crn=crn)
+    wl = gen_workload(env0, n_calls, seed, ev_rate, drift=drift, crn=crn,
+                      user_exp=user_exp, metric_exp=metric_exp, dim_exp=dim_exp)
     env0.con.close()
     env = Env(name, seed, n_users)
     trace, last_q, affected = [], {}, []
@@ -92,6 +101,16 @@ def run_method(name, seed, n_users, trace, mname, budget, train_frac, ovh):
     env = Env(name, seed, n_users)
     cfg = dict(METHODS[mname]); cfg["budget"] = budget
     adapt = cfg.pop("adapt", None)
+    adapt_rec = None
+    want_pop = bool(cfg.get("pop", False))
+    if cfg.pop("adapt_select", False):
+        env.con.close()
+        chosen, adapt_rec = select_config(name, seed, n_users, trace, budget, train_frac, pop=want_pop)
+        cfg.update(chosen)
+        cfg["budget"] = budget
+        if want_pop:
+            cfg["pop"] = True
+        env = Env(name, seed, n_users)
     cache = Cache(env, **cfg)
     calls = [t for t in trace if t[0] == "call"]
     n_train = int(len(calls) * train_frac)
@@ -176,6 +195,9 @@ def run_method(name, seed, n_users, trace, mname, budget, train_frac, ovh):
                lat_model_mean=float(lm.mean()), lat_model_p95=float(np.percentile(lm, 95)), lat_pad_mean=float(lp.mean()),
                stats=cache.stats, wall=time.time() - t_start,
                views=len(getattr(cache, "view_keys", [])))
+    if adapt_rec is not None:
+        rec["adapt"] = adapt_rec
+        rec["adapt_chosen"] = adapt_rec["chosen"]
     env.con.close()
     return rec
 
@@ -185,17 +207,32 @@ if __name__ == "__main__":
     ap.add_argument("setup"); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--calls", type=int, default=3000)
     ap.add_argument("--users", type=int, default=400); ap.add_argument("--budget", type=int, default=1_000_000)
     ap.add_argument("--ev", type=float, default=1.0); ap.add_argument("--ovh", type=float, default=0.5)
-    ap.add_argument("--methods", default=",".join(METHODS)); ap.add_argument("--tag", default="main")
+    ap.add_argument("--methods", default=",".join(m for m in METHODS if m not in ("SC-adapt", "SC-POP", "SC-adaptP"))); ap.add_argument("--tag", default="main")
     ap.add_argument("--drift", type=int, default=0); ap.add_argument("--crn", action="store_true")
+    ap.add_argument("--wl-preset", default="default", choices=("default", "flatmix"),
+                    help="default keeps Zipf (0.8, 0.9, 0.7); flatmix is the pre-registered shift (0.2, 0.2, 0.2)")
+    ap.add_argument("--user-exp", type=float, default=None)
+    ap.add_argument("--metric-exp", type=float, default=None)
+    ap.add_argument("--dim-exp", type=float, default=None)
     a = ap.parse_args()
+    presets = {"default": (0.8, 0.9, 0.7), "flatmix": (0.2, 0.2, 0.2)}
+    ue, me, de = presets[a.wl_preset]
+    if a.user_exp is not None:
+        ue = a.user_exp
+    if a.metric_exp is not None:
+        me = a.metric_exp
+    if a.dim_exp is not None:
+        de = a.dim_exp
     t0 = time.time()
-    trace = oracle_pass(a.setup, a.seed, a.calls, a.ev, a.users, a.drift, a.crn)
+    trace = oracle_pass(a.setup, a.seed, a.calls, a.ev, a.users, a.drift, a.crn,
+                        user_exp=ue, metric_exp=me, dim_exp=de)
     ev = {}
-    for t in trace:
-        if t[0] == "event":
-            ev[t[1]] = ev.get(t[1], 0) + 1
-    print(f"oracle done {time.time()-t0:.0f}s events={ev}", flush=True)
-    out = dict(crn=a.crn, drift=a.drift, setup=a.setup, seed=a.seed, calls=a.calls, users=a.users, budget=a.budget, ev=a.ev, ovh=a.ovh, events=ev, methods={})
+    for item in trace:
+        if item[0] == "event":
+            ev[item[1]] = ev.get(item[1], 0) + 1
+    print(f"oracle done {time.time()-t0:.0f}s events={ev} wl={a.wl_preset} exp=({ue},{me},{de})", flush=True)
+    out = dict(crn=a.crn, drift=a.drift, setup=a.setup, seed=a.seed, calls=a.calls, users=a.users, budget=a.budget, ev=a.ev, ovh=a.ovh, events=ev,
+               wl_preset=a.wl_preset, user_exp=ue, metric_exp=me, dim_exp=de, methods={})
     for m in a.methods.split(","):
         r = run_method(a.setup, a.seed, a.users, trace, m, a.budget, 0.2, a.ovh)
         out["methods"][m] = r

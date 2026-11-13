@@ -3,4 +3,4 @@
 # from the official BIRD dev release, ENT synthetic.  Set BIRD_FINANCIAL to .../dev_databases/financial/financial.sqlite
 set -e
 cd "$(dirname "$0")/../code"
-python -W ignore datasets.py tpch tpcds bird ent
+python3 -W ignore datasets.py tpch tpcds bird ent

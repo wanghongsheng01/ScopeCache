@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Pre-registered shifted workload (\texttt{flatmix}: Zipf exponents 0.2, 0.2, 0.2) on the same unseen seeds 6--10, frozen method. W--T--L versus each baseline; 95\% CI as in Table~\ref{tab:rob}. Declared before any shifted run.}
+\label{tab:shift}
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+vs.\ baseline & W & T & L & Ours & Base & vs.\ base & 95\% CI\\
+\midrule
+\textbf{\M{PerScope+V}} & 15 & 10 & 0 & 9{,}326 & 10{,}345 & 9.9\% & [-1576, -509]\\
+\M{SC-hybrid} & 10 & 15 & 0 & 9{,}326 & 10{,}179 & 8.4\% & [-1382, -385]\\
+\M{PerScope+} & 25 & 0 & 0 & 9{,}326 & 22{,}277 & 58.1\% & [-14714, -11372]\\
+\M{VR-adapt} & 25 & 0 & 0 & 9{,}326 & 12{,}997 & 28.2\% & [-5069, -2392]\\
+\M{ViewRewrite} & 25 & 0 & 0 & 9{,}326 & 12{,}958 & 28.0\% & [-5020, -2373]\\
+\M{SC-online} & 24 & 1 & 0 & 9{,}326 & 13{,}386 & 30.3\% & [-6392, -2015]\\
+\M{SC-atoms} & 11 & 11 & 3 & 9{,}326 & 10{,}082 & 7.5\% & [-1216, -356]\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -33,7 +33,7 @@ class Entry:
 
 
 class Cache:
-    def __init__(self, env, mode, budget=1_000_000, lift=True, snapflush=None, ttl=None, hybrid=False, view_frac=1.0):
+    def __init__(self, env, mode, budget=1_000_000, lift=True, snapflush=None, ttl=None, hybrid=False, view_frac=1.0, pop=False):
         self.env, self.mode, self.budget, self.lift, self.ttl = env, mode, budget, lift, ttl
         self.hybrid, self.view_frac, self.pinned = hybrid, view_frac, 0
         self.snapflush = (mode in ("none", "user", "scope")) if snapflush is None else snapflush
@@ -44,6 +44,26 @@ class Cache:
         self.gver = None
         self.stats = {"flushed": 0, "split_miss": 0, "fallback": 0, "evicted": 0, "maint_sec": 0.0}
         self.now = 0
+        # Protected Online Partition (SC-POP): ARC-style ghost directory of evicted
+        # *online* entries.  A later miss that a ghost would have answered grows a
+        # reserve of online rows; pinned views may then be unpinned so the reserve
+        # is honoured.  Views stay pinned when there is no such pressure (BIRD/ENT).
+        self.pop = pop
+        self.online_reserve = 0          # rows reserved for online entries
+        self.ghost = []                  # metadata of evicted online entries (no payloads)
+        self.ghost_rows = 0
+        self.ghost_cap = budget
+        # Frozen default unpin_min=40 (commit 64af130).  Override with
+        # SC_UNPIN_MIN for a sensitivity sweep only; the official method
+        # always uses 40.  This default was fixed after seeing seeds 0–2
+        # (including TPC-DS regressions at no threshold) and is therefore
+        # treated as a frozen hyperparameter, to be confirmed on unseen seeds.
+        self.unpin_min = int(os.environ.get("SC_UNPIN_MIN", "40"))
+        if self.unpin_min < 0:
+            raise ValueError(f"SC_UNPIN_MIN must be >= 0, got {self.unpin_min}")
+        if pop:
+            self.stats.update(ghost_hits=0, unpinned=0, unpinned_rows=0,
+                              unpin_min=self.unpin_min)
 
     # ------------------------------------------------------------------ helpers
     def part_of(self, u, sc):
@@ -103,6 +123,42 @@ class Cache:
         return True
 
     def evict(self):
+        # Under POP, if online occupancy is below the ghost-guided reserve, evict a
+        # pinned view rather than an online entry (views are no longer immortal).
+        evict_view = False
+        if self.pop and self.pinned > 0 and (self.used - self.pinned) < self.online_reserve:
+            if self.stats.get("ghost_hits", 0) >= self.unpin_min:
+                evict_view = True
+        best, where = None, None
+        for b, lst in self.buckets.items():
+            for i, e in enumerate(lst):
+                if evict_view and not e.pinned:
+                    continue
+                if (not evict_view) and e.pinned:
+                    continue
+                if best is None or e.prio < best.prio:
+                    best, where = e, (b, i)
+        if not evict_view:
+            for k, e in self.exact.items():
+                if best is None or e.prio < best.prio:
+                    best, where = e, (None, k)
+        if best is None and evict_view:
+            # no pinned view found (should not happen if pinned>0); fall back
+            return self._evict_any_online()
+        b, i = where
+        if b is None:
+            del self.exact[i]
+        else:
+            self.buckets[b].pop(i)
+        self.used -= best.size; self.L = best.prio; self.stats["evicted"] += 1
+        if best.pinned:
+            self.pinned -= best.size
+            self.stats["unpinned"] = self.stats.get("unpinned", 0) + 1
+            self.stats["unpinned_rows"] = self.stats.get("unpinned_rows", 0) + best.size
+        elif self.pop:
+            self._ghost_add(best)
+
+    def _evict_any_online(self):
         best, where = None, None
         for b, lst in self.buckets.items():
             for i, e in enumerate(lst):
@@ -113,12 +169,87 @@ class Cache:
         for k, e in self.exact.items():
             if best is None or e.prio < best.prio:
                 best, where = e, (None, k)
+        if best is None:
+            raise RuntimeError("evict: cache empty")
         b, i = where
         if b is None:
             del self.exact[i]
         else:
             self.buckets[b].pop(i)
         self.used -= best.size; self.L = best.prio; self.stats["evicted"] += 1
+        if self.pop:
+            self._ghost_add(best)
+
+    def _ghost_add(self, e):
+        if e.answer is not None:     # exact side-store: skip (not a lifted aggregate)
+            return
+        meta = dict(G=tuple(e.G) if e.G is not None else (),
+                    filters={c: set(v) for c, v in (e.filters or {}).items()},
+                    months=tuple(e.months) if e.months is not None else None,
+                    meas=dict(e.meas) if e.meas else {},
+                    size=e.size)
+        self.ghost.append(meta)
+        self.ghost_rows += e.size
+        while self.ghost_rows > self.ghost_cap and self.ghost:
+            g = self.ghost.pop(0)
+            self.ghost_rows -= g["size"]
+
+    def _ghost_hit(self, q):
+        """True if an evicted online aggregate would have been a candidate for q (metadata only)."""
+        if not self.ghost:
+            return False, 0
+        sem = self.env.sem
+        try:
+            ms = sorted({p for m in q.metrics for p in sem.parts(m)})
+        except Exception:
+            return False, 0
+        for i, g in enumerate(self.ghost):
+            if not self._meta_covers(g, q, ms):
+                continue
+            # consume this ghost (like ARC) and grow the online reserve
+            self.ghost.pop(i)
+            self.ghost_rows -= g["size"]
+            cap = int(self.budget * 0.7)
+            self.online_reserve = min(cap, self.online_reserve + g["size"])
+            self.stats["ghost_hits"] = self.stats.get("ghost_hits", 0) + 1
+            return True, g["size"]
+        return False, 0
+
+    def _meta_covers(self, g, q, ms):
+        """Subset of derive() that does not need the payload: grouping, filters, window, measures."""
+        sem, env = self.env.sem, self.env
+        if g["meas"]:
+            for m in ms:
+                if m not in g["meas"]:
+                    return False
+                if sem.mhash(m) != g["meas"][m]:
+                    return False
+        GG = set(g["G"])
+        for grp in q.group:
+            if grp in sem.mapping:
+                src = env.sp["mapped"][grp][0]
+                tag = f"{grp}@{sem.mapver[grp]}"
+                if tag not in GG and src not in GG:
+                    return False
+            elif grp not in GG:
+                return False
+        qf = dict(q.filters)
+        for c, vals in g["filters"].items():
+            if c not in qf or not set(qf[c]) <= vals:
+                return False
+        for c, vals in qf.items():
+            if c in g["filters"] and set(vals) == g["filters"][c]:
+                continue
+            if c not in GG:
+                return False
+        if g["months"] is None:
+            return False
+        m1, m2 = q.months
+        if m1 < g["months"][0] or m2 > g["months"][1]:
+            return False
+        if (m1, m2) != tuple(g["months"]) and "month" not in GG:
+            return False
+        return True
 
     def touch(self, e):
         if e.pinned:
@@ -307,6 +438,8 @@ class Cache:
                     return dict(ans=ans, exec=0.0, derive=time.perf_counter() - t0, hit=True,
                                 creator=e.creator, src=e.src, n_exec=0)
         # 3) miss
+        if self.pop:
+            self._ghost_hit(q)
         if mode in ("atoms", "raw", "scopeplus"):
             r = self._miss_shared(q, sc)
             if r is not None:

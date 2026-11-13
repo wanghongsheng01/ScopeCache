@@ -1,0 +1,67 @@
+{
+ "crn": false,
+ "drift": 0,
+ "setup": "synfg",
+ "seed": 2,
+ "calls": 3000,
+ "users": 700,
+ "budget": 1000000,
+ "ev": 1.0,
+ "ovh": 0.5,
+ "events": {
+  "revoke": 6,
+  "grant_edit": 5,
+  "reactivate": 3,
+  "col_edit": 3,
+  "member_move": 18,
+  "republish": 1
+ },
+ "methods": {
+  "SC-POP": {
+   "calls": 2362,
+   "data_calls": 1977,
+   "hits": 1361,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 7.675668737994783,
+   "derive_s": 5.280004942993401,
+   "n_exec": 616,
+   "rows_scanned": 250045384.0,
+   "replay_calls": 4,
+   "replay_wrong": 0,
+   "peak_rows": 999958,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_self": 171,
+   "hit_other": 1190,
+   "hit_xscope": 939,
+   "view_maint": 0,
+   "hit_rate": 0.6884167931208902,
+   "lat_local_mean": 0.005485043895422601,
+   "lat_local_p50": 0.0037920550003036624,
+   "lat_local_p95": 0.020480021550019933,
+   "lat_model_mean": 0.13588301171930067,
+   "lat_model_p95": 0.5204800215500199,
+   "lat_pad_mean": 0.33604006216384247,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 164,
+    "evicted": 425,
+    "maint_sec": 0.0,
+    "ghost_hits": 93,
+    "unpinned": 3,
+    "unpinned_rows": 877008,
+    "view_cover_sec": [
+     123774042.0
+    ],
+    "view_build_sec": 3.2387760949995936,
+    "mat_n": 3,
+    "mat_rows": 18003645.0
+   },
+   "wall": 21.73689317703247,
+   "views": 3
+  }
+ }
+}

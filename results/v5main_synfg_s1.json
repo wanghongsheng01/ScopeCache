@@ -1,0 +1,940 @@
+{
+ "crn": false,
+ "drift": 0,
+ "setup": "synfg",
+ "seed": 1,
+ "calls": 3000,
+ "users": 700,
+ "budget": 1000000,
+ "ev": 1.0,
+ "ovh": 0.5,
+ "events": {
+  "member_move": 11,
+  "col_edit": 5,
+  "republish": 2,
+  "grant_edit": 4,
+  "revoke": 7,
+  "reactivate": 3
+ },
+ "methods": {
+  "NoCache": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 0,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 7.526910991998875,
+   "derive_s": 0.0,
+   "n_exec": 2081,
+   "rows_scanned": 733684941.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 0,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "view_maint": 0,
+   "hit_rate": 0.0,
+   "lat_local_mean": 0.003183972500845548,
+   "lat_local_p50": 0.0033159600000089995,
+   "lat_local_p95": 0.005684111900052357,
+   "lat_model_mean": 0.4433277965279183,
+   "lat_model_p95": 0.5056841119000524,
+   "lat_pad_mean": 0.4433277965279183,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 0,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 0.13230657577514648,
+   "views": 0
+  },
+  "Exact": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 370,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 6.1342455829986875,
+   "derive_s": 0.006199172000947328,
+   "n_exec": 1711,
+   "rows_scanned": 614846425.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 12516,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_self": 251,
+   "hit_other": 119,
+   "view_maint": 0,
+   "hit_rate": 0.17779913503123498,
+   "lat_local_mean": 0.0025974808608289486,
+   "lat_local_p50": 0.0028956640000501466,
+   "lat_local_p95": 0.005475849250029796,
+   "lat_model_mean": 0.3644841136865481,
+   "lat_model_p95": 0.5054758492500298,
+   "lat_pad_mean": 0.3644841136865481,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 0,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 0.18383145332336426,
+   "views": 0
+  },
+  "SemNoScope": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 859,
+   "wrong": 464,
+   "overpriv": 427,
+   "stale": 37,
+   "exec_s": 4.556355725998401,
+   "derive_s": 5.635804687998984,
+   "n_exec": 1222,
+   "rows_scanned": 463235840.0,
+   "replay_calls": 2,
+   "replay_wrong": 1,
+   "peak_rows": 7733,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_other": 612,
+   "hit_xscope": 468,
+   "wrong_examples": [
+    {
+     "call": 593,
+     "hit": true,
+     "metrics": [
+      "discount_rate"
+     ],
+     "group": [
+      "month"
+     ],
+     "filters": [],
+     "months": [
+      199709,
+      199808
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       12,
+       12
+      ],
+      "vals": [
+       [
+        "(199709,)",
+        [
+         0.05109395375740824
+        ],
+        [
+         0.05008395716556314
+        ]
+       ],
+       [
+        "(199710,)",
+        [
+         0.049877530784272005
+        ],
+        [
+         0.05028227442943694
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "call": 596,
+     "hit": true,
+     "metrics": [
+      "gross_sales"
+     ],
+     "group": [
+      "month"
+     ],
+     "filters": [],
+     "months": [
+      199802,
+      199807
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       6,
+       6
+      ],
+      "vals": [
+       [
+        "(199802,)",
+        [
+         108107949.35999995
+        ],
+        [
+         35693069.969999984
+        ]
+       ],
+       [
+        "(199803,)",
+        [
+         118124867.72999996
+        ],
+        [
+         43834545.30999997
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "call": 628,
+     "hit": true,
+     "metrics": [
+      "gross_sales"
+     ],
+     "group": [
+      "month"
+     ],
+     "filters": [],
+     "months": [
+      199709,
+      199808
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       12,
+       12
+      ],
+      "vals": [
+       [
+        "(199709,)",
+        [
+         120452982.32000025
+        ],
+        [
+         567548176.1299999
+        ]
+       ],
+       [
+        "(199710,)",
+        [
+         118721683.75999999
+        ],
+        [
+         602730179.5699998
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "call": 642,
+     "hit": true,
+     "metrics": [
+      "gross_sales"
+     ],
+     "group": [
+      "month"
+     ],
+     "filters": [],
+     "months": [
+      199805,
+      199807
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       3,
+       3
+      ],
+      "vals": [
+       [
+        "(199805,)",
+        [
+         122062688.71999982
+        ],
+        [
+         615806780.0300007
+        ]
+       ],
+       [
+        "(199806,)",
+        [
+         117615191.56000002
+        ],
+        [
+         582904108.0399997
+        ]
+       ]
+      ]
+     }
+    },
+    {
+     "call": 651,
+     "hit": true,
+     "metrics": [
+      "discount_rate"
+     ],
+     "group": [
+      "month"
+     ],
+     "filters": [],
+     "months": [
+      199807,
+      199807
+     ],
+     "ans": null,
+     "orc": null,
+     "diff": {
+      "keys_only_one_side": [],
+      "n": [
+       1,
+       1
+      ],
+      "vals": [
+       [
+        "(199807,)",
+        [
+         0.05146912946818511
+        ],
+        [
+         0.05018780651178771
+        ]
+       ]
+      ]
+     }
+    }
+   ],
+   "hit_self": 247,
+   "view_maint": 0,
+   "hit_rate": 0.4127823161941374,
+   "lat_local_mean": 0.004311404574448978,
+   "lat_local_p50": 0.0034721024999839756,
+   "lat_local_p95": 0.013185115899926813,
+   "lat_model_mean": 0.2627716414610818,
+   "lat_model_p95": 0.5053964328499603,
+   "lat_pad_mean": 0.3624054825697959,
+   "stats": {
+    "flushed": 1599,
+    "split_miss": 0,
+    "fallback": 198,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 18.742879390716553,
+   "views": 0
+  },
+  "PerUser": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 406,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 6.0859612919987285,
+   "derive_s": 0.591350821001356,
+   "n_exec": 1675,
+   "rows_scanned": 597108637.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 9965,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_self": 406,
+   "view_maint": 0,
+   "hit_rate": 0.19509851033157136,
+   "lat_local_mean": 0.0028245821120981745,
+   "lat_local_p50": 0.0029138340000258722,
+   "lat_local_p95": 0.005484285150021151,
+   "lat_model_mean": 0.35709700173984776,
+   "lat_model_p95": 0.5054842851500212,
+   "lat_pad_mean": 0.35709700173984776,
+   "stats": {
+    "flushed": 2108,
+    "split_miss": 0,
+    "fallback": 218,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 1.3020966053009033,
+   "views": 0
+  },
+  "PerScope": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 569,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 5.510619493997979,
+   "derive_s": 1.6706478759999754,
+   "n_exec": 1512,
+   "rows_scanned": 554152173.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 9192,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_self": 342,
+   "hit_other": 227,
+   "view_maint": 0,
+   "hit_rate": 0.2734262373858722,
+   "lat_local_mean": 0.0030377611548214694,
+   "lat_local_p50": 0.00303514450001785,
+   "lat_local_p95": 0.006080715049972693,
+   "lat_model_mean": 0.3228347154695423,
+   "lat_model_p95": 0.5054758492500298,
+   "lat_pad_mean": 0.3228347154695423,
+   "stats": {
+    "flushed": 1927,
+    "split_miss": 0,
+    "fallback": 216,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 5.256461143493652,
+   "views": 0
+  },
+  "TTL": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 391,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 6.1436602289986695,
+   "derive_s": 0.48383739599989894,
+   "n_exec": 1690,
+   "rows_scanned": 600027964.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 12710,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_self": 391,
+   "view_maint": 0,
+   "hit_rate": 0.18789043728976454,
+   "lat_local_mean": 0.0028035099936542167,
+   "lat_local_p50": 0.00294487849998859,
+   "lat_local_p95": 0.005484285150021151,
+   "lat_model_mean": 0.3602485184538911,
+   "lat_model_p95": 0.5054842851500212,
+   "lat_pad_mean": 0.3602485184538911,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 218,
+    "evicted": 0,
+    "maint_sec": 0.0
+   },
+   "wall": 0.9298768043518066,
+   "views": 0
+  },
+  "ViewRewrite": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1257,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 3.2899567699995487,
+   "derive_s": 9.560972256003083,
+   "n_exec": 827,
+   "rows_scanned": 311949524.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 877008,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 1257,
+   "view_maint": 3,
+   "hit_rate": 0.6040365209034119,
+   "lat_local_mean": 0.005436095188664396,
+   "lat_local_p50": 0.005052467500036073,
+   "lat_local_p95": 0.011140665399966564,
+   "lat_model_mean": 0.17971697505330061,
+   "lat_model_p95": 0.5054901196500282,
+   "lat_pad_mean": 0.4473722010355339,
+   "stats": {
+    "flushed": 3,
+    "split_miss": 0,
+    "fallback": 249,
+    "evicted": 0,
+    "maint_sec": 0.9849351269999715,
+    "view_cover_sec": [
+     123560014.0
+    ],
+    "view_build_sec": 3.7360774370000627,
+    "mat_n": 6,
+    "mat_rows": 36007290.0
+   },
+   "wall": 13.709938287734985,
+   "views": 3
+  },
+  "ScopeCache": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1443,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 8.695095220000212,
+   "derive_s": 9.654631310000468,
+   "n_exec": 641,
+   "rows_scanned": 287825968.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 999955,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 1257,
+   "hit_other": 30,
+   "hit_xscope": 20,
+   "hit_self": 156,
+   "view_maint": 3,
+   "hit_rate": 0.6934166266218165,
+   "lat_local_mean": 0.0077621516624368355,
+   "lat_local_p50": 0.005572447499957889,
+   "lat_local_p95": 0.02875636519999033,
+   "lat_model_mean": 0.1427029300042304,
+   "lat_model_p95": 0.5273533581500089,
+   "lat_pad_mean": 0.4146158903781726,
+   "stats": {
+    "flushed": 3,
+    "split_miss": 0,
+    "fallback": 213,
+    "evicted": 545,
+    "maint_sec": 0.7659693919999881,
+    "view_cover_sec": [
+     123560014.0
+    ],
+    "view_build_sec": 3.558362615999954,
+    "mat_n": 6,
+    "mat_rows": 36007290.0
+   },
+   "wall": 26.08776068687439,
+   "views": 3
+  },
+  "SC-online": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1464,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 6.7633021360012435,
+   "derive_s": 4.689266582999039,
+   "n_exec": 617,
+   "rows_scanned": 252596814.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 999980,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_other": 1284,
+   "hit_xscope": 1109,
+   "hit_self": 180,
+   "view_maint": 0,
+   "hit_rate": 0.703507928880346,
+   "lat_local_mean": 0.004844572216159172,
+   "lat_local_p50": 0.0029799749999597225,
+   "lat_local_p95": 0.01674196089999782,
+   "lat_model_mean": 0.1353437261924705,
+   "lat_model_p95": 0.5167419608999978,
+   "lat_pad_mean": 0.37145947921023664,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 213,
+    "evicted": 375,
+    "maint_sec": 0.0
+   },
+   "wall": 17.484911918640137,
+   "views": 0
+  },
+  "SC-nolift": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1437,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 6.9153405740000835,
+   "derive_s": 10.069771592000166,
+   "n_exec": 647,
+   "rows_scanned": 246581701.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 999948,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 1257,
+   "hit_other": 21,
+   "hit_xscope": 14,
+   "hit_self": 159,
+   "view_maint": 3,
+   "hit_rate": 0.6905333974050937,
+   "lat_local_mean": 0.0071849036235195635,
+   "lat_local_p50": 0.005693280500054243,
+   "lat_local_p95": 0.021989101249960178,
+   "lat_model_mean": 0.14339471749830807,
+   "lat_model_p95": 0.5159954406000111,
+   "lat_pad_mean": 0.4140329157796106,
+   "stats": {
+    "flushed": 3,
+    "split_miss": 0,
+    "fallback": 213,
+    "evicted": 535,
+    "maint_sec": 0.7156035560001328,
+    "view_cover_sec": [
+     123560014.0
+    ],
+    "view_build_sec": 3.8068581660000973,
+    "mat_n": 6,
+    "mat_rows": 36007290.0
+   },
+   "wall": 24.520641565322876,
+   "views": 3
+  },
+  "SC-snap": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1441,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 6.920953126002246,
+   "derive_s": 5.358571619000486,
+   "n_exec": 640,
+   "rows_scanned": 265688415.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 999958,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_self": 181,
+   "hit_other": 1260,
+   "hit_xscope": 1169,
+   "view_maint": 0,
+   "hit_rate": 0.6924555502162422,
+   "lat_local_mean": 0.005194384409899633,
+   "lat_local_p50": 0.0034972214999697826,
+   "lat_local_p95": 0.016576776950029164,
+   "lat_model_mean": 0.14055817459602485,
+   "lat_model_p95": 0.5165767769500291,
+   "lat_pad_mean": 0.38947034305626194,
+   "stats": {
+    "flushed": 443,
+    "split_miss": 0,
+    "fallback": 216,
+    "evicted": 359,
+    "maint_sec": 0.0,
+    "view_cover_sec": [
+     123560014.0
+    ],
+    "view_build_sec": 3.5890253200001325,
+    "mat_n": 3,
+    "mat_rows": 18003645.0
+   },
+   "wall": 21.122293949127197,
+   "views": 3
+  },
+  "SC-atoms": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1443,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 9.043107105000786,
+   "derive_s": 10.560976201001267,
+   "n_exec": 641,
+   "rows_scanned": 287825968.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 999955,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 1257,
+   "hit_other": 30,
+   "hit_xscope": 20,
+   "hit_self": 156,
+   "view_maint": 3,
+   "hit_rate": 0.6934166266218165,
+   "lat_local_mean": 0.008292759435703068,
+   "lat_local_p50": 0.005923824499973307,
+   "lat_local_p95": 0.03054434625007616,
+   "lat_model_mean": 0.14323353777749664,
+   "lat_model_p95": 0.5289256757000033,
+   "lat_pad_mean": 0.41514649815143884,
+   "stats": {
+    "flushed": 3,
+    "split_miss": 0,
+    "fallback": 213,
+    "evicted": 545,
+    "maint_sec": 0.7828504229998998,
+    "view_cover_sec": [
+     123560014.0
+    ],
+    "view_build_sec": 3.5706345999999485,
+    "mat_n": 6,
+    "mat_rows": 36007290.0
+   },
+   "wall": 28.186222791671753,
+   "views": 3
+  },
+  "PerScope+": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1229,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 5.540042424000944,
+   "derive_s": 3.1024275969992914,
+   "n_exec": 852,
+   "rows_scanned": 406456066.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 999985,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_self": 339,
+   "hit_other": 890,
+   "hit_xscope": 1,
+   "view_maint": 0,
+   "hit_rate": 0.5905814512253724,
+   "lat_local_mean": 0.0036558671831642283,
+   "lat_local_p50": 0.0027249630000483194,
+   "lat_local_p95": 0.010003678150019363,
+   "lat_model_mean": 0.1838589128684434,
+   "lat_model_p95": 0.5100036781500193,
+   "lat_pad_mean": 0.18407217203934023,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 213,
+    "evicted": 56,
+    "maint_sec": 0.0
+   },
+   "wall": 13.491293907165527,
+   "views": 0
+  },
+  "VR-adapt": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1256,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 3.0103079609992847,
+   "derive_s": 10.371995964999883,
+   "n_exec": 829,
+   "rows_scanned": 316835599.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 982553,
+   "view_rebuilds": 3,
+   "readapt_mat": 1,
+   "hit_view": 1256,
+   "view_maint": 3,
+   "hit_rate": 0.6035559827006247,
+   "lat_local_mean": 0.005783877200507269,
+   "lat_local_p50": 0.005220500000007178,
+   "lat_local_p95": 0.013425059750085205,
+   "lat_model_mean": 0.1802762629873093,
+   "lat_model_p95": 0.5054926498500322,
+   "lat_pad_mean": 0.4477152736704733,
+   "stats": {
+    "flushed": 3,
+    "split_miss": 0,
+    "fallback": 249,
+    "evicted": 0,
+    "maint_sec": 0.7691153670000404,
+    "view_cover_sec": [
+     132175682.0
+    ],
+    "view_build_sec": 3.528519052999968,
+    "mat_n": 7,
+    "mat_rows": 42008505.0
+   },
+   "wall": 23.857821226119995,
+   "views": 3
+  },
+  "PerScope+V": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1452,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 4.575864462001846,
+   "derive_s": 10.801245283001094,
+   "n_exec": 632,
+   "rows_scanned": 282870852.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 999998,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 1257,
+   "hit_self": 157,
+   "hit_other": 38,
+   "view_maint": 3,
+   "hit_rate": 0.6977414704469005,
+   "lat_local_mean": 0.006504699553723748,
+   "lat_local_p50": 0.005853803999968932,
+   "lat_local_p95": 0.014855562499985807,
+   "lat_model_mean": 0.13954192459602494,
+   "lat_model_p95": 0.5110006464999401,
+   "lat_pad_mean": 0.40719715057825817,
+   "stats": {
+    "flushed": 3,
+    "split_miss": 0,
+    "fallback": 213,
+    "evicted": 326,
+    "maint_sec": 0.9222242210000786,
+    "view_cover_sec": [
+     123560014.0
+    ],
+    "view_build_sec": 3.760484920999943,
+    "mat_n": 6,
+    "mat_rows": 36007290.0
+   },
+   "wall": 21.8013756275177,
+   "views": 3
+  },
+  "SC-online-nolift": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1323,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 8.15570921900121,
+   "derive_s": 4.482832387999565,
+   "n_exec": 758,
+   "rows_scanned": 271860008.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 999996,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_other": 1100,
+   "hit_xscope": 897,
+   "hit_self": 223,
+   "view_maint": 0,
+   "hit_rate": 0.6357520422873618,
+   "lat_local_mean": 0.005346252794839583,
+   "lat_local_p50": 0.003389961500033678,
+   "lat_local_p95": 0.01796979524996231,
+   "lat_model_mean": 0.16566774179653163,
+   "lat_model_p95": 0.5179697952499623,
+   "lat_pad_mean": 0.3566323646971234,
+   "stats": {
+    "flushed": 0,
+    "split_miss": 0,
+    "fallback": 213,
+    "evicted": 482,
+    "maint_sec": 0.0
+   },
+   "wall": 21.0920090675354,
+   "views": 0
+  },
+  "VR-adapt300": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1249,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 1.9874019459984993,
+   "derive_s": 10.508250254998643,
+   "n_exec": 848,
+   "rows_scanned": 391140556.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 995598,
+   "view_rebuilds": 7,
+   "readapt_mat": 13,
+   "hit_view": 1249,
+   "view_maint": 3,
+   "hit_rate": 0.6001922152811149,
+   "lat_local_mean": 0.005857832318526793,
+   "lat_local_p50": 0.005208592500025588,
+   "lat_local_p95": 0.013152501249993502,
+   "lat_model_mean": 0.18183075956048958,
+   "lat_model_p95": 0.5055010714999184,
+   "lat_pad_mean": 0.4477729108489838,
+   "stats": {
+    "flushed": 3,
+    "split_miss": 0,
+    "fallback": 249,
+    "evicted": 0,
+    "maint_sec": 0.7150049099999478,
+    "view_cover_sec": [
+     67962622.0
+    ],
+    "view_build_sec": 2.376502258999949,
+    "mat_n": 19,
+    "mat_rows": 114023085.0
+   },
+   "wall": 33.401196241378784,
+   "views": 3
+  },
+  "VR-adapt1200": {
+   "calls": 2364,
+   "data_calls": 2081,
+   "hits": 1257,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 2.8943905239995047,
+   "derive_s": 9.708949690001418,
+   "n_exec": 827,
+   "rows_scanned": 311949524.0,
+   "replay_calls": 2,
+   "replay_wrong": 0,
+   "peak_rows": 877008,
+   "view_rebuilds": 1,
+   "readapt_mat": 0,
+   "hit_view": 1257,
+   "view_maint": 3,
+   "hit_rate": 0.6040365209034119,
+   "lat_local_mean": 0.005498691395939496,
+   "lat_local_p50": 0.005156672000055096,
+   "lat_local_p95": 0.011466426349988974,
+   "lat_model_mean": 0.1797795712605757,
+   "lat_model_p95": 0.5054901196500282,
+   "lat_pad_mean": 0.44743479724280893,
+   "stats": {
+    "flushed": 3,
+    "split_miss": 0,
+    "fallback": 249,
+    "evicted": 0,
+    "maint_sec": 0.8123596479999833,
+    "view_cover_sec": [
+     256107657.0
+    ],
+    "view_build_sec": 3.1320581269999366,
+    "mat_n": 6,
+    "mat_rows": 36007290.0
+   },
+   "wall": 16.924703359603882,
+   "views": 3
+  }
+ }
+}

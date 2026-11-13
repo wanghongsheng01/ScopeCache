@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{Sensitivity of $\mathit{unpin\_min}$ on the same fifteen unseen-seed runs, reported as a sensitivity sweep, not as threshold selection. The official method uses 40, frozen before these runs. Thresholds 10 and 20 lose to \M{PerScope+V} on some cells (the same weak-evidence unpinning that motivated the freeze). A threshold of 80 also yields 10--5--0 and 34 fewer executions in total---an advantage observed after the freeze---and is not adopted. W--T--L is versus \M{PerScope+V}; $\Delta$ is versus the frozen total of 4{,}512.}
+\label{tab:sens}
+\footnotesize
+\setlength{\tabcolsep}{3.4pt}
+\begin{tabular}{@{}rrrrrrr@{}}
+\toprule
+$\mathit{unpin\_min}$ & W & T & L & Exec. & vs.\ PSV & $\Delta$\\
+\midrule
+10 & 7 & 4 & 4 & 4{,}557 & 5.1\% & $+45$\\
+20 & 8 & 5 & 2 & 4{,}561 & 5.1\% & $+49$\\
+\textbf{40 (official)} & \textbf{10} & \textbf{5} & \textbf{0} & \textbf{4{,}512} & \textbf{6.1\%} & ---\\
+80 & 10 & 5 & 0 & 4{,}478 & 6.8\% & $-34$\\
+\bottomrule
+\end{tabular}
+\end{table}

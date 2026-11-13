@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Scopes are fine-grained: every setup has 85--300 distinct scopes. Principals: 400 on TPC-H, TPC-DS, BIRD, and ENT; 700 on SYN-FG (60 shared groups and 240 singleton groups). Scopes counted at seed 0.}
+\label{tab:setups}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lrrlr@{}}
+\toprule
+Setup & Rows & Months & Policy attributes (values) & Scopes\\
+\midrule
+TPC-H & 6.0M & 80 & nation, segm., mfgr (25$\times$5$\times$5) & 109\\
+TPC-DS & 2.5M & 61 & state, category (51$\times$10) & 85\\
+BIRD & 1.1M & 72 & district, freq. (77$\times$3) & 93\\
+ENT & 2.0M & 36 & dept., brand, chan. (456$\times$12$\times$6) & 132\\
+SYN-FG & 6.0M & 80 & shop, segm. (300$\times$5) & 300\\
+\bottomrule
+\end{tabular}
+\end{table}

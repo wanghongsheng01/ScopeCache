@@ -1,0 +1,212 @@
+{
+  "tpch": {
+    "rows": 6001215,
+    "months": 80,
+    "policy": {
+      "c_nation": 25,
+      "c_mktsegment": 5,
+      "p_mfgr": 5
+    },
+    "dims": {
+      "c_region": 5,
+      "c_nation": 25,
+      "c_mktsegment": 5,
+      "p_mfgr": 5,
+      "p_brand": 25,
+      "p_type1": 6,
+      "l_shipmode": 7,
+      "l_returnflag": 3,
+      "o_orderpriority": 5,
+      "s_region": 5
+    },
+    "combos": 625,
+    "blocks": 500,
+    "classes": {
+      "c_nation": 20,
+      "c_mktsegment": 5,
+      "p_mfgr": 5
+    },
+    "roles": 43,
+    "groups": 60,
+    "users": 400,
+    "distinct_scopes": 109,
+    "measures": 8,
+    "metrics": 10,
+    "sensitive": [
+      "supplycost"
+    ],
+    "mapped": [
+      "brand_group"
+    ]
+  },
+  "tpcds": {
+    "rows": 2549730,
+    "months": 61,
+    "policy": {
+      "ca_state": 51,
+      "i_category": 10
+    },
+    "dims": {
+      "ca_state": 51,
+      "i_category": 10,
+      "i_class": 99,
+      "s_store_id": 6,
+      "cd_gender": 2,
+      "cd_education_status": 7,
+      "cd_marital_status": 5
+    },
+    "combos": 510,
+    "blocks": 270,
+    "classes": {
+      "ca_state": 27,
+      "i_category": 10
+    },
+    "roles": 32,
+    "groups": 60,
+    "users": 400,
+    "distinct_scopes": 85,
+    "measures": 8,
+    "metrics": 10,
+    "sensitive": [
+      "wholesale",
+      "net_profit"
+    ],
+    "mapped": [
+      "division"
+    ]
+  },
+  "bird": {
+    "rows": 1056320,
+    "months": 72,
+    "policy": {
+      "district": 77,
+      "frequency": 3
+    },
+    "dims": {
+      "region": 8,
+      "district": 77,
+      "frequency": 3,
+      "ttype": 3,
+      "operation": 6,
+      "k_symbol": 8
+    },
+    "combos": 202,
+    "blocks": 76,
+    "classes": {
+      "district": 28,
+      "frequency": 3
+    },
+    "roles": 39,
+    "groups": 60,
+    "users": 400,
+    "distinct_scopes": 93,
+    "measures": 6,
+    "metrics": 8,
+    "sensitive": [
+      "balance"
+    ],
+    "mapped": [
+      "symbol_group"
+    ]
+  },
+  "ent": {
+    "rows": 2000000,
+    "months": 36,
+    "policy": {
+      "dept": 456,
+      "brand": 12,
+      "channel": 6
+    },
+    "dims": {
+      "dept": 456,
+      "brand": 12,
+      "channel": 6,
+      "country": 20,
+      "category": 30
+    },
+    "combos": 14197,
+    "blocks": 2500,
+    "classes": {
+      "dept": 77,
+      "brand": 9,
+      "channel": 6
+    },
+    "roles": 98,
+    "groups": 60,
+    "users": 400,
+    "distinct_scopes": 132,
+    "measures": 6,
+    "metrics": 9,
+    "sensitive": [
+      "cost"
+    ],
+    "mapped": [
+      "product_line"
+    ]
+  },
+  "synfg": {
+    "rows": 6001215,
+    "months": 80,
+    "policy": {
+      "shop": 300,
+      "c_mktsegment": 5
+    },
+    "dims": {
+      "c_region": 5,
+      "c_nation": 25,
+      "c_mktsegment": 5,
+      "p_mfgr": 5,
+      "p_brand": 25,
+      "p_type1": 6,
+      "l_shipmode": 7,
+      "l_returnflag": 3,
+      "o_orderpriority": 5,
+      "s_region": 5,
+      "shop": 300
+    },
+    "combos": 1500,
+    "blocks": 807,
+    "classes": {
+      "shop": 269,
+      "c_mktsegment": 3
+    },
+    "roles": 300,
+    "groups": 300,
+    "users": 700,
+    "distinct_scopes": 300,
+    "measures": 8,
+    "metrics": 10,
+    "sensitive": [
+      "supplycost"
+    ],
+    "mapped": [
+      "brand_group"
+    ],
+    "synfg_policy": {
+      "n_users": 700,
+      "n_users_all": 700,
+      "n_roles": 300,
+      "n_groups": 300,
+      "n_shared_groups": 60,
+      "n_singleton_groups": 240,
+      "distinct_scopes": 300,
+      "users_per_scope_median": 1.0,
+      "users_per_scope_mean": 2.3333333333333335,
+      "users_per_scope_max": 40,
+      "n_singleton_scopes": 240,
+      "n_roles_sensitive": 75,
+      "frac_roles_sensitive": 0.25,
+      "kind_counts": {
+        "hier_region": 5,
+        "hier_nation": 25,
+        "in": 10,
+        "or": 10,
+        "two": 10,
+        "single": 240
+      },
+      "in_target": true
+    },
+    "users_per_scope_median": 1.0,
+    "users_per_scope_mean": 2.3333333333333335
+  }
+}

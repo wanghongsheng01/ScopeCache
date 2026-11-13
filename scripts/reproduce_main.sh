@@ -10,16 +10,15 @@ EVM=NoCache,Exact,SemNoScope,PerUser,PerScope,TTL,ViewRewrite,ScopeCache,SC-snap
 XM=NoCache,PerScope,ViewRewrite,ScopeCache,SC-online,SC-atoms,PerScope+V
 DM=NoCache,PerScope,PerScope+,PerScope+V,ViewRewrite,ScopeCache,SC-online
 for s in tpch tpcds bird ent; do
-  for seed in 0 1 2; do python -W ignore run.py $s --seed $seed --calls 3000 --tag v5main --methods $ALL; done
+  for seed in 0 1 2; do python3 -W ignore run.py $s --seed $seed --calls 3000 --tag v5main --methods $ALL; done
   # event sweep with common random numbers: the same calls at every rate
-  for ev in 0 1 4 16; do python -W ignore run.py $s --ev $ev --crn --calls 3000 --tag v5cev$ev --methods $EVM; done
-  python -W ignore run.py $s --drift 30 --calls 3000 --tag v5drift --methods $XM
-  python -W ignore run.py $s --budget 100000 --calls 3000 --tag v5b100k --methods $XM
+  for ev in 0 1 4 16; do python3 -W ignore run.py $s --ev $ev --crn --calls 3000 --tag v5cev$ev --methods $EVM; done
+  python3 -W ignore run.py $s --drift 30 --calls 3000 --tag v5drift --methods $XM
+  python3 -W ignore run.py $s --budget 100000 --calls 3000 --tag v5b100k --methods $XM
 done
 # policy-domain sweep (synthetic; build first with: python datasets.py dom50 dom300 dom1000 dom3000)
 for n in 50 300 1000 3000; do
-  python -W ignore run.py dom$n --seed 0 --calls 3000 --tag v5dom --methods $DM
+  python3 -W ignore run.py dom$n --seed 0 --calls 3000 --tag v5dom --methods $DM
 done
 # scale run (build first with: python datasets.py tpch5; about 1 GB)
-python -W ignore run.py tpch5 --seed 0 --calls 3000 --tag v5scale --methods $DM
-# The ERP setup (setup erp: main grid and event sweep, tags v5main and v5cev) needs the non-released grant file; its results are in results/.
+python3 -W ignore run.py tpch5 --seed 0 --calls 3000 --tag v5scale --methods $DM

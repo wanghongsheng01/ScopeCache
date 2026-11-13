@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Pre-registered robustness on unseen seeds 6--10, default Zipf workload, frozen SC-adaptP ($\mathit{unpin\_min}=40$). W--T--L and totals versus each baseline; 95\% paired-bootstrap CI on the total-execution difference (seed 20261112, 10{,}000 replicates). This grid does not replace Table~\ref{tab:main}.}
+\label{tab:rob}
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+vs.\ baseline & W & T & L & Ours & Base & vs.\ base & 95\% CI\\
+\midrule
+\textbf{\M{PerScope+V}} & 15 & 9 & 1 & 7{,}336 & 7{,}754 & 5.4\% & [-710, -171]\\
+\M{SC-hybrid} & 5 & 16 & 4 & 7{,}336 & 7{,}651 & 4.1\% & [-714, 15]\\
+\M{PerScope+} & 25 & 0 & 0 & 7{,}336 & 18{,}943 & 61.3\% & [-13649, -9828]\\
+\M{VR-adapt} & 25 & 0 & 0 & 7{,}336 & 10{,}080 & 27.2\% & [-3893, -1723]\\
+\M{ViewRewrite} & 25 & 0 & 0 & 7{,}336 & 9{,}995 & 26.6\% & [-3756, -1679]\\
+\M{SC-online} & 24 & 0 & 1 & 7{,}336 & 11{,}425 & 35.8\% & [-6312, -2107]\\
+\M{SC-atoms} & 6 & 10 & 9 & 7{,}336 & 7{,}623 & 3.8\% & [-623, 8]\\
+\bottomrule
+\end{tabular}
+\end{table}

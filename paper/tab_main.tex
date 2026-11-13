@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Headline evaluation on fifteen runs whose seeds (3, 4, 5) were held out from design and from the choice of $\mathit{unpin\_min}$. ScopeCache matches or beats \M{PerScope+V} in every cell: 10 wins, 5 ties, 0 losses. Warehouse executions; bold is best and underline is second among the three methods, with ties sharing the mark. W--T--L is versus \M{PerScope+V}. \M{SC-hybrid} is the same cache with a fixed raw-value hybrid configuration (no holdout, no POP). ScopeCache is the full system (holdout selection and evidence-threshold POP, $\mathit{unpin\_min}=40$, frozen before these runs). The \emph{Chosen} row is the holdout decision of ScopeCache ($\mathit{raw}$: raw-value hybrid; $\mathit{atoms}$: grant-literal cells; $\mathit{pop50}$/$\mathit{pop30}$: POP with a 50\% or 30\% online reserve). On TPC-H seed 3, ScopeCache is second to \M{SC-hybrid} (348 vs.\ 328) and still ahead of \M{PerScope+V} (352).}
+\label{tab:main}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lrrrrrrrrrrrrrrrc@{}}
+\toprule
+ & \multicolumn{3}{c}{TPC-H} & \multicolumn{3}{c}{TPC-DS} & \multicolumn{3}{c}{BIRD} & \multicolumn{3}{c}{ENT} & \multicolumn{3}{c}{SYN-FG} & \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}\cmidrule(lr){11-13}\cmidrule(lr){14-16}
+Method & 3 & 4 & 5 & 3 & 4 & 5 & 3 & 4 & 5 & 3 & 4 & 5 & 3 & 4 & 5 & W--T--L\\
+\midrule
+\M{SC-hybrid} & \textbf{328} & \underline{312} & \underline{398} & \textbf{228} & \textbf{243} & \textbf{255} & \textbf{193} & \textbf{164} & \textbf{223} & \underline{168} & \textbf{150} & \underline{201} & 665 & 635 & 650 & 6--6--3\\
+\M{PerScope+V} & 352 & 328 & 405 & \textbf{228} & \underline{250} & \underline{259} & \textbf{193} & \textbf{164} & \textbf{223} & \underline{168} & \textbf{150} & \underline{201} & \underline{659} & \underline{605} & \underline{619} & ---\\
+\textbf{ScopeCache} & \underline{348} & \textbf{264} & \textbf{323} & \textbf{228} & \textbf{243} & \textbf{255} & \textbf{193} & \textbf{164} & \textbf{223} & \textbf{167} & \textbf{150} & \textbf{197} & \textbf{638} & \textbf{541} & \textbf{578} & \textbf{10--5--0}\\
+\midrule
+Chosen & raw & pop50 & pop50 & raw & raw & raw & raw & raw & raw & atoms & raw & atoms & pop50 & pop30 & pop30 & \\
+\bottomrule
+\end{tabular}
+\end{table*}

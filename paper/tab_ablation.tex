@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Removing any component of the core cache costs executions on at least one setup (development seeds 0--2). Executions relative to \M{SC-hybrid}; G.\,mean: geometric mean over setups. These are not the headline numbers of Table~\ref{tab:main}. $^\dagger$Relative to \M{SC-online}, seed 0.}
+\label{tab:ablation}
+\footnotesize
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}lrrrrr@{\hspace{7pt}}r@{}}
+\toprule
+Variant & TPC-H & TPC-DS & BIRD & ENT & SYN-FG & G.\,mean\\
+\midrule
+\M{SC-hybrid} & \textbf{1.00$\times$} & \textbf{1.00$\times$} & \textbf{1.00$\times$} & \underline{1.00$\times$} & 1.00$\times$ & \textbf{1.00$\times$}\\
+\M{SC-online} & 1.11$\times$ & 1.22$\times$ & \underline{1.60$\times$} & 4.30$\times$ & \textbf{0.96$\times$} & 1.55$\times$\\
+\M{PerScope+} & 2.38$\times$ & 2.38$\times$ & 3.36$\times$ & 5.65$\times$ & 1.31$\times$ & 2.69$\times$\\
+\M{SC-nolift} & \underline{1.03$\times$} & \underline{1.04$\times$} & \textbf{1.00$\times$} & \underline{1.00$\times$} & 1.01$\times$ & \underline{1.02$\times$}\\
+\M{SC-snap} & 1.19$\times$ & 1.33$\times$ & 1.70$\times$ & 4.18$\times$ & 1.01$\times$ & 1.63$\times$\\
+\M{SC-atoms} & \textbf{1.00$\times$} & 1.05$\times$ & \textbf{1.00$\times$} & \textbf{0.99$\times$} & \underline{0.97$\times$} & \textbf{1.00$\times$}\\
+\midrule
+\M{SC-online-nolift}$^\dagger$ & 1.45$\times$ & 1.29$\times$ & 1.85$\times$ & 1.00$\times$ & 1.28$\times$ & 1.35$\times$\\
+\bottomrule
+\end{tabular}
+\end{table}

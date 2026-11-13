@@ -97,7 +97,7 @@ def eval_metric(formula, cols):
     expr = re.sub(r"[A-Za-z_][A-Za-z0-9_]*", lambda m: f"__c['{m.group(0)}']", formula)
     with np.errstate(all="ignore"):
         v = eval(expr, {"__c": cols})
-    v = np.asarray(v, dtype=float)
+    v = np.array(v, dtype=float, copy=True)
     v[~np.isfinite(v)] = np.nan
     return v
 
@@ -115,6 +115,11 @@ class Policy:
         self.gversion = 0            # bumps only when grant literals change (vocabulary may change)
         if sp.get("real_grants"):
             self._load_real(sp["real_grants"])
+            return
+        if sp.get("synfg"):
+            from synfg import fill_synfg, N_USERS, N_SHARED_GROUPS
+            fill_synfg(self, n_users=sp.get("n_users", n_users or N_USERS),
+                       n_shared=sp.get("n_groups", n_groups or N_SHARED_GROUPS))
             return
         self._mk_roles()
         rids = list(self.roles)
@@ -333,7 +338,9 @@ class Env:
         self.rng = random.Random(seed)
         self._coarse()
         self.sem = Semantic(self.sp, self.domains, random.Random(seed + 1))
-        self.pol = Policy(self.sp, self.domains, random.Random(seed + 2), n_users=n_users)
+        n_users = self.sp.get("n_users", n_users)
+        self.pol = Policy(self.sp, self.domains, random.Random(seed + 2),
+                          n_users=n_users, n_groups=self.sp.get("n_groups", 60))
         combos = self.con.execute(f"SELECT DISTINCT {','.join(self.sp['policy'])} FROM {self.t}").fetchall()
         self.combos = pd.DataFrame(combos, columns=self.sp["policy"])
 
@@ -365,6 +372,14 @@ class Env:
             r = random.Random(5)
             subs = [frozenset(sub(d) & present) for d in r.sample(cand, 60)]
             sp["coarse"]["dept"] = [s for s in subs if s]
+        if self.name == "synfg":
+            # nation- and region-level shop trees for hierarchical roles (shop is a refinement of customer geography)
+            for attr, dest in (("c_nation", "shop"), ("c_region", "shop_region")):
+                rows = self.con.execute(f"SELECT DISTINCT {attr}, shop FROM {self.t}").fetchall()
+                g = defaultdict(set)
+                for x, y in rows:
+                    g[x].add(y)
+                sp.setdefault("coarse", {})[dest] = [frozenset(v) for _, v in sorted(g.items())]
 
     # --- SQL
     def gexpr(self, g):
@@ -446,20 +461,28 @@ def fresh(env, u, q):
 
 
 # ------------------------------------------------------------------------------------------------ workload
-def gen_workload(env, n_calls, seed, ev_rate=1.0, replay=0.5, drift=0, crn=False):
+def gen_workload(env, n_calls, seed, ev_rate=1.0, replay=0.5, drift=0, crn=False,
+                 user_exp=0.8, metric_exp=0.9, dim_exp=0.7):
     """Agent sessions (overview -> breakdown -> drill -> swap/compare/scalar/retry) interleaved with permission
-    and semantic-layer events.  Returns a list of ('call', u, Query) | ('event', kind)."""
+    and semantic-layer events.  Returns a list of ('call', u, Query) | ('event', kind).
+
+    user_exp / metric_exp / dim_exp are Zipf exponents for principal, metric, and
+    dimension popularity.  The defaults (0.8, 0.9, 0.7) are the original workload
+    and must remain bit-identical; a pre-registered robustness shift ('flatmix')
+    passes 0.2, 0.2, 0.2 to activate a broader mix of scopes.  Do not change the
+    defaults after seeing results.
+    """
     rng = random.Random(seed)
     # crn: events draw from their own stream, so runs at different event rates issue the same calls
     # (common random numbers) and the events at a higher rate are a superset of those at a lower rate
     erng = random.Random(seed * 7919 + 17) if crn else rng
     sp = env.sp
     mets = list(sp["metrics"])
-    mw = np.array([1.0 / (i + 1) ** 0.9 for i in range(len(mets))])
+    mw = np.array([1.0 / (i + 1) ** metric_exp for i in range(len(mets))])
     dims = sp["dims"] + list(sp["mapped"])
-    dw = np.array([1.0 / (i + 1) ** 0.7 for i in range(len(dims))])
+    dw = np.array([1.0 / (i + 1) ** dim_exp for i in range(len(dims))])
     users = list(env.pol.users)
-    uw = np.array([1.0 / (i + 1) ** 0.8 for i in range(len(users))])
+    uw = np.array([1.0 / (i + 1) ** user_exp for i in range(len(users))])
     nrng = np.random.default_rng(seed)
     last_m = env.months[-1]
     mi = {m: i for i, m in enumerate(env.months)}

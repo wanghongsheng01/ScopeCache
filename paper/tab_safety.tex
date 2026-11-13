@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\caption{Only the two shared caches are unsafe; no safe cache returns a wrong answer. Wrong answers on the development grid (seeds 0--2, \nMainDataCalls{} data calls) and the agent traces. On the unseen-seed headline grid, ScopeCache, \M{SC-hybrid}, and \M{PerScope+V} also returned no wrong answer (\freshDataCalls{} data calls).}
+\label{tab:safety}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+ & \multicolumn{3}{c}{Main grid} & \multicolumn{2}{c}{Agent traces}\\
+\cmidrule(lr){2-4}\cmidrule(l){5-6}
+Method & Data calls & Wrong & Over-priv. & Wrong & Over-priv.\\
+\midrule
+\M{Exact} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\M{PerUser} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\M{PerScope} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\M{PerScope+} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\M{PerScope+V} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\M{TTL} & 31{,}273 & 39 & 12 & -- & --\\
+\M{SemNoScope} & 31{,}273 & 8{,}670 & 7{,}571 & 8{,}004 & 6{,}851\\
+\M{ViewRewrite} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\M{VR-adapt} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\M{SC-hybrid} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\M{SC-online} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\M{SC-nolift} & 31{,}273 & \textbf{0} & \textbf{0} & -- & --\\
+\M{SC-snap} & 31{,}273 & \textbf{0} & \textbf{0} & -- & --\\
+\M{SC-atoms} & 31{,}273 & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0}\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,201 @@
+{
+ "crn": true,
+ "drift": 0,
+ "setup": "synfg",
+ "seed": 0,
+ "calls": 3000,
+ "users": 700,
+ "budget": 1000000,
+ "ev": 1.0,
+ "ovh": 0.5,
+ "events": {
+  "revoke": 3,
+  "reactivate": 2,
+  "col_edit": 4,
+  "member_move": 7,
+  "grant_edit": 3,
+  "republish": 1
+ },
+ "methods": {
+  "PerScope+V": {
+   "calls": 2401,
+   "data_calls": 2134,
+   "hits": 1488,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 5.0138581639930635,
+   "derive_s": 9.437085827035844,
+   "n_exec": 649,
+   "rows_scanned": 296910051.0,
+   "replay_calls": 1,
+   "replay_wrong": 0,
+   "peak_rows": 999982,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 1217,
+   "hit_self": 188,
+   "hit_other": 83,
+   "view_maint": 3,
+   "hit_rate": 0.697282099343955,
+   "lat_local_mean": 0.006018718863402293,
+   "lat_local_p50": 0.005900662001295132,
+   "lat_local_p95": 0.01268660700043256,
+   "lat_model_mean": 0.14054599916327734,
+   "lat_model_p95": 0.511047845999201,
+   "lat_pad_mean": 0.39580065302082185,
+   "stats": {
+    "flushed": 3,
+    "split_miss": 0,
+    "fallback": 173,
+    "evicted": 388,
+    "maint_sec": 0.8835291119994508,
+    "view_cover_sec": [
+     122972986.0
+    ],
+    "view_build_sec": 3.799771776999478,
+    "mat_n": 6,
+    "mat_rows": 36007290.0
+   },
+   "wall": 20.897310972213745,
+   "views": 3
+  },
+  "SC-adaptP": {
+   "calls": 2401,
+   "data_calls": 2134,
+   "hits": 1564,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 7.625382043006539,
+   "derive_s": 9.845247326027675,
+   "n_exec": 571,
+   "rows_scanned": 247485837.0,
+   "replay_calls": 1,
+   "replay_wrong": 0,
+   "peak_rows": 999966,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 1064,
+   "hit_other": 357,
+   "hit_xscope": 312,
+   "hit_self": 143,
+   "view_maint": 1,
+   "hit_rate": 0.7328959700093721,
+   "lat_local_mean": 0.0072763970716510674,
+   "lat_local_p50": 0.006117244000051869,
+   "lat_local_p95": 0.018813100999977905,
+   "lat_model_mean": 0.1259769385127173,
+   "lat_model_p95": 0.5188131009999779,
+   "lat_pad_mean": 0.4145923574056615,
+   "stats": {
+    "flushed": 1,
+    "split_miss": 0,
+    "fallback": 173,
+    "evicted": 390,
+    "maint_sec": 0.13385883800037846,
+    "ghost_hits": 57,
+    "unpinned": 0,
+    "unpinned_rows": 0,
+    "view_cover_sec": [
+     101970370.0
+    ],
+    "view_build_sec": 3.6535074280000117,
+    "mat_n": 2,
+    "mat_rows": 12002430.0
+   },
+   "wall": 25.00491976737976,
+   "views": 1,
+   "adapt": {
+    "n_train": 600,
+    "n_sel": 450,
+    "n_val": 150,
+    "scores": [
+     {
+      "name": "raw_hybrid",
+      "n_exec": 49,
+      "wrong": 0,
+      "data_calls": 142,
+      "evicted": 111,
+      "views": 4,
+      "wall": 5.265,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 1.0,
+       "pop": true
+      }
+     },
+     {
+      "name": "online",
+      "n_exec": 45,
+      "wrong": 0,
+      "data_calls": 142,
+      "evicted": 24,
+      "views": 0,
+      "wall": 4.394,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": false,
+       "lift": true,
+       "pop": true
+      }
+     },
+     {
+      "name": "atoms",
+      "n_exec": 49,
+      "wrong": 0,
+      "data_calls": 142,
+      "evicted": 111,
+      "views": 4,
+      "wall": 5.461,
+      "cfg": {
+       "mode": "atoms",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 1.0,
+       "pop": true
+      }
+     },
+     {
+      "name": "pop50",
+      "n_exec": 41,
+      "wrong": 0,
+      "data_calls": 142,
+      "evicted": 51,
+      "views": 3,
+      "wall": 5.054,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 0.5,
+       "pop": true
+      }
+     },
+     {
+      "name": "pop30",
+      "n_exec": 37,
+      "wrong": 0,
+      "data_calls": 142,
+      "evicted": 19,
+      "views": 1,
+      "wall": 4.642,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 0.3,
+       "pop": true
+      }
+     }
+    ],
+    "chosen": "pop30",
+    "chosen_n_exec": 37,
+    "chosen_wrong": 0
+   },
+   "adapt_chosen": "pop30"
+  }
+ }
+}

@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Cross-scope reuse and the savings over \M{PerScope} hold for every agent model. Exec. ratio: ScopeCache executions over those of \M{PerScope}.}
+\label{tab:agentvendor}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Model & Calls/q. & Hit (\%) & X-sc. (\%) & Exec. ratio\\
+\midrule
+deepseek-chat & 1.73 & 97.1 & 78.6 & 0.038\\
+GLM-4.5-flash & 2.19 & 97.2 & 77.5 & 0.044\\
+Kimi-K2.6 & 2.47 & 96.9 & 79.1 & 0.051\\
+GPT-6 (gpt-6-sol) & 1.79 & 97.7 & 80.4 & 0.032\\
+Claude Opus 5.5 & 1.82 & 97.8 & 79.8 & 0.032\\
+\bottomrule
+\end{tabular}
+\end{table}

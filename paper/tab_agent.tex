@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\caption{ScopeCache has the highest hit rate and the fewest executions on every setup of the agent traces. X-sc.: cross-scope share of \M{SC-online}; abbreviations in Section~\ref{sec:rq3}.}
+\label{tab:agent}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrrrrrrrrrr@{}}
+\toprule
+ & & & \multicolumn{5}{c}{Hit rate (\%)} & & \multicolumn{5}{c}{Executions}\\
+\cmidrule(lr){4-8}\cmidrule(l){10-14}
+Setup & Traces & Data calls & PS & PS+ & PS+V & VR & SC & X-sc. & PS & PS+ & PS+V & VR & SC\\
+\midrule
+TPC-H & 8 & 2{,}462 & 32.8 & 66.3 & \underline{90.1} & 85.7 & \textbf{97.4} & 93.4 & 203.6 & 101.5 & \underline{29.6} & 44.1 & \textbf{7.8}\\
+TPC-DS & 8 & 2{,}318 & 29.2 & 71.6 & \underline{95.5} & 95.2 & \textbf{96.9} & 92.3 & 203.5 & 81.2 & \underline{13.1} & 14.1 & \textbf{9.4}\\
+BIRD & 8 & 2{,}014 & 34.6 & 61.5 & \textbf{96.5} & \underline{95.9} & \textbf{96.5} & 91.5 & 161.5 & 94.9 & \textbf{8.8} & \underline{10.2} & \textbf{8.8}\\
+ENT & 8 & 2{,}370 & 29.9 & 38.4 & \textbf{98.1} & \underline{97.8} & \textbf{98.1} & 38.1 & 205.2 & 180.8 & \textbf{5.6} & \underline{6.5} & \textbf{5.6}\\
+\midrule
+Best/2nd & & & 0/0 & 0/0 & 2/2 & 0/2 & 4/0 & & 0/0 & 0/0 & 2/2 & 0/2 & 4/0\\
+\bottomrule
+\end{tabular}
+\end{table*}

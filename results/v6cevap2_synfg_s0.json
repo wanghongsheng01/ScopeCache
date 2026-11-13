@@ -1,0 +1,201 @@
+{
+ "crn": true,
+ "drift": 0,
+ "setup": "synfg",
+ "seed": 0,
+ "calls": 3000,
+ "users": 700,
+ "budget": 1000000,
+ "ev": 16.0,
+ "ovh": 0.5,
+ "events": {
+  "member_move": 174,
+  "revoke": 89,
+  "col_edit": 42,
+  "reactivate": 50,
+  "grant_edit": 103,
+  "republish": 44
+ },
+ "methods": {
+  "PerScope+V": {
+   "calls": 2436,
+   "data_calls": 2122,
+   "hits": 1448,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 5.90336846898208,
+   "derive_s": 9.994292998017045,
+   "n_exec": 704,
+   "rows_scanned": 473386307.0,
+   "replay_calls": 37,
+   "replay_wrong": 0,
+   "peak_rows": 999997,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 1210,
+   "hit_self": 192,
+   "hit_other": 46,
+   "view_maint": 30,
+   "hit_rate": 0.6823751178133836,
+   "lat_local_mean": 0.006526133607142498,
+   "lat_local_p50": 0.006131480499789177,
+   "lat_local_p95": 0.014384541500021442,
+   "lat_model_mean": 0.1448676771210998,
+   "lat_model_p95": 0.5123956565003027,
+   "lat_pad_mean": 0.39560270184688867,
+   "stats": {
+    "flushed": 42,
+    "split_miss": 0,
+    "fallback": 174,
+    "evicted": 398,
+    "maint_sec": 10.243156816999544,
+    "view_cover_sec": [
+     124888261.0
+    ],
+    "view_build_sec": 4.939157304001128,
+    "mat_n": 45,
+    "mat_rows": 270054675.0
+   },
+   "wall": 32.986146211624146,
+   "views": 3
+  },
+  "SC-adaptP": {
+   "calls": 2436,
+   "data_calls": 2122,
+   "hits": 1521,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 8.777705763974154,
+   "derive_s": 8.570142793972991,
+   "n_exec": 611,
+   "rows_scanned": 319883500.0,
+   "replay_calls": 37,
+   "replay_wrong": 0,
+   "peak_rows": 999961,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_other": 798,
+   "hit_xscope": 714,
+   "hit_view": 572,
+   "hit_self": 151,
+   "view_maint": 10,
+   "hit_rate": 0.7167766258246937,
+   "lat_local_mean": 0.007121448504904411,
+   "lat_local_p50": 0.005488665499797207,
+   "lat_local_p95": 0.021904115748839104,
+   "lat_model_mean": 0.13047941238010966,
+   "lat_model_p95": 0.5219041157488391,
+   "lat_pad_mean": 0.3969062646153446,
+   "stats": {
+    "flushed": 14,
+    "split_miss": 0,
+    "fallback": 174,
+    "evicted": 452,
+    "maint_sec": 1.868737502996737,
+    "ghost_hits": 59,
+    "unpinned": 0,
+    "unpinned_rows": 0,
+    "view_cover_sec": [
+     103110361.0
+    ],
+    "view_build_sec": 3.589703855999687,
+    "mat_n": 15,
+    "mat_rows": 90018225.0
+   },
+   "wall": 26.57458186149597,
+   "views": 1,
+   "adapt": {
+    "n_train": 608,
+    "n_sel": 456,
+    "n_val": 152,
+    "scores": [
+     {
+      "name": "raw_hybrid",
+      "n_exec": 49,
+      "wrong": 0,
+      "data_calls": 136,
+      "evicted": 113,
+      "views": 4,
+      "wall": 8.943,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 1.0,
+       "pop": true
+      }
+     },
+     {
+      "name": "online",
+      "n_exec": 50,
+      "wrong": 0,
+      "data_calls": 136,
+      "evicted": 40,
+      "views": 0,
+      "wall": 5.432,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": false,
+       "lift": true,
+       "pop": true
+      }
+     },
+     {
+      "name": "atoms",
+      "n_exec": 49,
+      "wrong": 0,
+      "data_calls": 136,
+      "evicted": 113,
+      "views": 4,
+      "wall": 8.459,
+      "cfg": {
+       "mode": "atoms",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 1.0,
+       "pop": true
+      }
+     },
+     {
+      "name": "pop50",
+      "n_exec": 45,
+      "wrong": 0,
+      "data_calls": 136,
+      "evicted": 63,
+      "views": 3,
+      "wall": 6.878,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 0.5,
+       "pop": true
+      }
+     },
+     {
+      "name": "pop30",
+      "n_exec": 42,
+      "wrong": 0,
+      "data_calls": 136,
+      "evicted": 36,
+      "views": 1,
+      "wall": 5.671,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 0.3,
+       "pop": true
+      }
+     }
+    ],
+    "chosen": "pop30",
+    "chosen_n_exec": 42,
+    "chosen_wrong": 0
+   },
+   "adapt_chosen": "pop30"
+  }
+ }
+}

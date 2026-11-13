@@ -1,0 +1,202 @@
+{
+ "crn": true,
+ "drift": 0,
+ "setup": "synfg",
+ "seed": 0,
+ "calls": 3000,
+ "users": 700,
+ "budget": 1000000,
+ "ev": 4.0,
+ "ovh": 0.5,
+ "events": {
+  "member_move": 37,
+  "grant_edit": 21,
+  "revoke": 26,
+  "col_edit": 13,
+  "reactivate": 10,
+  "republish": 8
+ },
+ "methods": {
+  "PerScope+V": {
+   "calls": 2409,
+   "data_calls": 2129,
+   "hits": 1462,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 5.370601753013034,
+   "derive_s": 10.276549868975053,
+   "n_exec": 676,
+   "rows_scanned": 349981681.0,
+   "replay_calls": 8,
+   "replay_wrong": 0,
+   "peak_rows": 999999,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 1214,
+   "hit_self": 204,
+   "hit_other": 44,
+   "hit_xscope": 1,
+   "view_maint": 9,
+   "hit_rate": 0.6867073743541569,
+   "lat_local_mean": 0.006495289174756366,
+   "lat_local_p50": 0.006195902000399656,
+   "lat_local_p95": 0.013848995000444118,
+   "lat_model_mean": 0.14493447555914823,
+   "lat_model_p95": 0.5117410787992412,
+   "lat_pad_mean": 0.39904288830883616,
+   "stats": {
+    "flushed": 12,
+    "split_miss": 0,
+    "fallback": 168,
+    "evicted": 379,
+    "maint_sec": 3.354618326999116,
+    "view_cover_sec": [
+     123589362.0
+    ],
+    "view_build_sec": 4.044729876002748,
+    "mat_n": 15,
+    "mat_rows": 90018225.0
+   },
+   "wall": 25.199965953826904,
+   "views": 3
+  },
+  "SC-adaptP": {
+   "calls": 2409,
+   "data_calls": 2129,
+   "hits": 1518,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 9.956636820985295,
+   "derive_s": 9.23775566299446,
+   "n_exec": 614,
+   "rows_scanned": 287684046.0,
+   "replay_calls": 8,
+   "replay_wrong": 0,
+   "peak_rows": 999978,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 675,
+   "hit_other": 679,
+   "hit_xscope": 602,
+   "hit_self": 164,
+   "view_maint": 3,
+   "hit_rate": 0.7130108031939878,
+   "lat_local_mean": 0.00796778434370268,
+   "lat_local_p50": 0.006069078001019079,
+   "lat_local_p95": 0.02850261619933006,
+   "lat_model_mean": 0.13478389061186374,
+   "lat_model_p95": 0.52850261619933,
+   "lat_pad_mean": 0.40186613326525095,
+   "stats": {
+    "flushed": 4,
+    "split_miss": 0,
+    "fallback": 168,
+    "evicted": 453,
+    "maint_sec": 0.5945197530036239,
+    "ghost_hits": 72,
+    "unpinned": 0,
+    "unpinned_rows": 0,
+    "view_cover_sec": [
+     102586746.0
+    ],
+    "view_build_sec": 3.810028189998775,
+    "mat_n": 5,
+    "mat_rows": 30006075.0
+   },
+   "wall": 27.554718255996704,
+   "views": 1,
+   "adapt": {
+    "n_train": 602,
+    "n_sel": 451,
+    "n_val": 151,
+    "scores": [
+     {
+      "name": "raw_hybrid",
+      "n_exec": 48,
+      "wrong": 0,
+      "data_calls": 143,
+      "evicted": 112,
+      "views": 4,
+      "wall": 6.28,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 1.0,
+       "pop": true
+      }
+     },
+     {
+      "name": "online",
+      "n_exec": 54,
+      "wrong": 0,
+      "data_calls": 143,
+      "evicted": 38,
+      "views": 0,
+      "wall": 4.719,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": false,
+       "lift": true,
+       "pop": true
+      }
+     },
+     {
+      "name": "atoms",
+      "n_exec": 48,
+      "wrong": 0,
+      "data_calls": 143,
+      "evicted": 112,
+      "views": 4,
+      "wall": 6.372,
+      "cfg": {
+       "mode": "atoms",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 1.0,
+       "pop": true
+      }
+     },
+     {
+      "name": "pop50",
+      "n_exec": 45,
+      "wrong": 0,
+      "data_calls": 143,
+      "evicted": 62,
+      "views": 3,
+      "wall": 5.925,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 0.5,
+       "pop": true
+      }
+     },
+     {
+      "name": "pop30",
+      "n_exec": 42,
+      "wrong": 0,
+      "data_calls": 143,
+      "evicted": 29,
+      "views": 1,
+      "wall": 4.801,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 0.3,
+       "pop": true
+      }
+     }
+    ],
+    "chosen": "pop30",
+    "chosen_n_exec": 42,
+    "chosen_wrong": 0
+   },
+   "adapt_chosen": "pop30"
+  }
+ }
+}

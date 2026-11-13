@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Pre-registered robustness of the frozen method on unseen seeds 6--10. This evaluation does \emph{not} replace Table~\ref{tab:main} (seeds 3--5: \psvW{}--\psvT{}--\psvL{} vs.\ \M{PerScope+V}). The shifted \texttt{flatmix} (Zipf $0.2,0.2,0.2$) was declared before any shifted run. W--T--L versus each baseline; 95\% CI on the total-execution difference (paired bootstrap, seed \bootSeed{}, \bootB{} replicates). Bold is fewest executions (ScopeCache, in the header); underline is the second-lowest total on that grid.}
+\label{tab:rob}
+\scriptsize
+\setlength{\tabcolsep}{3.0pt}
+\begin{tabular}{@{}l cc c cc c@{}}
+\toprule
+& \multicolumn{3}{c}{Default Zipf (ours \textbf{\robOurs{}})} & \multicolumn{3}{c}{Shifted \texttt{flatmix} (ours \textbf{\shiftOurs{}})}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+vs.\ baseline & W--T--L & Base & 95\% CI & W--T--L & Base & 95\% CI\\
+\midrule
+\textbf{\M{PerScope+V}} & \textbf{\robWTLPsv{}} & \robPsv{} & [{$-$710}, {$-$171}] & \textbf{\shiftWTLPsv{}} & \shiftPsv{} & [{$-$1576}, {$-$509}]\\
+\M{SC-hybrid} & \robWTLHyb{} & \robHyb{} & [{$-$714}, {15}] & \shiftWTLHyb{} & \shiftHyb{} & [{$-$1382}, {$-$385}]\\
+\M{SC-online} & 24--0--1 & 11{,}425 & excl.\ 0 & 24--1--0 & 13{,}386 & excl.\ 0\\
+\M{SC-atoms} & 6--10--9 & \underline{\robAtoms{}} & [{$-$623}, {8}] & 11--11--3 & \underline{\shiftAtoms{}} & [{$-$1216}, {$-$356}]\\
+Others$^{\dagger}$ & 25--0--0 & --- & excl.\ 0 & 25--0--0 & --- & excl.\ 0\\
+\bottomrule
+\end{tabular}\\[2pt]
+{\scriptsize $^{\dagger}$\M{PerScope+}, \M{VR-adapt}, and \M{ViewRewrite}: all 25--0--0 on both grids (CIs exclude zero).}
+\end{table}

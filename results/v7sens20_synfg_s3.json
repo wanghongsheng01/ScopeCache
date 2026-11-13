@@ -1,0 +1,159 @@
+{
+ "crn": false,
+ "drift": 0,
+ "setup": "synfg",
+ "seed": 3,
+ "calls": 3000,
+ "users": 700,
+ "budget": 1000000,
+ "ev": 1.0,
+ "ovh": 0.5,
+ "events": {
+  "member_move": 13,
+  "revoke": 5,
+  "col_edit": 1,
+  "reactivate": 3,
+  "grant_edit": 7,
+  "republish": 7
+ },
+ "methods": {
+  "SC-adaptP": {
+   "calls": 2364,
+   "data_calls": 2038,
+   "hits": 1398,
+   "wrong": 0,
+   "overpriv": 0,
+   "stale": 0,
+   "exec_s": 11.44871716999478,
+   "derive_s": 9.314067886989505,
+   "n_exec": 644,
+   "rows_scanned": 293596936.0,
+   "replay_calls": 4,
+   "replay_wrong": 0,
+   "peak_rows": 999966,
+   "view_rebuilds": 0,
+   "readapt_mat": 0,
+   "hit_view": 598,
+   "hit_other": 640,
+   "hit_xscope": 543,
+   "hit_self": 160,
+   "view_maint": 4,
+   "hit_rate": 0.6859666339548577,
+   "lat_local_mean": 0.008782904000416364,
+   "lat_local_p50": 0.006009505000292847,
+   "lat_local_p95": 0.03041787034990193,
+   "lat_model_mean": 0.14414669418654158,
+   "lat_model_p95": 0.530417870349902,
+   "lat_pad_mean": 0.3873794641822953,
+   "stats": {
+    "flushed": 4,
+    "split_miss": 0,
+    "fallback": 151,
+    "evicted": 477,
+    "maint_sec": 0.7881779400013329,
+    "ghost_hits": 97,
+    "unpinned": 2,
+    "unpinned_rows": 303766,
+    "unpin_min": 20,
+    "view_cover_sec": [
+     127240069.0
+    ],
+    "view_build_sec": 3.29866686600144,
+    "mat_n": 7,
+    "mat_rows": 42008505.0
+   },
+   "wall": 29.60025143623352,
+   "views": 3,
+   "adapt": {
+    "n_train": 590,
+    "n_sel": 442,
+    "n_val": 148,
+    "scores": [
+     {
+      "name": "raw_hybrid",
+      "n_exec": 40,
+      "wrong": 0,
+      "data_calls": 124,
+      "evicted": 73,
+      "views": 3,
+      "wall": 6.434,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 1.0,
+       "pop": true
+      }
+     },
+     {
+      "name": "online",
+      "n_exec": 34,
+      "wrong": 0,
+      "data_calls": 124,
+      "evicted": 31,
+      "views": 0,
+      "wall": 4.746,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": false,
+       "lift": true,
+       "pop": true
+      }
+     },
+     {
+      "name": "atoms",
+      "n_exec": 38,
+      "wrong": 0,
+      "data_calls": 124,
+      "evicted": 66,
+      "views": 7,
+      "wall": 5.315,
+      "cfg": {
+       "mode": "atoms",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 1.0,
+       "pop": true
+      }
+     },
+     {
+      "name": "pop50",
+      "n_exec": 24,
+      "wrong": 0,
+      "data_calls": 124,
+      "evicted": 63,
+      "views": 3,
+      "wall": 5.446,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 0.5,
+       "pop": true
+      }
+     },
+     {
+      "name": "pop30",
+      "n_exec": 25,
+      "wrong": 0,
+      "data_calls": 124,
+      "evicted": 32,
+      "views": 1,
+      "wall": 4.83,
+      "cfg": {
+       "mode": "raw",
+       "hybrid": true,
+       "lift": true,
+       "view_frac": 0.3,
+       "pop": true
+      }
+     }
+    ],
+    "chosen": "pop50",
+    "chosen_n_exec": 24,
+    "chosen_wrong": 0
+   },
+   "adapt_chosen": "pop50"
+  }
+ }
+}

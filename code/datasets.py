@@ -12,7 +12,11 @@ BIRD = os.environ.get("BIRD_FINANCIAL", os.path.join(ROOT, "data", "financial.sq
 
 
 def build_tpch(con, sf=1, name="tpch_wide"):
-    con.execute(f"INSTALL tpch; LOAD tpch; CALL dbgen(sf={sf})")
+    try:
+        con.execute("LOAD tpch")
+    except Exception:
+        con.execute("INSTALL tpch; LOAD tpch")
+    con.execute(f"CALL dbgen(sf={sf})")
     con.execute(f"""CREATE OR REPLACE TABLE {name} AS
       SELECT (year(o_orderdate)*100+month(o_orderdate))::INT AS month,
              r.r_name AS c_region, n.n_name AS c_nation, c_mktsegment, p_mfgr, p_brand,
@@ -104,6 +108,61 @@ def build_ent(con, rows=2_000_000, seed=11):
     con.unregister("ent_df")
     pd.DataFrame({"dept": [f"D{i:03d}" for i in range(n)], "parent": [f"D{p:03d}" if p >= 0 else None for p in parent],
                   "depth": depth}).to_csv(os.path.join(ROOT, "data", "ent_org_tree.csv"), index=False)
+
+
+def build_synfg(con, n_shops=300, seed=41):
+    """TPC-H SF1 with a fully synthetic shop dimension (SH000..).  Shops sit inside the customer's
+    nation, about `n_shops` of them, with Zipf activity within each nation.  No enterprise IDs."""
+    from synfg import N_SHOPS, FACT_SEED
+    n_shops = n_shops or N_SHOPS
+    seed = FACT_SEED if seed is None else seed
+    build_tpch(con, sf=1, name="tpch_wide")
+    cust = con.execute("SELECT DISTINCT o_custkey AS custkey, c_nation AS nation, c_region AS region FROM tpch_wide").df()
+    rng = np.random.default_rng(seed)
+    nat_info = cust.groupby(["nation", "region"], as_index=False).size().rename(columns={"size": "n"})
+    n_nat = len(nat_info)
+    if n_shops < n_nat:
+        raise ValueError(f"n_shops={n_shops} < number of nations {n_nat}")
+    raw = nat_info["n"].to_numpy(dtype=float)
+    raw = raw / raw.sum() * (n_shops - n_nat)
+    extra = np.floor(raw).astype(int)
+    rem = int(n_shops - n_nat - extra.sum())
+    frac = raw - extra
+    order = np.argsort(-frac)
+    extra[order[:rem]] += 1
+    n_per = extra + 1
+    shops = []
+    k = 0
+    for i, row in nat_info.iterrows():
+        for _ in range(int(n_per[i])):
+            shops.append((f"SH{k:03d}", row["nation"], row["region"]))
+            k += 1
+    if k != n_shops:
+        raise RuntimeError(f"allocated {k} shops, wanted {n_shops}")
+    shops_by_nat = {}
+    for sh, nat, _reg in shops:
+        shops_by_nat.setdefault(nat, []).append(sh)
+    shop_of = {}
+    for nat, g in cust.groupby("nation"):
+        sl = shops_by_nat[nat]
+        w = 1.0 / np.arange(1, len(sl) + 1)
+        rng.shuffle(w)
+        w /= w.sum()
+        assigned = rng.choice(sl, size=len(g), p=w)
+        for ck, sh in zip(g["custkey"].to_numpy(), assigned):
+            shop_of[int(ck)] = sh
+    map_df = pd.DataFrame({"custkey": list(shop_of.keys()), "shop": [shop_of[c] for c in shop_of]})
+    shop_meta = pd.DataFrame(shops, columns=["shop", "shop_nation", "shop_region"])
+    map_df = map_df.merge(shop_meta, on="shop")
+    con.register("shop_map", map_df)
+    con.execute("""CREATE OR REPLACE TABLE synfg_wide AS
+      SELECT t.*, m.shop, m.shop_nation, m.shop_region
+      FROM tpch_wide t JOIN shop_map m ON t.o_custkey = m.custkey""")
+    con.unregister("shop_map")
+    con.execute("DROP TABLE tpch_wide")
+    out_csv = os.path.join(ROOT, "data", "synfg_shop_tree.csv")
+    os.makedirs(os.path.dirname(out_csv), exist_ok=True)
+    shop_meta.to_csv(out_csv, index=False)
 
 
 ERP_DIR = os.path.join(ROOT, "_private", "erp")          # read-only ID extract of the ERP grant tables (not released)
@@ -283,6 +342,31 @@ def spec(name):
                                   "cost": ("sum", "cost*1.02", ["cost"])},
                     alt_metrics={"aov": "amount/(orders+0.0)", "refund_rate": "refund/(amount+refund)",
                                  "gross_margin": "(amount-cost-refund)/amount"})
+    if name == "synfg":
+        brands = [f"Brand#{a}{b}" for a in range(1, 6) for b in range(1, 6)]
+        return dict(table="synfg_wide", policy=["shop", "c_mktsegment"], hier={"shop": "c_nation"},
+                    synfg=True, n_users=700, n_groups=60,
+                    db=DB.replace("scopecache.duckdb", "scopecache_synfg.duckdb"),
+                    dims=["c_region", "c_nation", "c_mktsegment", "p_mfgr", "p_brand", "p_type1", "l_shipmode",
+                          "l_returnflag", "o_orderpriority", "s_region", "shop"],
+                    measures={"revenue": ("sum", "price*(1-disc)", ["price", "disc"]),
+                              "gross": ("sum", "price", ["price"]),
+                              "disc_amt": ("sum", "price*disc", ["price", "disc"]),
+                              "tax_amt": ("sum", "price*(1-disc)*tax", ["price", "disc", "tax"]),
+                              "qty": ("sum", "qty", ["qty"]), "lines": ("count", "*", []),
+                              "max_price": ("max", "price", ["price"]),
+                              "cost": ("sum", "supplycost*qty", ["supplycost", "qty"])},
+                    metrics={"revenue": "revenue", "gross_sales": "gross", "discount_rate": "disc_amt/gross",
+                             "avg_qty": "qty/lines", "order_lines": "lines", "max_price": "max_price",
+                             "tax": "tax_amt", "margin": "revenue-cost", "margin_rate": "(revenue-cost)/revenue",
+                             "customers": "DISTINCT:o_custkey"},
+                    sensitive=["supplycost"],
+                    mapped={"brand_group": ("p_brand", {b: f"G{i % 5}" for i, b in enumerate(brands)})},
+                    alt_measures={"revenue": ("sum", "price*(1-disc)*(1+tax)", ["price", "disc", "tax"]),
+                                  "gross": ("sum", "price*(1+tax)", ["price", "tax"]),
+                                  "cost": ("sum", "supplycost*qty*1.05", ["supplycost", "qty"])},
+                    alt_metrics={"discount_rate": "disc_amt/(gross+tax_amt)", "avg_qty": "qty/(lines+0.0)",
+                                 "margin_rate": "(revenue-cost)/gross"})
     if name.startswith("dom"):
         n = int(name[3:])
         return dict(table=f"dom{n}_wide", policy=["unit"], hier={}, real_grants=dom_grants_path(n),
@@ -308,12 +392,12 @@ if __name__ == "__main__":
     which = sys.argv[1:] or ["tpch", "tpcds", "bird", "ent"]
     for w in which:
         mem = duckdb.connect()  # generate in memory so dropped base tables never touch the disk file
-        if w.startswith("tpch") and w[4:].isdigit():   # large scale factors: bounded memory, spill to a local temp dir
+        if (w.startswith("tpch") and w[4:].isdigit()) or w == "synfg":
             mem.execute("SET memory_limit='5GB'; SET threads=4; SET preserve_insertion_order=false")
             mem.execute(f"SET temp_directory='{os.path.join(ROOT, 'data', 'tmp_build')}'")
         (lambda c: build_dom(c, int(w[3:])))(mem) if w.startswith("dom") else \
         (lambda c: build_tpch(c, int(w[4:]), f"{w}_wide"))(mem) if (w.startswith("tpch") and w[4:].isdigit()) else \
-            {"tpch": build_tpch, "tpcds": build_tpcds, "bird": build_bird, "ent": build_ent, "erp": build_erp}[w](mem)
+            {"tpch": build_tpch, "tpcds": build_tpcds, "bird": build_bird, "ent": build_ent, "erp": build_erp, "synfg": build_synfg}[w](mem)
         mem.execute(f"ATTACH '{spec(w).get('db', DB)}' AS out")
         mem.execute(f"CREATE OR REPLACE TABLE out.{w}_wide AS SELECT * FROM {w}_wide ORDER BY month")
         print(w, mem.execute(f"SELECT count(*) FROM out.{w}_wide").fetchone(), flush=True)

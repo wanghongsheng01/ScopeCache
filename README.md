@@ -1,66 +1,58 @@
-# ScopeCache: Permission- and Version-Safe Result Reuse for Multi-Principal Data Agents
+# ScopeCache: Safe Reuse of Query Results Across Permission Scopes
 
-Artifact for the ICDE 2027 submission. It contains the cache implementations, the workload and policy generators,
-the recorded LLM-agent traces, all result files behind the paper's tables and figures, and the scripts that
-regenerate every number of the paper.
+Artifact for the PVLDB Volume 20 / VLDB 2027 submission. It contains the cache implementations (including the frozen holdout-and-evidence-threshold configuration, SC-adaptP), the workload and policy generators, the recorded LLM-agent traces, the frozen result files behind every table and figure, and the scripts that regenerate the paper's numbers from those files.
+
+This package **does not** include an enterprise authorization setup. An earlier draft used such a setup; it has been removed from the paper and from this artifact. All experiments use public datasets (TPC-H, TPC-DS, BIRD) and fully synthetic policies (ENT and SYN-FG).
+
+## Official headline (do not replace)
+
+The official result is the frozen method (`unpin_min = 40`) on held-out seeds **3, 4, 5**: **10 wins / 5 ties / 0 losses** versus PerScope+V, 4,512 vs 4,804 executions (6.1% fewer), all `wrong = 0`. These numbers come from `results/v7fresh_*.json`. A later pre-registered robustness grid on seeds 6–10 (`results/v8rob_*.json`, `results/v8shift_*.json`) is reported in the paper as robustness and **does not replace** the 10/5/0 headline. Do not re-run those grids as a new official evaluation; the released JSON files are the record.
 
 ## Layout
 
 | Path | Content |
 |---|---|
-| `code/engine.py` | Fact tables, semantic layer with republishes, policy model (DNF grants over policy attributes, column grants, memberships, events), fresh-execution oracle, rule-based workload generator |
-| `code/caches.py` | All caches: `nocache`, `exact`, `none` (SemNoScope), `user`, `scope`, `ttl`, `views` (ViewRewrite), `raw` (ScopeCache), `atoms` (grant-literal classes) |
-| `code/run.py` | Runs every method on the same resolved trace and compares each answer with a fresh execution; writes `results/<tag>_<setup>_s<seed>.json` |
-| `code/datasets.py` | Builds the four fact tables into `data/scopecache.duckdb` |
-| `code/agent_trace.py` | Records tool-calling LLM agents (five models from five vendors: deepseek-chat, GLM-4.5-flash, Kimi-K2.6, GPT-6, Claude Opus 5.5) answering business questions for principals with different scopes |
-| `code/agent_eval.py`, `code/agent_sens.py` | Replay of the recorded traces through all caches; sensitivity to the number of principals per question |
-| `results/` | All result JSON files used in the paper (`v5main_*`, `v5cev*_*`, `v5drift_*`, `v5b100k_*`, `v5dom_*`, `v5scale_*`, `agent_eval_v4_b1000000.json`, `agent_eval_v4_b10000000.json`, `agent_sens_v4.json`; earlier `v2*`/`v3*`/`v4*` runs are kept for reference) and the recorded traces `results/agent/*.jsonl` |
-| `results/erp_*.json`, `results/*_erp_s*.json` | Aggregate statistics of the enterprise ERP system and the results of the ERP setup, which uses the system's real account-to-shop grants over a synthetic fact table. The grant file itself is not released; all other setups are fully reproducible |
-| `results/main_*_s*.json` | Earlier runs (2026-11-05, idle machine) with the v1 method names (`SC-raw` = today's `ScopeCache`); the paper uses them only for the per-hit derivation time |
-| `code/oracle_check.py`, `results/oracle_check.json` | Independent SQL-only oracle (formulas evaluated by DuckDB) compared with the experiment oracle on sampled calls |
-| `data/llm_cache.tar.gz` | Every LLM request and response of the recorded traces |
-| `paper/` | Manuscript source and `paper/tools/make_numbers.py`, which regenerates `numbers.tex`, all tables, and the data figures |
-
-Method names in code and paper: `ScopeCache` = raw policy attributes with pinned views (`mode="raw", hybrid=True`);
-`SC-online` = without views; `SC-nolift` = without predicate lifting; `SC-snap` = flush on snapshot change;
-`SC-atoms` = cells coarsened to grant-literal classes; `PerScope+` = the same lifting and measure bundles,
-partitioned by scope (`mode="scopeplus"`); `VR-adapt` = ViewRewrite re-selecting its views every 600 calls on the
-last 600 calls. The padded latency of `SC-pad` is reported for every run as `lat_pad_mean`.
+| `code/engine.py` | Fact tables, semantic layer, policy model, fresh-execution oracle, rule-based workload generator |
+| `code/caches.py` | All caches, including ScopeCache / SC-hybrid and the scope-partitioned baselines |
+| `code/adapt_select.py` | Holdout configuration selection and evidence-threshold unpinning (the frozen SC-adaptP path) |
+| `code/synfg.py` | Generator for the fine-grained synthetic shop policy (SYN-FG) |
+| `code/run.py`, `code/run_v8.py` | Experiment drivers; each answer is compared with a fresh execution |
+| `results/v7fresh_*.json` | Official headline runs (seeds 3–5) |
+| `results/v7sens*.json` | Sensitivity to `unpin_min` on the same seeds, reported as sensitivity, not as a new choice of threshold |
+| `results/v8rob_*.json`, `results/v8shift_*.json` | Pre-registered robustness (seeds 6–10; default Zipf and declared flatmix) |
+| `results/v5*` | Development-grid and component studies (seeds 0–2; agent traces; event, domain, and budget sweeps). Not the headline. |
+| `results/agent/` | Recorded LLM-agent traces |
+| `data/llm_cache.tar.gz` | Prompts and responses of those traces (if present) |
+| `paper/` | PVLDB Volume 20 manuscript sources. Headline macros at the end of `numbers.tex` are frozen; do not overwrite them from the development-grid generator. |
 
 ## Requirements
 
-Python 3.9 or newer, `pip install -r requirements.txt` (DuckDB 1.4.5). DuckDB downloads its `tpch`, `tpcds`, and
-`sqlite` extensions on first use. BIRD: download the BIRD dev release from https://bird-bench.github.io/ and set
-`BIRD_FINANCIAL=/path/to/dev_databases/financial/financial.sqlite`.
+Python 3.9 or newer, `pip install -r requirements.txt` (DuckDB 1.4.5). DuckDB downloads its `tpch`, `tpcds`, and `sqlite` extensions on first use. BIRD: download the BIRD dev release from https://bird-bench.github.io/ and set `BIRD_FINANCIAL=/path/to/dev_databases/financial/financial.sqlite`.
 
-## Reproduce
+## Reproduce numbers from the released files (recommended)
+
+The tables and macros in the paper are determined by the released JSON files. With `SC_DETCOST=1`, eviction priorities and view benefits use the number of fact-table rows a re-computation scans, so wrong-answer counts, warehouse executions, and hit rates are deterministic for a given seed. Measured times depend on the machine.
 
 ```sh
 pip install -r requirements.txt
-export BIRD_FINANCIAL=/path/to/dev_databases/financial/financial.sqlite
-sh scripts/build_data.sh          # about 10 minutes, 190 MB
-sh scripts/quick_check.sh         # about 10 minutes: one setup, every method, zero wrong answers
-sh scripts/reproduce_agents.sh    # replay the released agent traces (no LLM calls)
-sh scripts/reproduce_main.sh      # main grid and extras (several CPU-hours)
-python paper/tools/make_numbers.py   # regenerate numbers.tex, tables, and figures from results/
+# The official 10/5/0 headline and the v8 robustness tables:
+python3 code/analyze_v8.py          # or the analysis notes under results/
+# Regenerating development-grid macros (does not replace the frozen headline macros):
+python3 paper/tools/make_numbers.py
 ```
 
-`make_numbers.py` run on the released `results/` reproduces `paper/numbers.tex` and the table files of the paper
-exactly. With `SC_DETCOST=1` (set by the scripts), eviction priorities and view benefits use the number of fact-table
-rows a re-computation scans, so wrong-answer counts, warehouse executions, and hit rates are deterministic for a
-given seed. Measured times depend on the machine.
+## Rebuild data and optional re-execution
 
-To re-record the agent traces, unpack the LLM cache (`tar xzf data/llm_cache.tar.gz -C code`) and run
-`scripts/record_agents.sh`; cached requests need no API key. New requests need a JSON key file named by
-`SCOPECACHE_LLM_KEYS` with entries `{"deepseek": {"base_url": ..., "api_key": ...}, "glm": ..., "kimi": ...}`; GPT-6 and
-Claude Opus 5.5 were called through an OpenAI-compatible gateway whose key is read from the `T1688_KEY` environment variable.
+```sh
+export BIRD_FINANCIAL=/path/to/dev_databases/financial/financial.sqlite
+sh scripts/build_data.sh          # TPC-H, TPC-DS, ENT, SYN-FG (and BIRD if configured)
+sh scripts/quick_check.sh         # one setup, every method, zero wrong answers
+sh scripts/reproduce_agents.sh    # replay the released traces (no LLM calls)
+```
 
-## Data
+Scripts such as `scripts/run_sc_fresh.sh` and `scripts/run_sc_v8rob.sh` show how the frozen grids were obtained. They are provided for transparency. **If you re-execute them, treat the output as a check against the released JSON, not as a new official result.** The paper's claims use the released files.
 
-TPC-H and TPC-DS are generated by DuckDB at scale factor 1. BIRD financial is part of the public BIRD
-benchmark. ENT is synthetic: its organization tree, grant modes, metric types, and query format follow an
-enterprise metric platform, and all of its values are generated with fixed seeds. The ERP statistics in
-`results/erp_*.json` are aggregate counts computed on a read-only replica with the owner's approval.
+To re-record agent traces, unpack the LLM cache if present (`tar xzf data/llm_cache.tar.gz -C code`) and run `scripts/record_agents.sh`; cached requests need no API key.
 
 ## License
 
@@ -68,21 +60,5 @@ MIT (code). TPC data are generated under the TPC EULA; BIRD is distributed under
 
 ## Changelog
 
-- 2026-11-11 (presentation): `paper/tools/make_numbers.py` writes shorter table captions, a geometric-mean column in the
-  ablation table, a Best/2nd row in the agent table, and the event figure without PerScope (its range is a macro);
-  new macros for the text; no experiment was re-run and no reported value changed.
-- 2026-11-11 (v5): executions include view rebuilds after a republish and view re-selections, and every run reports
-  `rows_scanned` (fact-table rows scanned by executions, rebuilds, and re-selections); a TTL miss on a call that the
-  policy rejects executes nothing; VR-adapt keeps the views it re-selects and materializes only new ones (periods
-  300, 600, 1,200); the event sweep (tag `v5cev*`) uses common random numbers (`--crn`: the same 3,000 calls at every rate, events and the replays they trigger on top) and includes ERP; the intermediate `v5ev*` runs, in which events took the places of calls, are kept for reference; PerScope+V is replayed on
-  the agent traces, and ENT traces are replayed with a budget of 10^7 rows. DuckDB uses 4 threads by default
-  (`SC_THREADS`); counts do not depend on it. The agent replays have no events and keep the `v4` files.
-- 2026-11-11: agent traces of GPT-6 (gpt-6-sol) and Claude Opus 5.5 added (32 traces in total); all replays re-run under `v4`.
-- 2026-11-10 night: deterministic eviction and view-selection costs (`SC_DETCOST=1`) and a NULL-preserving merge of
-  partial sums (a SUM over only NULL values is NULL, as in SQL); all experiments re-run under the `v4` tags, plus the PerScope+V baseline, the policy-domain sweep (`dom*`), and TPC-H at scale factor 5.
-
-- 2026-11-10 10:16: `caches.py` gained the `scopeplus` mode (PerScope+) and a guard that applies scope-keyed entries
-  without a cell mask; `run.py` gained VR-adapt. Neither change touches the other modes; runs started before this
-  time (TPC-H main grid, event sweep, drift, small budget) use identical code paths and were not rerun.
-- 2026-11-10: the paper's ScopeCache is mode `raw` with pinned views; the 2026-11-05 runs called it `SC-raw`.
-
+- 2026-11-12 (PVLDB): SC-adaptP code, SYN-FG generator, official v7fresh results (10/5/0, `unpin_min=40`), sensitivity, and pre-registered v8 robustness; PVLDB manuscript sources; ERP setup and ERP aggregate files removed from this artifact to match the submission. Headline numbers are unchanged from the frozen evaluation.
+- 2026-11-11 and earlier: previous ICDE-draft package (superseded for this submission).

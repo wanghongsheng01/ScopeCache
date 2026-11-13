@@ -4,7 +4,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
-plt.rcParams.update({"font.size": 7.5, "font.family": "serif", "font.serif": ["STIX Two Text", "STIXGeneral", "DejaVu Serif"], "mathtext.fontset": "stix", "pdf.fonttype": 42})
+plt.rcParams.update({"font.size": 7.5, "font.family": "serif", "font.serif": ["Liberation Serif", "STIX Two Text", "STIXGeneral"], "mathtext.fontset": "stix", "pdf.fonttype": 42})
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 fig, ax = plt.subplots(figsize=(3.4, 1.55))
 depts, brands, quarters = ["$d_1$", "$d_2$", "$d_3$"], ["$b_1$", "$b_2$"], ["Q1", "Q2", "Q3"]
